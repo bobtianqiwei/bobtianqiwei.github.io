@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Bob Tianqi Wei. Builder, researcher, engineer.">
+  <meta name="description" content="Bob Tianqi Wei">
   <title>Bob Tianqi Wei</title>
   <style>
     @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap");
@@ -11,12 +11,10 @@
     :root {
       color-scheme: dark;
       --bg: #0a0d10;
-      --panel: #0f1317;
-      --text: #d7e0ea;
-      --muted: #8e9aa7;
-      --line: #1f2830;
-      --accent: #f3f4f6;
-      --max-width: 760px;
+      --text: #d8dee9;
+      --muted: #7f8a96;
+      --accent: #f5f7fa;
+      --max-width: 680px;
     }
 
     * {
@@ -30,146 +28,63 @@
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at top left, rgba(130, 150, 170, 0.08), transparent 28%),
-        linear-gradient(180deg, #0b0f13 0%, var(--bg) 100%);
+      background: var(--bg);
       color: var(--text);
       font-family: "IBM Plex Mono", monospace;
-      line-height: 1.75;
-      padding: 40px 20px;
+      line-height: 1.7;
+      padding: 48px 24px;
     }
 
     main {
       width: min(100%, var(--max-width));
       margin: 0 auto;
-      padding: 8px 0 40px;
     }
 
     h1,
-    h2,
     p {
       margin: 0;
       font-size: 1rem;
       font-weight: 400;
     }
 
-    section {
-      padding: 1.2rem 0;
-      border-top: 1px solid var(--line);
-    }
-
-    section:first-child {
-      border-top: 0;
-      padding-top: 0;
+    h1 {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
     }
 
     p + p {
-      margin-top: 0.8rem;
+      margin-top: 0.7rem;
     }
 
-    .title {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 1rem;
-    }
-
-    .section-name,
-    .label,
-    .footer {
+    .label {
       color: var(--muted);
-    }
-
-    .section-name {
-      display: block;
-      margin-bottom: 0.9rem;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: 8rem 1fr;
-      gap: 0.8rem;
-    }
-
-    .row + .row {
-      margin-top: 0.75rem;
     }
 
     a {
       color: var(--text);
       text-decoration: none;
-      border-bottom: 1px solid rgba(215, 224, 234, 0.35);
+      border-bottom: 1px solid rgba(216, 222, 233, 0.35);
     }
 
     a:hover {
       color: var(--accent);
-      border-bottom-color: rgba(243, 244, 246, 0.75);
-    }
-
-    .footer {
-      padding-top: 1.6rem;
+      border-bottom-color: rgba(245, 247, 250, 0.7);
     }
 
     @media (max-width: 640px) {
       html {
         font-size: 16px;
       }
-
-      .row {
-        grid-template-columns: 1fr;
-        gap: 0.25rem;
-      }
     }
   </style>
 </head>
 <body>
   <main>
-    <section>
-      <h1 class="title">Bob Tianqi Wei</h1>
-      <p>builder / researcher / engineer</p>
-      <p>I am interested in AI, software, robotics, and small systems that make the internet feel more personal.</p>
-    </section>
-
-    <section>
-      <h2 class="section-name">about</h2>
-      <div class="row">
-        <p class="label">name</p>
-        <p>Bob Tianqi Wei</p>
-      </div>
-      <div class="row">
-        <p class="label">background</p>
-        <p>Research scientist and engineer working across machine learning, product, and experimentation.</p>
-      </div>
-      <div class="row">
-        <p class="label">interests</p>
-        <p>Artificial intelligence, human-computer interaction, embodied systems, and independent internet projects.</p>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="section-name">current</h2>
-      <p>I use this site as a minimal public note: a short introduction, a few links, and a place to anchor ongoing experiments.</p>
-      <p>The design goal is deliberate restraint. Plain text first. No feed. No clutter.</p>
-    </section>
-
-    <section>
-      <h2 class="section-name">links</h2>
-      <div class="row">
-        <p class="label">website</p>
-        <p><a href="https://bobtianqiwei.com/about">bobtianqiwei.com/about</a></p>
-      </div>
-      <div class="row">
-        <p class="label">github</p>
-        <p><a href="https://github.com/bobtianqiwei">github.com/bobtianqiwei</a></p>
-      </div>
-      <div class="row">
-        <p class="label">contact</p>
-        <p><a href="mailto:weitianqi3598@hotmail.com">weitianqi3598@hotmail.com</a></p>
-      </div>
-    </section>
-
-    <section class="footer">
-      <p>Last updated: March 13, 2026</p>
-    </section>
+    <h1>Bob Tianqi Wei</h1>
+    <p><span class="label">website</span> <a href="https://bobtianqiwei.com">bobtianqiwei.com</a></p>
+    <p><span class="label">github</span> <a href="https://github.com/bobtianqiwei">github.com/bobtianqiwei</a></p>
+    <p><span class="label">email</span> <a href="mailto:bobwei3598@gmail.com">bobwei3598@gmail.com</a></p>
   </main>
 </body>
 </html>
