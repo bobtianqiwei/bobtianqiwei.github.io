@@ -6,10 +6,7 @@ const responses = {
   help: [
     "Available commands:",
     "help    show this list",
-    "about   bio and background",
-    "work    research interests",
-    "other   other practices",
-    "next    what comes next",
+    "about   bio, research, and current direction",
     "links   website, github, email",
     "home    open homepage",
     "clear   clear this terminal",
@@ -19,18 +16,15 @@ const responses = {
     "working with Professor Bjorn Hartmann and Shm Almeda.",
     "I hold an MDes in Human-Computer Interaction from the UC Berkeley College of Engineering",
     "and a BA in Industrial Design from Tsinghua University.",
-  ],
-  work: [
+    "",
     "My research sits at the intersection of human-computer interaction, AI,",
     "and embodied interfaces.",
     "I design and study systems that use AI and novel hardware to support tacit skill learning,",
     "creative work, and responsible automation.",
-  ],
-  other: [
+    "",
     "Outside of research, I am a classical musician, designer, and frontend engineer.",
     "I often bring these practices into my teaching and interactive prototypes.",
-  ],
-  next: [
+    "",
     "In fall 2026, I will join the MIT Media Lab.",
   ],
 };
