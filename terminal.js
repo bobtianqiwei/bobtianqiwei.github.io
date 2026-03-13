@@ -6,10 +6,7 @@ const currentPath = window.location.pathname === "/" ? "~/" : `~${window.locatio
 const lastUpdated = "March 12, 2026 at 10:52 PM PT";
 
 const aboutLines = [
-  "I am an HCI researcher at the Berkeley Institute of Design Lab (BiD) in EECS, working with Professor Bjorn Hartmann and Shm Almeda. I hold an MDes in Human-Computer Interaction from the UC Berkeley College of Engineering and a BA in Industrial Design from Tsinghua University.",
-  "My research sits at the intersection of human-computer interaction, AI, and embodied interfaces.",
-  "I design and study systems that use AI and novel hardware to support tacit skill learning, creative work, and responsible automation. Outside of research, I am a classical musician, designer, and frontend engineer, and I often bring these practices into my teaching and interactive prototypes.",
-  "In fall 2026, I will join the MIT Media Lab.",
+  "HCI researcher at UC Berkeley, working on creativity support tools, AI, and embodied interfaces.",
 ];
 
 const responses = {
@@ -33,8 +30,8 @@ const linksAll = [
 ];
 
 const linksDefault = [
-  'website  <a href="https://bobtianqiwei.com">bobtianqiwei.com</a>',
-  'github   <a href="https://github.com/bobtianqiwei">github.com/bobtianqiwei</a>',
+  '<a href="https://bobtianqiwei.com">bobtianqiwei.com</a>',
+  '<a href="https://github.com/bobtianqiwei">github.com/bobtianqiwei</a>',
 ];
 
 function appendEntry(command, lines, { html = false } = {}) {
