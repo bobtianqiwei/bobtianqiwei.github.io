@@ -3,7 +3,7 @@ const formEl = document.querySelector("[data-form]");
 const inputEl = document.querySelector("[data-input]");
 const mode = document.body.dataset.mode || "interactive";
 const currentPath = window.location.pathname === "/" ? "~/" : `~${window.location.pathname}`;
-const lastUpdated = "March 12, 2026 at 10:47 PM PT";
+const lastUpdated = "March 12, 2026 at 10:52 PM PT";
 
 const aboutLines = [
   "I am an HCI researcher at the Berkeley Institute of Design Lab (BiD) in EECS, working with Professor Bjorn Hartmann and Shm Almeda. I hold an MDes in Human-Computer Interaction from the UC Berkeley College of Engineering and a BA in Industrial Design from Tsinghua University.",
