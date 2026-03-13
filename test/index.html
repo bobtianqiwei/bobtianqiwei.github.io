@@ -3,15 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Test page for Bob Tianqi Wei">
+  <meta name="description" content="Terminal page for Bob Tianqi Wei">
   <title>Test / Bob Tianqi Wei</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/test/test.css">
 </head>
 <body>
   <main>
-    <h1>Test</h1>
-    <p><span class="label">page</span> This is a test page.</p>
-    <p><span class="label">home</span> <a href="../">/</a></p>
+    <section class="terminal" aria-label="Terminal interface">
+      <div class="terminal-header">
+        <p>bob@site:~/test</p>
+        <p>Interactive terminal prototype</p>
+      </div>
+      <div class="history" data-history></div>
+      <form class="input-row" data-form autocomplete="off">
+        <label for="command-input">bob@site:~$</label>
+        <input
+          id="command-input"
+          name="command"
+          type="text"
+          data-input
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          aria-label="Terminal command input"
+        >
+      </form>
+    </section>
   </main>
+  <script src="/test/terminal.js"></script>
 </body>
 </html>
