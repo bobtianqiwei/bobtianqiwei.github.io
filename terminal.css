@@ -2,12 +2,12 @@
 
 :root {
   color-scheme: dark;
-  --bg: #050709;
-  --text: #d8dee9;
-  --muted: #7f8a96;
-  --accent: #e7edf4;
-  --green: #9fe870;
-  --yellow: #f0d879;
+  --bg: #22201f;
+  --text: #ddd5cc;
+  --muted: #a79b91;
+  --accent: #c8b8a6;
+  --prompt: #9caf88;
+  --warning: #caa574;
   --font-size: 16px;
   --row-height: 24px;
 }
@@ -61,7 +61,7 @@ main {
 }
 
 .prompt {
-  color: var(--green);
+  color: var(--prompt);
 }
 
 .muted {
@@ -69,19 +69,18 @@ main {
 }
 
 .warning {
-  color: var(--yellow);
+  color: var(--warning);
 }
 
 .input-row {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  margin-top: 0;
   min-height: var(--row-height);
 }
 
 .input-row label {
-  color: var(--green);
+  color: var(--prompt);
   flex: 0 0 auto;
   height: var(--row-height);
   line-height: var(--row-height);
@@ -89,15 +88,14 @@ main {
 
 .input-row input {
   flex: 1 1 auto;
+  height: var(--row-height);
+  line-height: var(--row-height);
   background: transparent;
   border: 0;
   outline: 0;
   color: var(--text);
   font: inherit;
-  padding: 0;
   caret-color: var(--accent);
-  height: var(--row-height);
-  line-height: var(--row-height);
   appearance: none;
   -webkit-appearance: none;
   border-radius: 0;
@@ -117,10 +115,6 @@ a:hover {
 @media (max-width: 640px) {
   html {
     font-size: 15px;
-  }
-
-  body {
-    padding: 0;
   }
 
   .input-row {
