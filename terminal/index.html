@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terminal page for Bob Tianqi Wei">
+  <title>Terminal / Bob Tianqi Wei</title>
+  <link rel="icon" href="/favicon.svg?v=202603122252" type="image/svg+xml">
+  <link rel="stylesheet" href="/terminal.css?v=202603122252">
+</head>
+<body data-mode="interactive">
+  <main>
+    <section class="terminal" aria-label="Terminal interface">
+      <div class="history" data-history></div>
+      <form class="input-row" data-form autocomplete="off">
+        <label for="command-input">bob@site:~$</label>
+        <input
+          id="command-input"
+          name="command"
+          type="text"
+          data-input
+          spellcheck="false"
+          autocapitalize="off"
+          autocomplete="off"
+          aria-label="Terminal command input"
+        >
+      </form>
+    </section>
+  </main>
+  <script src="/terminal.js?v=202603122252"></script>
+</body>
+</html>
