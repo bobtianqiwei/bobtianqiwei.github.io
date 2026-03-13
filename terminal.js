@@ -80,16 +80,18 @@ function appendWelcome() {
     '<div class="response">',
     `<span class="muted">bob@site:${currentPath}</span><br>`,
     "Bob Tianqi Wei terminal<br>",
-    '<span class="muted">Type <span class="warning">help</span> to explore.</span>',
     "</div>",
   ].join("");
   historyEl.appendChild(welcome);
 }
 
 function appendDefaultContent() {
-  appendOutput(["about", ...aboutLines]);
+  appendOutput(aboutLines);
   appendOutput(linksDefault, { html: true });
-  appendOutput([`Last updated: ${lastUpdated}`]);
+  appendOutput([
+    `Last updated: ${lastUpdated}`,
+    'Type help to explore.',
+  ]);
 }
 
 function handleCommand(rawValue) {
