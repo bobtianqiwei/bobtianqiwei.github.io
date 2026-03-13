@@ -3,14 +3,13 @@
 :root {
   color-scheme: dark;
   --bg: #050709;
-  --panel: #0b0f13;
-  --line: #141a20;
   --text: #d8dee9;
   --muted: #7f8a96;
   --accent: #e7edf4;
   --green: #9fe870;
   --yellow: #f0d879;
-  --max-width: 860px;
+  --font-size: 16px;
+  --row-height: 24px;
 }
 
 * {
@@ -18,7 +17,7 @@
 }
 
 html {
-  font-size: 17px;
+  font-size: var(--font-size);
 }
 
 body {
@@ -27,7 +26,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: "IBM Plex Mono", monospace;
-  line-height: 1.55;
+  line-height: var(--row-height);
   padding: 0;
 }
 
@@ -54,6 +53,7 @@ main {
   margin: 0;
   padding: 0;
   line-height: inherit;
+  font-size: inherit;
 }
 
 .prompt-line {
@@ -74,14 +74,17 @@ main {
 
 .input-row {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 0.6rem;
   margin-top: 0;
+  min-height: var(--row-height);
 }
 
 .input-row label {
   color: var(--green);
   flex: 0 0 auto;
+  height: var(--row-height);
+  line-height: var(--row-height);
 }
 
 .input-row input {
@@ -93,6 +96,11 @@ main {
   font: inherit;
   padding: 0;
   caret-color: var(--accent);
+  height: var(--row-height);
+  line-height: var(--row-height);
+  appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
 }
 
 a {
