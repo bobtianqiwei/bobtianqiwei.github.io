@@ -29,7 +29,7 @@ body {
     linear-gradient(180deg, #070b0f 0%, var(--bg) 100%);
   color: var(--text);
   font-family: "IBM Plex Mono", monospace;
-  line-height: 1.65;
+  line-height: 1.55;
   padding: 28px 18px;
 }
 
@@ -47,24 +47,15 @@ main {
 
 .terminal-header {
   color: var(--muted);
-  margin-bottom: 18px;
 }
 
 .terminal-header p {
   margin: 0;
 }
 
-.terminal-header p + p {
-  margin-top: 0.35rem;
-}
-
 .history {
   white-space: pre-wrap;
   word-break: break-word;
-}
-
-.entry {
-  margin-bottom: 1rem;
 }
 
 .prompt-line {
@@ -73,10 +64,6 @@ main {
 
 .prompt {
   color: var(--green);
-}
-
-.response {
-  margin-top: 0.35rem;
 }
 
 .muted {
@@ -91,6 +78,7 @@ main {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
+  margin-top: 0;
 }
 
 .input-row label {
