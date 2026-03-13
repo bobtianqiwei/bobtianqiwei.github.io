@@ -57,6 +57,22 @@ function appendEntry(command, lines, { html = false } = {}) {
   historyEl.appendChild(entry);
 }
 
+function appendOutput(lines, { html = false } = {}) {
+  const entry = document.createElement("div");
+  entry.className = "entry";
+
+  const response = document.createElement("div");
+  response.className = "response";
+  if (html) {
+    response.innerHTML = lines.join("\n");
+  } else {
+    response.textContent = lines.join("\n");
+  }
+
+  entry.appendChild(response);
+  historyEl.appendChild(entry);
+}
+
 function appendWelcome() {
   const welcome = document.createElement("div");
   welcome.className = "entry";
@@ -64,7 +80,6 @@ function appendWelcome() {
     '<div class="response">',
     `<span class="muted">bob@site:${currentPath}</span><br>`,
     "Bob Tianqi Wei terminal<br>",
-    `<span class="muted">Last updated: ${lastUpdated}</span><br>`,
     '<span class="muted">Type <span class="warning">help</span> to explore.</span>',
     "</div>",
   ].join("");
@@ -72,8 +87,9 @@ function appendWelcome() {
 }
 
 function appendDefaultContent() {
-  appendEntry("about", aboutLines);
-  appendEntry("links", linksDefault, { html: true });
+  appendOutput(["about", ...aboutLines]);
+  appendOutput(linksDefault, { html: true });
+  appendOutput([`Last updated: ${lastUpdated}`]);
 }
 
 function handleCommand(rawValue) {
