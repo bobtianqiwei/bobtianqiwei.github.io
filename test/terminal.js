@@ -64,8 +64,8 @@ function appendWelcome() {
   welcome.className = "entry";
   welcome.innerHTML = [
     '<div class="response">',
-    'Bob Tianqi Wei terminal<br>',
     '<span class="muted">bob@site:~/test</span><br>',
+    'Bob Tianqi Wei terminal<br>',
     '<span class="muted">Type <span class="warning">help</span> to explore.</span>',
     "</div>",
   ].join("");

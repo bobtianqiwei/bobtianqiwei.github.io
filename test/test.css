@@ -24,38 +24,36 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(159, 232, 112, 0.06), transparent 24%),
-    linear-gradient(180deg, #070b0f 0%, var(--bg) 100%);
+  background: var(--bg);
   color: var(--text);
   font-family: "IBM Plex Mono", monospace;
   line-height: 1.55;
-  padding: 28px 18px;
+  padding: 0;
 }
 
 main {
-  width: min(100%, var(--max-width));
-  margin: 0 auto;
+  width: 100%;
 }
 
 .terminal {
-  min-height: calc(100vh - 56px);
-  background: linear-gradient(180deg, rgba(11, 15, 19, 0.96), rgba(8, 11, 14, 0.98));
-  border: 1px solid var(--line);
-  padding: 18px;
-}
-
-.terminal-header {
-  color: var(--muted);
-}
-
-.terminal-header p {
-  margin: 0;
+  min-height: 100vh;
+  padding: 0;
 }
 
 .history {
   white-space: pre-wrap;
   word-break: break-word;
+}
+
+.entry,
+.prompt-line,
+.response,
+.input-row,
+.input-row label,
+.input-row input {
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
 }
 
 .prompt-line {
@@ -114,11 +112,7 @@ a:hover {
   }
 
   body {
-    padding: 12px;
-  }
-
-  .terminal {
-    padding: 14px;
+    padding: 0;
   }
 
   .input-row {
