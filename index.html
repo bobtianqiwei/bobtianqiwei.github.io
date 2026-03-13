@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bob Tianqi Wei</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f5ef;
+      --text: #171717;
+      --muted: #6c6c6c;
+      --line: #cfc8bb;
+      --max-width: 720px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 18px;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, "Times New Roman", serif;
+      line-height: 1.7;
+      display: grid;
+      place-items: center;
+      padding: 32px 20px;
+    }
+
+    main {
+      width: min(100%, var(--max-width));
+    }
+
+    h1,
+    h2,
+    p {
+      margin: 0;
+    }
+
+    h1,
+    h2 {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    section + section,
+    p + p {
+      margin-top: 1.1rem;
+    }
+
+    .block {
+      padding: 1.2rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .block:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .label {
+      color: var(--muted);
+      display: inline-block;
+      min-width: 6.5rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.12em;
+    }
+
+    a:hover {
+      color: var(--muted);
+    }
+
+    .mono {
+      font-family: "SFMono-Regular", "Menlo", "Monaco", "Courier New", monospace;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 640px) {
+      html {
+        font-size: 17px;
+      }
+
+      .label {
+        min-width: 0;
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="block">
+      <h1 class="mono">Bob Tianqi Wei</h1>
+      <p>I make small experiments on the internet.</p>
+      <p>This site is a quiet index of who I am, what I am building, and what I am thinking about.</p>
+    </section>
+
+    <section class="block">
+      <h2 class="mono">about</h2>
+      <p><span class="label mono">who</span>Builder, engineer, and curious generalist.</p>
+      <p><span class="label mono">based</span>California / online.</p>
+      <p><span class="label mono">focus</span>Software, AI, and lightweight personal tools.</p>
+    </section>
+
+    <section class="block">
+      <h2 class="mono">now</h2>
+      <p>Trying to keep things simple: fewer layers, clearer writing, smaller software.</p>
+      <p>Using this page as an experiment in how little a personal website needs to be.</p>
+    </section>
+
+    <section class="block">
+      <h2 class="mono">links</h2>
+      <p><span class="label mono">github</span><a href="https://github.com/bobtianqiwei">github.com/bobtianqiwei</a></p>
+      <p><span class="label mono">email</span><a href="mailto:hello@example.com">hello@example.com</a></p>
+    </section>
+
+    <section class="block">
+      <p class="mono">Last updated: March 2026</p>
+    </section>
+  </main>
+</body>
+</html>
