@@ -90,8 +90,8 @@ function appendDefaultContent() {
   appendOutput(linksDefault, { html: true });
   appendOutput([
     `Last updated: ${lastUpdated}`,
-    'Type help to explore.',
-  ]);
+    'Type <span class="warning">help</span> to explore.',
+  ], { html: true });
 }
 
 function handleCommand(rawValue) {
