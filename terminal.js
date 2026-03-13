@@ -67,6 +67,7 @@ function appendWelcome() {
     '<div class="response">',
     `<span class="muted">bob@site:${currentPath}</span><br>`,
     "Bob Tianqi Wei terminal<br>",
+    `<span class="muted">Last updated: ${lastUpdated}</span><br>`,
     '<span class="muted">Type <span class="warning">help</span> to explore.</span>',
     "</div>",
   ].join("");
@@ -76,7 +77,6 @@ function appendWelcome() {
 function appendDefaultContent() {
   appendEntry("about", aboutLines);
   appendEntry("links", linksDefault, { html: true });
-  appendEntry("updated", [`Last updated: ${lastUpdated}`]);
 }
 
 function handleCommand(rawValue) {
