@@ -40,7 +40,7 @@ p {
 }
 
 h1 {
-  color: var(--accent);
+  color: var(--muted);
   font-weight: 600;
   margin-bottom: 1.5rem;
 }
@@ -55,13 +55,14 @@ p + p {
 
 a {
   color: var(--text);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(216, 222, 233, 0.35);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.12em;
+  border-bottom: 0;
 }
 
 a:hover {
   color: var(--accent);
-  border-bottom-color: rgba(245, 247, 250, 0.7);
 }
 
 @media (max-width: 640px) {
