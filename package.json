@@ -1,0 +1,7 @@
+{
+  "name": "bobtianqiwei-github-io",
+  "private": true,
+  "scripts": {
+    "preview": "python3 -m http.server 8000"
+  }
+}
