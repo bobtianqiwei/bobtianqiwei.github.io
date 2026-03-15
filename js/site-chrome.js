@@ -52,7 +52,15 @@
   }
 
   function applyChromeContext() {
-    document.documentElement.dataset.siteChromeContext = "page";
+    const root = document.documentElement;
+    root.dataset.siteChromeContext = "page";
+
+    if (normalizePath(window.location.pathname) === "/works/digital-paradise/") {
+      root.dataset.pageTheme = "digital-paradise";
+      return;
+    }
+
+    root.removeAttribute("data-page-theme");
   }
 
   function getStoredTheme() {
