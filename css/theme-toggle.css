@@ -144,6 +144,18 @@ html[data-theme-enabled="true"] .navigation-item:active {
   background-color: var(--theme-hover);
 }
 
+html[data-theme="dark"][data-theme-enabled="true"] .beta,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .beta {
+  background-color: #2b2b2b;
+  color: #dbd5ce !important;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .best-paper-award,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .best-paper-award {
+  background-color: #7a4d4d;
+  color: #f2ede6 !important;
+}
+
 html[data-theme-enabled="true"] .navigation-item.w--current {
   opacity: 1;
 }
