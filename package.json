@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build:works": "node scripts/render-works.js",
+    "sync:chrome": "node scripts/sync-site-chrome.js",
     "preview": "python3 -m http.server 8000"
   }
 }

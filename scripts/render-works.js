@@ -2,9 +2,9 @@
 const fs = require("fs");
 const path = require("path");
 const { indexSections, fineArtColumns, musicColumns, pages } = require("./works-data");
+const { renderFooter, renderNav, worksIndexPath } = require("./site-chrome");
 
 const repoRoot = path.resolve(__dirname, "..");
-const worksIndexPath = "/works/";
 
 function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -18,34 +18,6 @@ function writeFile(relativePath, content) {
 
 function isExternal(href) {
   return /^https?:\/\//.test(href);
-}
-
-function nav(currentWorks = true) {
-  return `  <div data-collapse="small" data-animation="over-right" data-duration="400" id="navigation" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
-    <div class="navigation-items">
-      <a href="/" class="logo-link w-nav-brand"><img src="/images/1b.png" width="42" height="Auto" alt="" sizes="(max-width: 479px) 100vw, 42px" srcset="/images/1b-p-500.png 500w, /images/1b.png 785w" class="logo-image"></a>
-      <div class="navigation-wrap">
-        <nav role="navigation" class="navigation-items w-nav-menu">
-          <a href="/" class="navigation-item w-nav-link">Home</a>
-          <a href="/vision/" class="navigation-item w-nav-link">VISION</a>
-          <a href="${worksIndexPath}" class="navigation-item w-nav-link${currentWorks ? " w--current" : ""}">WORKs</a>
-          <a href="/about/" class="navigation-item w-nav-link">About</a>
-        </nav>
-        <div class="menu-button w-nav-button"><img src="/images/menu-icon_1menu-icon.png" width="22" alt="" class="menu-icon"></div>
-      </div>
-    </div>
-  </div>`;
-}
-
-function footer() {
-  return `  <div class="footer-wrap">
-    <div>
-      <div>Bob Tianqi Wei&nbsp; 魏 天祺</div>
-    </div>
-    <div class="footer-links">
-      <div class="text-block-83">Copyright © 2024 TIANQI&nbsp;ROBERT WEI. All rights reserved.</div>
-    </div>
-  </div>`;
 }
 
 function scripts() {
@@ -221,7 +193,7 @@ ${Array.from({ length: emptyCount }, () => '      <div class="w-col w-col-2"></d
 }
 
 function renderAllWorks() {
-  const body = `${nav()}
+  const body = `${renderNav("works")}
   <article class="work-page-div-block">
     <h1 id="works-head" class="works-page">WORKS</h1>
     <div class="work-essentials-columns w-row">
@@ -256,7 +228,7 @@ ${renderExperiments(indexSections["EXPERIMENTS"])}
   <div class="all-works-section">
     <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>
   </div>
-${footer()}`;
+${renderFooter()}`;
 
   return pageShell({
     title: "Works - Bob Tianqi Wei",
@@ -269,7 +241,7 @@ ${footer()}`;
 function renderPublicationPage(page) {
   const sections = page.sections.map((section) => `    <div class="big-title-2">${section.title}</div>
     ${section.html}`).join("\n");
-  const body = `${nav(false)}
+  const body = `${renderNav("works")}
   <div class="work-detail-page-container">
     <div class="w-layout-grid project-overview-grid">
       <h1 class="heading-black-2">${page.heading}</h1>
@@ -280,14 +252,14 @@ ${sections}
   <a href="${worksIndexPath}" class="all-works w-inline-block">
     <h1 class="all-works-head-black">ALL WORKS</h1>
   </a>
-${footer()}
+${renderFooter()}
   <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>`;
   return pageShell({ title: page.metaTitle, body });
 }
 
 function renderLegacyHeroPage(page) {
   const slides = page.slides.map((slide) => `        <div class="w-slide">${renderImage(slide)}</div>`).join("\n");
-  const body = `${nav(false)}
+  const body = `${renderNav("works")}
   <div class="${page.heroClass}">
     <div class="work-detail-page-container">
       <div class="w-layout-grid project-overview-grid">
@@ -316,7 +288,7 @@ ${slides}
     </a>
     <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>
   </div>
-${footer()}`;
+${renderFooter()}`;
   return pageShell({ title: page.metaTitle, body });
 }
 
@@ -324,7 +296,7 @@ function renderAlbumPage(page) {
   const videos = page.videos.map((videoUrl, index) => `    <div class="video-embed-big w-embed w-iframe"><iframe width="100%" height="100%" src="${videoUrl}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe></div>
     <p class="paragraph-light">${index}<br></p>`).join("\n");
   const slides = page.slides.map((slide) => `        <div class="w-slide">${renderImage(slide)}</div>`).join("\n");
-  const body = `${nav(false)}
+  const body = `${renderNav("works")}
   <div class="work-detail-page-container">
     <div class="w-layout-grid project-overview-grid">
       <h1 class="heading-black-big">${page.heading}</h1>
@@ -345,7 +317,7 @@ ${slides}
   <a href="${worksIndexPath}" class="all-works w-inline-block">
     <h1 class="all-works-head-black">ALL WORKS</h1>
   </a>
-${footer()}
+${renderFooter()}
   <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>`;
   return pageShell({ title: page.metaTitle, body });
 }
