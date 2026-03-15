@@ -14,7 +14,7 @@
   --page-fade-duration: .22s;
   --page-fade-distance: -8px;
   --footer-offset: 108px;
-  --back-to-top-bg: #ffffff;
+  --back-to-top-bg: rgba(255, 255, 255, 0.5);
   --back-to-top-bg-hover: #f6f6f6;
 }
 
@@ -30,7 +30,7 @@ html[data-theme="dark"] {
   --theme-button-bg: #2f3237;
   --theme-button-thumb: #141414;
   --theme-button-icon: #c9ccd2;
-  --back-to-top-bg: #141414;
+  --back-to-top-bg: rgba(20, 20, 20, 0.5);
   --back-to-top-bg-hover: #1a1a1a;
 }
 
@@ -45,7 +45,7 @@ html[data-page-theme="digital-paradise"] {
   --theme-button-bg: #2f2f2f;
   --theme-button-thumb: #000000;
   --theme-button-icon: #c9ccd2;
-  --back-to-top-bg: #000000;
+  --back-to-top-bg: rgba(0, 0, 0, 0.5);
   --back-to-top-bg-hover: #0a0a0a;
 }
 
@@ -298,7 +298,6 @@ html[data-theme-enabled="true"] span {
 }
 
 .back-to-top,
-.back-to-top-image,
 .all-works-section {
   transform: none;
 }
@@ -308,32 +307,20 @@ html[data-theme-enabled="true"] span {
   bottom: calc(var(--footer-offset) + 12px);
   display: flex;
   align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
   opacity: 1;
-  right: 0;
+  padding-left: 6px;
+  right: -11px;
   width: 45px;
   overflow: hidden;
-  transition: background-color .48s ease, opacity .48s ease;
+  transition: right .48s ease, padding-left .48s ease, background-color .48s ease, opacity .48s ease;
   z-index: 10001;
-}
-
-.back-to-top::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 23px;
-  background-color: var(--theme-bg);
-  pointer-events: none;
-  transition: transform .48s ease, background-color .48s ease;
-  z-index: 1;
 }
 
 .back-to-top:hover {
   background-color: var(--back-to-top-bg-hover);
-}
-
-.back-to-top:hover::before {
-  transform: translateX(-100%);
+  padding-left: 11.5px;
+  right: 0;
 }
 
 .back-to-top-image {
@@ -342,14 +329,9 @@ html[data-theme-enabled="true"] span {
   margin-top: 11px;
   margin-right: 0;
   margin-left: 0;
-  transform: translateX(11.5px);
-  transition: transform .48s ease, filter .48s ease;
+  transition: filter .48s ease;
   position: relative;
-  z-index: 2;
-}
-
-.back-to-top:hover .back-to-top-image {
-  transform: translateX(0);
+  z-index: 1;
 }
 
 @media (prefers-reduced-motion: reduce) {
