@@ -144,6 +144,20 @@ html[data-theme-enabled="true"] .navigation-item:active {
   background-color: var(--theme-hover);
 }
 
+/* Keep image-based work title sections transparent so hero images remain visible. */
+html[data-theme-enabled="true"] .div-block-4 > .work-detail-page-container,
+html[data-theme-enabled="true"] .div-block-10 > .work-detail-page-container,
+html[data-theme-enabled="true"] .div-block-6 > .work-detail-page-container,
+html[data-theme-enabled="true"] .div-block-8 > .work-detail-page-container,
+html[data-theme-enabled="true"] .div-block-8-copy > .work-detail-page-container,
+html[data-theme-enabled="true"] #head.section1 > .work-detail-page-container,
+html[data-theme-enabled="true"] .work-heading-div-block-water > .work-detail-page-container,
+html[data-theme-enabled="true"] .work-heading-div-block-nnmp > .work-detail-page-container,
+html[data-theme-enabled="true"] .work-page-title-section > .work-detail-page-container,
+html[data-theme-enabled="true"] .work-page-title-section-copy > .work-detail-page-container {
+  background-color: transparent !important;
+}
+
 html[data-theme="dark"][data-theme-enabled="true"] .beta,
 html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .beta {
   background-color: #2b2b2b;
