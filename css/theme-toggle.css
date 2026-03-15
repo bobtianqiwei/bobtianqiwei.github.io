@@ -14,9 +14,8 @@
   --page-fade-duration: .22s;
   --page-fade-distance: -8px;
   --footer-offset: 108px;
-  --back-to-top-bg: rgba(244, 244, 244, 0.72);
-  --back-to-top-bg-hover: rgba(255, 255, 255, 0.86);
-  --back-to-top-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
+  --back-to-top-bg: #ffffff;
+  --back-to-top-bg-hover: #f6f6f6;
 }
 
 html[data-theme="dark"] {
@@ -31,9 +30,8 @@ html[data-theme="dark"] {
   --theme-button-bg: #2f3237;
   --theme-button-thumb: #111317;
   --theme-button-icon: #c9ccd2;
-  --back-to-top-bg: rgba(24, 27, 32, 0.62);
-  --back-to-top-bg-hover: rgba(34, 38, 44, 0.72);
-  --back-to-top-shadow: 0 0 20px rgba(242, 237, 230, 0.14);
+  --back-to-top-bg: #111317;
+  --back-to-top-bg-hover: #16191e;
 }
 
 html[data-theme-enabled="true"] body,
@@ -273,24 +271,34 @@ html[data-theme-enabled="true"] span {
 .back-to-top {
   background-color: var(--back-to-top-bg);
   bottom: calc(var(--footer-offset) + 12px);
-  box-shadow: var(--back-to-top-shadow);
-  clip-path: inset(0 0 0 23px);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   opacity: 1;
-  padding-left: 23px;
   right: 0;
   width: 45px;
   overflow: hidden;
-  transition: clip-path .62s ease, padding-left .62s ease, background-color .62s ease, box-shadow .62s ease, opacity .62s ease;
+  transition: background-color .48s ease, opacity .48s ease;
   z-index: 10001;
+}
+
+.back-to-top::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 23px;
+  background-color: var(--theme-bg);
+  pointer-events: none;
+  transition: transform .48s ease, background-color .48s ease;
+  z-index: 1;
 }
 
 .back-to-top:hover {
   background-color: var(--back-to-top-bg-hover);
-  clip-path: inset(0 0 0 0);
-  padding-left: 0;
+}
+
+.back-to-top:hover::before {
+  transform: translateX(-100%);
 }
 
 .back-to-top-image {
@@ -299,7 +307,14 @@ html[data-theme-enabled="true"] span {
   margin-top: 11px;
   margin-right: 0;
   margin-left: 0;
-  transition: filter .62s ease;
+  transform: translateX(11.5px);
+  transition: transform .48s ease, filter .48s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.back-to-top:hover .back-to-top-image {
+  transform: translateX(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
