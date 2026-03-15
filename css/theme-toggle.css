@@ -226,6 +226,75 @@ html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swe-logo-da
   filter: invert(1) brightness(1.04);
 }
 
+html[data-theme="dark"][data-theme-enabled="true"] .swe-page-title,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swe-page-title {
+  color: #f2f2f2;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .rich-text-block,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .rich-text-block {
+  color: #93a7ff;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-purple,
+html[data-theme="dark"][data-theme-enabled="true"] .swehero_purple-copy,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-purple,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero_purple-copy {
+  color: #c7a6ff;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-darkblue,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-darkblue {
+  color: #8fb2ff;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-greyblue,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-greyblue {
+  color: #9ea7ff;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-grey,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-grey {
+  color: #a7a7a7;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-brown,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-brown {
+  color: #d8b4a6;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .swehero-red,
+html[data-page-theme="digital-paradise"][data-theme-enabled="true"] .swehero-red {
+  color: #7fd7d8;
+}
+
+.type-char {
+  opacity: 0;
+  display: inline-block;
+  white-space: pre;
+  transform: translateY(-0.12em);
+  transition: opacity .03s linear, transform .08s ease;
+  will-change: opacity, transform;
+}
+
+.type-char.type-char-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.swe-page-title.swe-typed {
+  white-space: pre-wrap;
+}
+
+.swe-page-title.swe-typed .link-in-paragraph {
+  white-space: nowrap;
+  text-decoration: underline;
+}
+
+.swe-page-title.swe-typed .link-in-paragraph .type-char {
+  text-decoration: underline;
+}
+
 html[data-theme-enabled="true"] .button.cc-white-button {
   background-color: var(--theme-surface);
   color: var(--theme-text) !important;
