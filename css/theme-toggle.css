@@ -13,6 +13,10 @@
   --theme-transition: background-color .28s ease, color .28s ease, border-color .28s ease, fill .28s ease, stroke .28s ease, filter .28s ease;
   --page-fade-duration: .22s;
   --page-fade-distance: -8px;
+  --footer-offset: 108px;
+  --back-to-top-bg: rgba(244, 244, 244, 0.72);
+  --back-to-top-bg-hover: rgba(255, 255, 255, 0.86);
+  --back-to-top-shadow: 0 0 20px rgba(0, 0, 0, 0.14);
 }
 
 html[data-theme="dark"] {
@@ -27,6 +31,9 @@ html[data-theme="dark"] {
   --theme-button-bg: #2f3237;
   --theme-button-thumb: #111317;
   --theme-button-icon: #c9ccd2;
+  --back-to-top-bg: rgba(24, 27, 32, 0.62);
+  --back-to-top-bg-hover: rgba(34, 38, 44, 0.72);
+  --back-to-top-shadow: 0 0 20px rgba(242, 237, 230, 0.14);
 }
 
 html[data-theme-enabled="true"] body,
@@ -129,6 +136,10 @@ html[data-theme-enabled="true"] .navigation-item.w--current {
 }
 
 html[data-theme="dark"][data-theme-enabled="true"] .logo-image {
+  filter: invert(1) brightness(1.08);
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .back-to-top-image {
   filter: invert(1) brightness(1.08);
 }
 
@@ -250,7 +261,45 @@ html[data-theme-enabled="true"] span {
 
 .page-fade-item.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+}
+
+.back-to-top,
+.back-to-top-image,
+.all-works-section {
+  transform: none;
+}
+
+.back-to-top {
+  background-color: var(--back-to-top-bg);
+  bottom: calc(var(--footer-offset) + 12px);
+  box-shadow: var(--back-to-top-shadow);
+  clip-path: inset(0 0 0 23px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  opacity: 1;
+  padding-left: 23px;
+  right: 0;
+  width: 45px;
+  overflow: hidden;
+  transition: clip-path .62s ease, padding-left .62s ease, background-color .62s ease, box-shadow .62s ease, opacity .62s ease;
+  z-index: 10001;
+}
+
+.back-to-top:hover {
+  background-color: var(--back-to-top-bg-hover);
+  clip-path: inset(0 0 0 0);
+  padding-left: 0;
+}
+
+.back-to-top-image {
+  width: 22px;
+  height: 22px;
+  margin-top: 11px;
+  margin-right: 0;
+  margin-left: 0;
+  transition: filter .62s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -272,6 +321,10 @@ html[data-theme-enabled="true"] .theme-toggle:focus-visible .theme-toggle-track 
 }
 
 @media screen and (max-width: 767px) {
+  :root {
+    --footer-offset: 168px;
+  }
+
   html[data-theme-enabled="true"] .footer-links {
     justify-content: center;
   }

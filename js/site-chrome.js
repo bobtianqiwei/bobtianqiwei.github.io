@@ -128,6 +128,56 @@
     toggle.addEventListener("click", toggleThemePreference);
   }
 
+  function wireBackToTop() {
+    if (document.documentElement.dataset.backToTopBound === "true") {
+      return;
+    }
+
+    document.documentElement.dataset.backToTopBound = "true";
+    document.querySelectorAll(".back-to-top").forEach(function (trigger) {
+      if (!trigger.getAttribute("title")) {
+        trigger.setAttribute("title", "Back to top");
+      }
+      if (!trigger.getAttribute("aria-label")) {
+        trigger.setAttribute("aria-label", "Back to top");
+      }
+    });
+    document.addEventListener("click", function (event) {
+      const trigger = event.target.closest(".back-to-top");
+      if (!trigger) {
+        return;
+      }
+
+      event.preventDefault();
+      animateScrollToTop(280);
+    });
+  }
+
+  function animateScrollToTop(duration) {
+    const startY = window.scrollY || document.documentElement.scrollTop || 0;
+    if (startY <= 0) {
+      return;
+    }
+
+    const startTime = performance.now();
+    const easeOutCubic = function (t) {
+      return 1 - Math.pow(1 - t, 3);
+    };
+
+    const step = function (now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = easeOutCubic(progress);
+      window.scrollTo(0, Math.round(startY * (1 - eased)));
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  }
+
   function applyPageFade() {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.dataset.pageFade = "done";
@@ -162,6 +212,9 @@
 
     const items = Array.from(document.querySelectorAll(selector)).filter((element) => {
       if (element.closest(".navigation, .footer-wrap, .background-video, .w-nav-overlay")) {
+        return false;
+      }
+      if (element.matches(".back-to-top, .back-to-top-image, .all-works-section")) {
         return false;
       }
       if (element.classList.contains("page-fade-item")) {
@@ -277,6 +330,7 @@
   replaceAll(navSelector, navHtml, applyCurrentState);
   replaceAll(footerSelector, footerHtml, wireThemeToggle);
   updateThemeToggle();
+  wireBackToTop();
   applyPageFade();
 
   systemDarkMode.addEventListener("change", function () {
