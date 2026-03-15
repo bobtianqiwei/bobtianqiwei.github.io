@@ -52,7 +52,7 @@
   }
 
   function applyChromeContext() {
-    document.documentElement.dataset.siteChromeContext = getCurrentSection(window.location.pathname) || "page";
+    document.documentElement.dataset.siteChromeContext = "page";
   }
 
   function getStoredTheme() {
