@@ -128,6 +128,63 @@
     toggle.addEventListener("click", toggleThemePreference);
   }
 
+  function applyPageFade() {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document.documentElement.dataset.pageFade = "done";
+      return;
+    }
+
+    const selector = [
+      "main > *",
+      "article > *",
+      ".section > *",
+      ".work-detail-page-container > *",
+      ".work-page-div-block > *",
+      ".div-block-12 > *",
+      ".div-block-5 > *",
+      ".w-row > *",
+      ".w-col > *",
+      ".w-layout-grid > *",
+      ".w-layout-hflex > *",
+      "main img",
+      "main h1",
+      "main h2",
+      "main h3",
+      "main p",
+      "main a",
+      "article img",
+      "article h1",
+      "article h2",
+      "article h3",
+      "article p",
+      "article a"
+    ].join(", ");
+
+    const items = Array.from(document.querySelectorAll(selector)).filter((element) => {
+      if (element.closest(".navigation, .footer-wrap, .background-video, .w-nav-overlay")) {
+        return false;
+      }
+      if (element.classList.contains("page-fade-item")) {
+        return false;
+      }
+      return true;
+    });
+
+    items.forEach((element, index) => {
+      element.classList.add("page-fade-item");
+      element.style.transitionDelay = `${Math.min(index * 0.015, 0.18)}s`;
+    });
+
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(function () {
+        items.forEach((element) => {
+          element.classList.add("is-visible");
+        });
+        document.documentElement.dataset.pageFade = "done";
+      });
+    });
+  }
+
   function loadPartial(partialPath) {
     const request = new XMLHttpRequest();
     request.open("GET", partialPath, false);
@@ -220,6 +277,7 @@
   replaceAll(navSelector, navHtml, applyCurrentState);
   replaceAll(footerSelector, footerHtml, wireThemeToggle);
   updateThemeToggle();
+  applyPageFade();
 
   systemDarkMode.addEventListener("change", function () {
     if (!getStoredTheme()) {
