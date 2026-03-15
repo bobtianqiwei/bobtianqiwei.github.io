@@ -4,6 +4,7 @@ const path = require("path");
 const { indexSections, fineArtColumns, musicColumns, pages } = require("./works-data");
 
 const repoRoot = path.resolve(__dirname, "..");
+const worksIndexPath = "/works/";
 
 function ensureDir(filePath) {
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
@@ -27,7 +28,7 @@ function nav(currentWorks = true) {
         <nav role="navigation" class="navigation-items w-nav-menu">
           <a href="/" class="navigation-item w-nav-link">Home</a>
           <a href="/vision/" class="navigation-item w-nav-link">VISION</a>
-          <a href="/works/all-works/" class="navigation-item w-nav-link${currentWorks ? " w--current" : ""}">WORKs</a>
+          <a href="${worksIndexPath}" class="navigation-item w-nav-link${currentWorks ? " w--current" : ""}">WORKs</a>
           <a href="/about/" class="navigation-item w-nav-link">About</a>
         </nav>
         <div class="menu-button w-nav-button"><img src="/images/menu-icon_1menu-icon.png" width="22" alt="" class="menu-icon"></div>
@@ -276,7 +277,7 @@ function renderPublicationPage(page) {
     </div>
 ${sections}
   </div>
-  <a href="/works/all-works/" class="all-works w-inline-block">
+  <a href="${worksIndexPath}" class="all-works w-inline-block">
     <h1 class="all-works-head-black">ALL WORKS</h1>
   </a>
 ${footer()}
@@ -310,7 +311,7 @@ ${slides}
     </div>
   </div>
   <div class="all-works-section">
-    <a href="/works/all-works/" class="all-works w-inline-block">
+    <a href="${worksIndexPath}" class="all-works w-inline-block">
       <h1 class="all-works-head-black">ALL WORKS</h1>
     </a>
     <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>
@@ -341,7 +342,7 @@ ${slides}
       <div class="slide-nav-3 w-slider-nav"></div>
     </div>
   </div>
-  <a href="/works/all-works/" class="all-works w-inline-block">
+  <a href="${worksIndexPath}" class="all-works w-inline-block">
     <h1 class="all-works-head-black">ALL WORKS</h1>
   </a>
 ${footer()}
@@ -356,7 +357,9 @@ function renderPage(page) {
   throw new Error(`Unsupported page layout: ${page.layout}`);
 }
 
-writeFile("works/all-works/index.html", renderAllWorks());
+const allWorksHtml = renderAllWorks();
+writeFile("works/index.html", allWorksHtml);
+writeFile("works/all-works/index.html", allWorksHtml);
 
 Object.values(pages).forEach((page) => {
   writeFile(page.outputPath, renderPage(page));
