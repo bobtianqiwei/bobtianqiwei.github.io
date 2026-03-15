@@ -34,6 +34,11 @@ function renderFooter() {
     </div>
     <div class="footer-links">
       <div class="text-block-83">Copyright © 2024 TIANQI&nbsp;ROBERT WEI. All rights reserved.</div>
+      <button type="button" class="theme-toggle" data-theme-toggle hidden aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
+        <span class="theme-toggle-track">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
     </div>
   </div>`;
 }

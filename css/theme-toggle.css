@@ -1,0 +1,215 @@
+/* css/theme-toggle.css developed by Bob Tianqi Wei */
+:root {
+  --theme-bg: #fcfaf6;
+  --theme-surface: #ffffff;
+  --theme-text: #171717;
+  --theme-muted: #6b6b6b;
+  --theme-border: rgba(23, 23, 23, 0.12);
+  --theme-hover: rgba(23, 23, 23, 0.06);
+  --theme-button-bg: #ece6db;
+  --theme-button-thumb: #ffffff;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --theme-bg: #111317;
+  --theme-surface: #171a1f;
+  --theme-text: #f2ede6;
+  --theme-muted: #beb8af;
+  --theme-border: rgba(242, 237, 230, 0.14);
+  --theme-hover: rgba(242, 237, 230, 0.08);
+  --theme-button-bg: #d7b68c;
+  --theme-button-thumb: #171a1f;
+}
+
+html[data-theme-enabled="true"] body,
+html[data-theme-enabled="true"] .section,
+html[data-theme-enabled="true"] .work-detail-page-container,
+html[data-theme-enabled="true"] .work-page-div-block,
+html[data-theme-enabled="true"] .work-page-content-section,
+html[data-theme-enabled="true"] .all-works-section,
+html[data-theme-enabled="true"] .div-block-12,
+html[data-theme-enabled="true"] .div-block-5,
+html[data-theme-enabled="true"] .section-13,
+html[data-theme-enabled="true"] .navigation,
+html[data-theme-enabled="true"] .navigation-wrap,
+html[data-theme-enabled="true"] .w-nav-overlay,
+html[data-theme-enabled="true"] .footer-wrap {
+  background-color: var(--theme-bg) !important;
+  color: var(--theme-text);
+}
+
+html[data-theme-enabled="true"] .navigation-items,
+html[data-theme-enabled="true"] .navigation-items.w-nav-menu,
+html[data-theme-enabled="true"] .section.cc-contact,
+html[data-theme-enabled="true"] .footer-wrap,
+html[data-theme-enabled="true"] .navigation {
+  background-color: var(--theme-bg) !important;
+}
+
+html[data-theme-enabled="true"] .navigation-items {
+  text-shadow: none;
+}
+
+html[data-theme-enabled="true"] body,
+html[data-theme-enabled="true"] p,
+html[data-theme-enabled="true"] label,
+html[data-theme-enabled="true"] figcaption,
+html[data-theme-enabled="true"] blockquote,
+html[data-theme-enabled="true"] .paragraph-light,
+html[data-theme-enabled="true"] .paragraph-light-chinese,
+html[data-theme-enabled="true"] .paragraph-light-middle,
+html[data-theme-enabled="true"] .paragraph-light-side,
+html[data-theme-enabled="true"] .paragraph-light-page-middle,
+html[data-theme-enabled="true"] .paragraph-about,
+html[data-theme-enabled="true"] .paragraph-about-grey,
+html[data-theme-enabled="true"] .paragraph-title-black,
+html[data-theme-enabled="true"] .paragraph-title-white,
+html[data-theme-enabled="true"] .works-page,
+html[data-theme-enabled="true"] .works-page-heading,
+html[data-theme-enabled="true"] .works-page-catalog,
+html[data-theme-enabled="true"] .works-page-heading-link,
+html[data-theme-enabled="true"] .work-page-project-name,
+html[data-theme-enabled="true"] .project-name-link,
+html[data-theme-enabled="true"] .research-cards-text,
+html[data-theme-enabled="true"] .music-title,
+html[data-theme-enabled="true"] .music-name-block,
+html[data-theme-enabled="true"] .all-works-head-black,
+html[data-theme-enabled="true"] .name-text,
+html[data-theme-enabled="true"] .big-title-2,
+html[data-theme-enabled="true"] .big-title-3,
+html[data-theme-enabled="true"] .heading-black-big,
+html[data-theme-enabled="true"] .heading-black-2,
+html[data-theme-enabled="true"] .text-block-83,
+html[data-theme-enabled="true"] .image-description,
+html[data-theme-enabled="true"] .album-pic-text,
+html[data-theme-enabled="true"] .paragraph-small,
+html[data-theme-enabled="true"] .works-catalog-link,
+html[data-theme-enabled="true"] a,
+html[data-theme-enabled="true"] .link-in-paragraph,
+html[data-theme-enabled="true"] .link-in-paragraph-grey,
+html[data-theme-enabled="true"] .navigation-item {
+  color: var(--theme-text) !important;
+}
+
+html[data-theme-enabled="true"] .paragraph-about-grey,
+html[data-theme-enabled="true"] figcaption,
+html[data-theme-enabled="true"] .album-pic-text,
+html[data-theme-enabled="true"] .paragraph-small,
+html[data-theme-enabled="true"] .text-block-83,
+html[data-theme-enabled="true"] .music-name-block {
+  color: var(--theme-muted) !important;
+}
+
+html[data-theme-enabled="true"] .navigation-item:hover,
+html[data-theme-enabled="true"] .navigation-item:active,
+html[data-theme-enabled="true"] .navigation-item.w--current:hover,
+html[data-theme-enabled="true"] .works-page-heading-link:hover,
+html[data-theme-enabled="true"] .works-catalog-link:hover,
+html[data-theme-enabled="true"] a:hover {
+  color: var(--theme-text) !important;
+}
+
+html[data-theme-enabled="true"] .navigation-item:hover,
+html[data-theme-enabled="true"] .navigation-item:active {
+  background-color: var(--theme-hover);
+}
+
+html[data-theme-enabled="true"] .navigation-item.w--current {
+  opacity: 1;
+}
+
+html[data-theme-enabled="true"] .divider,
+html[data-theme-enabled="true"] blockquote {
+  border-color: var(--theme-border);
+}
+
+html[data-theme-enabled="true"] .button,
+html[data-theme-enabled="true"] .button-4,
+html[data-theme-enabled="true"] .about-button {
+  background-color: var(--theme-text);
+  color: var(--theme-bg) !important;
+}
+
+html[data-theme-enabled="true"] .button.cc-white-button {
+  background-color: var(--theme-surface);
+  color: var(--theme-text) !important;
+  border: 1px solid var(--theme-border);
+}
+
+html[data-theme-enabled="true"] .footer-links {
+  align-items: center;
+  gap: 12px;
+}
+
+html[data-site-chrome-context="home"][data-theme-enabled="true"] .section-13 {
+  background-color: transparent !important;
+}
+
+html[data-theme-enabled="true"] .theme-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  flex: none;
+  margin: 0;
+  padding: 0;
+}
+
+html[data-theme-enabled="true"] .theme-toggle-track {
+  background: var(--theme-button-bg);
+  border: 1px solid var(--theme-border);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 2px;
+  position: relative;
+  transition: background-color .25s ease, border-color .25s ease;
+  width: 52px;
+}
+
+html[data-theme-enabled="true"] .theme-toggle-track::before,
+html[data-theme-enabled="true"] .theme-toggle-track::after {
+  font-size: 11px;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+html[data-theme-enabled="true"] .theme-toggle-track::before {
+  content: "☀";
+  left: 7px;
+}
+
+html[data-theme-enabled="true"] .theme-toggle-track::after {
+  content: "☾";
+  right: 7px;
+}
+
+html[data-theme-enabled="true"] .theme-toggle-thumb {
+  background: var(--theme-button-thumb);
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  display: block;
+  height: 22px;
+  transition: transform .25s ease, background-color .25s ease;
+  width: 22px;
+}
+
+html[data-theme="dark"][data-theme-enabled="true"] .theme-toggle-thumb {
+  transform: translateX(24px);
+}
+
+html[data-theme-enabled="true"] .theme-toggle:focus-visible .theme-toggle-track {
+  outline: 2px solid var(--theme-text);
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  html[data-theme-enabled="true"] .footer-links {
+    justify-content: center;
+  }
+}
