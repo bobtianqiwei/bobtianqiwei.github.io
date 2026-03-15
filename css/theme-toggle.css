@@ -6,6 +6,7 @@
   --theme-muted: #6b6b6b;
   --theme-border: rgba(23, 23, 23, 0.12);
   --theme-hover: rgba(23, 23, 23, 0.06);
+  --theme-button-fill: rgba(23, 23, 23, 0.4);
   --theme-button-bg: #d9d9d9;
   --theme-button-thumb: #ffffff;
   --theme-button-icon: #171717;
@@ -22,6 +23,7 @@ html[data-theme="dark"] {
   --theme-muted: #beb8af;
   --theme-border: rgba(242, 237, 230, 0.14);
   --theme-hover: rgba(242, 237, 230, 0.08);
+  --theme-button-fill: rgba(242, 237, 230, 0.4);
   --theme-button-bg: #2f3237;
   --theme-button-thumb: #111317;
   --theme-button-icon: #c9ccd2;
@@ -139,7 +141,7 @@ html[data-theme-enabled="true"] blockquote {
 html[data-theme-enabled="true"] .button,
 html[data-theme-enabled="true"] .button-4,
 html[data-theme-enabled="true"] .about-button {
-  background-color: var(--theme-text);
+  background-color: var(--theme-button-fill);
   color: var(--theme-bg) !important;
   transition: var(--theme-transition), opacity .2s;
 }
