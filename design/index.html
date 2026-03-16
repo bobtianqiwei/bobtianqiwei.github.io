@@ -544,7 +544,7 @@ body.design-portfolio-page .design-about-image {
 body.design-portfolio-page .design-cv-modal {
   position: relative;
   width: min(760px, calc(100% - 120px));
-  padding: 40px 44px;
+  padding: 56px 56px 52px;
   border: 1px solid #ddd;
   border-radius: 12px;
   background: #fff;
@@ -575,20 +575,16 @@ body.design-portfolio-page .design-cv-modal-close:hover {
 body.design-portfolio-page .design-cv-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 24px;
+  gap: 56px;
   align-items: start;
 }
 
 body.design-portfolio-page .design-cv-name {
-  margin: 0 0 18px;
-  color: #222;
-  font-size: 22px;
-  font-weight: 300;
-  line-height: 1.2;
+  display: none;
 }
 
 body.design-portfolio-page .design-cv-section {
-  margin-bottom: 22px;
+  margin-bottom: 42px;
 }
 
 body.design-portfolio-page .design-cv-section:last-child {
@@ -596,25 +592,42 @@ body.design-portfolio-page .design-cv-section:last-child {
 }
 
 body.design-portfolio-page .design-cv-section-title {
-  margin: 0 0 10px;
-  color: #666;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: .06em;
-  text-transform: uppercase;
+  margin: 0 0 26px;
+  color: #222;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
 }
 
 body.design-portfolio-page .design-cv-item {
-  margin: 0 0 12px;
-  color: #333;
-  font-family: Open Sans, sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  line-height: 1.5;
+  margin: 0 0 22px;
+  color: #555;
+  font-family: Manrope Variablefont Wght, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 200;
+  line-height: 1.55;
 }
 
 body.design-portfolio-page .design-cv-item:last-child {
   margin-bottom: 0;
+}
+
+body.design-portfolio-page .design-cv-item strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #222;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.35;
+}
+
+body.design-portfolio-page .design-cv-skills .design-cv-item {
+  margin-bottom: 14px;
+  color: #333;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.35;
 }
 
 body.design-portfolio-page .design-ekphrasis-menu {
@@ -721,7 +734,7 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
 
   body.design-portfolio-page .design-cv-modal {
     width: min(100%, calc(100% - 32px));
-    padding: 24px;
+    padding: 32px 24px 28px;
   }
 
   body.design-portfolio-page .design-about-modal-grid {
@@ -731,7 +744,7 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
 
   body.design-portfolio-page .design-cv-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 28px;
   }
 
   body.design-portfolio-page .design-ekphrasis-footer-left,
@@ -1581,25 +1594,29 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
       <button type="button" class="design-cv-modal-close" aria-label="Close" data-design-cv-close>&times;</button>
       <div class="design-cv-grid">
         <div>
-          <h2 id="design-cv-title" class="design-cv-name">Bob Tianqi Wei</h2>
           <div class="design-cv-section">
-            <h3 class="design-cv-section-title">Education</h3>
-            <p class="design-cv-item">UC Berkeley, College of Engineering<br>M.Des in Human-Computer Interaction<br>2023 - 2024</p>
-            <p class="design-cv-item">Tsinghua University, Academy of Arts and Design<br>B.A. in Industrial Design<br>2019 - 2023</p>
+            <h3 id="design-cv-title" class="design-cv-section-title">Education</h3>
+            <p class="design-cv-item"><strong>University of California, Berkeley</strong>M.Des in Human-Computer Interaction<br>2023 - 2024</p>
+            <p class="design-cv-item"><strong>Tsinghua University</strong>B.A. in Industrial and Product Design<br>2019 - 2023</p>
           </div>
           <div class="design-cv-section">
             <h3 class="design-cv-section-title">Experience</h3>
-            <p class="design-cv-item">Design Engineer, eTopus Technology Inc.<br>2025 - Present</p>
-            <p class="design-cv-item">Frontend Engineer, Create, Inc.<br>2025</p>
-            <p class="design-cv-item">Research Assistant, UC Berkeley EECS<br>2023 - 2026</p>
+            <p class="design-cv-item"><strong>eTopus Technology Inc.</strong>Design Engineer<br>2025 - Present</p>
+            <p class="design-cv-item"><strong>Create, Inc.</strong>Frontend Engineer<br>2025</p>
+            <p class="design-cv-item"><strong>Berkeley Institute of Design Lab</strong>Research Assistant, UC Berkeley EECS<br>2023 - Present</p>
           </div>
         </div>
-        <div>
+        <div class="design-cv-skills">
           <div class="design-cv-section">
-            <h3 class="design-cv-section-title">Skills</h3>
-            <p class="design-cv-item">Interaction &amp; Product Design<br>Interaction design, product thinking, information architecture, design systems, visual hierarchy</p>
-            <p class="design-cv-item">Research &amp; Prototyping<br>User research, concept development, rapid prototyping, usability testing, physical prototyping</p>
-            <p class="design-cv-item">Tools<br>Figma, Adobe Creative Suite, Rhino, front-end development</p>
+            <h3 class="design-cv-section-title">Skillset</h3>
+            <p class="design-cv-item">Interaction Design</p>
+            <p class="design-cv-item">Product Thinking</p>
+            <p class="design-cv-item">Design Systems</p>
+            <p class="design-cv-item">Rapid Prototyping</p>
+            <p class="design-cv-item">Advanced Prototyping</p>
+            <p class="design-cv-item">Human-AI Interaction</p>
+            <p class="design-cv-item">Creative Coding</p>
+            <p class="design-cv-item">Front-End Prototyping</p>
           </div>
         </div>
       </div>
