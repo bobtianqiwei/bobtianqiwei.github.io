@@ -831,11 +831,8 @@ body.design-portfolio-page .design-theme-toggle-track {
 body.design-portfolio-page .design-theme-toggle-icon {
   position: absolute;
   top: 50%;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 12px;
+  height: 12px;
   transform: translateY(-50%);
   transition: opacity .25s ease, color .25s ease;
   z-index: 2;
@@ -843,18 +840,22 @@ body.design-portfolio-page .design-theme-toggle-icon {
 
 body.design-portfolio-page .design-theme-toggle-icon svg {
   display: block;
-  width: 12px;
-  height: 12px;
+  width: 100%;
+  height: 100%;
 }
 
 body.design-portfolio-page .design-theme-toggle-icon.sun {
-  left: 0;
+  left: 8px;
   color: var(--design-toggle-icon-active);
 }
 
 body.design-portfolio-page .design-theme-toggle-icon.moon {
-  right: 0;
+  left: 30px;
   color: var(--design-toggle-icon-inactive);
+}
+
+body.design-portfolio-page .design-theme-toggle-icon.moon svg {
+  transform: translate(-0.5px, -0.5px);
 }
 
 body.design-portfolio-page[data-design-theme="dark"] .design-theme-toggle-icon.sun {
