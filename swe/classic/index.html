@@ -141,27 +141,46 @@
     }
 
     .trust-grid {
-      width: 100%;
-      border-collapse: collapse;
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      align-items: center;
+      justify-items: center;
+      gap: 18px 22px;
     }
 
-    .trust-grid td {
-      width: 20%;
-      padding: 8px;
-      border-right: 1px solid #d8e3f1;
+    .trust-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-    }
-
-    .trust-grid td:last-child {
-      border-right: 0;
-    }
-
-    .trust-grid img {
-      width: 100%;
-      max-height: 56px;
-      object-fit: contain;
       background: #fff;
-      border: 1px solid #ccd8e8;
+      width: 100%;
+      min-height: 44px;
+    }
+
+    .trust-item:not(:nth-child(6n))::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -11px;
+      width: 1px;
+      height: 30px;
+      background: #d8e3f1;
+      transform: translateY(-50%);
+    }
+
+    .trust-item img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 28px;
+      border: 0;
+    }
+
+    .trust-item img.trust-item--invert {
+      filter: brightness(0);
     }
 
     .feature-table,
@@ -244,21 +263,13 @@
         border-bottom: 1px solid #c4d4ea;
       }
 
-      .trust-grid,
-      .trust-grid tbody,
-      .trust-grid tr {
-        display: block;
+      .trust-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
       }
 
-      .trust-grid td {
-        display: block;
-        width: auto;
-        border-right: 0;
-        border-top: 1px solid #d8e3f1;
-      }
-
-      .trust-grid td:first-child {
-        border-top: 0;
+      .trust-item::after {
+        display: none;
       }
 
       .thumb,
@@ -355,15 +366,14 @@
           <div class="box" id="trusted">
             <div class="box-title">Trusted By</div>
             <div class="box-body">
-              <table class="trust-grid">
-                <tr>
-                  <td><a href="https://eecs.berkeley.edu/" target="_blank"><img src="/images/berkeley-eecs-bw.png" alt="UC Berkeley EECS"></a></td>
-                  <td><a href="https://www.tsinghua.edu.cn/en/" target="_blank"><img src="/images/tsinghua.png" alt="Tsinghua University"></a></td>
-                  <td><a href="https://etopus.com/" target="_blank"><img src="/images/etopus.png" alt="Etopus"></a></td>
-                  <td><a href="https://www.createanything.com/" target="_blank"><img src="/images/Anything-logo.svg" alt="Anything"></a></td>
-                  <td><a href="https://instalily.ai/" target="_blank"><img src="/images/instalily.png" alt="Instalily"></a></td>
-                </tr>
-              </table>
+              <div class="trust-grid">
+                <a class="trust-item" href="https://eecs.berkeley.edu/" target="_blank"><img src="/images/berkeley-eecs-bw.png" alt="UC Berkeley EECS"></a>
+                <a class="trust-item" href="https://www.tsinghua.edu.cn/en/" target="_blank"><img src="/images/tsinghua.png" alt="Tsinghua University"></a>
+                <a class="trust-item" href="https://etopus.com/" target="_blank"><img src="/images/etopus.png" alt="Etopus"></a>
+                <a class="trust-item" href="https://www.createanything.com/" target="_blank"><img src="/images/Anything-logo.svg" alt="Anything"></a>
+                <a class="trust-item" href="https://instalily.ai/" target="_blank"><img src="/images/instalily.png" alt="Instalily"></a>
+                <a class="trust-item" href="https://collov.ai/" target="_blank"><img class="trust-item--invert" src="/images/collov-official.png" alt="Collov AI"></a>
+              </div>
             </div>
           </div>
 
