@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <script type="text/javascript">(function(){try{var root=document.documentElement;root.dataset.siteChromeContext='page';root.dataset.themeEnabled='false';root.dataset.theme='light';root.dataset.pageFade='done';window.localStorage.setItem('site-theme-preference','light');var style=document.createElement('style');style.textContent='html,body{background-color:#ffffff !important;color:#111111 !important;}';document.head.appendChild(style);}catch(e){}})();</script>
+  <script type="text/javascript">(function(){try{var root=document.documentElement;var designKey='design-page-theme';var siteKey='site-theme-preference';var siteStored=window.localStorage.getItem(siteKey);var designStored=window.localStorage.getItem(designKey);var stored=(siteStored==='light'||siteStored==='dark')?siteStored:designStored;var theme=(stored==='light'||stored==='dark')?stored:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');root.dataset.siteChromeContext='page';root.dataset.themeEnabled='false';root.dataset.theme='light';root.dataset.pageFade='done';root.dataset.designThemeInitial=theme;var style=document.createElement('style');style.textContent='html,body{background-color:'+(theme==='dark'?'#171717':'#f5f5f5')+' !important;color:'+(theme==='dark'?'#efebe6':'#111111')+' !important;}';document.head.appendChild(style);}catch(e){}})();</script>
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
   <link href="/css/theme-toggle.css" rel="stylesheet" type="text/css">
   <link href="/css/webflow.css" rel="stylesheet" type="text/css">
@@ -43,12 +43,50 @@
   <style>
 body.design-portfolio-page {
   --design-footer-height: 52px;
+  --design-theme-transition: background-color .28s ease, color .28s ease, border-color .28s ease, box-shadow .28s ease, filter .28s ease;
+  --design-bg: #f5f5f5;
+  --design-surface: #ffffff;
+  --design-surface-alt: #fafafa;
+  --design-border: #dddddd;
+  --design-text: #222222;
+  --design-text-muted: #555555;
+  --design-text-soft: #666666;
+  --design-text-faint: #8a8a8a;
+  --design-shadow: rgba(0, 0, 0, 0.08);
+  --design-button-hover: #f5f5f5;
+  --design-button-active: #fafafa;
+  --design-button-shadow-1: rgba(0, 0, 0, 0.08);
+  --design-button-shadow-2: rgba(0, 0, 0, 0.16);
+  --design-toggle-track: #f1f1f1;
+  --design-toggle-thumb: #9a9a9a;
+  --design-toggle-icon-active: #4f4f4f;
+  --design-toggle-icon-inactive: #7f7f7f;
 }
 
 body.design-portfolio-page {
   background: #f5f5f5;
   color: #111;
   overflow: hidden;
+}
+
+body.design-portfolio-page[data-design-theme="dark"] {
+  --design-bg: #171717;
+  --design-surface: #202020;
+  --design-surface-alt: #262626;
+  --design-border: #383838;
+  --design-text: #efebe6;
+  --design-text-muted: #d3cdc6;
+  --design-text-soft: #b5aea6;
+  --design-text-faint: #918980;
+  --design-shadow: rgba(0, 0, 0, 0.28);
+  --design-button-hover: #262626;
+  --design-button-active: #242424;
+  --design-button-shadow-1: rgba(255, 255, 255, 0.12);
+  --design-button-shadow-2: rgba(255, 255, 255, 0.08);
+  --design-toggle-track: #2a2a2a;
+  --design-toggle-thumb: #b8b1aa;
+  --design-toggle-icon-active: #f1e9e0;
+  --design-toggle-icon-inactive: #b4aca4;
 }
 
 body.design-portfolio-page .design-portfolio-scroll {
@@ -134,6 +172,17 @@ body.design-portfolio-page .design-hero-scroll svg {
 
 body.design-portfolio-page .design-hero-scroll:hover {
   color: #444;
+}
+
+body.design-portfolio-page .design-section-scroll {
+  display: flex;
+  justify-content: center;
+  margin: 18px 0 28px;
+}
+
+body.design-portfolio-page .design-section-scroll .design-hero-scroll {
+  position: static;
+  transform: none;
 }
 
 @keyframes designHeroFadeIn {
@@ -381,6 +430,10 @@ body.design-portfolio-page .design-ekphrasis-logo {
   display: block;
   width: 32px;
   height: auto;
+}
+
+body.design-portfolio-page[data-design-theme="dark"] .design-ekphrasis-logo {
+  filter: invert(1) brightness(1.08);
 }
 
 body.design-portfolio-page .design-ekphrasis-wordmark {
@@ -671,6 +724,165 @@ body.design-portfolio-page .design-ekphrasis-menu-link {
 
 body.design-portfolio-page .design-ekphrasis-menu-link:hover {
   color: #111;
+}
+
+body.design-portfolio-page,
+body.design-portfolio-page .design-portfolio-scroll,
+body.design-portfolio-page .work-page-div-block {
+  background: var(--design-bg);
+  transition: var(--design-theme-transition);
+}
+
+body.design-portfolio-page .design-ekphrasis-footer,
+body.design-portfolio-page .design-about-modal,
+body.design-portfolio-page .design-cv-modal,
+body.design-portfolio-page .design-ekphrasis-link,
+body.design-portfolio-page .design-theme-toggle {
+  background: var(--design-surface);
+  border-color: var(--design-border);
+  transition: var(--design-theme-transition);
+}
+
+body.design-portfolio-page .design-ekphrasis-footer {
+  border-top-color: var(--design-border);
+}
+
+body.design-portfolio-page .design-about-modal,
+body.design-portfolio-page .design-cv-modal {
+  box-shadow: 0 18px 60px var(--design-shadow);
+}
+
+body.design-portfolio-page .design-hero-title,
+body.design-portfolio-page .design-testimonials-heading,
+body.design-portfolio-page .design-testimonial-quote,
+body.design-portfolio-page .design-about-name,
+body.design-portfolio-page .design-cv-section-title,
+body.design-portfolio-page .design-cv-item strong {
+  color: var(--design-text);
+  transition: var(--design-theme-transition);
+}
+
+body.design-portfolio-page .design-hero-name,
+body.design-portfolio-page .design-vision-heading,
+body.design-portfolio-page .design-vision-text,
+body.design-portfolio-page .design-testimonial-credit,
+body.design-portfolio-page .design-about-bio,
+body.design-portfolio-page .design-about-email,
+body.design-portfolio-page .design-about-link,
+body.design-portfolio-page .design-cv-item,
+body.design-portfolio-page .design-cv-skills .design-cv-item,
+body.design-portfolio-page .design-ekphrasis-wordmark,
+body.design-portfolio-page .design-ekphrasis-link,
+body.design-portfolio-page .design-cv-modal-close,
+body.design-portfolio-page .design-about-modal-close {
+  color: var(--design-text-muted);
+  transition: var(--design-theme-transition);
+}
+
+body.design-portfolio-page .design-hero-scroll,
+body.design-portfolio-page .design-vision-caption,
+body.design-portfolio-page .design-vision-references,
+body.design-portfolio-page .design-about-note {
+  color: var(--design-text-soft);
+  transition: var(--design-theme-transition);
+}
+
+body.design-portfolio-page .design-ekphrasis-link:hover,
+body.design-portfolio-page .design-about-modal-close:hover,
+body.design-portfolio-page .design-cv-modal-close:hover {
+  background: var(--design-button-hover);
+}
+
+body.design-portfolio-page .design-ekphrasis-link:active,
+body.design-portfolio-page .design-ekphrasis-link.is-active {
+  background: var(--design-button-active);
+  border-color: var(--design-border);
+  box-shadow: inset 0 0 0 1px var(--design-button-shadow-1), inset 0 1px 4px var(--design-button-shadow-2);
+}
+
+body.design-portfolio-page .design-theme-toggle-row {
+  margin-top: 18px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+body.design-portfolio-page .design-theme-toggle {
+  appearance: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+body.design-portfolio-page .design-theme-toggle-track {
+  background: var(--design-toggle-track);
+  border: 1px solid var(--design-border);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  height: 28px;
+  padding: 2px;
+  position: relative;
+  transition: background-color .25s ease, border-color .25s ease;
+  width: 52px;
+}
+
+body.design-portfolio-page .design-theme-toggle-icon {
+  position: absolute;
+  top: 50%;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  transition: opacity .25s ease, color .25s ease;
+  z-index: 2;
+}
+
+body.design-portfolio-page .design-theme-toggle-icon svg {
+  display: block;
+  width: 12px;
+  height: 12px;
+}
+
+body.design-portfolio-page .design-theme-toggle-icon.sun {
+  left: 0;
+  color: var(--design-toggle-icon-active);
+}
+
+body.design-portfolio-page .design-theme-toggle-icon.moon {
+  right: 0;
+  color: var(--design-toggle-icon-inactive);
+}
+
+body.design-portfolio-page[data-design-theme="dark"] .design-theme-toggle-icon.sun {
+  color: var(--design-toggle-icon-inactive);
+}
+
+body.design-portfolio-page[data-design-theme="dark"] .design-theme-toggle-icon.moon {
+  color: var(--design-toggle-icon-active);
+}
+
+body.design-portfolio-page .design-theme-toggle-thumb {
+  background: var(--design-toggle-thumb);
+  border-radius: 999px;
+  display: block;
+  height: 22px;
+  position: relative;
+  transition: transform .25s ease, background-color .25s ease;
+  width: 22px;
+  z-index: 1;
+}
+
+body.design-portfolio-page[data-design-theme="dark"] .design-theme-toggle-thumb {
+  transform: translateX(24px);
+}
+
+body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-toggle-track {
+  outline: 2px solid var(--design-text);
+  outline-offset: 2px;
 }
 
 @media screen and (max-width: 767px) {
@@ -1582,6 +1794,24 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
           <p class="design-about-email"><a href="mailto:bobtianqiwei@berkeley.edu">bobtianqiwei@berkeley.edu</a></p>
           <p class="design-about-link"><a href="https://bobtianqiwei.com" target="_blank">bobtianqiwei.com</a></p>
           <p class="design-about-note">This website and its contents are protected by copyright.</p>
+          <div class="design-theme-toggle-row">
+            <button type="button" class="design-theme-toggle" data-design-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
+              <span class="design-theme-toggle-track">
+                <span class="design-theme-toggle-icon sun" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="8" cy="8" r="2.75" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M8 1.5V3.25M8 12.75V14.5M1.5 8H3.25M12.75 8H14.5M3.4 3.4L4.65 4.65M11.35 11.35L12.6 12.6M12.6 3.4L11.35 4.65M4.65 11.35L3.4 12.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                <span class="design-theme-toggle-icon moon" aria-hidden="true">
+                  <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.9 2.35C9.74 2.28 8.59 2.64 7.69 3.39C5.53 5.19 5.24 8.41 7.04 10.57C8.84 12.73 12.06 13.02 14.22 11.22C14.49 10.99 14.73 10.74 14.95 10.47C14.58 12.61 13.42 14.04 11.39 14.67C8.3 15.63 4.93 13.9 3.87 10.8C2.81 7.71 4.54 4.34 7.64 3.28C8.77 2.89 9.95 2.86 10.9 2.35Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="design-theme-toggle-thumb"></span>
+              </span>
+            </button>
+          </div>
         </div>
         <div>
           <img src="/images/IMG_0179.jpg" loading="lazy" sizes="(max-width: 767px) 100vw, 320px" srcset="/images/IMG_0179-p-500.jpg 500w, /images/IMG_0179-p-800.jpg 800w, /images/IMG_0179-p-1080.jpg 1080w, /images/IMG_0179.jpg 1429w" alt="Bob Tianqi Wei portrait" class="design-about-image">
@@ -1635,21 +1865,70 @@ document.addEventListener("DOMContentLoaded", function () {
   var cvOpen = document.querySelector("[data-design-cv-open]");
   var cvModal = document.querySelector("[data-design-cv-modal]");
   var cvClose = document.querySelector("[data-design-cv-close]");
+  var themeToggle = document.querySelector("[data-design-theme-toggle]");
+  var designThemeKey = "design-page-theme";
+  var siteThemeKey = "site-theme-preference";
 
   if (!scrollTriggers.length || !scrollContainer || !heroTitle) {
     return;
   }
 
-  scrollTriggers.forEach(function (scrollTrigger) {
-    scrollTrigger.addEventListener("click", function (event) {
-      event.preventDefault();
-      var section = scrollTrigger.closest("section");
-      var sectionTop = section ? section.offsetTop : 0;
-      var sectionHeight = section ? section.offsetHeight : 0;
+  function resolveInitialTheme() {
+    var siteStored = window.localStorage.getItem(siteThemeKey);
+    var stored = (siteStored === "light" || siteStored === "dark") ? siteStored : window.localStorage.getItem(designThemeKey);
+    if (stored === "light" || stored === "dark") {
+      return stored;
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+
+  function applyDesignTheme(theme) {
+    document.body.setAttribute("data-design-theme", theme);
+    document.documentElement.style.backgroundColor = theme === "dark" ? "#171717" : "#f5f5f5";
+    document.body.style.backgroundColor = theme === "dark" ? "#171717" : "#f5f5f5";
+    if (themeToggle) {
+      themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+    }
+  }
+
+  applyDesignTheme(resolveInitialTheme());
+
+  function getAnchorOffset(target) {
+    if (!target) {
+      return 0;
+    }
+
+    if (target.matches("h1.works-page-heading")) {
+      var marginTop = parseFloat(window.getComputedStyle(target).marginTop) || 0;
+      return Math.min(32, Math.round(marginTop * 0.5));
+    }
+
+    return 0;
+  }
+
+  document.addEventListener("click", function (event) {
+    var scrollTrigger = event.target.closest("[data-design-hero-scroll]");
+    if (!scrollTrigger) {
+      return;
+    }
+
+    event.preventDefault();
+    var explicitTargetId = scrollTrigger.getAttribute("href");
+    var explicitTarget = explicitTargetId ? document.querySelector(explicitTargetId) : null;
+    if (explicitTarget) {
       scrollContainer.scrollTo({
-        top: sectionTop + sectionHeight,
+        top: explicitTarget.offsetTop,
         behavior: "smooth"
       });
+      return;
+    }
+
+    var section = scrollTrigger.closest("section");
+    var sectionTop = section ? section.offsetTop : 0;
+    var sectionHeight = section ? section.offsetHeight : 0;
+    scrollContainer.scrollTo({
+      top: sectionTop + sectionHeight,
+      behavior: "smooth"
     });
   });
 
@@ -1664,7 +1943,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       event.preventDefault();
       scrollContainer.scrollTo({
-        top: target.offsetTop,
+        top: Math.max(0, target.offsetTop - getAnchorOffset(target)),
         behavior: "smooth"
       });
     });
@@ -1708,6 +1987,24 @@ document.addEventListener("DOMContentLoaded", function () {
       if (event.target === cvModal) {
         cvModal.classList.remove("show");
       }
+    });
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var nextTheme = document.body.getAttribute("data-design-theme") === "dark" ? "light" : "dark";
+      window.localStorage.setItem(siteThemeKey, nextTheme);
+      window.localStorage.setItem(designThemeKey, nextTheme);
+      applyDesignTheme(nextTheme);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function (event) {
+      var siteStored = window.localStorage.getItem(siteThemeKey);
+      var stored = (siteStored === "light" || siteStored === "dark") ? siteStored : window.localStorage.getItem(designThemeKey);
+      if (stored === "light" || stored === "dark") {
+        return;
+      }
+      applyDesignTheme(event.matches ? "dark" : "light");
     });
   }
 
@@ -1822,6 +2119,13 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     heading.insertAdjacentElement("afterend", grid);
+
+    if (headingSelector === "#design-installations") {
+      var scrollWrap = document.createElement("div");
+      scrollWrap.className = "design-section-scroll";
+      scrollWrap.innerHTML = '<a href=".design-testimonials" class="design-hero-scroll" aria-label="Scroll down" data-design-hero-scroll><svg viewBox="0 0 12 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 1V35" stroke="currentColor" stroke-width="1"/><path d="M1.5 30.5L6 35L10.5 30.5" stroke="currentColor" stroke-width="1"/></svg></a>';
+      grid.insertAdjacentElement("afterend", scrollWrap);
+    }
   }
 
   buildProjectGrid("#design-id", [
