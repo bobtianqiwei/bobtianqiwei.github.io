@@ -908,6 +908,7 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
 
   body.design-portfolio-page .design-hero-inner {
     width: calc(100vw - 40px);
+    max-width: 100%;
     gap: 12px;
   }
 
@@ -946,6 +947,14 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
     gap: 24px;
   }
 
+  body.design-portfolio-page .design-vision-copy {
+    order: 1;
+  }
+
+  body.design-portfolio-page .design-vision-media {
+    order: 2;
+  }
+
   body.design-portfolio-page .design-vision-image {
     max-height: 34vh;
   }
@@ -968,8 +977,23 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
   }
 
   body.design-portfolio-page .design-hero-title {
-    font-size: clamp(38px, 10vw, 54px);
-    letter-spacing: -0.025em;
+    width: 100%;
+    font-size: clamp(32px, 8.8vw, 48px);
+    letter-spacing: -0.02em;
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  body.design-portfolio-page .design-hero-title-line {
+    display: inline;
+  }
+
+  body.design-portfolio-page .design-hero-title-line::after {
+    content: " ";
+  }
+
+  body.design-portfolio-page .design-hero-title-line:last-child::after {
+    content: "";
   }
 
   body.design-portfolio-page .design-hero-name {
