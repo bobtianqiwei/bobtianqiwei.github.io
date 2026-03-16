@@ -260,6 +260,82 @@ body.design-portfolio-page .design-testimonial-credit {
   line-height: 1.5;
 }
 
+body.design-portfolio-page .design-project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 56px;
+}
+
+body.design-portfolio-page .design-project-grid-item {
+  min-width: 0;
+}
+
+body.design-portfolio-page .design-project-grid-item > a {
+  width: 100%;
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card {
+  position: relative;
+  display: block;
+  height: auto !important;
+  overflow: hidden;
+  background: #ddd;
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  filter: saturate(0.18);
+  transition: filter .25s ease;
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card:hover img {
+  filter: saturate(1);
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card .design-card-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: #fff;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.15;
+  text-shadow: 0 6px 40px rgba(0, 0, 0, 0.92), 0 2px 14px rgba(0, 0, 0, 0.98);
+  opacity: 0;
+  transition: opacity .2s ease;
+  pointer-events: none;
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card:hover .design-card-overlay {
+  opacity: 1;
+}
+
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card .project-name-link,
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card .work-page-project-name,
+body.design-portfolio-page .design-project-grid-item > a.design-unified-card .research-cards-text {
+  display: none !important;
+}
+
+body.design-portfolio-page .design-project-grid-item .w-container {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+body.design-portfolio-page .design-project-grid-item .link-100,
+body.design-portfolio-page .design-project-grid-item .project-link-block,
+body.design-portfolio-page .design-project-grid-item .lightbox-link,
+body.design-portfolio-page .design-project-grid-item .work-image-link {
+  display: block;
+}
+
 body.design-portfolio-page .design-ekphrasis-footer {
   position: fixed;
   right: 0;
@@ -310,7 +386,7 @@ body.design-portfolio-page .design-ekphrasis-logo {
 body.design-portfolio-page .design-ekphrasis-wordmark {
   color: #333;
   font-size: 17px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
 }
 
@@ -345,6 +421,13 @@ body.design-portfolio-page .design-ekphrasis-menu-summary {
 body.design-portfolio-page .design-ekphrasis-link:hover,
 body.design-portfolio-page .design-ekphrasis-menu-summary:hover {
   background: #f5f5f5;
+}
+
+body.design-portfolio-page .design-ekphrasis-link:active,
+body.design-portfolio-page .design-ekphrasis-link.is-active {
+  background: #fafafa;
+  border-color: #ccc;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08), inset 0 1px 4px rgba(0, 0, 0, 0.16);
 }
 
 body.design-portfolio-page .design-about-modal-overlay {
@@ -595,6 +678,11 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
   }
 
   body.design-portfolio-page .design-testimonials-list {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  body.design-portfolio-page .design-project-grid {
     grid-template-columns: 1fr;
     gap: 20px;
   }
@@ -1347,27 +1435,6 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
         </a>
       </div>
     </div>
-    <h1 id="design-research" class="works-page-heading">RESEARCH</h1>
-    <a href="/works/ekphrasis/" class="link-100 w-inline-block">
-      <div class="w-layout-grid grid-research"><img src="/images/teaser.png" loading="lazy" sizes="(max-width: 479px) 0px, 100vw" srcset="/images/teaser-p-500.png 500w, /images/teaser-p-800.png 800w, /images/teaser-p-1080.png 1080w, /images/teaser-p-1600.png 1600w, /images/teaser-p-2000.png 2000w, /images/teaser-p-2600.png 2600w, /images/teaser-p-3200.png 3200w, /images/teaser.png 4868w" alt="" class="image-100">
-        <div class="research-cards-text">Generating Visual Aids to Help Students Understand Graphic Design with EKPHRASIS<br>‍<br>Bob Tianqi Wei and Shayne Shen, Shm Almeda, Bjoern Hartmann<br><br>CHI 2025<br></div>
-      </div>
-    </a>
-    <a href="/works/sympathetic-orchestra-paper/" class="link-100 w-inline-block">
-      <div class="w-layout-grid grid-research"><img src="/images/Sympathetic-Orchestra-fig-1.1.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, 239.984375px" srcset="/images/Sympathetic-Orchestra-fig-1.1-p-500.jpg 500w, /images/Sympathetic-Orchestra-fig-1.1-p-800.jpg 800w, /images/Sympathetic-Orchestra-fig-1.1-p-1080.jpg 1080w, /images/Sympathetic-Orchestra-fig-1.1-p-1600.jpg 1600w, /images/Sympathetic-Orchestra-fig-1.1-p-2000.jpg 2000w, /images/Sympathetic-Orchestra-fig-1.1-p-2600.jpg 2600w, /images/Sympathetic-Orchestra-fig-1.1-p-3200.jpg 3200w, /images/Sympathetic-Orchestra-fig-1.1.jpg 3478w" alt="" class="image-100">
-        <div class="research-cards-text">Investigating the Impact of Responsive Feedback on the Experience of Learning to Conduct with Sympathetic Orchestra<br>‍<br>Bob Tianqi Wei, Shm Almeda, Ethan Tam, and Dor Abrahamson.<br><br>IN PROGRESS<br></div>
-      </div>
-    </a>
-    <a href="/works/voiceai/" class="link-100 w-inline-block">
-      <div class="w-layout-grid grid-research"><img src="/images/Screenshot-2025-01-22-at-9.27.31-PM.png" loading="lazy" sizes="(max-width: 479px) 100vw, 239.9921875px" srcset="/images/Screenshot-2025-01-22-at-9.27.31-PM-p-500.png 500w, /images/Screenshot-2025-01-22-at-9.27.31-PM-p-800.png 800w, /images/Screenshot-2025-01-22-at-9.27.31-PM-p-1080.png 1080w, /images/Screenshot-2025-01-22-at-9.27.31-PM-p-1600.png 1600w, /images/Screenshot-2025-01-22-at-9.27.31-PM.png 1816w" alt="" class="image-100">
-        <div class="research-cards-text">Labor, Power, and Belonging: The Work of Voice in the Age of AI Reproduction<br><br>Shm Almeda, Robin Netzorg, Isabel Li, Ethan Tam, Skyla Ma, <strong class="italic-bold-in-research-title">Bob Tianqi Wei</strong><br><br>ACM FAccT 2025<br></div>
-      </div>
-    </a>
-    <a href="/works/breakups/" class="link-100 w-inline-block">
-      <div class="w-layout-grid grid-research"><img src="/images/breakup.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, 239.9921875px" srcset="/images/breakup-p-500.jpg 500w, /images/breakup-p-800.jpg 800w, /images/breakup-p-1080.jpg 1080w, /images/breakup-p-1600.jpg 1600w, /images/breakup-p-2000.jpg 2000w, /images/breakup-p-2600.jpg 2600w, /images/breakup-p-3200.jpg 3200w, /images/breakup.jpg 5658w" alt="" class="image-100">
-        <div class="research-cards-text">Romantic Breakups as a Lens for Industrial Cybersecurity: Cross-Domain Insights for Access Control<br>‍<br>Caseysimone Ballestas, <strong class="italic-bold-in-research-title">Bob Tianqi Wei</strong>, Subin Lee, Moritz Rietschel, Bjoern Hartmann<br><br>2024<br></div>
-      </div>
-    </a>
     <h1 id="design-installations" class="works-page-heading">INSTALLATIONS</h1>
     <div class="work-columns w-row">
       <div class="column-13 w-col w-col-4">
@@ -1485,7 +1552,6 @@ body.design-portfolio-page .design-ekphrasis-menu-link:hover {
       <a href=".design-vision" class="design-ekphrasis-link" data-design-anchor>Vision</a>
       <a href="#design-id" class="design-ekphrasis-link" data-design-anchor>Objects</a>
       <a href="#design-software" class="design-ekphrasis-link" data-design-anchor>Interfaces</a>
-      <a href="#design-research" class="design-ekphrasis-link" data-design-anchor>Research</a>
       <a href="#design-installations" class="design-ekphrasis-link" data-design-anchor>Installations</a>
     </div>
     <div class="design-ekphrasis-footer-right">
@@ -1627,6 +1693,195 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  function normalizeCardTitle(element) {
+    var titleNode = element.querySelector(".project-name-link, .work-page-project-name");
+    if (titleNode) {
+      return titleNode.textContent.replace(/\s+/g, " ").replace(/[^\w\s]/g, "").trim().toLowerCase();
+    }
+
+    var researchNode = element.querySelector(".research-cards-text");
+    if (researchNode) {
+      return researchNode.textContent.split("\n")[0].replace(/\s+/g, " ").replace(/[^\w\s]/g, "").trim().toLowerCase();
+    }
+
+    return "";
+  }
+
+  function extractCardTitle(element) {
+    var titleNode = element.querySelector(".project-name-link, .work-page-project-name");
+    if (titleNode) {
+      return titleNode.textContent.replace(/\s+/g, " ").trim();
+    }
+
+    var researchNode = element.querySelector(".research-cards-text");
+    if (researchNode) {
+      var html = researchNode.innerHTML || "";
+      var firstLine = html.split(/<br\s*\/?>/i)[0] || researchNode.textContent || "";
+      return firstLine.replace(/\s+/g, " ").trim();
+    }
+
+    return "";
+  }
+
+  function unifyProjectCardDisplay() {
+    document.querySelectorAll(".design-project-grid-item > a").forEach(function (card) {
+      if (card.classList.contains("design-unified-card")) {
+        return;
+      }
+
+      var title = extractCardTitle(card);
+      if (!title) {
+        return;
+      }
+
+      card.classList.add("design-unified-card");
+      var overlay = document.createElement("div");
+      overlay.className = "design-card-overlay";
+      overlay.textContent = title;
+      card.appendChild(overlay);
+    });
+  }
+
+  function collectSectionNodes(heading) {
+    var nodes = [];
+    var node = heading.nextElementSibling;
+
+    while (node && !node.matches("h1.works-page-heading, section.design-testimonials")) {
+      nodes.push(node);
+      node = node.nextElementSibling;
+    }
+
+    return nodes;
+  }
+
+  function buildProjectGrid(headingSelector, orderedTitles) {
+    var heading = document.querySelector(headingSelector);
+    if (!heading) {
+      return;
+    }
+
+    var sectionNodes = collectSectionNodes(heading);
+    var candidates = [];
+
+    sectionNodes.forEach(function (node) {
+      node.querySelectorAll("a.work-image-link, a.project-link-block, a.lightbox-link, a.link-100").forEach(function (card) {
+        candidates.push(card);
+      });
+    });
+
+    var grid = document.createElement("div");
+    grid.className = "design-project-grid";
+
+    orderedTitles.forEach(function (expectedTitle) {
+      var normalizedExpectedTitle = expectedTitle.toLowerCase().replace(/[^\w\s]/g, "");
+      var index = candidates.findIndex(function (candidate) {
+        var candidateTitle = normalizeCardTitle(candidate);
+        return candidateTitle === normalizedExpectedTitle ||
+          candidateTitle.indexOf(normalizedExpectedTitle) === 0 ||
+          normalizedExpectedTitle.indexOf(candidateTitle) === 0;
+      });
+
+      if (index === -1) {
+        return;
+      }
+
+      var card = candidates.splice(index, 1)[0];
+      var cell = document.createElement("div");
+      cell.className = "design-project-grid-item";
+      cell.appendChild(card);
+      grid.appendChild(cell);
+    });
+
+    candidates.forEach(function (card) {
+      var cell = document.createElement("div");
+      cell.className = "design-project-grid-item";
+      cell.appendChild(card);
+      grid.appendChild(cell);
+    });
+
+    sectionNodes.forEach(function (node) {
+      node.remove();
+    });
+
+    heading.insertAdjacentElement("afterend", grid);
+  }
+
+  buildProjectGrid("#design-id", [
+    "MorphingSkin",
+    "ILLUMINATIO",
+    "Floro",
+    "PALETTE PLATE",
+    "Xiao In: Parcel Sterilization Helper",
+    "Hook-Loop Units",
+    "A Fish in The Northern Ocean",
+    "Cosmic Cup & Dish Set",
+    "Computer-aided Design Coursework",
+    "Tangible Peripheral for Computer",
+    "Instruments for VR music games",
+    "Plano",
+    "Memory Lacing System for Sneakers",
+    "Espresso Machine and Quick Capsule Case",
+    "GentleGrip Brews"
+  ]);
+
+  buildProjectGrid("#design-software", [
+    "Anything",
+    "Sympathetic Orchestra",
+    "PartSelect Chat Agent",
+    "EKPHRASIS",
+    "Anything Affiliate Program Page",
+    "Anything Brand Resources Page",
+    "Terminal Zen",
+    "ArtiFactor",
+    "Tao",
+    "Bob's Cat",
+    "Desktop Buddha",
+    "Digital Paradise"
+  ]);
+
+  buildProjectGrid("#design-installations", [
+    "Water Synthesizer",
+    "NNMPLIFIER",
+    "A Fish in The Northern Ocean",
+    "Stringed Harmony",
+    "Plano"
+  ]);
+
+  unifyProjectCardDisplay();
+
+  function updateActiveNav() {
+    var sectionMap = [
+      { selector: ".design-vision", href: ".design-vision" },
+      { selector: "#design-id", href: "#design-id" },
+      { selector: "#design-software", href: "#design-software" },
+      { selector: "#design-installations", href: "#design-installations" }
+    ];
+    var scrollTop = scrollContainer.scrollTop;
+    var currentHref = null;
+    var testimonials = document.querySelector(".design-testimonials");
+
+    if (testimonials && scrollTop >= testimonials.offsetTop - 120) {
+      anchorTriggers.forEach(function (trigger) {
+        trigger.classList.remove("is-active");
+      });
+      return;
+    }
+
+    sectionMap.forEach(function (item) {
+      var target = document.querySelector(item.selector);
+      if (target && scrollTop >= target.offsetTop - 120) {
+        currentHref = item.href;
+      }
+    });
+
+    anchorTriggers.forEach(function (trigger) {
+      trigger.classList.toggle("is-active", trigger.getAttribute("href") === currentHref);
+    });
+  }
+
+  updateActiveNav();
+  scrollContainer.addEventListener("scroll", updateActiveNav, { passive: true });
 
   function fitHeroTitle() {
     var inner = heroTitle.parentElement;
