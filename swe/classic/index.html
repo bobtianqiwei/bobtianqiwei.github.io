@@ -49,12 +49,36 @@
     }
 
     .topbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
       padding: 6px 10px;
       border-bottom: 1px solid rgba(118, 145, 187, 0.72);
       background: linear-gradient(rgba(255, 255, 255, 0.82), rgba(221, 232, 246, 0.7));
       text-align: right;
       font-size: 10px;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .topbar-item {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .topbar-icon {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      vertical-align: middle;
+    }
+
+    #sf-prefix {
+      margin-right: 4px;
+    }
+
+    #sf-status {
+      margin-left: 2px;
     }
 
     .banner {
@@ -117,7 +141,7 @@
     }
 
     .main {
-      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(247, 250, 254, 0.78));
+      background: #fff;
     }
 
     .box {
@@ -146,6 +170,7 @@
 
     .box-body {
       padding: 8px;
+      background: #fff;
     }
 
     .box-body p {
@@ -187,10 +212,8 @@
       align-items: center;
       justify-content: center;
       text-align: center;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 44%),
-        linear-gradient(rgba(255, 255, 255, 0.86), rgba(241, 246, 252, 0.74));
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.82) inset;
+      background: #fff;
+      box-shadow: none;
       width: 100%;
       min-height: 44px;
     }
@@ -243,8 +266,8 @@
     .thumb img {
       width: 160px;
       border: 1px solid #a9bfdc;
-      background: linear-gradient(rgba(255, 255, 255, 0.94), rgba(244, 248, 253, 0.8));
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.84) inset;
+      background: #fff;
+      box-shadow: none;
     }
 
     .project-title {
@@ -319,6 +342,96 @@
       animation-duration: var(--news-scroll-duration, 12s);
     }
 
+    body[data-theme="slate-ice"] {
+      background-color: #d7dde6;
+      background-image:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.74), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.42), transparent 24%),
+        linear-gradient(#edf1f6, #d7dde6 180px, #c3ccd8);
+    }
+
+    body[data-theme="slate-ice"] .page {
+      border-color: rgba(112, 129, 151, 0.95);
+      background: linear-gradient(rgba(255, 255, 255, 0.78), rgba(236, 241, 246, 0.78));
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.95) inset,
+        0 0 0 1px rgba(255, 255, 255, 0.25),
+        0 18px 30px rgba(56, 69, 84, 0.22);
+    }
+
+    body[data-theme="slate-ice"] .topbar,
+    body[data-theme="slate-ice"] .footer {
+      border-color: rgba(130, 143, 160, 0.7);
+      background: linear-gradient(rgba(251, 252, 253, 0.86), rgba(223, 229, 236, 0.78));
+      color: #445365;
+    }
+
+    body[data-theme="slate-ice"] .banner {
+      border-color: rgba(79, 96, 116, 0.92);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(#8ea1b7, #61778f 48%, #465a71 76%, #36475c);
+    }
+
+    body[data-theme="slate-ice"] .nav {
+      border-color: rgba(130, 143, 160, 0.7);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.08)),
+        linear-gradient(rgba(235, 240, 245, 0.86), rgba(212, 221, 230, 0.84));
+    }
+
+    body[data-theme="slate-ice"] .nav a,
+    body[data-theme="slate-ice"] a {
+      color: #355473;
+    }
+
+    body[data-theme="slate-ice"] .sidebar {
+      background: linear-gradient(rgba(240, 243, 247, 0.8), rgba(225, 231, 238, 0.72));
+    }
+
+    body[data-theme="slate-ice"] .main {
+      background: #fff;
+    }
+
+    body[data-theme="slate-ice"] .main .box {
+      border-color: rgba(167, 178, 193, 0.95);
+      background: #fff;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.92) inset,
+        0 8px 18px rgba(75, 89, 108, 0.1);
+    }
+
+    body[data-theme="slate-ice"] .main .box-body {
+      background: #fff;
+    }
+
+    body[data-theme="slate-ice"] .trust-item {
+      background: #fff;
+      box-shadow: none;
+    }
+
+    body[data-theme="slate-ice"] .thumb img {
+      border-color: rgba(167, 178, 193, 0.95);
+      background: #fff;
+      box-shadow: none;
+    }
+
+    body[data-theme="slate-ice"] .box-title {
+      border-color: rgba(167, 178, 193, 0.95);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0) 48%),
+        linear-gradient(rgba(242, 246, 250, 0.96), rgba(220, 228, 236, 0.92));
+      color: #425a72;
+    }
+
+    body[data-theme="slate-ice"] .best-viewed {
+      border-color: rgba(150, 140, 102, 0.58);
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 44%),
+        linear-gradient(rgba(248, 244, 230, 0.94), rgba(233, 224, 189, 0.88));
+      color: #605424;
+    }
+
     @keyframes news-scroll {
       from {
         transform: translateX(0);
@@ -364,10 +477,10 @@
     }
   </style>
 </head>
-<body>
+<body data-theme="slate-ice">
   <div class="page">
     <div class="topbar">
-      Bob Tianqi Wei | Software Engineer | San Francisco / Remote
+      <span class="topbar-item"><span id="sf-prefix">Bob is based in San Francisco:</span><img class="topbar-icon" id="sf-weather-icon" src="https://cdn.jsdelivr.net/gh/basmilius/weather-icons/production/fill/all/partly-cloudy-day.svg" alt=""><span id="sf-status">loading...</span></span>
     </div>
 
     <div class="banner">
@@ -399,7 +512,6 @@
               <a href="#trusted">Trusted By</a>
               <a href="#essentials">Essentials</a>
               <a href="#projects">Selected Projects</a>
-              <a href="#contact">Contact</a>
             </div>
           </div>
 
@@ -425,11 +537,15 @@
           </div>
 
           <div class="box">
-            <div class="box-title">Notes</div>
+            <div class="box-title">Contact</div>
             <div class="box-body">
-              <p class="small">Typography and layout intentionally use web-safe fonts, fixed width, small navigation, and boxed sections associated with early 2000s websites.</p>
+              <p><strong>Email:</strong> <a href="mailto:bobwei3598@gmail.com">bobwei3598@gmail.com</a></p>
+              <p><strong>Website:</strong> <a href="https://bobtianqiwei.com">bobtianqiwei.com</a></p>
+              <p><strong>GitHub:</strong> <a href="https://github.com/bobtianqiwei">/bobtianqiwei</a></p>
+              <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/bobtianqiwei/">/in/bobtianqiwei</a></p>
             </div>
           </div>
+
         </td>
 
         <td class="main">
@@ -535,14 +651,6 @@
             </div>
           </div>
 
-          <div class="box" id="contact">
-            <div class="box-title">Contact</div>
-            <div class="box-body">
-              <p><strong>Work with me:</strong> <a href="mailto:bobwei3598@gmail.com">bobwei3598@gmail.com</a></p>
-              <p><strong>More portfolio work:</strong> <a href="/works/">/works/</a></p>
-              <p><strong>Modern version:</strong> <a href="/swe/modern/">/swe/modern/</a></p>
-            </div>
-          </div>
         </td>
       </tr>
     </table>
@@ -606,6 +714,151 @@
         }
         window.requestAnimationFrame(updateTickerMotion);
       });
+
+      var sfStatus = document.getElementById("sf-status");
+      var sfWeatherIcon = document.getElementById("sf-weather-icon");
+      var sfTimeFormatter = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Los_Angeles",
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true
+      });
+      var sfWeatherText = "";
+      var sfWeatherCodes = {
+        0: "Clear",
+        1: "Mostly clear",
+        2: "Partly cloudy",
+        3: "Overcast",
+        45: "Fog",
+        48: "Fog",
+        51: "Light drizzle",
+        53: "Drizzle",
+        55: "Heavy drizzle",
+        61: "Light rain",
+        63: "Rain",
+        65: "Heavy rain",
+        66: "Freezing rain",
+        67: "Freezing rain",
+        71: "Light snow",
+        73: "Snow",
+        75: "Heavy snow",
+        77: "Snow grains",
+        80: "Rain showers",
+        81: "Rain showers",
+        82: "Heavy showers",
+        85: "Snow showers",
+        86: "Snow showers",
+        95: "Thunderstorm",
+        96: "Thunderstorm",
+        99: "Thunderstorm"
+      };
+
+      function getSfWeatherIconName(weatherCode, isDay) {
+        if (weatherCode === 0 || weatherCode === 1) {
+          return isDay ? "clear-day" : "clear-night";
+        }
+
+        if (weatherCode === 2) {
+          return isDay ? "partly-cloudy-day" : "partly-cloudy-night";
+        }
+
+        if (weatherCode === 3) {
+          return "overcast";
+        }
+
+        if (weatherCode === 45 || weatherCode === 48) {
+          return "fog";
+        }
+
+        if (weatherCode === 51 || weatherCode === 53 || weatherCode === 55) {
+          return "drizzle";
+        }
+
+        if (weatherCode === 61 || weatherCode === 63 || weatherCode === 65 || weatherCode === 80 || weatherCode === 81 || weatherCode === 82) {
+          return "rain";
+        }
+
+        if (weatherCode === 66 || weatherCode === 67) {
+          return "sleet";
+        }
+
+        if (weatherCode === 71 || weatherCode === 73 || weatherCode === 75 || weatherCode === 77 || weatherCode === 85 || weatherCode === 86) {
+          return "snow";
+        }
+
+        if (weatherCode === 95 || weatherCode === 96 || weatherCode === 99) {
+          return "thunderstorms";
+        }
+
+        return isDay ? "partly-cloudy-day" : "partly-cloudy-night";
+      }
+
+      function renderSfStatus() {
+        var timeLabel;
+
+        if (!sfStatus) {
+          return;
+        }
+
+        timeLabel = sfTimeFormatter.format(new Date());
+
+        if (sfWeatherText) {
+          sfStatus.textContent = sfWeatherText + ", " + timeLabel;
+          return;
+        }
+
+        sfStatus.textContent = timeLabel;
+      }
+
+      function renderSfWeather(data) {
+        var weatherLabel;
+        var roundedTemp;
+
+        if (!sfStatus) {
+          return;
+        }
+
+        if (!data || !data.current_weather) {
+          sfWeatherText = "";
+          if (sfWeatherIcon) {
+            sfWeatherIcon.style.display = "none";
+          }
+          renderSfStatus();
+          return;
+        }
+
+        weatherLabel = sfWeatherCodes[data.current_weather.weathercode] || "Current conditions";
+        roundedTemp = Math.round((data.current_weather.temperature * 9 / 5) + 32);
+        sfWeatherText = roundedTemp + "F, " + weatherLabel;
+        if (sfWeatherIcon) {
+          sfWeatherIcon.style.display = "";
+          sfWeatherIcon.src = "https://cdn.jsdelivr.net/gh/basmilius/weather-icons/production/fill/all/" + getSfWeatherIconName(data.current_weather.weathercode, data.current_weather.is_day !== 0) + ".svg";
+          sfWeatherIcon.alt = weatherLabel;
+        }
+        renderSfStatus();
+      }
+
+      renderSfStatus();
+      window.setInterval(renderSfStatus, 30000);
+
+      if (sfStatus) {
+        window.fetch("https://api.open-meteo.com/v1/forecast?latitude=37.7749&longitude=-122.4194&current_weather=true&temperature_unit=fahrenheit")
+          .then(function (response) {
+            if (!response.ok) {
+              throw new Error("Weather request failed");
+            }
+            return response.json();
+          })
+          .then(renderSfWeather)
+          .catch(function () {
+            sfWeatherText = "";
+            if (sfWeatherIcon) {
+              sfWeatherIcon.style.display = "none";
+            }
+            renderSfStatus();
+          });
+      }
+
     }());
   </script>
 </body>
