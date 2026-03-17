@@ -20,12 +20,12 @@
         radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 28%),
         radial-gradient(circle at top right, rgba(255, 255, 255, 0.45), transparent 24%),
         linear-gradient(#edf4fb, #d8e5f6 180px, #cedcf1);
-      color: #000;
+      color: #33393f;
       font: 11px/1.5 Verdana, Arial, Helvetica, sans-serif;
     }
 
     a {
-      color: #003399;
+      color: #5a7188;
       text-decoration: underline;
     }
 
@@ -53,11 +53,12 @@
       justify-content: flex-end;
       gap: 14px;
       padding: 6px 10px;
-      border-bottom: 1px solid rgba(118, 145, 187, 0.72);
-      background: linear-gradient(rgba(255, 255, 255, 0.82), rgba(221, 232, 246, 0.7));
+      border-bottom: 1px solid rgba(194, 198, 202, 0.9);
+      background: #f7f7f7;
       text-align: right;
       font-size: 10px;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      color: #686d72;
+      text-shadow: none;
     }
 
     .topbar-item {
@@ -68,17 +69,20 @@
 
     .topbar-icon {
       display: inline-block;
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       vertical-align: middle;
+      opacity: 0.9;
     }
 
     #sf-prefix {
       margin-right: 4px;
+      color: #787d82;
     }
 
     #sf-status {
       margin-left: 2px;
+      color: #5f656b;
     }
 
     .banner {
@@ -96,7 +100,7 @@
 
     .banner h1 {
       margin: 0 0 4px;
-      font: bold 28px/1.1 Tahoma, Verdana, Arial, sans-serif;
+      font: 600 28px/1.1 Tahoma, Verdana, Arial, sans-serif;
       letter-spacing: 0.02em;
     }
 
@@ -119,7 +123,7 @@
 
     .nav a {
       margin-right: 14px;
-      font-weight: bold;
+      font-weight: 600;
       color: #204978;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
     }
@@ -161,7 +165,7 @@
         linear-gradient(rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0) 48%),
         linear-gradient(rgba(236, 244, 253, 0.95), rgba(212, 227, 245, 0.92));
       color: #133a73;
-      font: bold 11px Tahoma, Verdana, Arial, sans-serif;
+      font: 600 11px Tahoma, Verdana, Arial, sans-serif;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.88) inset;
@@ -296,7 +300,7 @@
 
     .project-title {
       margin: 0 0 4px;
-      font: bold 12px Tahoma, Verdana, Arial, sans-serif;
+      font: 600 12px Tahoma, Verdana, Arial, sans-serif;
     }
 
     .project-meta {
@@ -337,7 +341,7 @@
 
     .best-viewed-label {
       flex: 0 0 auto;
-      font-weight: bold;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       color: #7b5b00;
@@ -373,50 +377,95 @@
     }
 
     body[data-theme="slate-ice"] {
-      background-color: #d7dde6;
+      background-color: #d9dddf;
       background-image:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.74), transparent 28%),
-        radial-gradient(circle at top right, rgba(255, 255, 255, 0.42), transparent 24%),
-        linear-gradient(#edf1f6, #d7dde6 180px, #c3ccd8);
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.7), transparent 28%),
+        radial-gradient(circle at top right, rgba(255, 255, 255, 0.34), transparent 24%),
+        linear-gradient(#eceff1, #d9dddf 180px, #c9ced1);
     }
 
     body[data-theme="slate-ice"] .page {
-      border-color: rgba(112, 129, 151, 0.95);
-      background: linear-gradient(rgba(255, 255, 255, 0.78), rgba(236, 241, 246, 0.78));
+      border-color: rgba(152, 158, 164, 0.92);
+      background: linear-gradient(rgba(255, 255, 255, 0.84), rgba(243, 245, 246, 0.82));
       box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.95) inset,
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        0 18px 30px rgba(56, 69, 84, 0.22);
+        0 0 0 1px rgba(255, 255, 255, 0.22),
+        0 18px 30px rgba(67, 73, 79, 0.16);
     }
 
     body[data-theme="slate-ice"] .topbar,
     body[data-theme="slate-ice"] .footer {
-      border-color: rgba(130, 143, 160, 0.7);
-      background: linear-gradient(rgba(251, 252, 253, 0.86), rgba(223, 229, 236, 0.78));
-      color: #445365;
+      border-color: rgba(111, 117, 123, 0.82);
+      color: #e7e9eb;
+      text-shadow: none;
+    }
+
+    body[data-theme="slate-ice"] .topbar {
+      border-color: rgba(194, 198, 202, 0.9);
+      background: #f7f7f7;
+      color: #686d72;
+    }
+
+    body[data-theme="slate-ice"] #sf-prefix {
+      color: #787d82;
+    }
+
+    body[data-theme="slate-ice"] #sf-status {
+      color: #5f656b;
+    }
+
+    body[data-theme="slate-ice"] .footer {
+      background: #f1f2f3;
+      color: #70757a;
     }
 
     body[data-theme="slate-ice"] .banner {
-      border-color: rgba(79, 96, 116, 0.92);
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 36%),
-        linear-gradient(#8ea1b7, #61778f 48%, #465a71 76%, #36475c);
+      border-color: rgba(82, 87, 93, 0.95);
+      background: linear-gradient(#787c80, #666a6f 50%, #5b5f64 51%, #6f7378);
+      color: #eff1f2;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.14) inset;
+    }
+
+    body[data-theme="slate-ice"] .banner h1 {
+      color: #f5f6f7;
+      font-size: 30px;
+      letter-spacing: 0.01em;
+      font-weight: 600;
+      text-shadow:
+        0 -1px 0 rgba(0, 0, 0, 0.72),
+        0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    body[data-theme="slate-ice"] .banner p {
+      color: #d7dbde;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
     }
 
     body[data-theme="slate-ice"] .nav {
-      border-color: rgba(130, 143, 160, 0.7);
+      border-color: rgba(117, 122, 128, 0.82);
       background:
-        linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0.08)),
-        linear-gradient(rgba(235, 240, 245, 0.86), rgba(212, 221, 230, 0.84));
+        linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 34%),
+        linear-gradient(#92969a, #7e8287 50%, #70757a 51%, #868b90);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.12) inset;
     }
 
-    body[data-theme="slate-ice"] .nav a,
+    body[data-theme="slate-ice"] .nav a {
+      color: #eceeef;
+      text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.65);
+    }
+
     body[data-theme="slate-ice"] a {
-      color: #355473;
+      color: #5f6f7e;
+      text-shadow: none;
     }
 
     body[data-theme="slate-ice"] .sidebar {
-      background: linear-gradient(rgba(240, 243, 247, 0.8), rgba(225, 231, 238, 0.72));
+      background: linear-gradient(rgba(224, 228, 231, 0.84), rgba(212, 217, 221, 0.76));
     }
 
     body[data-theme="slate-ice"] .main {
@@ -424,15 +473,21 @@
     }
 
     body[data-theme="slate-ice"] .main .box {
-      border-color: rgba(167, 178, 193, 0.95);
+      border-color: rgba(189, 194, 199, 0.95);
       background: #fff;
       box-shadow:
         0 1px 0 rgba(255, 255, 255, 0.92) inset,
-        0 8px 18px rgba(75, 89, 108, 0.1);
+        0 8px 18px rgba(73, 79, 87, 0.06);
     }
 
     body[data-theme="slate-ice"] .main .box-body {
       background: #fff;
+      color: #464b50;
+    }
+
+    body[data-theme="slate-ice"] .main .box-body a {
+      color: #5f6f7e;
+      text-shadow: none;
     }
 
     body[data-theme="slate-ice"] .trust-item {
@@ -441,25 +496,29 @@
     }
 
     body[data-theme="slate-ice"] .thumb img {
-      border-color: rgba(167, 178, 193, 0.95);
+      border-color: rgba(189, 194, 199, 0.95);
       background: #fff;
       box-shadow: none;
     }
 
     body[data-theme="slate-ice"] .box-title {
-      border-color: rgba(167, 178, 193, 0.95);
+      border-color: rgba(173, 178, 184, 0.94);
       background:
-        linear-gradient(rgba(255, 255, 255, 0.48), rgba(255, 255, 255, 0) 48%),
-        linear-gradient(rgba(242, 246, 250, 0.96), rgba(220, 228, 236, 0.92));
-      color: #425a72;
+        linear-gradient(rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0) 36%),
+        linear-gradient(#d2d5d8, #c4c8cc 50%, #babec3 51%, #d0d4d8);
+      color: #4c5258;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.46) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.04) inset;
     }
 
     body[data-theme="slate-ice"] .best-viewed {
-      border-color: rgba(150, 140, 102, 0.58);
+      border-color: rgba(182, 171, 137, 0.56);
       background:
-        linear-gradient(rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0) 44%),
-        linear-gradient(rgba(248, 244, 230, 0.94), rgba(233, 224, 189, 0.88));
-      color: #605424;
+        linear-gradient(rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0) 44%),
+        linear-gradient(rgba(244, 240, 227, 0.94), rgba(230, 223, 200, 0.9));
+      color: #655f4e;
     }
 
     @keyframes news-scroll {
@@ -867,7 +926,7 @@
         }
 
         weatherLabel = sfWeatherCodes[data.current_weather.weathercode] || "Current conditions";
-        roundedTemp = Math.round((data.current_weather.temperature * 9 / 5) + 32);
+        roundedTemp = Math.round(data.current_weather.temperature);
         sfWeatherText = roundedTemp + "F, " + weatherLabel;
         if (sfWeatherIcon) {
           sfWeatherIcon.style.display = "";
