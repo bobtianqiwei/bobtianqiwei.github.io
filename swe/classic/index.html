@@ -193,9 +193,36 @@
 
     .hero-code {
       margin: 0;
+      padding: 10px 12px;
       white-space: pre-wrap;
-      font: 12px/1.65 "Courier New", Courier, monospace;
-      color: #153a72;
+      border: 1px solid #7a8ea6;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 18%),
+        linear-gradient(#10263e, #0a1930);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 0 0 1px rgba(6, 19, 34, 0.45) inset;
+      font: 12px/1.7 "Lucida Console", "Courier New", Courier, monospace;
+      color: #d9e6f2;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+    }
+
+    .hero-code .code-keyword {
+      color: #8fd3ff;
+      font-weight: bold;
+    }
+
+    .hero-code .code-variable {
+      color: #f6ed9c;
+    }
+
+    .hero-code .code-string {
+      color: #8ee6a1;
+    }
+
+    .hero-code .code-return {
+      color: #f3b87f;
+      font-weight: bold;
     }
 
     .trust-grid {
@@ -325,6 +352,12 @@
       white-space: nowrap;
       overflow: hidden;
       position: relative;
+      opacity: 1;
+      transition: opacity 0.22s ease;
+    }
+
+    .best-viewed-text.is-refreshing {
+      opacity: 0.18;
     }
 
     .best-viewed-text a {
@@ -700,9 +733,18 @@
       }
 
       function renderNewsItem() {
-        currentItem = newsItems[index];
-        ticker.innerHTML = '<span class="best-viewed-track">' + currentItem + "</span>";
-        window.requestAnimationFrame(updateTickerMotion);
+        var nextItem = newsItems[index];
+
+        ticker.classList.add("is-refreshing");
+        window.setTimeout(function () {
+          currentItem = nextItem;
+          ticker.innerHTML = '<span class="best-viewed-track">' + currentItem + "</span>";
+          window.requestAnimationFrame(function () {
+            updateTickerMotion();
+            ticker.classList.remove("is-refreshing");
+          });
+        }, 120);
+
         index = (index + 1) % newsItems.length;
       }
 
