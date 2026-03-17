@@ -68,16 +68,11 @@
           <div class="name-text" id="about-profile-name"></div>
           <h1 class="paragraph-about-grey" id="about-profile-pronouns"></h1>
           <h1 class="paragraph-about" id="about-profile-bio"></h1>
-          <div class="w-layout-blockcontainer container-13 w-container">
-            <a href="/website_files/bobtianqiwei_cv.pdf" target="_blank" class="about-button w-button">Full CV</a>
-            <a href="https://github.com/bobtianqiwei" target="_blank" class="about-button w-button">GitHub</a>
-            <a href="https://www.linkedin.com/in/bobtianqiwei/" target="_blank" class="about-button w-button">LinkedIn</a>
-            <a href="https://www.youtube.com/channel/UCfxLPK0-77H4iC3pHukSrIg" target="_blank" class="about-button w-button">YouTube</a>
-          </div>
+          <div class="w-layout-blockcontainer container-13 w-container" id="about-profile-links"></div>
         </div>
         <div data-page-fade-item class="column-16 w-col w-col-3">
-          <div class="div-block-image-about"><img src="/images/bobgrand-canyon.jpg" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 23vw, 25vw" srcset="/images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-500.jpg 500w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-800.jpg 800w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1080.jpg 1080w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1600.jpg 1600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2000.jpg 2000w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2600.jpg 2600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-3200.jpg 3200w, /images/bobgrand-canyon.jpg 3228w" alt="" class="image-about-animation"></div>
-          <p class="album-pic-text">Photo by Yingjia Luo from 10/18/2025</p>
+          <div class="div-block-image-about" id="about-profile-portrait"></div>
+          <p class="album-pic-text" id="about-profile-portrait-caption"></p>
         </div>
       </div>
     </div>
@@ -146,6 +141,9 @@
       const nameElement = document.getElementById("about-profile-name");
       const pronounsElement = document.getElementById("about-profile-pronouns");
       const bioElement = document.getElementById("about-profile-bio");
+      const linksElement = document.getElementById("about-profile-links");
+      const portraitElement = document.getElementById("about-profile-portrait");
+      const portraitCaptionElement = document.getElementById("about-profile-portrait-caption");
 
       if (!profile) {
         return;
@@ -161,6 +159,29 @@
 
       if (bioElement) {
         bioElement.innerHTML = profile.bioHtml || "";
+      }
+
+      if (linksElement) {
+        const links = Array.isArray(profile.links) ? profile.links : [];
+        linksElement.innerHTML = links.map(function (item) {
+          return '<a href="' + item.href + '" target="_blank" class="about-button w-button">' + item.label + "</a>";
+        }).join("");
+      }
+
+      if (portraitElement && profile.portrait) {
+        const portrait = profile.portrait;
+        const front = portrait.front || {};
+        const back = portrait.back || {};
+
+        if (back.src) {
+          portraitElement.style.backgroundImage = 'url("' + back.src + '")';
+        }
+
+        portraitElement.innerHTML = '<img src="' + (front.src || "") + '" loading="lazy" sizes="' + (front.sizes || "") + '" srcset="' + (front.srcset || "") + '" alt="" class="image-about-animation">';
+      }
+
+      if (portraitCaptionElement && profile.portrait) {
+        portraitCaptionElement.textContent = profile.portrait.caption || "";
       }
     }
 

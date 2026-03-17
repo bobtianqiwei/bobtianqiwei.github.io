@@ -1,1 +1,476 @@
-<!doctype html><html lang="en"><head><meta name="og:image" content="https://i.imgur.com/4miokE2.jpg"/><meta name="og:title" content="WinXP - Windows XP in React"/><meta name="og:description" content="Windows XP in React and Hooks! Try Minesweeper, Internet Explorer, Notepad in your browser!"/><meta name="description" content="Windows XP in React and Hooks! Try Minesweeper, Internet Explorer, Notepad in your browser!"/><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no"/><meta name="apple-mobile-web-app-capable" content="yes"/><meta name="theme-color" content="#fff"/><link rel="shortcut icon" href="/swe/winxp/favicon.ico"/><link rel="apple-touch-icon" href="/swe/winxp/favicon.ico"/><link rel="manifest" href="/swe/winxp/manifest.json"/><title>WinXP - Windows XP in React</title><script defer="defer" src="/swe/winxp/static/js/main.df788235.js"></script><link href="/swe/winxp/static/css/main.f012863c.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#fff">
+  <meta name="og:image" content="https://i.imgur.com/4miokE2.jpg">
+  <meta name="og:title" content="WinXP - Windows XP in React">
+  <meta
+    name="og:description"
+    content="Windows XP in React and Hooks! Try Minesweeper, Internet Explorer, Notepad in your browser!"
+  >
+  <meta
+    name="description"
+    content="Windows XP in React and Hooks! Try Minesweeper, Internet Explorer, Notepad in your browser!"
+  >
+  <link rel="shortcut icon" href="/swe/winxp/favicon.ico">
+  <link rel="apple-touch-icon" href="/swe/winxp/favicon.ico">
+  <link rel="manifest" href="/swe/winxp/manifest.json">
+  <link href="/swe/winxp/static/css/main.f012863c.css" rel="stylesheet">
+  <title>WinXP - Windows XP in React</title>
+  <style>
+    #wallpaper-control-panel {
+      position: fixed;
+      inset: 0;
+      z-index: 2147483647;
+      display: none;
+      pointer-events: none;
+    }
+
+    #wallpaper-control-panel.is-open {
+      display: block;
+    }
+
+    .wallpaper-panel__backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 30, 70, 0.12);
+      pointer-events: auto;
+    }
+
+    .wallpaper-panel__window {
+      position: absolute;
+      top: 52%;
+      left: 50%;
+      width: min(760px, calc(100vw - 36px));
+      max-height: min(560px, calc(100vh - 56px));
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-direction: column;
+      border: 3px solid #0d5cd7;
+      border-radius: 8px 8px 0 0;
+      box-shadow: 3px 6px 14px rgba(0, 0, 0, 0.45);
+      background: #ece9d8;
+      overflow: hidden;
+      pointer-events: auto;
+      font: 11px Tahoma, "Noto Sans", sans-serif;
+      color: #10203b;
+    }
+
+    .wallpaper-panel__titlebar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 30px;
+      padding: 0 6px 0 8px;
+      color: #fff;
+      background: linear-gradient(
+        to bottom,
+        #0058ee 0%,
+        #3593ff 4%,
+        #288eff 6%,
+        #127dff 8%,
+        #036ffc 10%,
+        #0262ee 14%,
+        #0057e5 20%,
+        #0054e3 24%,
+        #0055eb 56%,
+        #005bf5 66%,
+        #026afe 76%,
+        #0062ef 86%,
+        #0052d6 92%,
+        #0040ab 94%,
+        #003092 100%
+      );
+      text-shadow: 1px 1px rgba(0, 0, 0, 0.6);
+    }
+
+    .wallpaper-panel__titlebar-text {
+      flex: 1;
+      font-weight: 700;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .wallpaper-panel__close {
+      width: 22px;
+      height: 22px;
+      border: 1px solid #fff;
+      border-radius: 4px;
+      background: linear-gradient(#ff8d72, #d85018);
+      color: #fff;
+      font: 700 13px/1 Tahoma, sans-serif;
+      cursor: pointer;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .wallpaper-panel__body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 14px;
+      overflow: auto;
+      background: linear-gradient(to bottom, #f6f4ea 0%, #ece9d8 100%);
+    }
+
+    .wallpaper-panel__intro {
+      margin: 0;
+      color: #31476e;
+      line-height: 1.5;
+    }
+
+    .wallpaper-panel__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 12px;
+    }
+
+    .wallpaper-panel__option {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 8px;
+      border: 1px solid #7f9db9;
+      background: #fff;
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+    }
+
+    .wallpaper-panel__option:hover {
+      border-color: #245edb;
+      background: #f5f9ff;
+    }
+
+    .wallpaper-panel__option.is-active {
+      border-color: #245edb;
+      background: linear-gradient(#eef5ff, #dceaff);
+      box-shadow: inset 0 0 0 1px #7aa6ff;
+    }
+
+    .wallpaper-panel__thumb {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid #9aa9b6;
+      background: #d4d9df;
+    }
+
+    .wallpaper-panel__label {
+      color: #14386c;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .wallpaper-panel__footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0 14px 14px;
+    }
+
+    .wallpaper-panel__button {
+      min-width: 76px;
+      padding: 4px 14px;
+      border: 1px solid #003c74;
+      border-radius: 3px;
+      background: linear-gradient(#fcfeff, #dfeaf6);
+      color: #10203b;
+      font: 11px Tahoma, sans-serif;
+      box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.86);
+      cursor: pointer;
+    }
+
+    .wallpaper-panel__button:hover {
+      filter: brightness(1.02);
+    }
+
+    @media (max-width: 640px) {
+      .wallpaper-panel__window {
+        top: 50%;
+        width: calc(100vw - 16px);
+        max-height: calc(100vh - 16px);
+      }
+
+      .wallpaper-panel__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+  <script defer src="/swe/winxp/static/js/main.df788235.js"></script>
+</head>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <div id="wallpaper-control-panel" aria-hidden="true"></div>
+  <script>
+    (function () {
+      var STORAGE_KEY = "swe-winxp-wallpaper";
+      var currentWallpaper = null;
+      var desktopElement = null;
+      var DEFAULT_WALLPAPER_ID = "bliss";
+      var wallpaperOptions = [
+        {
+          id: "bliss",
+          label: "Bliss",
+          url: "/swe/winxp/static/media/wallpapers/bliss.jpg"
+        },
+        {
+          id: "windows_xp_2",
+          label: "Windows XP 2",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_2.jpg"
+        },
+        {
+          id: "windows_xp_6",
+          label: "Windows XP 6",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_6.jpg"
+        },
+        {
+          id: "windows_xp_10",
+          label: "Windows XP 10",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_10.jpg"
+        },
+        {
+          id: "windows_xp_18",
+          label: "Windows XP 18",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_18.jpg"
+        },
+        {
+          id: "windows_xp_31",
+          label: "Windows XP 31",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_31.jpg"
+        },
+        {
+          id: "windows_xp_32",
+          label: "Windows XP 32",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_32.jpg"
+        },
+        {
+          id: "windows_xp_35",
+          label: "Windows XP 35",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_35.jpg"
+        },
+        {
+          id: "windows_xp_39",
+          label: "Windows XP 39",
+          url: "/swe/winxp/static/media/wallpapers/windows_xp_39.jpg"
+        }
+      ];
+
+      function getDesktopElement() {
+        if (desktopElement && document.body.contains(desktopElement)) {
+          return desktopElement;
+        }
+
+        desktopElement = document.querySelector("#root > div");
+        return desktopElement;
+      }
+
+      function getWallpaperById(id, skipFallback) {
+        var found = wallpaperOptions.find(function (item) {
+          return item.id === id;
+        });
+
+        if (found || skipFallback) {
+          return found || wallpaperOptions[0];
+        }
+
+        return getWallpaperById(DEFAULT_WALLPAPER_ID, true);
+      }
+
+      function applyWallpaper(id) {
+        var desktop = getDesktopElement();
+        var wallpaper = getWallpaperById(id);
+        var image;
+
+        if (!desktop || !wallpaper) {
+          return;
+        }
+
+        image = new Image();
+        image.onload = function () {
+          currentWallpaper = wallpaper.id;
+          desktop.style.backgroundImage = 'url("' + wallpaper.url + '")';
+          desktop.style.backgroundRepeat = "no-repeat";
+          desktop.style.backgroundPosition = "center center";
+          desktop.style.backgroundSize = "cover";
+          desktop.style.backgroundAttachment = "fixed";
+
+          try {
+            window.localStorage.setItem(STORAGE_KEY, wallpaper.id);
+          } catch (error) {
+          }
+
+          syncWallpaperSelection();
+        };
+        image.onerror = function () {
+          if (wallpaper.id === DEFAULT_WALLPAPER_ID) {
+            currentWallpaper = wallpaper.id;
+            syncWallpaperSelection();
+            return;
+          }
+
+          applyWallpaper(DEFAULT_WALLPAPER_ID);
+        };
+        image.src = wallpaper.url;
+      }
+
+      function loadSavedWallpaper() {
+        try {
+          return window.localStorage.getItem(STORAGE_KEY) || DEFAULT_WALLPAPER_ID;
+        } catch (error) {
+          return DEFAULT_WALLPAPER_ID;
+        }
+      }
+
+      function syncWallpaperSelection() {
+        var panel = document.getElementById("wallpaper-control-panel");
+        var options = panel ? panel.querySelectorAll(".wallpaper-panel__option") : [];
+
+        Array.prototype.forEach.call(options, function (option) {
+          option.classList.toggle("is-active", option.getAttribute("data-wallpaper-id") === currentWallpaper);
+        });
+      }
+
+      function closeWallpaperPanel() {
+        var panel = document.getElementById("wallpaper-control-panel");
+
+        if (!panel) {
+          return;
+        }
+
+        panel.classList.remove("is-open");
+        panel.setAttribute("aria-hidden", "true");
+      }
+
+      function openWallpaperPanel() {
+        var panel = document.getElementById("wallpaper-control-panel");
+
+        if (!panel) {
+          return;
+        }
+
+        if (!panel.dataset.ready) {
+          renderWallpaperPanel(panel);
+        }
+
+        syncWallpaperSelection();
+        panel.classList.add("is-open");
+        panel.setAttribute("aria-hidden", "false");
+
+        window.setTimeout(function () {
+          document.body.dispatchEvent(new MouseEvent("mousedown", { bubbles: true }));
+        }, 0);
+      }
+
+      function renderWallpaperPanel(panel) {
+        var gridHtml = wallpaperOptions.map(function (item) {
+          return (
+            '<button class="wallpaper-panel__option" type="button" data-wallpaper-id="' + item.id + '">' +
+              '<img class="wallpaper-panel__thumb" src="' + item.url + '" alt="' + item.label + '">' +
+              '<span class="wallpaper-panel__label">' + item.label + "</span>" +
+            "</button>"
+          );
+        }).join("");
+
+        panel.innerHTML =
+          '<div class="wallpaper-panel__backdrop" data-wallpaper-close="1"></div>' +
+          '<div class="wallpaper-panel__window" role="dialog" aria-modal="true" aria-label="Wallpaper Control Panel">' +
+            '<div class="wallpaper-panel__titlebar">' +
+              '<div class="wallpaper-panel__titlebar-text">Control Panel</div>' +
+              '<button class="wallpaper-panel__close" type="button" aria-label="Close" data-wallpaper-close="1">×</button>' +
+            "</div>" +
+            '<div class="wallpaper-panel__body">' +
+              '<p class="wallpaper-panel__intro">Choose a desktop background for this Windows XP page. Your selection is saved in this browser.</p>' +
+              '<div class="wallpaper-panel__grid">' + gridHtml + "</div>" +
+            "</div>" +
+            '<div class="wallpaper-panel__footer">' +
+              '<button class="wallpaper-panel__button" type="button" data-wallpaper-close="1">Close</button>' +
+            "</div>" +
+          "</div>";
+
+        panel.dataset.ready = "true";
+
+        panel.addEventListener("click", function (event) {
+          var closeTrigger = event.target.closest("[data-wallpaper-close='1']");
+          var option = event.target.closest(".wallpaper-panel__option");
+
+          if (closeTrigger) {
+            closeWallpaperPanel();
+            return;
+          }
+
+          if (option) {
+            applyWallpaper(option.getAttribute("data-wallpaper-id"));
+          }
+        });
+      }
+
+      function interceptControlPanelClicks(event) {
+        var item = event.target.closest(".menu__item, .com__content__left__card__row");
+        var text;
+
+        if (!item) {
+          return;
+        }
+
+        if (item.matches(".menu__item")) {
+          text = item.querySelector(".menu__item__text");
+        } else {
+          text = item.querySelector(".com__content__left__card__text");
+        }
+
+        if (!text) {
+          return;
+        }
+
+        if (text.textContent.trim() === "Control Panel" || text.textContent.trim() === "Change a setting") {
+          event.preventDefault();
+          event.stopPropagation();
+          event.stopImmediatePropagation();
+          openWallpaperPanel();
+        }
+      }
+
+      function ensureWallpaperApplied() {
+        var desktop = getDesktopElement();
+
+        if (!desktop) {
+          return false;
+        }
+
+        applyWallpaper(loadSavedWallpaper());
+        return true;
+      }
+
+      function bootWallpaperManager() {
+        if (ensureWallpaperApplied()) {
+          return;
+        }
+
+        var observer = new MutationObserver(function () {
+          if (ensureWallpaperApplied()) {
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.getElementById("root"), {
+          childList: true,
+          subtree: true
+        });
+      }
+
+      document.addEventListener("click", interceptControlPanelClicks, true);
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+          closeWallpaperPanel();
+        }
+      });
+
+      bootWallpaperManager();
+    }());
+  </script>
+</body>
+</html>
