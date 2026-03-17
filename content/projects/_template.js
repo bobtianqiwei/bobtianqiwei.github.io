@@ -55,7 +55,7 @@ module.exports = {
       metaTitle: "New Project - Design Portfolio",
       backHref: "/design/",
       backLabel: "BACK TO DESIGN",
-      layout: "portfolio-case-study",
+      layout: "design-case-study",
       eyebrow: "DESIGN PORTFOLIO"
     },
     swe: {

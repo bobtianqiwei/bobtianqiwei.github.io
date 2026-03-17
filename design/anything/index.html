@@ -26,6 +26,364 @@
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WZFMQV77LB"></script>
   <script type="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZFMQV77LB',{'anonymize_ip':true});</script>
   <style>
+  .design-project-page {
+    --design-footer-height: 52px;
+  }
+
+  .design-project-shell {
+    min-height: 100vh;
+  }
+
+  .design-project-main {
+    width: min(1080px, calc(100% - 64px));
+    margin: 0 auto;
+    padding: 32px 0 calc(72px + var(--design-footer-height));
+  }
+
+  .design-project-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+    gap: 32px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  .design-project-title {
+    margin: 0;
+    color: #111;
+    font-size: 56px;
+    font-weight: 200;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .design-project-headline {
+    margin: 16px 0 0;
+    color: #333;
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.55;
+  }
+
+  .design-project-meta {
+    margin: 0;
+    color: #666;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .design-project-hero {
+    margin-bottom: 40px;
+  }
+
+  .design-project-hero .image-description {
+    margin-top: 10px;
+    color: #777;
+    font-family: Open Sans, sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .design-project-section {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 28px;
+    padding-top: 28px;
+    margin-top: 28px;
+    border-top: 1px solid #e7e7e7;
+  }
+
+  .design-project-section:first-of-type {
+    margin-top: 0;
+  }
+
+  .design-project-section-title {
+    margin: 0;
+    color: #222;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .design-project-section-body-stack {
+    display: grid;
+    gap: 32px;
+  }
+
+  .design-project-richtext,
+  .design-project-richtext p,
+  .design-project-section-body .paragraph-light,
+  .design-project-section-body .image-description {
+    color: #333;
+    font-family: Open Sans, sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .design-project-richtext p:first-child {
+    margin-top: 0;
+  }
+
+  .design-project-richtext p:last-child {
+    margin-bottom: 0;
+  }
+
+  .design-project-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 18px;
+  }
+
+  .design-project-card {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .design-project-card-media {
+    overflow: hidden;
+    background: #f2f2f2;
+  }
+
+  .design-project-card-image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  .design-project-card-title {
+    margin-top: 10px;
+    color: #444;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.45;
+  }
+
+  .design-ekphrasis-footer {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    width: 100%;
+    height: var(--design-footer-height);
+    padding: 12px 24px;
+    border-top: 1px solid #eee;
+    background: #fff;
+    box-sizing: border-box;
+  }
+
+  .design-ekphrasis-footer-left,
+  .design-ekphrasis-footer-center,
+  .design-ekphrasis-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .design-ekphrasis-footer-left {
+    flex: 1;
+    justify-content: flex-start;
+  }
+
+  .design-ekphrasis-footer-center {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .design-ekphrasis-footer-right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .design-ekphrasis-logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+  }
+
+  .design-ekphrasis-logo {
+    display: block;
+    width: 32px;
+    height: auto;
+  }
+
+  .design-ekphrasis-wordmark {
+    color: #333;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+
+  .design-ekphrasis-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1;
+  }
+
+  .design-ekphrasis-link-icon svg {
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin-left: -6px;
+    margin-right: -6px;
+    transform: translateX(-1px);
+  }
+
+  .design-ekphrasis-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    color: #333;
+    font-family: Publicsans Variablefont Wght, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.2;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+
+  .design-ekphrasis-link:hover {
+    background: #f5f5f5;
+  }
+
+  .design-project-back {
+    text-transform: uppercase;
+  }
+
+  html[data-theme="dark"] .design-project-title {
+    color: #efebe6;
+  }
+
+  html[data-theme="dark"] .design-project-headline,
+  html[data-theme="dark"] .design-project-richtext,
+  html[data-theme="dark"] .design-project-richtext p,
+  html[data-theme="dark"] .design-project-card-title {
+    color: #d3cdc6;
+  }
+
+  html[data-theme="dark"] .design-project-meta,
+  html[data-theme="dark"] .design-project-hero .image-description {
+    color: #b5aea6;
+  }
+
+  html[data-theme="dark"] .design-project-section {
+    border-top-color: #2f2f2f;
+  }
+
+  html[data-theme="dark"] .design-project-card-media {
+    background: #202020;
+  }
+
+  html[data-theme="dark"] .design-ekphrasis-footer {
+    border-top-color: #383838;
+    background: #202020;
+  }
+
+  html[data-theme="dark"] .design-ekphrasis-logo {
+    filter: invert(1) brightness(1.08);
+  }
+
+  html[data-theme="dark"] .design-ekphrasis-wordmark,
+  html[data-theme="dark"] .design-ekphrasis-link {
+    color: #d3cdc6;
+  }
+
+  html[data-theme="dark"] .design-ekphrasis-link {
+    border-color: #383838;
+    background: #202020;
+  }
+
+  html[data-theme="dark"] .design-ekphrasis-link:hover {
+    background: #262626;
+  }
+
+  @media screen and (max-width: 767px) {
+    .design-project-page {
+      --design-footer-height: 96px;
+    }
+
+    .design-project-main {
+      width: calc(100% - 32px);
+      padding: 20px 0 calc(48px + var(--design-footer-height));
+    }
+
+    .design-project-header,
+    .design-project-section {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .design-project-title {
+      font-size: 38px;
+    }
+
+    .design-project-headline,
+    .design-project-richtext,
+    .design-project-richtext p {
+      font-size: 15px;
+    }
+
+    .design-project-card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .design-ekphrasis-footer {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: auto auto;
+      align-items: center;
+      gap: 10px 12px;
+      height: var(--design-footer-height);
+      padding: 10px 14px 12px;
+    }
+
+    .design-ekphrasis-footer-left {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .design-ekphrasis-footer-center {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-content: flex-start;
+    }
+
+    .design-ekphrasis-footer-right {
+      grid-column: 2;
+      grid-row: 1;
+      justify-content: flex-end;
+    }
+
+    .design-ekphrasis-wordmark {
+      font-size: 15px;
+    }
+  }
+  </style>
+  <style>
   .w-background-video,
   .w-background-video-elem,
   .w-background-video-elem video {
@@ -39,84 +397,100 @@
   </style>
 </head>
 <body>
-  <div data-collapse="small" data-animation="over-right" data-duration="400" id="navigation" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
-    <div class="navigation-items">
-      <a href="/" class="logo-link w-nav-brand"><img src="/images/1b.png" width="42" height="Auto" alt="" sizes="(max-width: 479px) 100vw, 42px" srcset="/images/1b-p-500.png 500w, /images/1b.png 785w" class="logo-image"></a>
-      <div class="navigation-wrap">
-        <nav role="navigation" class="navigation-items w-nav-menu">
-          <a href="/" class="navigation-item w-nav-link">Home</a>
-          <a href="/vision/" class="navigation-item w-nav-link">VISION</a>
-          <a href="/works/" aria-current="page" class="navigation-item w-nav-link w--current">WORKs</a>
-          <a href="/about/" class="navigation-item w-nav-link">About</a>
-        </nav>
-        <div class="menu-button w-nav-button"><img src="/images/menu-icon_1menu-icon.png" width="22" alt="" class="menu-icon"></div>
-      </div>
-    </div>
-  </div>
-  <article class="work-page-div-block">
-    <div class="work-detail-page-container">
-      <div class="w-layout-grid project-overview-grid">
-        <div class="paragraph-title-black">DESIGN PORTFOLIO</div>
-        <h1 class="heading-black-big">Anything</h1>
-        <h1 class="heading-black-2">Text to App: Turn your words into mobile apps, sites, tools, and products.</h1>
-        <div class="paragraph-title-black">AI Software · Design Engineering<br>Anything (Create, Inc.)<br>Jul - Sep 2025</div>
-      </div>
-      <p class="paragraph-light">This is the design-oriented version of the same shared project content.</p>
+  <div class="design-project-shell design-project-page">
+    <main class="design-project-main">
+      <header class="design-project-header">
+        <div>
+          <h1 class="design-project-title">Anything</h1>
+          <p class="design-project-headline">Text to App: Turn your words into mobile apps, sites, tools, and products.</p>
+        </div>
+        <div>
+          <p class="design-project-meta">AI Software · Design Engineering<br>Anything (Create, Inc.)<br>Jul - Sep 2025</p>
+        </div>
+      </header>
+      <div class="design-project-hero">
     <div style="padding-top:56.17021276595745%" class="w-embed-youtubevideo"><iframe src="https://www.youtube.com/embed/wsR_YeWuIGw?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="Anything demo"></iframe></div>
     <p class="image-description">Video</p>
-    <div class="big-title-2">What Anything Is</div>
-    <div class="paragraph-light"><p>Anything is an AI builder that turns natural language into working mobile apps, websites, and full-stack tools—built with real code. You can add GPT-5 and 40+ integrations in one click. It supports on-device preview with Expo Go and publishing to the web and iOS App Store, with databases, auth, storage, and payments included. For harder tasks, Max is an autonomous agent that runs your app in a browser, writes code and tests, and ships fixes/features by itself.</p></div>
+      </div>
+      <section class="design-project-section design-project-section-intro">
+        <div class="design-project-section-head">
+          <h2 class="design-project-section-title">What Anything Is</h2>
+        </div>
+        <div class="design-project-section-body">
+          <div class="design-project-richtext"><p>Anything is an AI builder that turns natural language into working mobile apps, websites, and full-stack tools—built with real code. You can add GPT-5 and 40+ integrations in one click. It supports on-device preview with Expo Go and publishing to the web and iOS App Store, with databases, auth, storage, and payments included. For harder tasks, Max is an autonomous agent that runs your app in a browser, writes code and tests, and ships fixes/features by itself.</p></div>
+        </div>
+      </section>
+      <section class="design-project-section">
+        <div class="design-project-section-head">
+          <h2 class="design-project-section-title">Product Demo</h2>
+        </div>
+        <div class="design-project-section-body">
     <div style="padding-top:56.17021276595745%" class="w-embed-youtubevideo"><iframe src="https://www.youtube.com/embed/rVz6Pc1rhxQ?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="Anything product demo"></iframe></div>
     <p class="image-description">Product Demo</p>
-    <div class="big-title-2">What I Did</div>
-    <p class="big-title-3">Website & Narrative</p>
-    <div class="paragraph-light"><p>Shipped high-fidelity marketing sites for the Anything AI app builder; collaborated with design and founding team. Converted Figma specs into pixel-accurate, responsive React UI.</p></div>
-    <div class="work-columns w-row">
-      <div class="column-13 w-col w-col-4">
-        <a href="https://www.createanything.com/" target="_blank" class="project-link-block w-inline-block">
-          <div class="w-container"><img src="/images/createanything.com.jpg" loading="lazy" alt="" class="image-38">
-            <div class="work-page-project-name">Site: createanything.com</div>
-          </div>
+        </div>
+      </section>
+      <section class="design-project-section">
+        <div class="design-project-section-head">
+          <h2 class="design-project-section-title">What I Did</h2>
+        </div>
+        <div class="design-project-section-body design-project-section-body-stack">
+      <section class="design-project-section">
+        <div class="design-project-section-head">
+          <h2 class="design-project-section-title">Website & Narrative</h2>
+        </div>
+        <div class="design-project-section-body">
+          <div class="design-project-richtext"><p>Shipped high-fidelity marketing sites for the Anything AI app builder; collaborated with design and founding team. Converted Figma specs into pixel-accurate, responsive React UI.</p></div>
+      <div class="design-project-card-grid">
+        <a href="https://www.createanything.com/" target="_blank" class="design-project-card w-inline-block">
+          <div class="design-project-card-media"><img src="/images/createanything.com.jpg" loading="lazy" alt="" class="design-project-card-image"></div>
+          <div class="design-project-card-title">Site: createanything.com</div>
+        </a>
+        <a href="https://anythingmarketing.created.app/affiliate" target="_blank" class="design-project-card w-inline-block">
+          <div class="design-project-card-media"><img src="/images/anything-affiliate-program.jpg" loading="lazy" alt="" class="design-project-card-image"></div>
+          <div class="design-project-card-title">Anything Affiliate Program Page</div>
+        </a>
+        <a href="https://brandresources.created.app/" target="_blank" class="design-project-card w-inline-block">
+          <div class="design-project-card-media"><img src="/images/brandresources.created.app_.png" loading="lazy" alt="" class="design-project-card-image"></div>
+          <div class="design-project-card-title">Anything Brand Resources Page</div>
         </a>
       </div>
-      <div class="column-14 w-col w-col-4">
-        <a href="https://anythingmarketing.created.app/affiliate" target="_blank" class="project-link-block w-inline-block">
-          <div class="w-container"><img src="/images/anything-affiliate-program.jpg" loading="lazy" alt="" class="image-38">
-            <div class="work-page-project-name">Anything Affiliate Program Page</div>
-          </div>
+        </div>
+      </section>
+      <section class="design-project-section">
+        <div class="design-project-section-head">
+          <h2 class="design-project-section-title">Internal AI Design Pipeline</h2>
+        </div>
+        <div class="design-project-section-body">
+          <div class="design-project-richtext"><p>Engineered a screenshot-to-UI flow that mirrors human design practice: section clustering, grid/ hierarchy detection, component detection, scaffold-first layout, font classification for typography match, token normalization, and quality gates with retry/rollback, to improve first-pass alignment and cut manual edits.</p><p><a href="https://huggingface.co/AnythingAI/font-classifier-v4" target="_blank">Anything AI: Open Source Font Classifier (Hugging Face)</a></p></div>
+        </div>
+      </section>
+        </div>
+      </section>
+    </main>
+    <footer class="design-ekphrasis-footer">
+      <div class="design-ekphrasis-footer-left">
+        <a href="/design/" class="design-ekphrasis-logo-link" aria-label="Back to design index">
+          <img src="/images/1b.png" alt="Bob Tianqi Wei logo" class="design-ekphrasis-logo">
+        </a>
+        <div class="design-ekphrasis-wordmark">Design</div>
+        <a href="/design/" class="design-ekphrasis-link design-ekphrasis-link-icon design-project-back" aria-label="BACK TO DESIGN">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M10.5 3.75L6.25 8L10.5 12.25" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
-      <div class="column-15 w-col w-col-4">
-        <a href="https://brandresources.created.app/" target="_blank" class="project-link-block w-inline-block">
-          <div class="w-container"><img src="/images/brandresources.created.app_.png" loading="lazy" alt="" class="image-38">
-            <div class="work-page-project-name">Anything Brand Resources Page</div>
-          </div>
-        </a>
+      <div class="design-ekphrasis-footer-center">
+        <a href="/design/#design-vision" class="design-ekphrasis-link">Vision</a>
+        <a href="/design/#design-id" class="design-ekphrasis-link">Objects</a>
+        <a href="/design/#design-software" class="design-ekphrasis-link">Interfaces</a>
+        <a href="/design/#design-installations" class="design-ekphrasis-link">Installations</a>
       </div>
-    </div>
-    <p class="big-title-3">Internal AI Design Pipeline</p>
-    <div class="paragraph-light"><p>Engineered a screenshot-to-UI flow that mirrors human design practice: section clustering, grid/ hierarchy detection, component detection, scaffold-first layout, font classification for typography match, token normalization, and quality gates with retry/rollback, to improve first-pass alignment and cut manual edits.</p><p><a href="https://huggingface.co/AnythingAI/font-classifier-v4" target="_blank">Anything AI: Open Source Font Classifier (Hugging Face)</a></p></div>
-
-    </div>
-    <div class="all-works-section">
-      <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>
-      <a href="/design/" class="all-works w-inline-block">
-        <h1 class="all-works-head-black">BACK TO DESIGN</h1>
-      </a>
-    </div>
-  </article>
-  <div class="footer-wrap">
-    <div>
-      <div>Bob Tianqi Wei&nbsp; 魏 天祺</div>
-    </div>
-    <div class="footer-links">
-      <div class="text-block-83">Copyright © 2024 TIANQI&nbsp;ROBERT WEI. All rights reserved.</div>
-      <button type="button" class="theme-toggle" data-theme-toggle hidden aria-label="Toggle dark mode" aria-pressed="false" title="Toggle dark mode">
-        <span class="theme-toggle-track">
-          <span class="theme-toggle-thumb"></span>
-        </span>
-      </button>
-    </div>
+      <div class="design-ekphrasis-footer-right">
+        <button type="button" class="design-ekphrasis-link" data-design-cv-open>CV</button>
+        <button type="button" class="design-ekphrasis-link" data-design-about-open>About</button>
+      </div>
+    </footer>
+    <script src="/js/design-page-chrome.js" type="text/javascript"></script>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=63004a13914e30681af6d7b7" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="/js/site-chrome.js" type="text/javascript"></script>

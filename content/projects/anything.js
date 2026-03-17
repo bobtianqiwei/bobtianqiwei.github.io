@@ -75,7 +75,7 @@ module.exports = {
       metaTitle: "Anything - Design Portfolio",
       backHref: "/design/",
       backLabel: "BACK TO DESIGN",
-      layout: "portfolio-case-study",
+      layout: "design-case-study",
       eyebrow: "DESIGN PORTFOLIO",
       focusNote: "This is the design-oriented version of the same shared project content."
     },
