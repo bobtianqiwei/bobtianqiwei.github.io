@@ -3976,8 +3976,10 @@ figcaption {
   font-weight: 500;
 }
 
-.link-in-paragraph-grey {
-  color: #b1b1b1;
+.link-in-paragraph-grey, .link-in-paragraph-grey:visited, .link-in-paragraph-grey:hover, .link-in-paragraph-grey:active {
+  color: #00000080 !important;
+  -webkit-text-fill-color: #00000080;
+  text-decoration-color: #00000080;
   font-style: normal;
   display: inline;
 }
