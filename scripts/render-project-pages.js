@@ -783,6 +783,21 @@ function designCaseStudyStyles() {
     line-height: 1.45;
   }
 
+  .design-project-main .video-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #edf1f4;
+  }
+
+  .design-project-main .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
   .design-ekphrasis-footer {
     position: fixed;
     right: 0;
@@ -922,6 +937,10 @@ function designCaseStudyStyles() {
   }
 
   html[data-theme="dark"] .design-project-card-media {
+    background: #202020;
+  }
+
+  html[data-theme="dark"] .design-project-main .video-frame {
     background: #202020;
   }
 
