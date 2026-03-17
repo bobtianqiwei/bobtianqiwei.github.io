@@ -1,0 +1,862 @@
+<!-- index.html developed by Bob Tianqi Wei -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Bob Tianqi Wei | SWE Classic</title>
+  <meta name="description" content="Classic software engineer portfolio page for Bob Tianqi Wei.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.png" rel="apple-touch-icon">
+  <style>
+    html {
+      color-scheme: light;
+    }
+
+    body {
+      margin: 0;
+      background: #d7dde6;
+      background-image: linear-gradient(#edf1f6, #d7dde6 220px, #c3ccd8);
+      color: #273443;
+      font: 13px/1.6 "Trebuchet MS", Arial, Helvetica, sans-serif;
+    }
+
+    a {
+      color: #295f98;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      display: block;
+      border: 0;
+    }
+
+    .page {
+      width: 1040px;
+      margin: 22px auto 32px;
+      border: 1px solid #aeb8c6;
+      border-radius: 12px;
+      background: #eef2f7;
+      box-shadow: 0 1px 0 #fff inset, 0 18px 38px rgba(32, 48, 68, 0.18);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 18px;
+      border-bottom: 1px solid #b8c3d1;
+      background: linear-gradient(#fbfcfd, #e6ebf2);
+      color: #607286;
+      font-size: 11px;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding: 28px 30px 30px;
+      border-bottom: 1px solid #6c87a7;
+      background: linear-gradient(#6d91ba, #466b97 52%, #385d89);
+      color: #fff;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.22);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.65fr 0.95fr;
+      gap: 28px;
+      align-items: end;
+    }
+
+    .hero-kicker {
+      margin: 0 0 10px;
+      color: #dbe7f6;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 0 0 12px;
+      font: normal 38px/1.05 Georgia, "Times New Roman", serif;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 620px;
+      color: #edf4fc;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .hero-aside {
+      padding: 16px 18px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 10px;
+      background: linear-gradient(rgba(255, 255, 255, 0.19), rgba(255, 255, 255, 0.08));
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset;
+    }
+
+    .hero-aside-title {
+      margin: 0 0 6px;
+      color: #dce8f5;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-aside p {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .hero-pill {
+      display: inline-block;
+      padding: 5px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      padding: 12px 16px;
+      border-bottom: 1px solid #c1ccda;
+      background: linear-gradient(#eff3f8, #dbe2eb);
+    }
+
+    .nav a {
+      display: inline-block;
+      padding: 8px 14px;
+      border: 1px solid #b7c3d3;
+      border-radius: 18px;
+      background: linear-gradient(#ffffff, #e6ebf2);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+      color: #3f556f;
+      font-size: 12px;
+      font-weight: bold;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
+    }
+
+    .best-viewed {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 18px;
+      border-bottom: 1px solid #d0d8e2;
+      background: linear-gradient(#fff9dc, #f7efbc);
+      color: #6e5c16;
+      font-size: 12px;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.55) inset;
+    }
+
+    .best-viewed-label {
+      flex: 0 0 auto;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .best-viewed-text {
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .best-viewed-text a {
+      color: inherit;
+      font-weight: bold;
+    }
+
+    .best-viewed-track {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 20px;
+    }
+
+    .best-viewed-text.is-scrolling .best-viewed-track {
+      animation: news-scroll linear infinite;
+      animation-duration: var(--news-scroll-duration, 12s);
+    }
+
+    @keyframes news-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(-1 * var(--news-scroll-distance, 0px)));
+      }
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 20px;
+      padding: 20px;
+      background: linear-gradient(#eef2f7, #e4e9f0);
+    }
+
+    .sidebar,
+    .main {
+      min-width: 0;
+    }
+
+    .card {
+      margin-bottom: 18px;
+      border: 1px solid #c7d1dd;
+      border-radius: 10px;
+      background: linear-gradient(#ffffff, #f6f8fb);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.92) inset, 0 1px 2px rgba(42, 60, 82, 0.08);
+      overflow: hidden;
+    }
+
+    .card-title {
+      padding: 11px 14px;
+      border-bottom: 1px solid #d6dde6;
+      background: linear-gradient(#fcfdff, #eef3f8);
+      color: #4b6078;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .card-body {
+      padding: 15px 16px 16px;
+    }
+
+    .card-body p {
+      margin: 0 0 12px;
+    }
+
+    .card-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .mini-nav a {
+      display: block;
+      padding: 7px 0;
+      border-top: 1px solid #edf2f8;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .mini-nav a:first-child {
+      border-top: 0;
+    }
+
+    .profile-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .profile-list li {
+      margin: 0;
+      padding: 7px 0;
+      border-top: 1px solid #edf2f8;
+    }
+
+    .profile-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .profile-list strong {
+      display: block;
+      margin-bottom: 2px;
+      color: #5a6f86;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .plain-list li {
+      margin-bottom: 8px;
+    }
+
+    .hero-note {
+      margin: 0;
+      color: #55697f;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .intro-panel {
+      display: grid;
+      grid-template-columns: 1.35fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .intro-copy h2,
+    .highlight-panel h3,
+    .section-lead h2 {
+      margin: 0 0 10px;
+      color: #2c3f56;
+      font: normal 28px/1.1 Georgia, "Times New Roman", serif;
+      letter-spacing: -0.02em;
+    }
+
+    .intro-copy p {
+      margin: 0 0 12px;
+      color: #405266;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    .highlight-panel {
+      padding: 16px 18px;
+      border: 1px solid #d7dee8;
+      border-radius: 10px;
+      background: linear-gradient(#f8fafc, #edf2f7);
+    }
+
+    .highlight-panel h3 {
+      font-size: 22px;
+    }
+
+    .highlight-list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .highlight-list li {
+      margin-bottom: 8px;
+      color: #4a5e74;
+    }
+
+    .logo-rail {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 18px;
+      align-items: center;
+    }
+
+    .logo-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 58px;
+      padding: 10px;
+      border: 1px solid #d9e1ea;
+      border-radius: 10px;
+      background: linear-gradient(#ffffff, #f3f6fa);
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.95) inset;
+    }
+
+    .logo-item img {
+      width: auto;
+      max-width: 100%;
+      max-height: 28px;
+    }
+
+    .logo-item img.trust-item--invert {
+      filter: brightness(0);
+    }
+
+    .section-lead {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 16px;
+    }
+
+    .section-lead p {
+      margin: 0;
+      max-width: 460px;
+      color: #697b8f;
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .feature-card {
+      display: grid;
+      grid-template-columns: 188px minmax(0, 1fr);
+      gap: 18px;
+      padding: 14px;
+      border: 1px solid #d7dee8;
+      border-radius: 10px;
+      background: linear-gradient(#ffffff, #f6f8fb);
+    }
+
+    .feature-card img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #c5d1df;
+      background: #fff;
+    }
+
+    .feature-card h3,
+    .project-grid h3 {
+      margin: 0 0 4px;
+      font-size: 19px;
+      line-height: 1.2;
+      color: #2b4058;
+    }
+
+    .project-meta {
+      margin: 0 0 10px;
+      color: #74859a;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .feature-card p,
+    .project-grid p {
+      margin: 0;
+      color: #4a5d73;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-grid article {
+      padding: 16px;
+      border: 1px solid #d7dee8;
+      border-radius: 10px;
+      background: linear-gradient(#ffffff, #f7f9fc);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .contact-card {
+      padding: 16px;
+      border: 1px solid #d7dee8;
+      border-radius: 10px;
+      background: linear-gradient(#ffffff, #f7f9fc);
+    }
+
+    .contact-card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #64788d;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .footer {
+      padding: 16px 20px;
+      border-top: 1px solid #c8d1dc;
+      background: linear-gradient(#eef2f7, #e1e7ef);
+      color: #617487;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media screen and (max-width: 1080px) {
+      .page {
+        width: calc(100vw - 20px);
+        margin: 10px auto 20px;
+      }
+    }
+
+    @media screen and (max-width: 920px) {
+      .hero-grid,
+      .content,
+      .intro-panel,
+      .feature-card,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .section-lead {
+        display: block;
+      }
+
+      .section-lead p {
+        margin-top: 6px;
+        text-align: left;
+      }
+    }
+
+    @media screen and (max-width: 640px) {
+      body {
+        font-size: 12px;
+      }
+
+      .topbar,
+      .nav,
+      .best-viewed,
+      .content,
+      .hero {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .topbar,
+      .nav {
+        display: block;
+      }
+
+      .nav a {
+        margin-bottom: 8px;
+      }
+
+      .best-viewed {
+        display: block;
+      }
+
+      .best-viewed-label {
+        display: block;
+        margin-bottom: 4px;
+      }
+
+      .logo-rail {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero h1,
+      .intro-copy h2,
+      .section-lead h2 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <span>Bob Tianqi Wei</span>
+      <span>Software Engineer | San Francisco / Remote</span>
+    </div>
+
+    <div class="hero">
+      <div class="hero-grid">
+        <div>
+          <p class="hero-kicker">Portfolio 2010 Edition</p>
+          <h1>Building polished AI products, interfaces, and creative software.</h1>
+          <p>Software engineer focused on frontend craft, full-stack systems, and AI-powered tools with strong product thinking and a taste for expressive interfaces.</p>
+          <div class="hero-meta">
+            <span class="hero-pill">AI Systems</span>
+            <span class="hero-pill">Frontend Engineering</span>
+            <span class="hero-pill">Creative Technology</span>
+          </div>
+        </div>
+        <div class="hero-aside">
+          <p class="hero-aside-title">Currently</p>
+          <p>Available for contract, outsourcing, and selective collaborations across product engineering, creative coding, and human-centered AI experiences.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/about/">About</a>
+      <a href="/works/">Works</a>
+      <a href="/engresume/">Resume</a>
+      <a href="https://github.com/bobtianqiwei">GitHub</a>
+      <a href="https://www.linkedin.com/in/bobtianqiwei/">LinkedIn</a>
+    </div>
+
+    <div class="best-viewed" aria-live="polite">
+      <span class="best-viewed-label">Latest News</span>
+      <span class="best-viewed-text" id="news-ticker">Loading updates...</span>
+    </div>
+
+    <div class="content">
+      <aside class="sidebar">
+        <div class="card">
+          <div class="card-title">Site Menu</div>
+          <div class="card-body mini-nav">
+            <a href="#intro">Introduction</a>
+            <a href="#trusted">Trusted By</a>
+            <a href="#essentials">Essentials</a>
+            <a href="#projects">Selected Projects</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Profile</div>
+          <div class="card-body">
+            <ul class="profile-list">
+              <li><strong>Name</strong> Bob Tianqi Wei</li>
+              <li><strong>Focus</strong> AI systems, frontend engineering, and full-stack products</li>
+              <li><strong>Availability</strong> Contract and outsourcing projects</li>
+              <li><strong>Base</strong> San Francisco / Remote</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Quick Links</div>
+          <div class="card-body">
+            <ul class="plain-list">
+              <li><a href="/engresume/">English Resume</a></li>
+              <li><a href="https://github.com/bobtianqiwei">GitHub Profile</a></li>
+              <li><a href="https://www.linkedin.com/in/bobtianqiwei/">LinkedIn Profile</a></li>
+              <li><a href="mailto:bobwei3598@gmail.com">Email Bob</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Notes</div>
+          <div class="card-body">
+            <p class="hero-note">This version borrows from the polished fixed-width portfolio sites around 2010: larger editorial headlines, glossy gradients, rounded cards, and cleaner spacing than an early 2000s page.</p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <section class="card" id="intro">
+          <div class="card-title">Introduction</div>
+          <div class="card-body">
+            <div class="intro-panel">
+              <div class="intro-copy">
+                <h2>Design-minded engineering for intelligent products.</h2>
+                <p>I build software that feels intentional at both the system level and the interface level. My work spans production AI tools, frontend platforms, and experimental interactive systems that need strong technical foundations without losing personality.</p>
+                <p>This page keeps a fixed-width portfolio structure, but its visual language shifts toward the 2010 moment when personal sites started to feel more polished, editorial, and product-aware.</p>
+              </div>
+              <div class="highlight-panel">
+                <h3>What I Work On</h3>
+                <ul class="highlight-list">
+                  <li>AI-assisted interfaces and applied machine intelligence</li>
+                  <li>Frontend systems with a strong sense of craft</li>
+                  <li>Full-stack product development and technical direction</li>
+                  <li>Creative technology and interaction-heavy prototypes</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="trusted">
+          <div class="card-title">Trusted By</div>
+          <div class="card-body">
+            <div class="logo-rail">
+              <a class="logo-item" href="https://eecs.berkeley.edu/" target="_blank"><img src="/images/berkeley-eecs-bw.png" alt="UC Berkeley EECS"></a>
+              <a class="logo-item" href="https://www.tsinghua.edu.cn/en/" target="_blank"><img src="/images/tsinghua.png" alt="Tsinghua University"></a>
+              <a class="logo-item" href="https://etopus.com/" target="_blank"><img src="/images/etopus.png" alt="Etopus"></a>
+              <a class="logo-item" href="https://www.createanything.com/" target="_blank"><img src="/images/Anything-logo.svg" alt="Anything"></a>
+              <a class="logo-item" href="https://instalily.ai/" target="_blank"><img src="/images/instalily.png" alt="Instalily"></a>
+              <a class="logo-item" href="https://collov.ai/" target="_blank"><img class="trust-item--invert" src="/images/collov-official.png" alt="Collov AI"></a>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="essentials">
+          <div class="card-title">Essentials</div>
+          <div class="card-body">
+            <div class="section-lead">
+              <h2>Selected work across AI, product engineering, and creative interfaces.</h2>
+              <p>A 2010-style portfolio often leads with a few stronger feature blocks before expanding into a wider archive. This section follows that pattern.</p>
+            </div>
+            <div class="feature-list">
+              <article class="feature-card">
+                <a href="/works/anything/"><img src="/images/createanything.com.jpg" alt="Anything"></a>
+                <div>
+                  <h3><a href="/works/anything/">Anything</a></h3>
+                  <p class="project-meta">AI Product / Web Platform</p>
+                  <p>Production-facing product and engineering work centered on practical AI applications and scalable user-facing systems.</p>
+                </div>
+              </article>
+              <article class="feature-card">
+                <a href="https://github.com/bobtianqiwei/ChatAgent_PartSelect?tab=readme-ov-file" target="_blank"><img src="/images/PartSelect-Agent-cover-image.jpeg" alt="PartSelect Chat Agent"></a>
+                <div>
+                  <h3><a href="https://github.com/bobtianqiwei/ChatAgent_PartSelect?tab=readme-ov-file" target="_blank">PartSelect Chat Agent</a></h3>
+                  <p class="project-meta">Conversational Commerce / AI Assistant</p>
+                  <p>An AI-assisted shopping and support experience designed to help users navigate appliance parts more efficiently.</p>
+                </div>
+              </article>
+              <article class="feature-card">
+                <a href="https://github.com/bobtianqiwei/Tao" target="_blank"><img src="/images/Tao-beta-2.png" alt="Tao"></a>
+                <div>
+                  <h3><a href="https://github.com/bobtianqiwei/Tao" target="_blank">Tao</a></h3>
+                  <p class="project-meta">Creative Tool / Experimental Interface</p>
+                  <p>A project exploring more expressive interactions between people, interfaces, and intelligent software.</p>
+                </div>
+              </article>
+              <article class="feature-card">
+                <a href="/works/sympathetic-orchestra/"><img src="/images/Sympathetic-Orchestra-fig-1.1.jpg" alt="Sympathetic Orchestra"></a>
+                <div>
+                  <h3><a href="/works/sympathetic-orchestra/">Sympathetic Orchestra</a></h3>
+                  <p class="project-meta">Interactive Experience / Creative Coding</p>
+                  <p>An interface-driven project combining interaction design, visuals, and computational media experiments.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="projects">
+          <div class="card-title">Selected Projects</div>
+          <div class="card-body">
+            <div class="project-grid">
+              <article>
+                <h3><a href="https://github.com/bobtianqiwei/terminal_zen" target="_blank">Terminal Zen</a></h3>
+                <p>A terminal-based project with a focused interface and custom interaction model.</p>
+              </article>
+              <article>
+                <h3><a href="/works/illuminatio/">Illuminatio</a></h3>
+                <p>A design and technology project centered on product storytelling and interface polish.</p>
+              </article>
+              <article>
+                <h3><a href="/works/sympathetic-orchestra/">Sympathetic Orchestra (beta)</a></h3>
+                <p>An ongoing interactive media project combining sound, behavior, and visual systems.</p>
+              </article>
+              <article>
+                <h3><a href="https://brandresources.created.app/" target="_blank">Anything Brand Resources Page</a></h3>
+                <p>A branded resource hub with practical information architecture and frontend implementation.</p>
+              </article>
+              <article>
+                <h3><a href="/works/palette-plate/">Palette Plate</a></h3>
+                <p>A visual and interface concept with a stronger emphasis on aesthetics and browsing flow.</p>
+              </article>
+              <article>
+                <h3><a href="/works/desktop-buddha/">Desktop Buddha</a></h3>
+                <p>A desktop-inspired interactive project with a distinct visual language.</p>
+              </article>
+              <article>
+                <h3><a href="https://github.com/s-almeda/ArtiFactor" target="_blank">ArtiFactor</a></h3>
+                <p>A collaboration exploring creative tooling and computational media workflows.</p>
+              </article>
+              <article>
+                <h3><a href="/works/water-synthesizer/">Water Synthesizer</a></h3>
+                <p>An experimental project investigating sound, interface behavior, and live interaction.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="contact">
+          <div class="card-title">Contact</div>
+          <div class="card-body">
+            <div class="contact-grid">
+              <div class="contact-card">
+                <strong>Email</strong>
+                <a href="mailto:bobwei3598@gmail.com">bobwei3598@gmail.com</a>
+              </div>
+              <div class="contact-card">
+                <strong>Portfolio</strong>
+                <a href="/works/">/works/</a>
+              </div>
+              <div class="contact-card">
+                <strong>Modern Version</strong>
+                <a href="/swe/modern/">/swe/modern/</a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <div class="footer">
+      Bob Tianqi Wei · 魏 天祺 · Copyright © 2024 TIANQI ROBERT WEI
+    </div>
+  </div>
+  <script src="/content/about/news.js"></script>
+  <script>
+    (function () {
+      var newsItems = window.aboutNewsItems || [];
+      var ticker = document.getElementById("news-ticker");
+      var index = 0;
+      var currentItem = "";
+
+      if (!ticker || newsItems.length === 0) {
+        if (ticker) {
+          ticker.textContent = "Latest updates are available on the About page.";
+        }
+        return;
+      }
+
+      function updateTickerMotion() {
+        var track = ticker.querySelector(".best-viewed-track");
+        var overflowWidth;
+        var duration;
+
+        ticker.classList.remove("is-scrolling");
+        ticker.style.removeProperty("--news-scroll-distance");
+        ticker.style.removeProperty("--news-scroll-duration");
+
+        if (!track) {
+          return;
+        }
+
+        overflowWidth = track.scrollWidth - ticker.clientWidth;
+
+        if (overflowWidth <= 0) {
+          return;
+        }
+
+        duration = Math.max(10, overflowWidth / 22);
+        ticker.style.setProperty("--news-scroll-distance", overflowWidth + "px");
+        ticker.style.setProperty("--news-scroll-duration", duration + "s");
+        ticker.classList.add("is-scrolling");
+      }
+
+      function renderNewsItem() {
+        currentItem = newsItems[index];
+        ticker.innerHTML = '<span class="best-viewed-track">' + currentItem + "</span>";
+        window.requestAnimationFrame(updateTickerMotion);
+        index = (index + 1) % newsItems.length;
+      }
+
+      renderNewsItem();
+      window.setInterval(renderNewsItem, 5000);
+      window.addEventListener("resize", function () {
+        if (!currentItem) {
+          return;
+        }
+        window.requestAnimationFrame(updateTickerMotion);
+      });
+    }());
+  </script>
+</body>
+</html>
