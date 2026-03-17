@@ -80,11 +80,11 @@ module.exports = {
       focusNote: "This is the design-oriented version of the same shared project content."
     },
     swe: {
-      outputPath: "swe/anything/index.html",
+      outputPath: "swe/classic/anything/index.html",
       metaTitle: "Anything - Software Engineering Portfolio",
-      backHref: "/swe/",
+      backHref: "/swe/classic/",
       backLabel: "BACK TO SOFTWARE ENGINEERING",
-      layout: "portfolio-case-study",
+      layout: "swe-classic-case-study",
       eyebrow: "SOFTWARE ENGINEERING PORTFOLIO",
       focusNote: "This is the software-engineering-oriented version of the same shared project content."
     }

@@ -59,11 +59,11 @@ module.exports = {
       eyebrow: "DESIGN PORTFOLIO"
     },
     swe: {
-      outputPath: "swe/new-project/index.html",
+      outputPath: "swe/classic/new-project/index.html",
       metaTitle: "New Project - Software Engineering Portfolio",
-      backHref: "/swe/",
+      backHref: "/swe/classic/",
       backLabel: "BACK TO SOFTWARE ENGINEERING",
-      layout: "portfolio-case-study",
+      layout: "swe-classic-case-study",
       eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   }
