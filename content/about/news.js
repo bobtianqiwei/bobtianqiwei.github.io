@@ -1,6 +1,6 @@
 // news.js developed by Bob Tianqi Wei
 window.aboutNewsItems = [
-  "I am so excited to be joining the MIT Media Lab in fall 2026!",
+  "I am so excited to be joining the MIT Media Lab, Tangible Media Group in fall 2026!",
   "Our paper <a href=\"https://doi.org/10.1145/3746059.3747685\" target=\"_blank\" class=\"link-in-paragraph\"><em>MorphingSkin</em></a> received the Best Paper Award at ACM UIST 2025!",
   "Our LBW paper <a href=\"https://doi.org/10.1145/3706599.3719807\" target=\"_blank\" class=\"link-in-paragraph\"><em>EKPHRASIS</em></a> was accepted to ACM CHI 2025!",
   "Our paper <a href=\"https://doi.org/10.1145/3715275.3732082\" target=\"_blank\" class=\"link-in-paragraph\"><em>Labor, Power, and Belonging: The Work of Voice in the Age of AI Reproduction</em></a> was accepted to ACM FAccT 2025!",

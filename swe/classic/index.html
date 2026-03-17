@@ -260,11 +260,32 @@
       min-width: 0;
       white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      position: relative;
     }
 
     .best-viewed-text a {
       color: inherit;
+    }
+
+    .best-viewed-track {
+      display: inline-block;
+      white-space: nowrap;
+      padding-right: 16px;
+    }
+
+    .best-viewed-text.is-scrolling .best-viewed-track {
+      animation: news-scroll linear infinite;
+      animation-duration: var(--news-scroll-duration, 12s);
+    }
+
+    @keyframes news-scroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(calc(-1 * var(--news-scroll-distance, 0px)));
+      }
     }
 
     @media screen and (max-width: 980px) {
@@ -495,6 +516,7 @@
       var newsItems = window.aboutNewsItems || [];
       var ticker = document.getElementById("news-ticker");
       var index = 0;
+      var currentItem = "";
 
       if (!ticker || newsItems.length === 0) {
         if (ticker) {
@@ -503,13 +525,46 @@
         return;
       }
 
+      function updateTickerMotion() {
+        var track = ticker.querySelector(".best-viewed-track");
+        var overflowWidth;
+        var duration;
+
+        ticker.classList.remove("is-scrolling");
+        ticker.style.removeProperty("--news-scroll-distance");
+        ticker.style.removeProperty("--news-scroll-duration");
+
+        if (!track) {
+          return;
+        }
+
+        overflowWidth = track.scrollWidth - ticker.clientWidth;
+
+        if (overflowWidth <= 0) {
+          return;
+        }
+
+        duration = Math.max(10, overflowWidth / 22);
+        ticker.style.setProperty("--news-scroll-distance", overflowWidth + "px");
+        ticker.style.setProperty("--news-scroll-duration", duration + "s");
+        ticker.classList.add("is-scrolling");
+      }
+
       function renderNewsItem() {
-        ticker.innerHTML = newsItems[index];
+        currentItem = newsItems[index];
+        ticker.innerHTML = '<span class="best-viewed-track">' + currentItem + "</span>";
+        window.requestAnimationFrame(updateTickerMotion);
         index = (index + 1) % newsItems.length;
       }
 
       renderNewsItem();
       window.setInterval(renderNewsItem, 5000);
+      window.addEventListener("resize", function () {
+        if (!currentItem) {
+          return;
+        }
+        window.requestAnimationFrame(updateTickerMotion);
+      });
     }());
   </script>
 </body>
