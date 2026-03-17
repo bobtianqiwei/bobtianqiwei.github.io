@@ -263,6 +263,10 @@
       text-overflow: ellipsis;
     }
 
+    .best-viewed-text a {
+      color: inherit;
+    }
+
     @media screen and (max-width: 980px) {
       .page {
         width: calc(100vw - 12px);
@@ -485,28 +489,22 @@
       Bob Tianqi Wei · 魏 天祺 · Copyright © 2024 TIANQI ROBERT WEI
     </div>
   </div>
+  <script src="/content/about/news.js"></script>
   <script>
     (function () {
-      var newsItems = [
-        "MorphingSkin received the Best Paper Award at ACM UIST 2025.",
-        "EKPHRASIS was accepted to ACM CHI 2025.",
-        "Labor, Power, and Belonging was accepted to ACM FAccT 2025.",
-        "Bob delivered a speech at the UC Berkeley Master of Design graduation ceremony on December 22, 2024.",
-        "EKPHRASIS was presented at the 2024 UC Berkeley MDes Graduate Exhibition on December 20, 2024.",
-        "Romantic Breakups as a Lens for Industrial Cybersecurity was presented at the 2024 Jacobs Winter Design Showcase on December 17, 2024.",
-        "Symphony Orchestra was demonstrated at UIST 2024.",
-        "Abigail and Bob's Carillon Recital took place at UC Berkeley Sather Tower on April 28, 2024.",
-        "Building Professional Hearing was presented at the UC Berkeley Education Research Day Conference on April 5, 2024."
-      ];
+      var newsItems = window.aboutNewsItems || [];
       var ticker = document.getElementById("news-ticker");
       var index = 0;
 
       if (!ticker || newsItems.length === 0) {
+        if (ticker) {
+          ticker.textContent = "Latest updates are available on the About page.";
+        }
         return;
       }
 
       function renderNewsItem() {
-        ticker.textContent = newsItems[index];
+        ticker.innerHTML = newsItems[index];
         index = (index + 1) % newsItems.length;
       }
 
