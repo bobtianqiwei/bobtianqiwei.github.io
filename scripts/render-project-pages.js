@@ -109,6 +109,12 @@ ${body}
 `;
 }
 
+function renderClassicStatusTopbar() {
+  return `    <div class="topbar">
+      <span class="topbar-item"><span id="sf-prefix">Bob is based in San Francisco:</span><img class="topbar-icon" id="sf-weather-icon" src="https://cdn.jsdelivr.net/gh/basmilius/weather-icons/production/fill/all/partly-cloudy-day.svg" alt=""><span id="sf-status">loading...</span></span>
+    </div>`;
+}
+
 function renderImage(imageSrc, extraClass = "image-38") {
   return `<img src="${imageSrc}" loading="lazy" alt="" class="${extraClass}">`;
 }
@@ -227,7 +233,8 @@ ${blocks}
 }
 
 function renderSweClassicStyles() {
-  return `  <style>
+  return `  <script src="/js/classic-status-topbar.js" defer></script>
+  <style>
   html {
     color-scheme: light;
   }
@@ -268,12 +275,38 @@ function renderSweClassicStyles() {
   .topbar {
     display: flex;
     justify-content: flex-end;
-    gap: 12px;
+    gap: 14px;
     padding: 6px 10px;
     border-bottom: 1px solid rgba(194, 198, 202, 0.9);
     background: #f7f7f7;
+    text-align: right;
     color: #686d72;
     font-size: 10px;
+    text-shadow: none;
+  }
+
+  .topbar-item {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  .topbar-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    opacity: 0.9;
+  }
+
+  #sf-prefix {
+    margin-right: 4px;
+    color: #787d82;
+  }
+
+  #sf-status {
+    margin-left: 2px;
+    color: #5f656b;
   }
 
   .banner {
@@ -441,6 +474,38 @@ function renderSweClassicStyles() {
     margin-top: 8px;
     color: #6f7780;
     font-size: 10px;
+    text-align: center;
+  }
+
+  .project-header {
+    margin: 10px 10px 0;
+    padding: 16px 18px 14px;
+    border-top: 1px solid rgba(170, 174, 178, 0.52);
+    border-bottom: 1px solid rgba(82, 87, 93, 0.95);
+    background: linear-gradient(#8b9095, #5f6368);
+    color: #eff1f2;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      0 -1px 0 rgba(0, 0, 0, 0.16) inset;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
+  }
+
+  .project-header-title {
+    margin: 0 0 6px;
+    color: #f5f6f7;
+    font: 600 30px/1.1 Tahoma, Verdana, Arial, sans-serif;
+    letter-spacing: 0.01em;
+    text-shadow:
+      0 -1px 0 rgba(0, 0, 0, 0.72),
+      0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .project-header-headline {
+    margin: 0;
+    color: #d7dbde;
+    font-size: 12px;
+    line-height: 1.55;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
   }
 
   .project-section + .project-section {
@@ -528,6 +593,7 @@ function renderSweClassicStyles() {
     color: #4b525a;
     font-size: 11px;
     line-height: 1.45;
+    text-align: center;
   }
 
   .footer {
@@ -579,7 +645,7 @@ ${cards.map((card) => `        <a href="${remapSweClassicHref(card.href)}" targe
 function renderSweClassicSections(project) {
   const overview = project.content.sections.overview;
   const primary = project.content.sections.primary;
-  const extraVideo = overview.extraVideo ? `          <div class="project-section">
+  const extraVideo = overview.extraVideo ? `        <div class="box">
             <div class="box-title">${overview.extraVideo.caption || "Demo"}</div>
             <div class="box-body">
 ${renderYouTube(overview.extraVideo).replace(/^/gm, "              ")}
@@ -594,7 +660,11 @@ ${renderYouTube(overview.extraVideo).replace(/^/gm, "              ")}
 ${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}          </div>`;
   }).join("\n");
 
-  return `        <div class="box" id="demo">
+  return `        <div class="project-header">
+          <h1 class="project-header-title">${project.content.title}</h1>
+          <p class="project-header-headline">${project.content.hero.headline}</p>
+        </div>
+        <div class="box" id="demo">
           <div class="box-title">Demo</div>
           <div class="box-body">
 ${renderYouTube(project.content.hero.video).replace(/^/gm, "            ")}
@@ -1086,8 +1156,28 @@ ${renderDesignSections(project)}
   };
 }
 
+function renderWorksCaseStudyStyles() {
+  return `  <style>
+  .video-frame {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #edf1f4;
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  </style>`;
+}
+
 function renderWorksCaseStudy(project, view) {
-  return `${renderNav("works")}
+  return {
+    body: `${renderNav("works")}
   <div class="work-detail-page-container">
     <div class="w-layout-grid project-overview-grid">
       <h1 class="heading-black-big">${project.content.title}</h1>
@@ -1100,7 +1190,9 @@ ${renderSharedSections(project)}
     <h1 class="all-works-head-black">${view.backLabel}</h1>
   </a>
 ${renderFooter()}
-  <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>`;
+  <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>`,
+    extraHead: renderWorksCaseStudyStyles()
+  };
 }
 
 function renderPortfolioCaseStudy(project, view) {
@@ -1129,24 +1221,14 @@ ${renderFooter()}`;
 function renderSweClassicCaseStudy(project, view) {
   return {
     body: `  <div class="page">
-    <div class="topbar">
-      <span>${view.eyebrow || "Software Engineering"}</span>
-    </div>
-    <div class="banner">
-      <h1>${project.content.title}</h1>
-      <p>${project.content.hero.headline}</p>
-    </div>
+${renderClassicStatusTopbar()}
     <div class="nav">
-      <a href="/">Home</a>
+      <a href="/swe/classic/">Home</a>
       <a href="/about/">About</a>
       <a href="/works/">Works</a>
       <a href="/engresume/">Resume</a>
       <a href="https://github.com/bobtianqiwei" target="_blank" rel="noreferrer">GitHub</a>
       <a href="https://www.linkedin.com/in/bobtianqiwei/" target="_blank" rel="noreferrer">LinkedIn</a>
-    </div>
-    <div class="best-viewed">
-      <span class="best-viewed-label">Project</span>
-      <span class="best-viewed-text">${view.focusNote || "Classic software engineering case study view."}</span>
     </div>
     <table class="content">
       <tr>
@@ -1177,8 +1259,7 @@ function renderSweClassicCaseStudy(project, view) {
             <div class="box-title">Quick Links</div>
             <div class="box-body">
               <ul class="plain-list">
-                <li><a href="${view.backHref}">Back to SWE Classic</a></li>
-                <li><a href="/swe/classic/">SWE Classic Home</a></li>
+                <li><a href="/swe/classic/">Back to SWE Home</a></li>
                 <li><a href="/works/">All Works</a></li>
                 <li><a href="/about/">About Bob</a></li>
               </ul>
@@ -1204,16 +1285,21 @@ function renderProjectView(project, view) {
     : view.layout === "portfolio-case-study"
       ? "swe-classic-case-study"
       : view.layout;
-  const rendered = resolvedLayout === "design-case-study"
-    ? renderDesignCaseStudy(project, view)
-    : resolvedLayout === "swe-classic-case-study"
-      ? renderSweClassicCaseStudy(project, view)
-      : {
-          body: resolvedLayout === "portfolio-case-study"
-            ? renderPortfolioCaseStudy(project, view)
-            : renderWorksCaseStudy(project, view),
-          extraHead: ""
-        };
+  let rendered;
+
+  if (resolvedLayout === "design-case-study") {
+    rendered = renderDesignCaseStudy(project, view);
+  } else if (resolvedLayout === "swe-classic-case-study") {
+    rendered = renderSweClassicCaseStudy(project, view);
+  } else if (resolvedLayout === "portfolio-case-study") {
+    rendered = {
+      body: renderPortfolioCaseStudy(project, view),
+      extraHead: ""
+    };
+  } else {
+    rendered = renderWorksCaseStudy(project, view);
+  }
+
   const shell = resolvedLayout === "swe-classic-case-study" ? classicPageShell : pageShell;
 
   return shell({
