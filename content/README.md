@@ -24,3 +24,17 @@ Generated files:
 
 - `/works/index.html`
 - Selected detail pages under `/works/*/index.html`
+
+`content/projects/`
+
+- One file per shared project content source.
+- Use [`_template.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/projects/_template.js) as the starting point.
+- `content` stores the canonical project information.
+- `views` defines which pages should be generated from the same content.
+- Current pilot project: [`anything.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/projects/anything.js)
+
+Generated files from project views:
+
+- `/works/<slug>/index.html`
+- `/design/<slug>/index.html`
+- `/swe/<slug>/index.html`
