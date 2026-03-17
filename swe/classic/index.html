@@ -110,7 +110,7 @@
     }
 
     .nav {
-      padding: 8px 10px;
+      padding: 8px 18px;
       border-bottom: 1px solid rgba(118, 145, 187, 0.72);
       background:
         linear-gradient(rgba(255, 255, 255, 0.52), rgba(255, 255, 255, 0.1)),
@@ -179,6 +179,10 @@
 
     .box-body p {
       margin: 0 0 8px;
+    }
+
+    .box-body strong {
+      font-weight: 600;
     }
 
     .plain-list {
@@ -291,11 +295,42 @@
       width: 160px;
     }
 
+    .thumb a {
+      display: block;
+      position: relative;
+    }
+
     .thumb img {
+      display: block;
       width: 160px;
       border: 1px solid #a9bfdc;
       background: #fff;
       box-shadow: none;
+    }
+
+    .thumb a::after {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      background:
+        linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0) 18%,
+          rgba(255, 255, 255, 0.18) 38%,
+          rgba(255, 255, 255, 0.32) 49%,
+          rgba(255, 255, 255, 0.08) 60%,
+          rgba(255, 255, 255, 0) 76%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(116, 121, 126, 0.16) 0%,
+          rgba(184, 188, 192, 0.2) 24%,
+          rgba(244, 246, 248, 0.26) 50%,
+          rgba(154, 159, 164, 0.14) 51%,
+          rgba(108, 113, 118, 0.16) 100%
+        );
+      pointer-events: none;
+      opacity: 0.9;
     }
 
     .project-title {
@@ -328,7 +363,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 10px;
+      padding: 6px 18px;
       border-bottom: 1px solid rgba(169, 150, 79, 0.6);
       background:
         linear-gradient(rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0) 44%),
@@ -421,12 +456,14 @@
 
     body[data-theme="slate-ice"] .banner {
       border-color: rgba(82, 87, 93, 0.95);
-      background: linear-gradient(#787c80, #666a6f 50%, #5b5f64 51%, #6f7378);
+      border-top: 1px solid rgba(170, 174, 178, 0.52);
+      border-bottom: 1px solid rgba(82, 87, 93, 0.95);
+      background: linear-gradient(#8b9095, #5f6368);
       color: #eff1f2;
       text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.55);
       box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.1) inset,
-        0 -1px 0 rgba(0, 0, 0, 0.14) inset;
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 -1px 0 rgba(0, 0, 0, 0.16) inset;
     }
 
     body[data-theme="slate-ice"] .banner h1 {
@@ -450,7 +487,7 @@
         linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0) 34%),
         linear-gradient(#92969a, #7e8287 50%, #70757a 51%, #868b90);
       box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.1) inset,
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
         0 -1px 0 rgba(0, 0, 0, 0.12) inset;
     }
 
@@ -495,10 +532,34 @@
       box-shadow: none;
     }
 
+    body[data-theme="slate-ice"] .thumb a {
+      position: relative;
+    }
+
     body[data-theme="slate-ice"] .thumb img {
       border-color: rgba(189, 194, 199, 0.95);
       background: #fff;
       box-shadow: none;
+    }
+
+    body[data-theme="slate-ice"] .thumb a::after {
+      background:
+        linear-gradient(
+          165deg,
+          rgba(255, 255, 255, 0) 18%,
+          rgba(255, 255, 255, 0.18) 38%,
+          rgba(255, 255, 255, 0.32) 49%,
+          rgba(255, 255, 255, 0.08) 60%,
+          rgba(255, 255, 255, 0) 76%
+        ),
+        linear-gradient(
+          to bottom,
+          rgba(116, 121, 126, 0.16) 0%,
+          rgba(184, 188, 192, 0.2) 24%,
+          rgba(244, 246, 248, 0.26) 50%,
+          rgba(154, 159, 164, 0.14) 51%,
+          rgba(108, 113, 118, 0.16) 100%
+        );
     }
 
     body[data-theme="slate-ice"] .box-title {
