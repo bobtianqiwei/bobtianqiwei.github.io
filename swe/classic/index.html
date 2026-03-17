@@ -193,35 +193,32 @@
 
     .hero-code {
       margin: 0;
-      padding: 10px 12px;
+      padding: 0;
       white-space: pre-wrap;
-      border: 1px solid #7a8ea6;
-      background:
-        linear-gradient(rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0) 18%),
-        linear-gradient(#10263e, #0a1930);
-      box-shadow:
-        0 1px 0 rgba(255, 255, 255, 0.08) inset,
-        0 0 0 1px rgba(6, 19, 34, 0.45) inset;
+      border: 0;
+      background: #fff;
+      box-shadow: none;
       font: 12px/1.7 "Lucida Console", "Courier New", Courier, monospace;
-      color: #d9e6f2;
-      text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+      font-weight: 600;
+      color: #22384f;
+      text-shadow: none;
     }
 
     .hero-code .code-keyword {
-      color: #8fd3ff;
+      color: #1d528c;
       font-weight: bold;
     }
 
     .hero-code .code-variable {
-      color: #f6ed9c;
+      color: #624b0d;
     }
 
     .hero-code .code-string {
-      color: #8ee6a1;
+      color: #24653a;
     }
 
     .hero-code .code-return {
-      color: #f3b87f;
+      color: #7f3f21;
       font-weight: bold;
     }
 
@@ -585,16 +582,16 @@
           <div class="box" id="intro">
             <div class="box-title">Introduction</div>
             <div class="box-body">
-<pre class="hero-code">def hero_section():
-    title = "Engineering Intelligent Tools for Human-AI Interaction"
-    author = "Bob Tianqi Wei"
-    description = """
+<pre class="hero-code"><span class="code-keyword">def</span> hero_section():
+    <span class="code-variable">title</span> = <span class="code-string">"Engineering Intelligent Tools for Human-AI Interaction"</span>
+    <span class="code-variable">author</span> = <span class="code-string">"Bob Tianqi Wei"</span>
+    <span class="code-variable">description</span> = <span class="code-string">"""
     Software engineer specializing in AI-powered systems,
     frontend, and full-stack development.
     I build production-ready applications that integrate AI
     and deliver scalable, human-centered user experiences.
-    """
-    return title, author, description</pre>
+    """</span>
+    <span class="code-return">return</span> <span class="code-variable">title</span>, <span class="code-variable">author</span>, <span class="code-variable">description</span></pre>
             </div>
           </div>
 
