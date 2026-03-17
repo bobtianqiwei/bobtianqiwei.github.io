@@ -148,11 +148,9 @@ function renderDesignSections(project) {
   const primary = project.content.sections.primary;
   const blocks = (primary.blocks || []).map((block) => {
     const cards = block.cardGroup ? project.content.cardGroups[block.cardGroup] || [] : [];
-    return `      <section class="design-project-section">
-        <div class="design-project-section-head">
-          <h2 class="design-project-section-title">${block.title}</h2>
-        </div>
-        <div class="design-project-section-body">
+    return `      <section class="design-project-subsection">
+        <h3 class="design-project-subsection-title">${block.title}</h3>
+        <div class="design-project-subsection-body">
           <div class="design-project-richtext">${block.bodyHtml}</div>
 ${cards.length ? `${renderDesignCardGrid(cards)}\n` : ""}        </div>
       </section>`;
@@ -222,7 +220,7 @@ function designCaseStudyStyles() {
     margin: 16px 0 0;
     color: #333;
     font-family: Open Sans, sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 300;
     line-height: 1.55;
   }
@@ -231,7 +229,7 @@ function designCaseStudyStyles() {
     margin: 0;
     color: #666;
     font-family: Open Sans, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     line-height: 1.6;
   }
@@ -265,9 +263,10 @@ function designCaseStudyStyles() {
   .design-project-section-title {
     margin: 0;
     color: #222;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
-    letter-spacing: .04em;
+    line-height: 1.2;
+    letter-spacing: .03em;
     text-transform: uppercase;
   }
 
@@ -276,13 +275,31 @@ function designCaseStudyStyles() {
     gap: 32px;
   }
 
+  .design-project-subsection {
+    display: block;
+  }
+
+  .design-project-subsection-title {
+    margin: 0 0 14px;
+    color: #222;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .design-project-subsection-body {
+    min-width: 0;
+  }
+
   .design-project-richtext,
   .design-project-richtext p,
   .design-project-section-body .paragraph-light,
   .design-project-section-body .image-description {
     color: #333;
     font-family: Open Sans, sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
     line-height: 1.7;
   }
@@ -293,6 +310,11 @@ function designCaseStudyStyles() {
 
   .design-project-richtext p:last-child {
     margin-bottom: 0;
+  }
+
+  .design-project-richtext a,
+  .design-project-section-body .image-description a {
+    color: inherit;
   }
 
   .design-project-card-grid {
@@ -323,7 +345,7 @@ function designCaseStudyStyles() {
     margin-top: 10px;
     color: #444;
     font-family: Open Sans, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     line-height: 1.45;
   }
@@ -440,10 +462,16 @@ function designCaseStudyStyles() {
   }
 
   html[data-theme="dark"] .design-project-headline,
+  html[data-theme="dark"] .design-project-section-title,
   html[data-theme="dark"] .design-project-richtext,
   html[data-theme="dark"] .design-project-richtext p,
-  html[data-theme="dark"] .design-project-card-title {
+  html[data-theme="dark"] .design-project-card-title,
+  html[data-theme="dark"] .design-project-section-body .image-description {
     color: #d3cdc6;
+  }
+
+  html[data-theme="dark"] .design-project-subsection-title {
+    color: #efebe6;
   }
 
   html[data-theme="dark"] .design-project-meta,
@@ -505,6 +533,14 @@ function designCaseStudyStyles() {
     .design-project-headline,
     .design-project-richtext,
     .design-project-richtext p {
+      font-size: 14px;
+    }
+
+    .design-project-section-title {
+      font-size: 16px;
+    }
+
+    .design-project-subsection-title {
       font-size: 15px;
     }
 

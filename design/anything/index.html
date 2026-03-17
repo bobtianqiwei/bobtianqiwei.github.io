@@ -61,7 +61,7 @@
     margin: 16px 0 0;
     color: #333;
     font-family: Open Sans, sans-serif;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 300;
     line-height: 1.55;
   }
@@ -70,7 +70,7 @@
     margin: 0;
     color: #666;
     font-family: Open Sans, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     line-height: 1.6;
   }
@@ -104,9 +104,10 @@
   .design-project-section-title {
     margin: 0;
     color: #222;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 300;
-    letter-spacing: .04em;
+    line-height: 1.2;
+    letter-spacing: .03em;
     text-transform: uppercase;
   }
 
@@ -115,13 +116,31 @@
     gap: 32px;
   }
 
+  .design-project-subsection {
+    display: block;
+  }
+
+  .design-project-subsection-title {
+    margin: 0 0 14px;
+    color: #222;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .design-project-subsection-body {
+    min-width: 0;
+  }
+
   .design-project-richtext,
   .design-project-richtext p,
   .design-project-section-body .paragraph-light,
   .design-project-section-body .image-description {
     color: #333;
     font-family: Open Sans, sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 300;
     line-height: 1.7;
   }
@@ -132,6 +151,11 @@
 
   .design-project-richtext p:last-child {
     margin-bottom: 0;
+  }
+
+  .design-project-richtext a,
+  .design-project-section-body .image-description a {
+    color: inherit;
   }
 
   .design-project-card-grid {
@@ -162,7 +186,7 @@
     margin-top: 10px;
     color: #444;
     font-family: Open Sans, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
     line-height: 1.45;
   }
@@ -279,10 +303,16 @@
   }
 
   html[data-theme="dark"] .design-project-headline,
+  html[data-theme="dark"] .design-project-section-title,
   html[data-theme="dark"] .design-project-richtext,
   html[data-theme="dark"] .design-project-richtext p,
-  html[data-theme="dark"] .design-project-card-title {
+  html[data-theme="dark"] .design-project-card-title,
+  html[data-theme="dark"] .design-project-section-body .image-description {
     color: #d3cdc6;
+  }
+
+  html[data-theme="dark"] .design-project-subsection-title {
+    color: #efebe6;
   }
 
   html[data-theme="dark"] .design-project-meta,
@@ -344,6 +374,14 @@
     .design-project-headline,
     .design-project-richtext,
     .design-project-richtext p {
+      font-size: 14px;
+    }
+
+    .design-project-section-title {
+      font-size: 16px;
+    }
+
+    .design-project-subsection-title {
       font-size: 15px;
     }
 
@@ -434,11 +472,9 @@
           <h2 class="design-project-section-title">What I Did</h2>
         </div>
         <div class="design-project-section-body design-project-section-body-stack">
-      <section class="design-project-section">
-        <div class="design-project-section-head">
-          <h2 class="design-project-section-title">Website & Narrative</h2>
-        </div>
-        <div class="design-project-section-body">
+      <section class="design-project-subsection">
+        <h3 class="design-project-subsection-title">Website & Narrative</h3>
+        <div class="design-project-subsection-body">
           <div class="design-project-richtext"><p>Shipped high-fidelity marketing sites for the Anything AI app builder; collaborated with design and founding team. Converted Figma specs into pixel-accurate, responsive React UI.</p></div>
       <div class="design-project-card-grid">
         <a href="https://www.createanything.com/" target="_blank" class="design-project-card w-inline-block">
@@ -456,11 +492,9 @@
       </div>
         </div>
       </section>
-      <section class="design-project-section">
-        <div class="design-project-section-head">
-          <h2 class="design-project-section-title">Internal AI Design Pipeline</h2>
-        </div>
-        <div class="design-project-section-body">
+      <section class="design-project-subsection">
+        <h3 class="design-project-subsection-title">Internal AI Design Pipeline</h3>
+        <div class="design-project-subsection-body">
           <div class="design-project-richtext"><p>Engineered a screenshot-to-UI flow that mirrors human design practice: section clustering, grid/ hierarchy detection, component detection, scaffold-first layout, font classification for typography match, token normalization, and quality gates with retry/rollback, to improve first-pass alignment and cut manual edits.</p><p><a href="https://huggingface.co/AnythingAI/font-classifier-v4" target="_blank">Anything AI: Open Source Font Classifier (Hugging Face)</a></p></div>
         </div>
       </section>
