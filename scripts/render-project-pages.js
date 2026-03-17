@@ -234,6 +234,7 @@ ${blocks}
 
 function renderSweClassicStyles() {
   return `  <script src="/js/classic-status-topbar.js" defer></script>
+  <script src="/js/classic-nav.js" defer></script>
   <style>
   html {
     color-scheme: light;
@@ -1222,14 +1223,7 @@ function renderSweClassicCaseStudy(project, view) {
   return {
     body: `  <div class="page">
 ${renderClassicStatusTopbar()}
-    <div class="nav">
-      <a href="/swe/classic/">Home</a>
-      <a href="/about/">About</a>
-      <a href="/works/">Works</a>
-      <a href="/engresume/">Resume</a>
-      <a href="https://github.com/bobtianqiwei" target="_blank" rel="noreferrer">GitHub</a>
-      <a href="https://www.linkedin.com/in/bobtianqiwei/" target="_blank" rel="noreferrer">LinkedIn</a>
-    </div>
+    <div data-classic-nav></div>
     <table class="content">
       <tr>
         <td class="sidebar">
