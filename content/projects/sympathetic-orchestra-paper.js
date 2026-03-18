@@ -3,23 +3,60 @@ module.exports = {
   slug: "sympathetic-orchestra-paper",
   content: {
     title: "Sympathetic Orchestra",
-    description: "Research papers and demo publication for Sympathetic Orchestra, an interactive conducting education system.",
+    description: "Research publications and system overview for Sympathetic Orchestra, a responsive virtual orchestra for embodied conducting practice.",
     hero: {
-      headline: "Research on responsive virtual orchestral feedback for embodied conducting practice and tacit skill development.",
+      headline: "A responsive virtual orchestra for embodied conducting practice, interpretive feedback, and tacit skill development.",
       metaLines: [
-        "Bob Tianqi Wei, Shm Almeda, Ethan Tam, Dor Abrahamson",
+        "Bob Tianqi Wei, Shm Almeda, Shayne Shen, Ethan Tam, Dor Abrahamson",
         "UC Berkeley",
-        "2024"
-      ]
+        "UIST 2024 demo, CHI 2026 paper"
+      ],
+      image: "/images/Sympathetic-Orchestra-new_1.jpg"
     },
     sections: [
       {
-        title: "Publications",
-        bodyHtml: "<p><strong>Sympathetic Orchestra: A Responsive Virtual Orchestra for Embodied Interpretive Practice in Conducting</strong><br>Bob Tianqi Wei, Shm Almeda, Shayne Shen, Ethan Tam, and Dor Abrahamson.<br>CHI 2026, Accepted</p><p><strong class=\"italic-bold-in-research-title\">ABSTRACT</strong><br>Learning to conduct effectively depends on a tight loop between perception and action, in which students’ hand gestures are continuously shaped by audible and situational feedback. However, students often rehearse with static recordings that cannot respond to their physical actions or interpretive intentions. This breaks the feedback needed to develop tacit musical knowledge, such as how timing, cueing, balance, and phrasing are communicated through embodied motion. We present Sympathetic Orchestra, a real time interactive system that maps conducting gestures to dynamically responsive orchestral playback and a stage oriented visual layout, making the consequences of actions immediately perceivable. The system reveals higher engagement and distinct interaction patterns that show how responsive feedback supports the development of tacit musical understanding through embodied practice.</p><p><a href=\"https://dl.acm.org/doi/10.1145/3672539.3686783\" target=\"_blank\" class=\"link-in-paragraph\"><strong>Demonstration of Sympathetic Orchestra: An Interactive Conducting Education System for Responsive, Tacit Skill Development</strong></a><br>Bob Tianqi Wei, Shm Almeda, Ethan Tam, and Dor Abrahamson.<br>UIST 2024<br>https://doi.org/10.1145/3672539.3686783<br><a href=\"https://bobtianqiwei.github.io/website_files/PDF/other_papers/DemoSympatheticOrchestra.pdf\" target=\"_blank\" class=\"link-in-paragraph\">PDF</a></p><p><strong class=\"italic-bold-in-research-title\">ABSTRACT</strong><br>Students learning musical conducting often practice along to static recordings, which do not provide real-time feedback similar to that of a live orchestra during rehearsals. Novice conductors need better solutions for practicing with feedback that mimics the experience of conducting a live orchestra. We can leverage emergent multimodal and spatial interaction technologies to support a virtual orchestra practice experience that allows students to develop tacit, live-practice knowledge. Through formative interviews with conducting experts and students, we designed and developed a dynamic, multimodal interaction system that targets key goals held by students developing their orchestral conducting skills, and that traditional practicing methods lack support for.</p>"
+        title: "Research Question",
+        bodyHtml: "<p>Learning to conduct is not only about memorizing beat patterns or studying a score. It depends on a tight perception-action loop in which gestures are constantly adjusted in response to what the ensemble does. In everyday practice, however, students often rehearse with static recordings that cannot react to their physical actions or interpretive intentions.</p><p>Sympathetic Orchestra began from this gap: how might a practice environment respond enough like an ensemble to help conductors develop tacit skills such as cueing, timing, balance, and phrasing? Rather than treating conducting as a purely symbolic task, the project asks how responsive audiovisual feedback can support embodied musical learning.</p>"
       },
       {
-        title: "Beta",
-        bodyHtml: "<p><a href=\"/works/sympathetic-orchestra/\" class=\"link-in-paragraph\"><strong>Sympathetic Orchestra (beta)</strong></a></p>"
+        title: "Design Rationale",
+        bodyHtml: "<p>The system was designed around responsivity rather than around gesture recognition alone. The key idea was to create a practice partner that makes consequences immediately perceivable: when the conductor changes gesture, the sound and visual response should change in ways that are interpretable and musically meaningful.</p><p>To support this, the interface mirrors a conventional orchestra layout. Instrumental sections stay in familiar spatial positions, hand tracking is rendered as cursors over the stage, and sectional response is visualized directly on the layout. This keeps the interaction grounded in conductors' existing mental models while making timing, section targeting, and dynamic response easier to inspect during practice.</p>",
+        images: [
+          {
+            src: "/images/Conducting_-Orchestra-Stage.jpg"
+          },
+          {
+            src: "/images/Sympathetic-Orchestra-layout.jpg"
+          }
+        ]
+      },
+      {
+        title: "Interaction Model",
+        bodyHtml: "<p>Different gestures are mapped to core conducting actions such as expression, section selection, playback control, and stopping. These mappings were chosen not to maximize the number of features, but to scaffold the kinds of actions that matter during actual rehearsal and interpretation.</p><p>The goal is not to simulate a full orchestra in every detail. It is to create an interpretable loop where gesture, feedback, and intention stay tightly coupled, so users can rehearse musical communication rather than only abstract movement patterns.</p>",
+        figure: {
+          src: "/images/Sympathetic-Orchestra-gestures.png",
+          caption: "Gesture states used in the prototype, including expression, section selection, playback, and stop."
+        }
+      },
+      {
+        title: "Research Process",
+        bodyHtml: "<p>The project moved through several stages: interviews and formative inquiry with conductors and students, iterative prototyping of the responsive system, and comparative study sessions contrasting Sympathetic Orchestra with a static recording condition. This progression mattered because the system was not only engineered, but shaped by questions about how conducting is actually learned and practiced.</p><p>In the study, participants worked with an annotated orchestral excerpt in a stereo monitor setup and reflected on how different practice conditions shaped their decisions. This allowed the research to focus on lived practice experience: what users noticed, how they adjusted, where they felt uncertainty, and how responsiveness affected their interpretation.</p>",
+        figure: {
+          src: "/images/Sympathetic-Orchestra-study-setup.jpg",
+          caption: "Study setup used for the comparative practice sessions."
+        }
+      },
+      {
+        title: "What Makes This Work Interesting",
+        bodyHtml: "<p>A central contribution of Sympathetic Orchestra is that it reframes conducting practice as an embodied interaction problem. The project is not only about building a musical interface, but about asking what kinds of feedback help learners develop knowledge that is usually acquired tacitly through rehearsal, correction, and repetition.</p><p>The work is also interesting because responsiveness appears to matter differently across experience levels. For less experienced conductors, the system can help build a clearer mapping between gesture and musical consequence. For more experienced users, it can become an interpretive sandbox for quickly exploring different phrasing, timing, and sectional relationships. That makes the project relevant not just as a demo system, but as a research probe into how interactive practice environments might support nuanced forms of learning.</p>"
+      },
+      {
+        title: "Publications",
+        bodyHtml: "<p><strong>Sympathetic Orchestra: A Responsive Virtual Orchestra for Embodied Interpretive Practice in Conducting</strong><br>Bob Tianqi Wei, Shm Almeda, Shayne Shen, Ethan Tam, and Dor Abrahamson.<br>CHI EA 2026, Barcelona</p><p><a href=\"https://doi.org/10.1145/3772363.3798418\" target=\"_blank\" class=\"link-in-paragraph\">10.1145/3772363.3798418</a><br><a href=\"/website_files/PDF/other_papers/SympatheticOrchestra_CHI2026.pdf\" target=\"_blank\" class=\"link-in-paragraph\">PDF</a></p><p><strong class=\"italic-bold-in-research-title\">ABSTRACT</strong><br>Learning to conduct effectively depends on a tight loop between perception and action, in which students' hand gestures are continuously shaped by audible and situational feedback. However, students often rehearse with static recordings that cannot response to their physical actions or interpretive intentions. This breaks the feedback needed to develop tacit musical knowledge, such as how timing, cueing, balance, and phrasing are communicated through embodied motion. We present Sympathetic Orchestra, a real time interactive system that maps conducting gestures to dynamically responsive orchestral play, making the consequences of actions immediately perceivable. The system reveals higher engagement and distinct interaction patterns that show how responsive feedback supports the development of tacit musical understanding through embodied practice.</p><p><strong>Demonstration of Sympathetic Orchestra: An Interactive Conducting Education System for Responsive, Tacit Skill Development</strong><br>Bob Tianqi Wei, Shm Almeda, Ethan Tam, and Dor Abrahamson.<br>UIST 2024</p><p><a href=\"https://doi.org/10.1145/3672539.3686783\" target=\"_blank\" class=\"link-in-paragraph\">10.1145/3672539.3686783</a><br><a href=\"/website_files/PDF/other_papers/DemoSympatheticOrchestra.pdf\" target=\"_blank\" class=\"link-in-paragraph\">PDF</a></p><p><strong class=\"italic-bold-in-research-title\">ABSTRACT</strong><br>Students learning musical conducting often practice along to static recordings, which do not provide real-time feedback similar to that of a live orchestra during rehearsals. Novice conductors need better solutions for practicing with feedback that mimics the experience of conducting a live orchestra. We can leverage emergent multimodal and spatial interaction technologies to support a virtual orchestra practice experience that allows students to develop tacit, live-practice knowledge. Through formative interviews with conducting experts and students, we designed and developed a dynamic, multimodal interaction system that targets key goals held by students developing their orchestral conducting skills, and that traditional practicing methods lack support for.</p>"
+      },
+      {
+        title: "Project Links",
+        bodyHtml: "<p><a href=\"/works/sympathetic-orchestra/\" class=\"link-in-paragraph\"><strong>Sympathetic Orchestra (beta system page)</strong></a></p><p><a href=\"https://github.com/bobtianqiwei/sympathetic-orchestra\" target=\"_blank\" class=\"link-in-paragraph\"><strong>Open-source repository</strong></a></p>"
       }
     ]
   },
@@ -30,6 +67,22 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/sympathetic-orchestra-paper/index.html",
+      metaTitle: "Sympathetic Orchestra - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
+    },
+    swe: {
+      outputPath: "swe/classic/sympathetic-orchestra-paper/index.html",
+      metaTitle: "Sympathetic Orchestra - Software Engineering Portfolio",
+      backHref: "/swe/classic/",
+      backLabel: "BACK TO SOFTWARE ENGINEERING",
+      layout: "swe-classic-case-study",
+      eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   }
 };

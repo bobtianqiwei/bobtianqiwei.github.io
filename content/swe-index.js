@@ -59,7 +59,7 @@ module.exports = {
       description: "A project exploring more expressive interactions between people, interfaces, and intelligent software."
     },
     {
-      href: "/works/sympathetic-orchestra/",
+      href: "/swe/classic/sympathetic-orchestra-paper/",
       image: "/images/Sympathetic-Orchestra-fig-1.1.jpg",
       alt: "Sympathetic Orchestra",
       title: "Sympathetic Orchestra",

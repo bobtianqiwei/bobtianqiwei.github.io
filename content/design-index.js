@@ -83,7 +83,8 @@ module.exports = {
           },
           {
             ...fromLegacy("sympathetic-orchestra"),
-            href: "/works/sympathetic-orchestra/"
+            href: "/design/sympathetic-orchestra-paper/",
+            contentHtml: "Sympathetic Orchestra"
           }
         ],
         [
