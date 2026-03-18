@@ -183,7 +183,7 @@ module.exports = {
   },
   "terminal-zen": {
     "slug": "terminal-zen",
-    "href": "https://github.com/bobtianqiwei/terminal_zen",
+    "href": "/works/experiments/terminal/",
     "className": "project-link-block w-inline-block",
     "image": "/images/Terminal-Zen.png",
     "contentHtml": "Terminal Zen",

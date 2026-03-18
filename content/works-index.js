@@ -228,7 +228,7 @@ module.exports = {
     },
     {
       "section": "EXPERIMENTS",
-      "href": "/cat/",
+      "href": "/works/experiments/cat/",
       "className": "project-link-block w-inline-block",
       "image": "/images/cat.jpg",
       "contentHtml": "Today&#x27;s lucky cat",
@@ -422,7 +422,7 @@ module.exports = {
     },
     {
       "section": "EXPERIMENTS",
-      "href": "/dog/",
+      "href": "/works/experiments/dog/",
       "className": "project-link-block w-inline-block",
       "image": "/images/dog.jpg",
       "contentHtml": "Today&#x27;s lucky dog",
@@ -1240,7 +1240,7 @@ module.exports = {
     },
     {
       "section": "EXPERIMENTS",
-      "href": "/pokemon/",
+      "href": "/works/experiments/pokemon/",
       "className": "project-link-block w-inline-block",
       "image": "/images/pokemon.png",
       "contentHtml": "Which Pokémon are you today?",
@@ -1617,7 +1617,7 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
-      "href": "https://github.com/bobtianqiwei/terminal_zen",
+      "href": "/works/experiments/terminal/",
       "className": "project-link-block w-inline-block",
       "image": "/images/Terminal-Zen.png",
       "contentHtml": "Terminal Zen",
@@ -1897,7 +1897,7 @@ module.exports = {
     },
     {
       "section": "EXPERIMENTS",
-      "href": "/yesorno/",
+      "href": "/works/experiments/yesorno/",
       "className": "project-link-block w-inline-block",
       "image": "/images/IMG_8577.jpg",
       "contentHtml": "yes or no",
