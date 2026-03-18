@@ -1,5 +1,6 @@
 // content/design-index.js developed by Bob Tianqi Wei
 const worksIndex = require("./works-index");
+const designLegacyItems = require("./design-legacy-items");
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -26,12 +27,11 @@ function fromIndex({ href, section, contentHtml }) {
   return clone(entry);
 }
 
-function fromLegacy(fileName) {
-  const legacy = require(`./works/${fileName}.js`);
-  const entry = legacy.entries?.[0];
+function fromLegacy(slug) {
+  const entry = designLegacyItems[slug];
 
   if (!entry) {
-    throw new Error(`Missing legacy work entry in ${fileName}.js`);
+    throw new Error(`Missing design legacy item for slug="${slug}"`);
   }
 
   return clone(entry);

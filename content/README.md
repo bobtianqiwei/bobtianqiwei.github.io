@@ -10,7 +10,11 @@
 - Central source for `/design/` homepage sections and card ordering.
 - `featureRows` controls the large two-up cards.
 - `columns` controls the three-column project stacks.
-- Entries can reuse data from [`content/works-index.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works-index.js) or legacy lightbox-only files under [`content/works/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works).
+
+`content/design-legacy-items.js`
+
+- Shared source for design homepage items that are not yet modeled in [`content/works-index.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works-index.js).
+- Keeps lightbox-only and external-link design items out of the old per-file `content/works/*.js` dependency path.
 
 `content/swe-index.js`
 
