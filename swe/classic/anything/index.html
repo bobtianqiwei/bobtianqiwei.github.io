@@ -13,6 +13,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
   <link href="/images/webclip.png" rel="apple-touch-icon">
+  <link href="/css/project-pages.css" rel="stylesheet" type="text/css">
+  <style>
+  .w-background-video,
+  .w-background-video-elem,
+  .w-background-video-elem video {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    background: transparent !important;
+  }
+  </style>
   <script src="/js/classic-status-topbar.js" defer></script>
   <script src="/js/classic-nav.js" defer></script>
   <style>
@@ -236,21 +249,6 @@
     margin-bottom: 4px;
   }
 
-  .video-frame {
-    position: relative;
-    width: 100%;
-    padding-top: 56.25%;
-    background: #edf1f4;
-  }
-
-  .video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
-  }
-
   .image-description {
     margin-top: 8px;
     color: #6f7780;
@@ -410,6 +408,7 @@
     .project-card-grid {
       grid-template-columns: 1fr;
     }
+
   }
   </style>
 </head>
@@ -471,16 +470,18 @@
           <div class="box-title">What Anything Is</div>
           <div class="box-body">
             <div class="project-richtext"><p>Anything is an AI builder that turns natural language into working mobile apps, websites, and full-stack tools—built with real code. You can add GPT-5 and 40+ integrations in one click. It supports on-device preview with Expo Go and publishing to the web and iOS App Store, with databases, auth, storage, and payments included. For harder tasks, Max is an autonomous agent that runs your app in a browser, writes code and tests, and ships fixes/features by itself.</p></div>
+
           </div>
         </div>
-        <div class="box">
-            <div class="box-title">Product Demo</div>
-            <div class="box-body">
-                  <div class="video-frame"><iframe src="https://www.youtube.com/embed/rVz6Pc1rhxQ?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="Anything product demo"></iframe></div>
-                  <p class="image-description">Product Demo</p>
-            </div>
-          </div>
         <div class="box" id="details">
+          <div class="box-title">Product Demo</div>
+          <div class="box-body">
+                <div class="video-frame"><iframe src="https://www.youtube.com/embed/rVz6Pc1rhxQ?rel=0&amp;controls=1&amp;autoplay=0&amp;mute=0&amp;start=0" frameborder="0" style="position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:auto" allow="autoplay; encrypted-media" allowfullscreen="" title="Anything product demo"></iframe></div>
+                <p class="image-description">Product Demo</p>
+
+          </div>
+        </div>
+        <div class="box" id="section-3">
           <div class="box-title">What I Did</div>
           <div class="box-body">
           <div class="project-section">

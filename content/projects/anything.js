@@ -17,17 +17,20 @@ module.exports = {
         caption: "Video"
       }
     },
-    sections: {
-      overview: {
+    sections: [
+      {
         title: "What Anything Is",
-        bodyHtml: "<p>Anything is an AI builder that turns natural language into working mobile apps, websites, and full-stack tools—built with real code. You can add GPT-5 and 40+ integrations in one click. It supports on-device preview with Expo Go and publishing to the web and iOS App Store, with databases, auth, storage, and payments included. For harder tasks, Max is an autonomous agent that runs your app in a browser, writes code and tests, and ships fixes/features by itself.</p>",
-        extraVideo: {
+        bodyHtml: "<p>Anything is an AI builder that turns natural language into working mobile apps, websites, and full-stack tools—built with real code. You can add GPT-5 and 40+ integrations in one click. It supports on-device preview with Expo Go and publishing to the web and iOS App Store, with databases, auth, storage, and payments included. For harder tasks, Max is an autonomous agent that runs your app in a browser, writes code and tests, and ships fixes/features by itself.</p>"
+      },
+      {
+        title: "Product Demo",
+        video: {
           youtubeId: "rVz6Pc1rhxQ",
           title: "Anything product demo",
           caption: "Product Demo"
         }
       },
-      primary: {
+      {
         title: "What I Did",
         blocks: [
           {
@@ -41,7 +44,7 @@ module.exports = {
           }
         ]
       }
-    },
+    ],
     cardGroups: {
       website: [
         {

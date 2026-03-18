@@ -17,21 +17,29 @@ module.exports = {
         caption: "Video"
       }
     },
-    sections: {
-      overview: {
+    sections: [
+      {
         title: "Overview",
         bodyHtml: "<p>Shared project overview content.</p>"
       },
-      primary: {
+      {
         title: "Primary Section",
         blocks: [
           {
             title: "Block Title",
-            bodyHtml: "<p>Shared content block.</p>"
+            bodyHtml: "<p>Shared content block.</p>",
+            cardGroup: "primary"
           }
         ]
+      },
+      {
+        title: "Gallery",
+        slides: [
+          "/images/example-1.jpg",
+          "/images/example-2.jpg"
+        ]
       }
-    },
+    ],
     cardGroups: {
       primary: [
         {
@@ -65,6 +73,14 @@ module.exports = {
       backLabel: "BACK TO SOFTWARE ENGINEERING",
       layout: "swe-classic-case-study",
       eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
+    }
+  },
+  notes: {
+    worksIndex: {
+      section: "DIGITAL INTERFACES",
+      order: 999,
+      image: "/images/new-work-cover.jpg",
+      contentHtml: "New Project"
     }
   }
 };
