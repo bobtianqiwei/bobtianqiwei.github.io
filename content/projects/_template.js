@@ -76,6 +76,8 @@ module.exports = {
     }
   },
   notes: {
+    // After adding or changing views, update every homepage/index entry that surfaces this project.
+    // This includes repeated appearances across works sections and any design/swe homepage links.
     worksIndex: {
       section: "DIGITAL INTERFACES",
       order: 999,

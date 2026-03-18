@@ -1122,7 +1122,7 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
-      "href": "https://github.com/bobtianqiwei/ChatAgent_PartSelect?tab=readme-ov-file",
+      "href": "/works/partselect-chat-agent/",
       "className": "project-link-block w-inline-block",
       "image": "/images/PartSelect-Agent-cover-image.jpeg",
       "contentHtml": "PartSelect Chat Agent",
@@ -1608,7 +1608,7 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
-      "href": "https://github.com/bobtianqiwei/Tao",
+      "href": "/works/tao/",
       "className": "project-link-block w-inline-block",
       "image": "/images/Tao-beta-2.png",
       "contentHtml": "Tao",

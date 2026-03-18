@@ -151,7 +151,7 @@ module.exports = {
   },
   "partselect-chat-agent": {
     "slug": "partselect-chat-agent",
-    "href": "https://github.com/bobtianqiwei/ChatAgent_PartSelect?tab=readme-ov-file",
+    "href": "/design/partselect-chat-agent/",
     "className": "project-link-block w-inline-block",
     "image": "/images/PartSelect-Agent-cover-image.jpeg",
     "contentHtml": "PartSelect Chat Agent",
@@ -175,7 +175,7 @@ module.exports = {
   },
   "tao": {
     "slug": "tao",
-    "href": "https://github.com/bobtianqiwei/Tao",
+    "href": "/design/tao/",
     "className": "project-link-block w-inline-block",
     "image": "/images/Tao-beta-2.png",
     "contentHtml": "Tao",
