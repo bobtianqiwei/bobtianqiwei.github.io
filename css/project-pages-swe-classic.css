@@ -179,6 +179,10 @@ img {
   overflow: hidden;
 }
 
+.project-hero-media {
+  margin: 10px;
+}
+
 .box-title {
   padding: 5px 8px;
   border-bottom: 1px solid rgba(173, 178, 184, 0.94);

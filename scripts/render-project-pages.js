@@ -435,13 +435,12 @@ ${cards.map((card) => `        <a href="${remapSweClassicHref(card.href)}" targe
 function renderSweClassicSections(project) {
   const heroVideo = getHeroVideo(project);
   const heroImage = project.content.hero?.image;
-  const heroImageBox = heroImage ? `        <div class="box" id="preview">
-          <div class="box-title">Preview</div>
-          <div class="box-body">
+  const heroImageMarkup = heroImage
+    ? `        <div class="project-hero-media">
 ${renderClassicFigure(typeof heroImage === "string" ? { src: heroImage } : heroImage)}
-          </div>
         </div>
-` : "";
+`
+    : "";
   const sections = normalizeSections(project);
   const heroBox = heroVideo ? `        <div class="box" id="demo">
           <div class="box-title">Demo</div>
@@ -481,7 +480,7 @@ ${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bo
           <h1 class="project-header-title">${project.content.title}</h1>
           <p class="project-header-headline">${project.content.hero.headline}</p>
         </div>
-${heroImageBox}${heroBox}${sectionBoxes}`;
+${heroImageMarkup}${heroBox}${sectionBoxes}`;
 }
 
 function designCaseStudyStyles() {
@@ -599,7 +598,6 @@ function renderSweClassicCaseStudy(project, view) {
   const heroVideo = getHeroVideo(project);
   const heroImage = project.content.hero?.image;
   const menuLinks = [
-    heroImage ? `<a href="#preview">Preview</a>` : "",
     heroVideo ? `<a href="#demo">Demo</a>` : "",
     `<a href="#overview">Overview</a>`,
     `<a href="#details">Details</a>`

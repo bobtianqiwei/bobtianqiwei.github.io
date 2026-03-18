@@ -79,7 +79,7 @@ module.exports = {
       description: "A design and technology project centered on product storytelling and interface polish."
     },
     {
-      href: "/works/sympathetic-orchestra/",
+      href: "/swe/classic/sympathetic-orchestra/",
       title: "Sympathetic Orchestra (beta)",
       description: "An ongoing interactive media project combining sound, behavior, and visual systems."
     },
