@@ -99,12 +99,12 @@ module.exports = {
       description: "A desktop-inspired interactive project with a distinct visual language."
     },
     {
-      href: "https://github.com/s-almeda/ArtiFactor",
+      href: "/swe/classic/artifactor/",
       title: "ArtiFactor",
       description: "A collaboration exploring creative tooling and computational media workflows."
     },
     {
-      href: "/works/water-synthesizer/",
+      href: "/swe/classic/water-synthesizer/",
       title: "Water Synthesizer",
       description: "An experimental project investigating sound, interface behavior, and live interaction."
     }

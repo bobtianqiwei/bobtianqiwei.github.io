@@ -100,7 +100,7 @@ module.exports = {
           fromLegacy("anything-affiliate-program-page"),
           {
             ...fromIndex({ href: "https://github.com/s-almeda/ArtiFactor", section: "DIGITAL INTERFACES" }),
-            href: "/works/artifactor/"
+            href: "/design/artifactor/"
           },
           fromIndex({ href: "/works/desktop-buddha/", section: "DIGITAL INTERFACES" })
         ],
@@ -120,7 +120,10 @@ module.exports = {
       title: "INSTALLATIONS",
       columns: [
         [
-          fromIndex({ href: "/works/water-synthesizer/", section: "TANGIBLE SYSTEMS" }),
+          {
+            ...fromIndex({ href: "/works/water-synthesizer/", section: "TANGIBLE SYSTEMS" }),
+            href: "/design/water-synthesizer/"
+          },
           fromLegacy("stringed-harmony")
         ],
         [

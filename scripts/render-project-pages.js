@@ -312,6 +312,19 @@ ${figure.caption ? `        <figcaption class="image-description">${figure.capti
       </figure>`;
 }
 
+function renderClassicSlides(slides) {
+  return `      <div class="classic-slider" data-classic-slider>
+        <div class="classic-slider-frame">
+${slides.map((slide, index) => `          <div class="classic-slide${index === 0 ? " is-active" : ""}">${renderImage(typeof slide === "string" ? slide : slide.src, "project-gallery-image")}</div>`).join("\n")}
+        </div>
+        <button type="button" class="classic-slider-arrow classic-slider-prev" data-classic-slider-prev aria-label="Previous slide">&#8249;</button>
+        <button type="button" class="classic-slider-arrow classic-slider-next" data-classic-slider-next aria-label="Next slide">&#8250;</button>
+        <div class="classic-slider-dots">
+${slides.map((_, index) => `          <button type="button" class="classic-slider-dot${index === 0 ? " is-active" : ""}" data-classic-slider-dot="${index}" aria-label="Go to slide ${index + 1}"></button>`).join("\n")}
+        </div>
+      </div>`;
+}
+
 function remapSweClassicHref(href) {
   if (typeof href !== "string") {
     return href;
@@ -406,6 +419,7 @@ ${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n
 function renderSweClassicStyles() {
   return `  <script src="/js/classic-status-topbar.js" defer></script>
   <script src="/js/classic-nav.js" defer></script>
+  <script src="/js/project-pages-swe-classic.js" defer></script>
   <link href="/css/project-pages-swe-classic.css" rel="stylesheet" type="text/css">`;
 }
 
@@ -420,6 +434,14 @@ ${cards.map((card) => `        <a href="${remapSweClassicHref(card.href)}" targe
 
 function renderSweClassicSections(project) {
   const heroVideo = getHeroVideo(project);
+  const heroImage = project.content.hero?.image;
+  const heroImageBox = heroImage ? `        <div class="box" id="preview">
+          <div class="box-title">Preview</div>
+          <div class="box-body">
+${renderClassicFigure(typeof heroImage === "string" ? { src: heroImage } : heroImage)}
+          </div>
+        </div>
+` : "";
   const sections = normalizeSections(project);
   const heroBox = heroVideo ? `        <div class="box" id="demo">
           <div class="box-title">Demo</div>
@@ -444,13 +466,13 @@ ${renderYouTube(heroVideo).replace(/^/gm, "            ")}
       const blockSlides = block.slides || [];
       return `          <div class="project-section">
             <h3 class="project-subtitle">${block.title}</h3>
-${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderClassicImageGrid(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
+${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderClassicSlides(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
     }).join("\n");
 
     return `        <div class="box" id="${index === 0 ? "overview" : index === 1 ? "details" : `section-${index + 1}`}">
           <div class="box-title">${section.title}</div>
           <div class="box-body">
-${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicImageGrid(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
+${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
           </div>
         </div>`;
   }).join("\n");
@@ -459,7 +481,7 @@ ${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bo
           <h1 class="project-header-title">${project.content.title}</h1>
           <p class="project-header-headline">${project.content.hero.headline}</p>
         </div>
-${heroBox}${sectionBoxes}`;
+${heroImageBox}${heroBox}${sectionBoxes}`;
 }
 
 function designCaseStudyStyles() {
@@ -574,6 +596,14 @@ ${renderFooter()}`;
 }
 
 function renderSweClassicCaseStudy(project, view) {
+  const heroVideo = getHeroVideo(project);
+  const heroImage = project.content.hero?.image;
+  const menuLinks = [
+    heroImage ? `<a href="#preview">Preview</a>` : "",
+    heroVideo ? `<a href="#demo">Demo</a>` : "",
+    `<a href="#overview">Overview</a>`,
+    `<a href="#details">Details</a>`
+  ].filter(Boolean).join("\n              ");
   return {
     body: `  <div class="page">
 ${renderClassicStatusTopbar()}
@@ -584,9 +614,7 @@ ${renderClassicStatusTopbar()}
           <div class="box">
             <div class="box-title">Site Menu</div>
             <div class="box-body mini-nav">
-              <a href="#demo">Demo</a>
-              <a href="#overview">Overview</a>
-              <a href="#details">Details</a>
+              ${menuLinks}
             </div>
           </div>
           <div class="box">

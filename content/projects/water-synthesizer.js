@@ -43,6 +43,22 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/water-synthesizer/index.html",
+      metaTitle: "Water Synthesizer - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
+    },
+    swe: {
+      outputPath: "swe/classic/water-synthesizer/index.html",
+      metaTitle: "Water Synthesizer - Software Engineering Portfolio",
+      backHref: "/swe/classic/",
+      backLabel: "BACK TO SOFTWARE ENGINEERING",
+      layout: "swe-classic-case-study",
+      eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   }
 };
