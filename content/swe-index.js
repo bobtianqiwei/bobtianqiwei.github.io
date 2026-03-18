@@ -90,19 +90,14 @@ module.exports = {
       description: "A terminal-based project with a focused interface and custom interaction model."
     },
     {
-      href: "/works/illuminatio/",
+      href: "/swe/classic/illuminatio/",
       title: "Illuminatio",
       description: "A design and technology project centered on product storytelling and interface polish."
     },
     {
-      href: "/swe/classic/sympathetic-orchestra/",
+      href: "/works/sympathetic-orchestra/",
       title: "Sympathetic Orchestra (beta)",
       description: "An ongoing interactive media project combining sound, behavior, and visual systems."
-    },
-    {
-      href: "https://brandresources.created.app/",
-      title: "Anything Brand Resources Page",
-      description: "A branded resource hub with practical information architecture and frontend implementation."
     },
     {
       href: "/works/palette-plate/",
