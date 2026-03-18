@@ -183,7 +183,7 @@ module.exports = {
   },
   "terminal-zen": {
     "slug": "terminal-zen",
-    "href": "/works/experiments/terminal/",
+    "href": "/design/terminal-zen/",
     "className": "project-link-block w-inline-block",
     "image": "/images/Terminal-Zen.png",
     "contentHtml": "Terminal Zen",

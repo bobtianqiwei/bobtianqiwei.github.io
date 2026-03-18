@@ -85,7 +85,7 @@ module.exports = {
   ],
   selectedProjects: [
     {
-      href: "/works/experiments/terminal/",
+      href: "/swe/classic/terminal-zen/",
       title: "Terminal Zen",
       description: "A terminal-based project with a focused interface and custom interaction model."
     },

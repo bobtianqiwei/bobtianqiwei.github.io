@@ -1617,7 +1617,7 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
-      "href": "/works/experiments/terminal/",
+      "href": "/works/terminal-zen/",
       "className": "project-link-block w-inline-block",
       "image": "/images/Terminal-Zen.png",
       "contentHtml": "Terminal Zen",
