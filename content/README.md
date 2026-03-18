@@ -23,13 +23,6 @@
 - `essentials` controls the featured project table.
 - `selectedProjects` controls the lower project list.
 
-`content/works/`
-
-- One file per work item.
-- Use [`_template.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works/_template.js) as the starting point.
-- `entries` controls where the item appears on `/works/`.
-- `page` is optional. Add it only if the work should generate its own detail page.
-
 `content/music/`
 
 - One file per music card.
@@ -51,7 +44,7 @@ Generated files:
 - `/works/index.html`
 - `/design/index.html`
 - `/swe/classic/index.html`
-- Selected detail pages under `/works/*/index.html`
+- Project detail pages under `/works/*/index.html`
 
 `content/projects/`
 
@@ -59,10 +52,9 @@ Generated files:
 - Use [`_template.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/projects/_template.js) as the starting point.
 - `content` stores the canonical project information.
 - `views` defines which pages should be generated from the same content.
-- Current pilot project: [`anything.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/projects/anything.js)
 
 Generated files from project views:
 
 - `/works/<slug>/index.html`
 - `/design/<slug>/index.html`
-- `/swe/<slug>/index.html`
+- `/swe/classic/<slug>/index.html`

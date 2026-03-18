@@ -1,7 +1,7 @@
 // scripts/render-works.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
-const { indexSections, fineArtColumns, musicColumns, pages } = require("./works-data");
+const { indexSections, fineArtColumns, musicColumns } = require("./works-data");
 const { renderFooter, renderNav, worksIndexPath } = require("./site-chrome");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -339,7 +339,3 @@ function renderPage(page) {
 const allWorksHtml = renderAllWorks();
 writeFile("works/index.html", allWorksHtml);
 writeFile("works/all-works/index.html", allWorksHtml);
-
-Object.values(pages).forEach((page) => {
-  writeFile(page.outputPath, renderPage(page));
-});
