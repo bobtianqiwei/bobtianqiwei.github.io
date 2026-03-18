@@ -2,7 +2,10 @@
   "name": "bobtianqiwei-github-io",
   "private": true,
   "scripts": {
+    "build:design-index": "node scripts/render-design-index.js",
     "build:projects": "node scripts/render-project-pages.js",
+    "build:swe-index": "node scripts/render-swe-classic-index.js",
+    "build:portfolio-indexes": "node scripts/render-design-index.js && node scripts/render-swe-classic-index.js",
     "build:works": "node scripts/render-works.js && node scripts/render-project-pages.js",
     "sync:chrome": "node scripts/sync-site-chrome.js",
     "preview": "python3 -m http.server 8000"

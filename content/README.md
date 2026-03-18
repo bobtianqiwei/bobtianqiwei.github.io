@@ -1,5 +1,24 @@
 # Work Content System
 
+`content/works-index.js`
+
+- Central source for `/works/` homepage ordering and section placement.
+- Each `entry` controls one work card or lightbox item on the works index.
+
+`content/design-index.js`
+
+- Central source for `/design/` homepage sections and card ordering.
+- `featureRows` controls the large two-up cards.
+- `columns` controls the three-column project stacks.
+- Entries can reuse data from [`content/works-index.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works-index.js) or legacy lightbox-only files under [`content/works/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/content/works).
+
+`content/swe-index.js`
+
+- Central source for `/swe/classic/` homepage content.
+- `trustedBy` controls the logo row.
+- `essentials` controls the featured project table.
+- `selectedProjects` controls the lower project list.
+
 `content/works/`
 
 - One file per work item.
@@ -18,11 +37,16 @@ Build command:
 
 ```bash
 npm run build:works
+npm run build:design-index
+npm run build:swe-index
+npm run build:portfolio-indexes
 ```
 
 Generated files:
 
 - `/works/index.html`
+- `/design/index.html`
+- `/swe/classic/index.html`
 - Selected detail pages under `/works/*/index.html`
 
 `content/projects/`
