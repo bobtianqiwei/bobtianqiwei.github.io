@@ -43,7 +43,31 @@ module.exports = {
       description: "Production-facing product and engineering work centered on practical AI applications and scalable user-facing systems."
     },
     {
-      href: "https://github.com/bobtianqiwei/ChatAgent_PartSelect?tab=readme-ov-file",
+      href: "/swe/classic/ekphrasis/",
+      image: "/images/ekphrasis.jpg",
+      alt: "EKPHRASIS",
+      title: "EKPHRASIS",
+      meta: "AI learning system / research prototype",
+      description: "A comparative visual feedback system for helping learners interpret tacit graphic design vocabulary through interactive AI-mediated critique."
+    },
+    {
+      href: "/swe/classic/artifactor/",
+      image: "/images/artifactor-cover.png",
+      alt: "ArtiFactor",
+      title: "ArtiFactor",
+      meta: "Creative tool / multimodal AI system",
+      description: "A multimodal creativity support system that makes art-historical references and derivations visible on an infinite canvas."
+    },
+    {
+      href: "/swe/classic/sympathetic-orchestra-paper/",
+      image: "/images/Sympathetic-Orchestra-fig-1.1.jpg",
+      alt: "Sympathetic Orchestra",
+      title: "Sympathetic Orchestra",
+      meta: "Interactive music system / embodied learning",
+      description: "A responsive virtual orchestra for conducting practice, interpretive feedback, and embodied musical interaction."
+    },
+    {
+      href: "/swe/classic/partselect-chat-agent/",
       image: "/images/PartSelect-Agent-cover-image.jpeg",
       alt: "PartSelect Chat Agent",
       title: "PartSelect Chat Agent",
@@ -51,20 +75,12 @@ module.exports = {
       description: "An AI-assisted shopping and support experience designed to help users navigate appliance parts more efficiently."
     },
     {
-      href: "https://github.com/bobtianqiwei/Tao",
+      href: "/swe/classic/tao/",
       image: "/images/Tao-beta-2.png",
       alt: "Tao",
       title: "Tao",
       meta: "Creative tool / experimental interface",
       description: "A project exploring more expressive interactions between people, interfaces, and intelligent software."
-    },
-    {
-      href: "/swe/classic/sympathetic-orchestra-paper/",
-      image: "/images/Sympathetic-Orchestra-fig-1.1.jpg",
-      alt: "Sympathetic Orchestra",
-      title: "Sympathetic Orchestra",
-      meta: "Interactive experience / creative coding",
-      description: "An interface-driven project combining interaction design, visuals, and computational media experiments."
     }
   ],
   selectedProjects: [
@@ -97,11 +113,6 @@ module.exports = {
       href: "/works/desktop-buddha/",
       title: "Desktop Buddha",
       description: "A desktop-inspired interactive project with a distinct visual language."
-    },
-    {
-      href: "/swe/classic/artifactor/",
-      title: "ArtiFactor",
-      description: "A collaboration exploring creative tooling and computational media workflows."
     },
     {
       href: "/swe/classic/water-synthesizer/",

@@ -26,6 +26,12 @@
   height: auto;
 }
 
+.project-figure-image[src="/images/partselect-chat-agent-flow.png"] {
+  box-sizing: border-box;
+  background: #3a3a3a;
+  padding: 24px;
+}
+
 .slider-auto {
   margin-top: 16px;
 }

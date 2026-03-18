@@ -88,9 +88,13 @@ module.exports = {
           }
         ],
         [
-          fromLegacy("partselect-chat-agent"),
+          {
+            ...fromLegacy("partselect-chat-agent"),
+            href: "/design/partselect-chat-agent/"
+          },
           {
             ...fromIndex({ href: "/works/ekphrasis/", section: "RESEARCH" }),
+            href: "/design/ekphrasis/",
             contentHtml: "EKPHRASIS",
             className: "work-image-link w-inline-block"
           }
@@ -107,7 +111,10 @@ module.exports = {
         ],
         [
           fromLegacy("anything-brand-resources-page"),
-          fromLegacy("tao"),
+          {
+            ...fromLegacy("tao"),
+            href: "/design/tao/"
+          },
           fromIndex({ href: "/works/digital-paradise/", section: "DIGITAL INTERFACES" })
         ],
         [

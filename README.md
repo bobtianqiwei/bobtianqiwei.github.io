@@ -119,6 +119,16 @@ In general:
 - Small utility pages or redirect-like pages should go under `quick-links/`.
 - Old pages that should be preserved but not surfaced in the active site should go under `archive/legacy-pages/`.
 
+## Page Update Checklist
+
+- After adding a new view in `content/projects/<slug>.js`, rebuild the affected detail pages with `npm run build:projects`.
+- If that project is surfaced on `/works/`, `/design/`, or `/swe/classic/`, update the corresponding homepage data file so the link points to the new generated page instead of an old external or legacy path.
+- Rebuild the affected homepage indexes after changing those links:
+  - `npm run build:works`
+  - `npm run build:design-index`
+  - `npm run build:swe-index`
+- After rendering new pages, verify both the detail page path and every homepage entry that should point to it.
+
 ## Notes
 
 - The old `content/works/*.js` content system has been retired.
