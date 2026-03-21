@@ -36,7 +36,8 @@ module.exports = {
           {
             title: "Website & Narrative",
             bodyHtml: "<p>Shipped high-fidelity marketing sites for the Anything AI app builder; collaborated with design and founding team. Converted Figma specs into pixel-accurate, responsive React UI.</p>",
-            cardGroup: "website"
+            cardGroup: "website",
+            cardColumns: 3
           },
           {
             title: "Internal AI Design Pipeline",

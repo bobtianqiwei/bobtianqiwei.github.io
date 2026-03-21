@@ -422,8 +422,9 @@ function renderDesignColumnCell(project, cell) {
   const codeBlocks = getSectionCodeBlocks(cell);
   const images = cell.images || [];
   const slides = cell.slides || [];
+  const cardColumns = cell.cardColumns || 2;
 
-  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards)}\n` : ""}`;
+  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}`;
 }
 
 function renderDesignRows(project, rows) {
@@ -529,8 +530,12 @@ ${bodyHtml ? `    <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${video
   }).join("");
 }
 
-function renderDesignCardGrid(cards) {
-  return `      <div class="design-project-card-grid">
+function renderDesignCardGrid(cards, columns = 2) {
+  const gridClass = columns === 3
+    ? "design-project-card-grid design-project-card-grid-3"
+    : "design-project-card-grid";
+
+  return `      <div class="${gridClass}">
 ${cards.map((card) => `        <a href="${card.href}" target="_blank" class="design-project-card w-inline-block">
           <div class="design-project-card-media">${renderImage(card.image, "design-project-card-image")}</div>
           <div class="design-project-card-title">${card.title}</div>
@@ -550,6 +555,7 @@ function renderDesignSections(project) {
     const rows = getSectionRows(section);
     const images = section.images || [];
     const slides = section.slides || [];
+    const cardColumns = section.cardColumns || 2;
     const blocks = (section.blocks || []).map((block) => {
       const blockBodyHtml = getSectionBodyHtml(block);
       const blockCards = getSectionCards(project, block);
@@ -558,10 +564,11 @@ function renderDesignSections(project) {
       const blockCodeBlocks = getSectionCodeBlocks(block);
       const blockImages = block.images || [];
       const blockSlides = block.slides || [];
+      const blockCardColumns = block.cardColumns || 2;
       return `      <section class="design-project-subsection">
         <h3 class="design-project-subsection-title">${block.title}</h3>
         <div class="design-project-subsection-body">
-${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards)}\n` : ""}        </div>
+${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards, blockCardColumns)}\n` : ""}        </div>
       </section>`;
     }).join("\n");
 
@@ -571,7 +578,7 @@ ${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtm
           <h2 class="design-project-section-title">${section.title}</h2>
         </div>
         <div class="${bodyClass}">
-${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards)}\n` : ""}${blocks}
+${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${blocks}
         </div>
       </section>`;
   }).join("\n");

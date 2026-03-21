@@ -28,7 +28,8 @@ module.exports = {
           {
             title: "Block Title",
             bodyHtml: "<p>Shared content block.</p>",
-            cardGroup: "primary"
+            cardGroup: "primary",
+            cardColumns: 3
           }
         ]
       },
