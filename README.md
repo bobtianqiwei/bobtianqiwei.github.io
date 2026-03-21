@@ -21,7 +21,7 @@ Supporting organized sections:
 
 - [`/works/experiments/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/works/experiments): standalone experiment pages such as cat, dog, pokemon, terminal, and yesorno
 - [`/quick-links/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/quick-links): small utility or redirect-style pages such as meet and teaching
-- [`/archive/legacy-pages/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/archive/legacy-pages): preserved old pages that are no longer part of the main navigation
+- [`/archive/`](/Volumes/Disk/Programming/bobtianqiwei.github.io/archive): preserved old pages that are no longer part of the main navigation
 
 ## Source Of Truth
 
@@ -117,7 +117,7 @@ In general:
 - New SWE classic homepage cards should be added in `content/swe-index.js`.
 - Standalone playful tools or small web experiments should go under `works/experiments/`.
 - Small utility pages or redirect-like pages should go under `quick-links/`.
-- Old pages that should be preserved but not surfaced in the active site should go under `archive/legacy-pages/`.
+- Old pages that should be preserved but not surfaced in the active site should go under `archive/`.
 
 ## Page Update Checklist
 
