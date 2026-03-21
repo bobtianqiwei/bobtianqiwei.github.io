@@ -10,6 +10,9 @@
   --theme-button-bg: #d9d9d9;
   --theme-button-thumb: #ffffff;
   --theme-button-icon: #171717;
+  --theme-scrollbar-track: #ececec;
+  --theme-scrollbar-thumb: #c6c6c6;
+  --theme-scrollbar-thumb-hover: #b4b4b4;
   --theme-transition: background-color .28s ease, color .28s ease, border-color .28s ease, fill .28s ease, stroke .28s ease, filter .28s ease;
   --page-fade-duration: .22s;
   --page-fade-distance: -8px;
@@ -30,6 +33,9 @@ html[data-theme="dark"] {
   --theme-button-bg: #2f3237;
   --theme-button-thumb: #141414;
   --theme-button-icon: #c9ccd2;
+  --theme-scrollbar-track: #1f1f1f;
+  --theme-scrollbar-thumb: #505050;
+  --theme-scrollbar-thumb-hover: #666666;
   --back-to-top-bg: rgba(20, 20, 20, 0.5);
   --back-to-top-bg-hover: #1a1a1a;
 }
@@ -45,8 +51,45 @@ html[data-page-theme="digital-paradise"] {
   --theme-button-bg: #2f2f2f;
   --theme-button-thumb: #000000;
   --theme-button-icon: #c9ccd2;
+  --theme-scrollbar-track: #141414;
+  --theme-scrollbar-thumb: #505050;
+  --theme-scrollbar-thumb-hover: #666666;
   --back-to-top-bg: rgba(0, 0, 0, 0.5);
   --back-to-top-bg-hover: #0a0a0a;
+}
+
+html[data-theme-enabled="true"],
+html[data-theme-enabled="true"] body,
+body.design-portfolio-page .design-portfolio-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-scrollbar-thumb) var(--theme-scrollbar-track);
+}
+
+html[data-theme-enabled="true"]::-webkit-scrollbar,
+html[data-theme-enabled="true"] body::-webkit-scrollbar,
+body.design-portfolio-page .design-portfolio-scroll::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-theme-enabled="true"]::-webkit-scrollbar-track,
+html[data-theme-enabled="true"] body::-webkit-scrollbar-track,
+body.design-portfolio-page .design-portfolio-scroll::-webkit-scrollbar-track {
+  background: var(--theme-scrollbar-track);
+}
+
+html[data-theme-enabled="true"]::-webkit-scrollbar-thumb,
+html[data-theme-enabled="true"] body::-webkit-scrollbar-thumb,
+body.design-portfolio-page .design-portfolio-scroll::-webkit-scrollbar-thumb {
+  background: var(--theme-scrollbar-thumb);
+  border: 2px solid var(--theme-scrollbar-track);
+  border-radius: 999px;
+}
+
+html[data-theme-enabled="true"]::-webkit-scrollbar-thumb:hover,
+html[data-theme-enabled="true"] body::-webkit-scrollbar-thumb:hover,
+body.design-portfolio-page .design-portfolio-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-scrollbar-thumb-hover);
 }
 
 html[data-theme-enabled="true"] body,
