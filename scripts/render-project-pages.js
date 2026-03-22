@@ -817,7 +817,7 @@ ${renderSweClassicSections(project)}
       </tr>
     </table>
     <div class="footer">
-      Bob Tianqi Wei · 魏 天祺 · <a href="${view.backHref}">${view.backLabel}</a>
+      Bob Tianqi Wei · 魏 天祺 · Built from <a href="https://github.com/bobtianqiwei/retroframe" target="_blank" rel="noreferrer">github.com/bobtianqiwei/retroframe</a> · <a href="${view.backHref}">${view.backLabel}</a>
     </div>
   </div>`,
     extraHead: renderSweClassicStyles()
