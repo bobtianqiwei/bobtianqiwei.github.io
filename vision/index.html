@@ -32,9 +32,107 @@
   mix-blend-mode: normal !important;
   background: transparent !important;
 }
+
+.vision-page-layout .design-vision {
+  position: relative;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  padding: 56px 48px 72px;
+  box-sizing: border-box;
+}
+
+.vision-page-layout .design-vision-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+  gap: 36px;
+  align-items: start;
+  width: min(1400px, 100%);
+  margin: 0 auto;
+}
+
+.vision-page-layout .design-vision-media,
+.vision-page-layout .design-vision-copy {
+  min-width: 0;
+}
+
+.vision-page-layout .design-vision-image {
+  display: block;
+  width: 100%;
+  max-height: calc(100vh - 280px);
+  object-fit: cover;
+}
+
+.vision-page-layout .design-vision-caption {
+  margin-top: 10px;
+  color: var(--theme-muted, #666);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.vision-page-layout .design-vision-references {
+  margin-top: 10px;
+  color: var(--theme-muted, #8a8a8a);
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.vision-page-layout .design-vision-heading {
+  margin: 0 0 16px;
+  color: var(--theme-text, #333);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: .04em;
+}
+
+.vision-page-layout .design-vision-text {
+  margin: 0;
+  color: var(--theme-text, #333);
+  font-family: Open Sans, sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+@media screen and (max-width: 767px) {
+  .vision-page-layout .design-vision {
+    min-height: auto;
+    padding: 28px 20px 48px;
+  }
+
+  .vision-page-layout .design-vision-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .vision-page-layout .design-vision-copy {
+    order: 1;
+  }
+
+  .vision-page-layout .design-vision-media {
+    order: 2;
+  }
+
+  .vision-page-layout .design-vision-image {
+    max-height: 34vh;
+  }
+
+  .vision-page-layout .design-vision-heading {
+    margin-bottom: 12px;
+    font-size: 20px;
+  }
+
+  .vision-page-layout .design-vision-text {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+}
 </style>
 </head>
-<body data-scroll-time="0" class="body-4">
+<body data-scroll-time="0" class="body-4 vision-page-layout">
     <div data-collapse="small" data-animation="over-right" data-duration="400" id="navigation" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
     <div class="navigation-items">
       <a href="/" class="logo-link w-nav-brand"><img src="/images/1b.png" width="42" height="Auto" alt="" sizes="(max-width: 479px) 100vw, 42px" srcset="/images/1b-p-500.png 500w, /images/1b.png 785w" class="logo-image"></a>
@@ -50,21 +148,21 @@
     </div>
   </div>
   <article class="work-page-div-block">
+    <section class="design-vision">
+      <div class="design-vision-grid">
+        <div class="design-vision-media">
+          <img src="/images/vision-1.jpg" loading="lazy" sizes="(max-width: 767px) 100vw, 44vw" srcset="/images/vision-1-p-500.jpg 500w, /images/vision-1-p-800.jpg 800w, /images/vision-1-p-1080.jpg 1080w, /images/vision-1-p-1600.jpg 1600w, /images/vision-1-p-2000.jpg 2000w, /images/vision-1-p-2600.jpg 2600w, /images/vision-1.jpg 3000w" alt="Naoto Fukasawa wall-mounted CD player" class="design-vision-image">
+          <div class="design-vision-caption">Naoto Fukasawa, Wall-mounted CD player, 1999</div>
+          <div class="design-vision-references">[1] James J. Gibson, The Ecological Approach to Visual Perception (1979)<br>[2] Edmund Husserl, Ideas: General Introduction to Pure Phenomenology (1913)<br>[3] Maurice Merleau-Ponty, Phenomenology of Perception (1945)</div>
+        </div>
+        <div class="design-vision-copy">
+          <h1 id="works-head" class="design-vision-heading">MY VISION</h1>
+          <p class="design-vision-text">When I was studying design, I was deeply impressed by Naoto Fukasawa’s <em>MUJI wall-mounted CD player</em>. Its operation is extremely simple: pull a cord, just like an old electric fan, and the CD starts spinning, music begins to play. There is no complicated manual, no extra functions, only an intuitive gesture drawn from everyday life. We don’t need to learn how to use it, because our body already remember this action.<br><br>This experience made me think of a central question in phenomenology: how do things appear in our consciousness? At the moment of pulling the cord, the body and memory immediately respond to the object’s affordance [1]. It happens almost without thought, also makes us keenly aware of being in relation with the world [2]. The power of design lies here, not only in efficiency, but also quietly guiding actions and awakening awareness of presence.<br><br>Another striking example is the forward-leaning chairs used in formal audiences with the Japanese Emperor. Sitting on such a chair forces the legs to brace and the body to lean forward, naturally forming a gesture of bowing. This design is not about comfort, but about shaping posture and relation through form.<br><br>As Maurice Merleau-Ponty reminds us, “the body is not an object but our means of communication with the world” [3]. The world is not an objective thing “out there,” but how it is experienced; and we are not minds controlling bodies, but beings who are our bodies. Good design respects body intuition and helps us rediscover our connection with the world.<br><br>The power of design can be applied anywhere, not only in creating spaces that encourage conversation or interfaces that invite a click. At my undergraduate graduation concert, I performed John Cage’s <em>4’33’’</em> as an encore. In that silence, the audience was forced back to themselves: to remember, to sense the present, to anticipate. The following <em>Aria da capo </em>from Bach’s <em>Goldberg Variations</em> felt like dawn after darkness, guiding the audience through a meditation.<br><br>This is why I do not see design as just making a function work, but as crafting the conditions under which people notice, feel, and act in the world.<br><br>Bob Tianqi Wei, 2024</p>
+        </div>
+      </div>
+    </section>
     <div class="work-essentials-columns w-row">
-      <div class="w-col w-col-6"><img src="/images/vision-1.jpg" loading="lazy" sizes="(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 48vw, (max-width: 6122px) 49vw, 3000px" srcset="/images/vision-1-p-500.jpg 500w, /images/vision-1-p-800.jpg 800w, /images/vision-1-p-1080.jpg 1080w, /images/vision-1-p-1600.jpg 1600w, /images/vision-1-p-2000.jpg 2000w, /images/vision-1-p-2600.jpg 2600w, /images/vision-1.jpg 3000w" alt="" class="image-100">
-        <div class="paragraph-small">Naoto Fukasawa, Wall-mounted CD player, 1999</div>
-      </div>
-      <div class="w-col w-col-6">
-        <h1 id="works-head" class="my-vision">MY VISION</h1>
-        <p class="paragraph-vision">When I was studying design, I was deeply impressed by Naoto Fukasawa’s <em>MUJI wall-mounted CD player</em>. Its operation is extremely simple: pull a cord, just like an old electric fan, and the CD starts spinning, music begins to play. There is no complicated manual, no extra functions—only an intuitive gesture drawn from everyday life. We don’t need to learn how to use it, because our body already remember this action. <br><br>This experience made me think of a central question in phenomenology: how do things appear in our consciousness? At the moment of pulling the cord, the body and memory immediately respond to the object’s affordance [1]. It happens almost without thought, also makes us keenly aware of being in relation with the world [2]. The power of design lies here, not only in efficiency, but also quietly guiding actions and awakening awareness of presence. <br><br>Another striking example is the forward-leaning chairs used in formal audiences with the Japanese Emperor. Sitting on such a chair forces the legs to brace and the body to lean forward, naturally forming a gesture of bowing. This design is not about comfort, but about shaping posture and relation through form. <br><br>As Maurice Merleau-Ponty reminds us, “the body is not an object but our means of communication with the world” [3]. The world is not an objective thing “out there,” but how it is experienced; and we are not minds controlling bodies, but beings who are our bodies. Good design respects body intuition and helps us rediscover our connection with the world. <br><br>The power of design can be applied anywhere, not only in creating spaces that encourage conversation or interfaces that invite a click. At my undergraduate graduation concert, I performed John Cage’s <em>4’33’’</em> as an encore. In that silence, the audience was forced back to themselves: to remember, to sense the present, to anticipate. The following <em>Aria da capo </em>from Bach’s <em>Goldberg Variations</em> felt like dawn after darkness, guiding the audience through a meditation. <br><br>This is why I do not see design as just making a function work, but as crafting the conditions under which people notice, feel, and act in the world. <br><br>Bob Tianqi Wei, 2024<br></p>
-      </div>
-    </div>
-    <div class="work-essentials-columns w-row">
-      <div class="w-col w-col-6">
-        <h1 id="work-essentials" class="works-page-heading">REFERENCES</h1>
-        <p class="paragraph-tiny">[1] James J. Gibson, The Ecological Approach to Visual Perception (1979)<br>[2] Edmund Husserl, Ideas: General Introduction to Pure Phenomenology (1913)<br>[3] Maurice Merleau-Ponty, Phenomenology of Perception (1945)</p>
-      </div>
-      <div class="w-col w-col-6">
+      <div class="w-col w-col-12">
         <h1 id="work-essentials" class="works-page-heading">FURTHER READING</h1>
         <p class="paragraph-light">
           <a href="https://dl.acm.org/doi/full/10.1145/3613904.3641945" target="_blank" class="link-in-paragraph-no-underline">Zhang, Haoqi. &quot;Searching for the Non-Consequential: Dialectical Activities in HCI and the Limits of Computers.&quot;</a><br>
