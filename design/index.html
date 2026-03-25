@@ -1121,13 +1121,13 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
     <section id="design-vision" class="design-vision">
       <div class="design-vision-grid">
         <div class="design-vision-media">
-          <img src="/images/vision-1.jpg" loading="lazy" sizes="(max-width: 767px) 100vw, 44vw" srcset="/images/vision-1-p-500.jpg 500w, /images/vision-1-p-800.jpg 800w, /images/vision-1-p-1080.jpg 1080w, /images/vision-1-p-1600.jpg 1600w, /images/vision-1-p-2000.jpg 2000w, /images/vision-1-p-2600.jpg 2600w, /images/vision-1.jpg 3000w" alt="Naoto Fukasawa wall-mounted CD player" class="design-vision-image">
-          <div class="design-vision-caption">Naoto Fukasawa, Wall-mounted CD player, 1999</div>
-          <div class="design-vision-references">[1] James J. Gibson, <em>The Ecological Approach to Visual Perception</em> (1979)<br>[2] Edmund Husserl, <em>Ideas: General Introduction to Pure Phenomenology</em> (1913)<br>[3] Maurice Merleau-Ponty, <em>Phenomenology of Perception</em> (1945)</div>
+          <img loading="lazy" class="design-vision-image" data-vision-image>
+          <div class="design-vision-caption" data-vision-caption></div>
+          <div class="design-vision-references" data-vision-references></div>
         </div>
         <div class="design-vision-copy">
-          <h2 class="design-vision-heading">MY VISION</h2>
-          <p class="design-vision-text">When I was studying design, I was deeply impressed by Naoto Fukasawa’s <em>MUJI wall-mounted CD player</em>. Its operation is extremely simple: pull a cord, just like an old electric fan, and the CD starts spinning, music begins to play. There is no complicated manual, no extra functions—only an intuitive gesture drawn from everyday life. We don’t need to learn how to use it, because our body already remember this action.<br><br>This experience made me think of a central question in phenomenology: how do things appear in our consciousness? At the moment of pulling the cord, the body and memory immediately respond to the object’s affordance <span class="design-vision-inline-reference">[1]</span>. It happens almost without thought, also makes us keenly aware of being in relation with the world <span class="design-vision-inline-reference">[2]</span>. The power of design lies here, not only in efficiency, but also quietly guiding actions and awakening awareness of presence.<br><br>Another striking example is the forward-leaning chairs used in formal audiences with the Japanese Emperor. Sitting on such a chair forces the legs to brace and the body to lean forward, naturally forming a gesture of bowing. This design is not about comfort, but about shaping posture and relation through form.<br><br>As Maurice Merleau-Ponty reminds us, “the body is not an object but our means of communication with the world” <span class="design-vision-inline-reference">[3]</span>. The world is not an objective thing “out there,” but how it is experienced; and we are not minds controlling bodies, but beings who are our bodies. Good design respects body intuition and helps us rediscover our connection with the world.<br><br>The power of design can be applied anywhere, not only in creating spaces that encourage conversation or interfaces that invite a click. At my undergraduate graduation concert, I performed John Cage’s <em>4’33’’</em> as an encore. In that silence, the audience was forced back to themselves: to remember, to sense the present, to anticipate. The following <em>Aria da capo </em>from Bach’s <em>Goldberg Variations</em> felt like dawn after darkness, guiding the audience through a meditation.<br><br>This is why I do not see design as just making a function work, but as crafting the conditions under which people notice, feel, and act in the world.</p>
+          <h2 class="design-vision-heading" data-vision-heading></h2>
+          <p class="design-vision-text" data-vision-body></p>
         </div>
       </div>
       <a href="#design-overview" class="design-hero-scroll" aria-label="Scroll down" data-design-hero-scroll>
@@ -2369,6 +2369,8 @@ document.addEventListener("DOMContentLoaded", function () {
   window.addEventListener("resize", fitHeroTitle);
 });
   </script>
+  <script src="/vision/vision-content-data.js" type="text/javascript"></script>
+  <script src="/vision/vision-content-render.js" type="text/javascript"></script>
   <script src="/js/webflow.js" type="text/javascript"></script>
 </body>
 </html>
