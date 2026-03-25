@@ -20,7 +20,7 @@ window.VISION_CONTENT_DATA = {
       "Another striking example is the forward-leaning chairs used in formal audiences with the Japanese Emperor. Sitting on such an uncomfortable chair force the legs to brace and the body to lean forward, naturally forming a gesture of bowing. This design is not about comfort, but about shaping posture and relation through form.",
       "As Maurice Merleau-Ponty reminds us, “the body is not an object but our means of communication with the world” <span class=\"design-vision-inline-reference\">[3]</span>. The world is not an objective thing “out there,” but how it is experienced; and we are not minds controlling bodies, but beings who are our bodies. Good design respects body intuition and helps us rediscover our connection with the world.",
       "The power of design can be applied anywhere, not only in creating spaces that encourage conversation or interfaces that invite a click. At my undergraduate graduation concert, I performed John Cage’s <em>4’33’’</em> as an encore. In that silence, the audience was forced back to themselves: to remember, to sense the present, to anticipate. The following <em>Aria da capo </em>from Bach’s <em>Goldberg Variations</em> felt like dawn after darkness, guiding the audience through a meditation.",
-      "Since then I do not see design as just making a function work, but as crafting the conditions under which people notice, feel, and act in the world."
+      "This is why I don't see design as just making a function work, but as crafting the conditions under which people notice, feel, and act in the world."
     ]
   },
   furtherReading: [
