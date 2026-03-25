@@ -97,6 +97,85 @@
   line-height: 1.55;
 }
 
+.vision-page-layout .vision-library {
+  width: min(1400px, calc(100% - 96px));
+  margin: 0 auto;
+  padding: 20px 0 88px;
+}
+
+.vision-page-layout .vision-library-block + .vision-library-block {
+  margin-top: 48px;
+}
+
+.vision-page-layout .vision-library-heading-row {
+  display: grid;
+  grid-template-columns: minmax(220px, .62fr) minmax(0, 1.38fr);
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 18px;
+}
+
+.vision-page-layout .vision-library-heading {
+  margin: 0;
+  color: var(--theme-text, #333);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: .04em;
+}
+
+.vision-page-layout .vision-reading-list,
+.vision-page-layout .vision-reflection-list {
+  display: grid;
+  gap: 14px;
+}
+
+.vision-page-layout .vision-reading-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vision-page-layout .vision-reflection-list {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.vision-page-layout .vision-resource-card {
+  display: flex;
+  min-width: 0;
+  background: var(--theme-surface, #fff);
+  border: 1px solid var(--theme-border, rgba(23, 23, 23, 0.12));
+  box-sizing: border-box;
+  transition: border-color .18s ease, background-color .18s ease;
+}
+
+.vision-page-layout .vision-resource-card:hover {
+  border-color: var(--theme-muted, #666);
+}
+
+.vision-page-layout .vision-resource-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 16px 18px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.vision-page-layout .vision-resource-title {
+  color: var(--theme-text, #333);
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.28;
+}
+
+.vision-page-layout .vision-resource-meta {
+  color: var(--theme-muted, #666);
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
 @media screen and (max-width: 767px) {
   .vision-page-layout .design-vision {
     min-height: auto;
@@ -128,6 +207,32 @@
   .vision-page-layout .design-vision-text {
     font-size: 15px;
     line-height: 1.5;
+  }
+
+  .vision-page-layout .vision-library {
+    width: calc(100% - 40px);
+    padding: 8px 0 56px;
+  }
+
+  .vision-page-layout .vision-library-heading-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .vision-page-layout .vision-library {
+    margin-top: 8px;
+  }
+
+  .vision-page-layout .vision-library-heading {
+    font-size: 19px;
+  }
+
+  .vision-page-layout .vision-reading-list {
+    grid-template-columns: 1fr;
+  }
+
+  .vision-page-layout .vision-resource-link {
+    padding: 16px;
   }
 }
 </style>
@@ -161,38 +266,64 @@
         </div>
       </div>
     </section>
-    <div class="work-essentials-columns w-row">
-      <div class="w-col w-col-12">
-        <h1 id="work-essentials" class="works-page-heading">FURTHER READING</h1>
-        <p class="paragraph-light">
-          <a href="https://dl.acm.org/doi/full/10.1145/3613904.3641945" target="_blank" class="link-in-paragraph-no-underline">Zhang, Haoqi. &quot;Searching for the Non-Consequential: Dialectical Activities in HCI and the Limits of Computers.&quot;</a><br>
-          <a href="https://naotofukasawa.com/publications/1768/" target="_blank" class="link-in-paragraph-no-underline">Goto, Takeshi, Masato Sasaki, and Naoto Fukasawa. The Ecological Approach to Design.</a><br>
-          <a href="https://mp.weixin.qq.com/s/C6D3C7z-k-TYfQ25YO8xEg" target="_blank" class="link-in-paragraph-no-underline">Tang, Lintao. <em>Design for Body–Consciousness.</em></a><br>
-          <a href="https://mp.weixin.qq.com/s/ZIeWlML8cfQKgjjwYsNg-A" target="_blank" class="link-in-paragraph-no-underline">Tang, Lintao. <em class="link-in-paragraph-no-underline">Design for Affordance: Teaching Reform Practice in the “Social Science and Product Innovation” Course, Department of Industrial Design, Academy of Arts &amp; Design, Tsinghua University</em></a><br>
-          <a href="https://watermark02.silverchair.com/pres_a_00441.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA7YwggOyBgkqhkiG9w0BBwagggOjMIIDnwIBADCCA5gGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcZs-oey-Eql-z1xPAgEQgIIDaRmJY7RzUJgAcLQcVmHoNRoduB6x_A_8bJomKEa5bgmHY1MA1ALJVZ8viY7DfQCKb2wrbABGKwLAiysEhLptD5sK7wWD6Q72QRa6Cvv45GsDg4KVFc4Jx5cmbeYI57z6l57qqtFsoM9abQ-segfaHuCODYZQ_SUN5zL4gBusv0JErxJnSYN1XJjyJbMXh1oUtLiPMGySoVSb1_eKj7SaTNibpEXq3mzD3ThNp0c7mI_5D_CiyJp_bTFRZVlmAlkpu2BCIgn4zlsuCUVyFHVLbIWFyRFNVhADEsZqveSyRq_fXZ4MX2zfh-UkFANHH4F2l-5uUxmQ9ci8gi99zepBTvt9FYF-UcV_whm_6wHIoonhmH1VPyqgfnS88oRmJz8YL0YNUUycgOgD541E6SGXQoeNo-bMVHNsN5Io8JwrRQx42MmLu8ctEnBP9rz19Iu89RgAIT0WkgfNed0nCB39ln-zciyD6Pzrt_5DaSed6RrS4JtM_WKH3VpctXqwp91VFQgtNHTGOnfF-0v4Oy5JVoDYQ99HgqK17yXv_uK0145X_wwuwm0WrgbmRRO-7WXBDJmHZYkmefOS3DJorv-rxfUt80ZGo4Lk0QDtnNqRiXeGxmJ5KFierXcLT_iQEEx5Y_X3jNjePnvx4_VsSNIXQs85fTGDi2h9Og9y_BJt5MBGU_ycGu2FV9RwK0xoUyCCeB_lgr8obcxwcYyhEYW7zSSJ5-Jci2Vk5iSc_mcP3aqW_TqECnmv2zh9c28Qzcf2han3APNriY9KiL1WTFrsTWxlAin1FiKIeeZBWL13UnzqVLnquQPRUdYK40QnBiSHXc1KVDEEORpOntJrOVpa3_JRqwauD327ob2z-YFli8Kq_0aYTnHpzCIDa4JTWDXndf9CWYp_yzaMsIQ_VL1UV4LGk-sgbwwQfeZsxVvo3tK66XmLfR9Vc9m5V_3EnsGVgXRS-rjA686z_ecY5VRa1kvz-4apRmxT2wsJwP-8uwlop73-cz1qwZOD5-evorxrNSBGb0vsvdMuoTY3hCY-O7b--6WwaYjkmP6aXyNifWcldF1OmXRDTZ2b-OToNHwOswPgHOMS0xz402F-XtRtqyC3ltzQ8j2EJ9m-mJ_pcJVHnSmW9GSTSz-RSz_y7RapSurOnwG4UpGVSw" target="_blank" class="link-in-paragraph-no-underline">Ishii, Hiroshi, et al. &quot;TeleAbsence: A vision of past and afterlife telepresence.&quot;</a><br>‍
-        </p>
-        <h1 id="work-essentials" class="works-page-heading">REFLECTIONS</h1>
-        <p class="paragraph-light">
-          <a href="https://youtu.be/vs9UzEYcjiY" target="_blank" class="link-in-paragraph-no-underline">The External Brain We&#x27;ve All Adored</a><br><br>‍
-        </p>
-        <div class="collection-list-wrapper w-dyn-list">
-          <div role="list" class="w-dyn-items">
-            <div role="listitem" class="w-dyn-item">
-              <a href="#" class="link-in-paragraph w-inline-block">
-                <div class="paragraph-tiny w-dyn-bind-empty"></div>
-              </a>
-            </div>
-          </div>
+    <section class="vision-library">
+      <section class="vision-library-block" aria-labelledby="vision-reading-title">
+        <div class="vision-library-heading-row">
+          <h3 id="vision-reading-title" class="vision-library-heading">FURTHER READING</h3>
         </div>
-      </div>
-    </div>
+        <div class="vision-reading-list">
+          <article class="vision-resource-card">
+            <a href="https://dl.acm.org/doi/full/10.1145/3613904.3641945" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">Searching for the Non-Consequential: Dialectical Activities in HCI and the Limits of Computers</div>
+              <div class="vision-resource-meta">Haoqi Zhang</div>
+            </a>
+          </article>
+          <article class="vision-resource-card">
+            <a href="https://naotofukasawa.com/publications/1768/" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">The Ecological Approach to Design</div>
+              <div class="vision-resource-meta">Takeshi Goto, Masato Sasaki, and Naoto Fukasawa</div>
+            </a>
+          </article>
+          <article class="vision-resource-card">
+            <a href="https://mp.weixin.qq.com/s/C6D3C7z-k-TYfQ25YO8xEg" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">Design for Body-Consciousness</div>
+              <div class="vision-resource-meta">Lintao Tang</div>
+            </a>
+          </article>
+          <article class="vision-resource-card">
+            <a href="https://mp.weixin.qq.com/s/ZIeWlML8cfQKgjjwYsNg-A" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">Design for Affordance: Teaching Reform Practice in the “Social Science and Product Innovation” Course, Department of Industrial Design, Academy of Arts &amp; Design, Tsinghua University</div>
+              <div class="vision-resource-meta">Lintao Tang</div>
+            </a>
+          </article>
+          <article class="vision-resource-card">
+            <a href="https://watermark02.silverchair.com/pres_a_00441.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAA7YwggOyBgkqhkiG9w0BBwagggOjMIIDnwIBADCCA5gGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMcZs-oey-Eql-z1xPAgEQgIIDaRmJY7RzUJgAcLQcVmHoNRoduB6x_A_8bJomKEa5bgmHY1MA1ALJVZ8viY7DfQCKb2wrbABGKwLAiysEhLptD5sK7wWD6Q72QRa6Cvv45GsDg4KVFc4Jx5cmbeYI57z6l57qqtFsoM9abQ-segfaHuCODYZQ_SUN5zL4gBusv0JErxJnSYN1XJjyJbMXh1oUtLiPMGySoVSb1_eKj7SaTNibpEXq3mzD3ThNp0c7mI_5D_CiyJp_bTFRZVlmAlkpu2BCIgn4zlsuCUVyFHVLbIWFyRFNVhADEsZqveSyRq_fXZ4MX2zfh-UkFANHH4F2l-5uUxmQ9ci8gi99zepBTvt9FYF-UcV_whm_6wHIoonhmH1VPyqgfnS88oRmJz8YL0YNUUycgOgD541E6SGXQoeNo-bMVHNsN5Io8JwrRQx42MmLu8ctEnBP9rz19Iu89RgAIT0WkgfNed0nCB39ln-zciyD6Pzrt_5DaSed6RrS4JtM_WKH3VpctXqwp91VFQgtNHTGOnfF-0v4Oy5JVoDYQ99HgqK17yXv_uK0145X_wwuwm0WrgbmRRO-7WXBDJmHZYkmefOS3DJorv-rxfUt80ZGo4Lk0QDtnNqRiXeGxmJ5KFierXcLT_iQEEx5Y_X3jNjePnvx4_VsSNIXQs85fTGDi2h9Og9y_BJt5MBGU_ycGu2FV9RwK0xoUyCCeB_lgr8obcxwcYyhEYW7zSSJ5-Jci2Vk5iSc_mcP3aqW_TqECnmv2zh9c28Qzcf2han3APNriY9KiL1WTFrsTWxlAin1FiKIeeZBWL13UnzqVLnquQPRUdYK40QnBiSHXc1KVDEEORpOntJrOVpa3_JRqwauD327ob2z-YFli8Kq_0aYTnHpzCIDa4JTWDXndf9CWYp_yzaMsIQ_VL1UV4LGk-sgbwwQfeZsxVvo3tK66XmLfR9Vc9m5V_3EnsGVgXRS-rjA686z_ecY5VRa1kvz-4apRmxT2wsJwP-8uwlop73-cz1qwZOD5-evorxrNSBGb0vsvdMuoTY3hCY-O7b--6WwaYjkmP6aXyNifWcldF1OmXRDTZ2b-OToNHwOswPgHOMS0xz402F-XtRtqyC3ltzQ8j2EJ9m-mJ_pcJVHnSmW9GSTSz-RSz_y7RapSurOnwG4UpGVSw" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">TeleAbsence: A Vision of Past and Afterlife Telepresence</div>
+              <div class="vision-resource-meta">Hiroshi Ishii et al.</div>
+            </a>
+          </article>
+        </div>
+      </section>
+      <section class="vision-library-block" aria-labelledby="vision-reflections-title">
+        <div class="vision-library-heading-row">
+          <h3 id="vision-reflections-title" class="vision-library-heading">REFLECTIONS</h3>
+        </div>
+        <div class="vision-reflection-list">
+          <article class="vision-resource-card">
+            <a href="https://youtu.be/vs9UzEYcjiY" target="_blank" rel="noopener noreferrer" class="vision-resource-link">
+              <div class="vision-resource-title">The External Brain We've All Adored</div>
+              <div class="vision-resource-meta">Bob Tianqi Wei</div>
+            </a>
+          </article>
+        </div>
+      </section>
+    </section>
     <div class="all-works-section">
       <a href="#navigation" class="back-to-top w-inline-block"><img src="/images/回到顶部.png" loading="lazy" width="50" height="50" alt="" class="back-to-top-image"></a>
       <a href="/works/" class="all-works w-inline-block">
         <h1 class="all-works-head-black">ALL WORKS</h1>
       </a>
     </div>
-    <div class="ribbon-image-animation-right"><img src="/images/Berkeley_GraphicElements_Ribbon_Blue_RGB.png" loading="lazy" sizes="(max-width: 1980px) 100vw, 1980px" srcset="/images/Berkeley_GraphicElements_Ribbon_Blue_RGB-p-500.png 500w, /images/Berkeley_GraphicElements_Ribbon_Blue_RGB-p-800.png 800w, /images/Berkeley_GraphicElements_Ribbon_Blue_RGB-p-1080.png 1080w, /images/Berkeley_GraphicElements_Ribbon_Blue_RGB.png 1980w" alt="" class="ribbon-image-animation"></div>
   </article>
     <div class="footer-wrap">
     <div>
