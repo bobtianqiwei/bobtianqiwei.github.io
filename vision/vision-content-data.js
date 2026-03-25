@@ -11,7 +11,7 @@ window.VISION_CONTENT_DATA = {
     references: [
       "[1] James J. Gibson, <em>The Ecological Approach to Visual Perception</em> (1979)",
       "[2] Edmund Husserl, <em>Ideas: General Introduction to Pure Phenomenology</em> (1913)",
-      "[3] Maurice Merleau-Ponty, <em>Phenomenology of Perception</em> (1945)"
+      "[3] Maurice Merleau-Ponty, <em>Phenomenology of Perception</em> (1945)",
       "[4] Bob Tianqi Wei, HUI (回), Public Sculpture, 2021"
     ],
     heading: "MY VISION",
