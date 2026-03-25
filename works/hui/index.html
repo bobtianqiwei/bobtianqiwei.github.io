@@ -49,14 +49,10 @@
     padding: 22px 24px;
     border: 1px solid var(--theme-border, rgba(23, 23, 23, 0.12));
     background: rgba(127, 127, 127, 0.05);
-    display: grid;
-    grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
-    column-gap: 24px;
-    align-items: start;
   }
 
   .project-quote-eyebrow {
-    margin: 0;
+    margin: 0 0 14px;
     color: var(--theme-muted, #6b6b6b);
     font-size: 12px;
     font-weight: 400;
@@ -66,25 +62,26 @@
 
   .project-quote-text {
     margin: 0;
-    max-width: 980px;
     color: var(--theme-text, #171717);
     font-family: "Newsreader", Georgia, "Times New Roman", serif;
     font-size: 22px;
     font-weight: 300;
     line-height: 1.65;
+    column-count: 2;
+    column-gap: 32px;
+    column-fill: balance;
   }
 
   @media screen and (max-width: 767px) {
     .project-quote-card {
       margin: 24px 0 30px;
       padding: 18px 16px;
-      grid-template-columns: 1fr;
-      row-gap: 10px;
     }
 
     .project-quote-text {
       font-size: 18px;
       line-height: 1.6;
+      column-count: 1;
     }
   }
   </style>
@@ -149,7 +146,7 @@
 
     </figure>
     <blockquote class="project-quote-card">
-      <p class="project-quote-eyebrow">Quote from <a href="https://mp.weixin.qq.com/s/dKOs5dMvNWdcUpRz7PKwvg" target="_blank" class="link-in-paragraph"><em>Design for Affordance: Teaching Reform Practices of Academy of Arts &amp; Design at Tsinghua University's &quot;Social Science and Product Innovation&quot; Course</em></a></p>
+      <p class="project-quote-eyebrow">Quote from <a href="https://mp.weixin.qq.com/s/dKOs5dMvNWdcUpRz7PKwvg" target="_blank" class="link-in-paragraph"><em>Lintao Tang, Design for Affordance: Teaching Reform Practices of Academy of Arts &amp; Design at Tsinghua University's &quot;Social Science and Product Innovation&quot; Course</em></a></p>
       <div class="project-quote-text">Wei Tianqi: The Affordance of Steps<br><br>Wei Tianqi's work, titled &quot;HUI&quot;, is a square white space surrounded by seven steps, as shown in the picture. In addition to leading to another space, the steps also have a variety of affordances such as sitting and lying down. The Scalinata della Trinità dei Monti (Spanish Steps) in Rome is a good example of this, serving as both a stage and a grandstand. The &quot;HUI&quot; sets the scale of the steps to enclose the space according to the modulus of the human body. The height of the top can block the view of a person of 175 centimeters in height, separating the space into inside and outside, giving openness to the outside space and privacy to the inside space. The top bar is not only reclinable, but also gives a wider view to those sitting on it. One climbs up from the outside, reaches the top and overlooks the square space in the center like a stage, and then descends steps to reach the center of the space. The inward, funnel-shaped centripetal space guides people to sit, lie down, and talk; the outwardly unfolding steps are the centrifugal space, where people gather and stay to watch the crowds of people coming and going on the street.<br><br>HUI is a moving and experiencing thing like the Architectural Promenade. People move through the space to perceive the field force of different places and explore where they should go and stay. Relationships in space are instantly recognized without signs. The force of social relations created by physical space pulls people's behaviors beyond their perception of structure and form, and achieves the relative transparency of material entities in perception. The design concept of HUI does not lie in how it becomes an object that attracts attention, but as a trigger that provokes and unites various interactions. Like Pike and Hepburn's date on the Spanish Steps in <em>Roman Holiday</em>, students can meet their friends on the outside of the UI, then climb to the inside for quiet conversation. The seven steps change the boundaries between public and private, allowing dynamic subjects to generate their own space at will.</div>
     </blockquote>
 

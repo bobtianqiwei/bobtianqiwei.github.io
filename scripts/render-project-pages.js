@@ -734,7 +734,7 @@ function designCaseStudyStyles() {
   }
 
   .project-quote-eyebrow {
-    margin: 0 0 10px;
+    margin: 0 0 12px;
     color: #666;
     font-family: Open Sans, sans-serif;
     font-size: 13px;
@@ -745,12 +745,14 @@ function designCaseStudyStyles() {
 
   .project-quote-text {
     margin: 0;
-    max-width: 980px;
     color: #333;
     font-family: Open Sans, sans-serif;
     font-size: 15px;
     font-weight: 300;
     line-height: 1.72;
+    column-count: 2;
+    column-gap: 28px;
+    column-fill: balance;
   }
 
   @media screen and (max-width: 767px) {
@@ -762,6 +764,7 @@ function designCaseStudyStyles() {
     .project-quote-text {
       font-size: 15px;
       line-height: 1.72;
+      column-count: 1;
     }
   }
   </style>`;
@@ -844,12 +847,14 @@ function renderWorksCaseStudyStyles() {
 
   .project-quote-text {
     margin: 0;
-    max-width: 980px;
     color: var(--theme-text, #171717);
     font-family: "Newsreader", Georgia, "Times New Roman", serif;
     font-size: 22px;
     font-weight: 300;
     line-height: 1.65;
+    column-count: 2;
+    column-gap: 32px;
+    column-fill: balance;
   }
 
   @media screen and (max-width: 767px) {
@@ -861,6 +866,7 @@ function renderWorksCaseStudyStyles() {
     .project-quote-text {
       font-size: 18px;
       line-height: 1.6;
+      column-count: 1;
     }
   }
   </style>`;
