@@ -38,7 +38,56 @@
   <link href="/images/webclip.png" rel="apple-touch-icon">
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-WZFMQV77LB"></script>
   <script type="text/javascript">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WZFMQV77LB',{'anonymize_ip':true});</script>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap" rel="stylesheet">
+  <style>
+  .project-lead {
+    margin: 0 0 28px;
+  }
 
+  .project-quote-card {
+    margin: 28px 0 36px;
+    padding: 22px 24px;
+    border: 1px solid var(--theme-border, rgba(23, 23, 23, 0.12));
+    background: rgba(127, 127, 127, 0.05);
+    display: grid;
+    grid-template-columns: minmax(160px, 220px) minmax(0, 1fr);
+    column-gap: 24px;
+    align-items: start;
+  }
+
+  .project-quote-eyebrow {
+    margin: 0;
+    color: var(--theme-muted, #6b6b6b);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: .02em;
+    line-height: 1.4;
+  }
+
+  .project-quote-text {
+    margin: 0;
+    max-width: 980px;
+    color: var(--theme-text, #171717);
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  @media screen and (max-width: 767px) {
+    .project-quote-card {
+      margin: 24px 0 30px;
+      padding: 18px 16px;
+      grid-template-columns: 1fr;
+      row-gap: 10px;
+    }
+
+    .project-quote-text {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+  }
+  </style>
 </head>
 <body>
   <div data-collapse="small" data-animation="over-right" data-duration="400" id="navigation" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
