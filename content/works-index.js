@@ -1248,6 +1248,15 @@ module.exports = {
       "order": 4
     },
     {
+      "section": "EXPERIMENTS",
+      "href": "/works/experiments/cropkit/",
+      "className": "project-link-block w-inline-block",
+      "image": "/works/experiments/cropkit/cover.svg",
+      "contentHtml": "cropkit",
+      "lightbox": null,
+      "order": 5
+    },
+    {
       "section": "FINE ART",
       "href": "https://www.instagram.com/sabbatical.lab",
       "className": "fine-art-link-block w-inline-block",
