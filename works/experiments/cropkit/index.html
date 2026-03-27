@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <title>cropkit</title>
-  <meta content="A pure frontend tool for trimming black or white borders from images." name="description">
+  <meta content="A pure frontend tool for trimming solid borders or padding images to fixed ratios in batch." name="description">
   <meta content="cropkit" property="og:title">
-  <meta content="A pure frontend tool for trimming black or white borders from images." property="og:description">
+  <meta content="A pure frontend tool for trimming solid borders or padding images to fixed ratios in batch." property="og:description">
   <meta content="summary_large_image" name="twitter:card">
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <script type="text/javascript">(function(){try{var path=window.location.pathname;var disabled=/^\/(401\.html|404\.html)$/.test(path)||/^\/welcome\/?$/.test(path)||/^\/terminal1?\/?$/.test(path);var root=document.documentElement;root.dataset.siteChromeContext='page';root.dataset.themeEnabled=disabled?'false':'true';if(disabled){return;}root.dataset.pageFade='prepare';var stored=window.localStorage.getItem('site-theme-preference');var theme=(stored==='light'||stored==='dark')?stored:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');root.dataset.theme=theme;var style=document.createElement('style');style.textContent='html,body{background-color:'+(theme==='dark'?'#141414':'#ffffff')+';}.back-to-top{background-color:'+(theme==='dark'?'#141414':'#ffffff')+';}';document.head.appendChild(style);}catch(e){}})();</script>
@@ -33,7 +33,7 @@
 
     .edge-trim-shell {
       width: min(1120px, calc(100% - 32px));
-      margin: 24px auto 64px;
+      margin: 18px auto 40px;
     }
 
     .edge-trim-hero {
@@ -41,9 +41,9 @@
     }
 
     .edge-trim-hero h1 {
-      margin: 0 0 18px;
+      margin: 0 0 12px;
       font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       line-height: 1.2;
       letter-spacing: 0;
@@ -53,7 +53,7 @@
     .edge-trim-grid {
       display: grid;
       grid-template-columns: 280px minmax(0, 1fr);
-      gap: 32px;
+      gap: 24px;
       align-items: start;
     }
 
@@ -67,13 +67,13 @@
     .edge-trim-controls {
       padding: 0;
       display: grid;
-      gap: 18px;
+      gap: 14px;
       position: sticky;
-      top: 24px;
+      top: 18px;
     }
 
     .edge-trim-section-title {
-      margin: 0 0 6px;
+      margin: 0 0 4px;
       font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
       font-size: 11px;
       font-weight: 700;
@@ -85,8 +85,8 @@
     .edge-trim-dropzone {
       border: 1px dashed #cfcfcf;
       border-radius: 0;
-      min-height: 112px;
-      padding: 18px;
+      min-height: 92px;
+      padding: 14px;
       background: #fafafa;
       display: grid;
       place-items: center;
@@ -102,9 +102,9 @@
 
     .edge-trim-dropzone strong {
       display: block;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
     }
 
@@ -125,13 +125,13 @@
     .edge-trim-range-group,
     .edge-trim-actions {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
 
     .edge-trim-toggle-group label,
     .edge-trim-range-group label {
       display: grid;
-      gap: 6px;
+      gap: 4px;
       font-size: 12px;
       font-weight: 600;
     }
@@ -139,7 +139,13 @@
     .edge-trim-radio-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
+    }
+
+    .edge-trim-radio-row.compact span {
+      min-width: 62px;
+      padding: 6px 9px;
+      font-size: 11px;
     }
 
     .edge-trim-radio-row input {
@@ -153,7 +159,7 @@
       align-items: center;
       justify-content: center;
       min-width: 72px;
-      padding: 8px 12px;
+      padding: 7px 11px;
       border-radius: 0;
       border: 1px solid #d5d5d5;
       background: #f7f7f7;
@@ -178,8 +184,97 @@
     }
 
     .edge-trim-range-group input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
       width: 100%;
-      accent-color: #9a9a9a;
+      height: 18px;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .edge-trim-range-group input[type="range"]:focus {
+      outline: none;
+    }
+
+    .edge-trim-range-group input[type="range"]::-webkit-slider-runnable-track {
+      height: 2px;
+      background: #d8d8d8;
+      border: none;
+    }
+
+    .edge-trim-range-group input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      margin-top: -5px;
+      border-radius: 999px;
+      border: none;
+      background: #a6a6a6;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .edge-trim-range-group input[type="range"]:hover::-webkit-slider-runnable-track {
+      background: #d8d8d8;
+    }
+
+    .edge-trim-range-group input[type="range"]:hover::-webkit-slider-thumb {
+      background: #7f7f7f;
+      transform: scale(1.06);
+    }
+
+    .edge-trim-range-group input[type="range"]:active::-webkit-slider-thumb {
+      background: #666;
+      transform: scale(1.08);
+    }
+
+    .edge-trim-range-group input[type="range"]::-moz-range-track {
+      height: 2px;
+      background: #d8d8d8;
+      border: none;
+      border-radius: 0;
+    }
+
+    .edge-trim-range-group input[type="range"]::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      border: none;
+      background: #a6a6a6;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .edge-trim-range-group input[type="range"]:hover::-moz-range-track {
+      background: #d8d8d8;
+    }
+
+    .edge-trim-range-group input[type="range"]:hover::-moz-range-thumb {
+      background: #7f7f7f;
+      transform: scale(1.06);
+    }
+
+    .edge-trim-range-group input[type="range"]:active::-moz-range-thumb {
+      background: #666;
+      transform: scale(1.08);
+    }
+
+    .edge-trim-color-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .edge-trim-color-input {
+      width: 36px;
+      height: 24px;
+      border: 1px solid #d5d5d5;
+      background: #fff;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .edge-trim-config-panel[hidden] {
+      display: none;
     }
 
     .edge-trim-button,
@@ -187,7 +282,7 @@
       appearance: none;
       border: 1px solid #d5d5d5;
       border-radius: 0;
-      padding: 10px 14px;
+      padding: 8px 12px;
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
@@ -229,18 +324,18 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 18px;
-      padding-bottom: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
       border-bottom: 1px solid #ececec;
     }
 
     .edge-trim-results-grid {
       display: grid;
-      gap: 18px;
+      gap: 14px;
     }
 
     .edge-trim-card {
-      padding: 0 0 18px;
+      padding: 0 0 14px;
       border: none;
       border-bottom: 1px solid #ececec;
       border-radius: 0;
@@ -251,13 +346,13 @@
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
-      margin-bottom: 10px;
+      gap: 10px;
+      margin-bottom: 8px;
     }
 
     .edge-trim-card-title {
       margin: 0;
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.35;
       word-break: break-word;
     }
@@ -278,7 +373,7 @@
     .edge-trim-preview-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
 
     .edge-trim-preview {
@@ -289,7 +384,7 @@
     }
 
     .edge-trim-preview-label {
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0;
@@ -300,7 +395,7 @@
     .edge-trim-preview img {
       display: block;
       width: 100%;
-      max-height: 260px;
+      max-height: 220px;
       object-fit: contain;
       background: #fafafa;
     }
@@ -308,8 +403,8 @@
     .edge-trim-metrics {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 10px;
+      gap: 10px;
+      margin-top: 8px;
       color: #666;
       font-size: 12px;
     }
@@ -317,14 +412,14 @@
     .edge-trim-card-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 12px;
+      gap: 8px;
+      margin-top: 10px;
     }
 
     @media (max-width: 991px) {
       .edge-trim-grid {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 18px;
       }
 
       .edge-trim-controls {
@@ -335,7 +430,8 @@
     @media (max-width: 767px) {
       .edge-trim-shell {
         width: min(100% - 18px, 100%);
-        margin-top: 18px;
+        margin-top: 14px;
+        margin-bottom: 28px;
       }
 
       .edge-trim-hero,
@@ -390,6 +486,127 @@
           </div>
 
           <div class="edge-trim-toggle-group">
+            <h2 class="edge-trim-section-title">operation</h2>
+            <label>
+              <div class="edge-trim-radio-row">
+                <label>
+                  <input type="radio" name="tool-mode" value="trim" checked>
+                  <span>trim</span>
+                </label>
+                <label>
+                  <input type="radio" name="tool-mode" value="pad">
+                  <span>pad</span>
+                </label>
+              </div>
+            </label>
+          </div>
+
+          <div class="edge-trim-config-panel" id="trim-config">
+            <div class="edge-trim-toggle-group">
+              <h2 class="edge-trim-section-title">border</h2>
+              <label>
+                <div class="edge-trim-radio-row">
+                  <label>
+                    <input type="radio" name="trim-mode" value="auto" checked>
+                    <span>Auto</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="trim-mode" value="white">
+                    <span>White</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="trim-mode" value="black">
+                    <span>Black</span>
+                  </label>
+                </div>
+              </label>
+            </div>
+
+            <div class="edge-trim-range-group">
+              <h2 class="edge-trim-section-title">settings</h2>
+              <label for="tolerance-range">
+                <span>tolerance</span>
+                <div class="edge-trim-range-meta">
+                  <span>strict</span>
+                  <strong id="tolerance-value">24</strong>
+                  <span>loose</span>
+                </div>
+                <input id="tolerance-range" type="range" min="4" max="80" step="1" value="24">
+              </label>
+              <label for="coverage-range">
+                <span>edge purity</span>
+                <div class="edge-trim-range-meta">
+                  <span>90%</span>
+                  <strong id="coverage-value">98.5%</strong>
+                  <span>100%</span>
+                </div>
+                <input id="coverage-range" type="range" min="90" max="100" step="0.5" value="98.5">
+              </label>
+            </div>
+          </div>
+
+          <div class="edge-trim-config-panel" id="pad-config" hidden>
+            <div class="edge-trim-toggle-group">
+              <h2 class="edge-trim-section-title">ratio</h2>
+              <label>
+                <div class="edge-trim-radio-row compact">
+                  <label>
+                    <input type="radio" name="pad-ratio" value="1:1">
+                    <span>1:1</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-ratio" value="4:5" checked>
+                    <span>4:5</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-ratio" value="3:4">
+                    <span>3:4</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-ratio" value="2:3">
+                    <span>2:3</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-ratio" value="16:9">
+                    <span>16:9</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-ratio" value="9:16">
+                    <span>9:16</span>
+                  </label>
+                </div>
+              </label>
+            </div>
+
+            <div class="edge-trim-toggle-group">
+              <h2 class="edge-trim-section-title">border color</h2>
+              <label>
+                <div class="edge-trim-radio-row compact">
+                  <label>
+                    <input type="radio" name="pad-bg-preset" value="#ffffff" checked>
+                    <span>white</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-bg-preset" value="#f2f2f2">
+                    <span>gray</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="pad-bg-preset" value="#000000">
+                    <span>black</span>
+                  </label>
+                </div>
+              </label>
+              <label for="pad-bg-color">
+                <span>custom</span>
+                <div class="edge-trim-color-row">
+                  <input class="edge-trim-color-input" id="pad-bg-color" type="color" value="#ffffff">
+                  <span id="pad-bg-color-value">#ffffff</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="edge-trim-toggle-group">
             <h2 class="edge-trim-section-title">mode</h2>
             <label>
               <div class="edge-trim-radio-row">
@@ -407,30 +624,6 @@
                 </label>
               </div>
             </label>
-          </div>
-
-          <div class="edge-trim-range-group">
-            <h2 class="edge-trim-section-title">settings</h2>
-            <label for="tolerance-range">
-              <span>tolerance</span>
-              <div class="edge-trim-range-meta">
-                <span>strict</span>
-                <strong id="tolerance-value">24</strong>
-                <span>loose</span>
-              </div>
-              <input id="tolerance-range" type="range" min="4" max="80" step="1" value="24">
-            </label>
-            <label for="coverage-range">
-              <span>edge purity</span>
-              <div class="edge-trim-range-meta">
-                <span>90%</span>
-                <strong id="coverage-value">98.5%</strong>
-                <span>100%</span>
-              </div>
-              <input id="coverage-range" type="range" min="90" max="100" step="0.5" value="98.5">
-            </label>
-          </div>
-
           <div class="edge-trim-actions">
             <button class="edge-trim-button" id="process-button" type="button">process</button>
             <button class="edge-trim-secondary-button" id="clear-button" type="button">clear</button>
@@ -473,6 +666,25 @@
       const coverageRange = document.getElementById("coverage-range");
       const toleranceValue = document.getElementById("tolerance-value");
       const coverageValue = document.getElementById("coverage-value");
+      const trimConfig = document.getElementById("trim-config");
+      const padConfig = document.getElementById("pad-config");
+      const padBgColor = document.getElementById("pad-bg-color");
+      const padBgColorValue = document.getElementById("pad-bg-color-value");
+
+      Array.from(document.querySelectorAll('input[name="tool-mode"]')).forEach(function (input) {
+        input.addEventListener("change", syncVisibleConfig);
+      });
+
+      Array.from(document.querySelectorAll('input[name="pad-bg-preset"]')).forEach(function (input) {
+        input.addEventListener("change", function () {
+          padBgColor.value = input.value;
+          padBgColorValue.textContent = input.value.toLowerCase();
+        });
+      });
+
+      padBgColor.addEventListener("input", function () {
+        padBgColorValue.textContent = padBgColor.value.toLowerCase();
+      });
 
       toleranceRange.addEventListener("input", function () {
         toleranceValue.textContent = toleranceRange.value;
@@ -481,6 +693,8 @@
       coverageRange.addEventListener("input", function () {
         coverageValue.textContent = coverageRange.value + "%";
       });
+
+      syncVisibleConfig();
 
       ["dragenter", "dragover"].forEach(function (eventName) {
         dropzone.addEventListener(eventName, function (event) {
@@ -562,6 +776,26 @@
         return checked ? checked.value : "auto";
       }
 
+      function getToolMode() {
+        const checked = document.querySelector('input[name="tool-mode"]:checked');
+        return checked ? checked.value : "trim";
+      }
+
+      function getPadRatio() {
+        const checked = document.querySelector('input[name="pad-ratio"]:checked');
+        return checked ? checked.value : "4:5";
+      }
+
+      function getPadColor() {
+        return padBgColor.value || "#ffffff";
+      }
+
+      function syncVisibleConfig() {
+        const toolMode = getToolMode();
+        trimConfig.hidden = toolMode !== "trim";
+        padConfig.hidden = toolMode !== "pad";
+      }
+
       async function processFiles() {
         processButton.disabled = true;
         downloadAllButton.disabled = true;
@@ -570,9 +804,12 @@
         renderResults();
 
         const options = {
-          mode: getMode(),
+          toolMode: getToolMode(),
+          trimMode: getMode(),
           tolerance: Number(toleranceRange.value),
-          coverage: Number(coverageRange.value) / 100
+          coverage: Number(coverageRange.value) / 100,
+          padRatio: getPadRatio(),
+          padColor: getPadColor()
         };
 
         statusText.textContent = "processing...";
@@ -603,31 +840,54 @@
       async function buildProcessedResult(file, sourceUrl, options) {
         const image = await loadImage(sourceUrl);
         const workingCanvas = document.createElement("canvas");
-        const workingContext = workingCanvas.getContext("2d", { willReadFrequently: true });
         workingCanvas.width = image.naturalWidth;
         workingCanvas.height = image.naturalHeight;
+        const workingContext = workingCanvas.getContext("2d", { willReadFrequently: true });
         workingContext.drawImage(image, 0, 0);
 
-        const imageData = workingContext.getImageData(0, 0, workingCanvas.width, workingCanvas.height);
-        const analysis = detectCropBounds(imageData, options.mode, options.tolerance, options.coverage);
+        let analysis;
+        let exportCanvas;
 
-        const exportCanvas = document.createElement("canvas");
-        exportCanvas.width = analysis.width;
-        exportCanvas.height = analysis.height;
-        const exportContext = exportCanvas.getContext("2d");
-        exportContext.imageSmoothingEnabled = true;
-        exportContext.imageSmoothingQuality = "high";
-        exportContext.drawImage(
-          workingCanvas,
-          analysis.left,
-          analysis.top,
-          analysis.width,
-          analysis.height,
-          0,
-          0,
-          analysis.width,
-          analysis.height
-        );
+        if (options.toolMode === "pad") {
+          analysis = buildPadBounds(image.naturalWidth, image.naturalHeight, options.padRatio);
+          exportCanvas = document.createElement("canvas");
+          exportCanvas.width = analysis.width;
+          exportCanvas.height = analysis.height;
+          const exportContext = exportCanvas.getContext("2d");
+          exportContext.fillStyle = options.padColor;
+          exportContext.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+          exportContext.drawImage(
+            workingCanvas,
+            0,
+            0,
+            workingCanvas.width,
+            workingCanvas.height,
+            analysis.drawLeft,
+            analysis.drawTop,
+            workingCanvas.width,
+            workingCanvas.height
+          );
+        } else {
+          const imageData = workingContext.getImageData(0, 0, workingCanvas.width, workingCanvas.height);
+          analysis = detectCropBounds(imageData, options.trimMode, options.tolerance, options.coverage);
+          exportCanvas = document.createElement("canvas");
+          exportCanvas.width = analysis.width;
+          exportCanvas.height = analysis.height;
+          const exportContext = exportCanvas.getContext("2d");
+          exportContext.imageSmoothingEnabled = true;
+          exportContext.imageSmoothingQuality = "high";
+          exportContext.drawImage(
+            workingCanvas,
+            analysis.left,
+            analysis.top,
+            analysis.width,
+            analysis.height,
+            0,
+            0,
+            analysis.width,
+            analysis.height
+          );
+        }
 
         const mimeType = getExportMimeType(file.type);
         const blob = await canvasToBlob(exportCanvas, mimeType, 0.92);
@@ -645,6 +905,9 @@
           cropHeight: analysis.height,
           trimmed: analysis.trimmed,
           modeUsed: analysis.modeUsed,
+          toolMode: options.toolMode,
+          padRatio: options.padRatio,
+          padColor: options.padColor,
           outputWidth: analysis.width,
           outputHeight: analysis.height,
           cropBox: {
@@ -675,6 +938,36 @@
         }
 
         return detectCropBoundsForMode(imageData, mode, tolerance, coverage);
+      }
+
+      function buildPadBounds(width, height, ratioText) {
+        const parts = String(ratioText).split(":").map(Number);
+        const ratio = parts[0] / parts[1];
+        const sourceRatio = width / height;
+        let outputWidth = width;
+        let outputHeight = height;
+
+        if (sourceRatio > ratio) {
+          outputHeight = Math.ceil(width / ratio);
+        } else {
+          outputWidth = Math.ceil(height * ratio);
+        }
+
+        const drawLeft = Math.floor((outputWidth - width) / 2);
+        const drawTop = Math.floor((outputHeight - height) / 2);
+
+        return {
+          left: 0,
+          top: 0,
+          right: width - 1,
+          bottom: height - 1,
+          width: outputWidth,
+          height: outputHeight,
+          drawLeft: drawLeft,
+          drawTop: drawTop,
+          trimmed: outputWidth !== width || outputHeight !== height,
+          modeUsed: ratioText
+        };
       }
 
       function detectCropBoundsForMode(imageData, mode, tolerance, coverage) {
@@ -823,7 +1116,8 @@
       function buildDownloadName(result) {
         const extension = extensionForMimeType(result.mimeType);
         const baseName = result.fileName.replace(/\.[^.]+$/, "");
-        return baseName + "-trimmed." + extension;
+        const suffix = result.toolMode === "pad" ? "-padded-" + result.padRatio.replace(":", "x") : "-trimmed";
+        return baseName + suffix + "." + extension;
       }
 
       function extensionForMimeType(mimeType) {
@@ -903,9 +1197,9 @@
             '<div class="edge-trim-card-top">',
             '<div>',
             '<h3 class="edge-trim-card-title">' + escapeHtml(result.fileName) + '</h3>',
-            '<div class="edge-trim-status">' + (result.trimmed ? 'trimmed.' : 'unchanged.') + '</div>',
+            '<div class="edge-trim-status">' + getResultStatus(result) + '</div>',
             '</div>',
-            '<div class="edge-trim-badge">' + (result.trimmed ? 'trimmed' : 'unchanged') + '</div>',
+            '<div class="edge-trim-badge">' + escapeHtml(result.toolMode) + '</div>',
             '</div>',
             '<div class="edge-trim-preview-grid">',
             '<div class="edge-trim-preview">',
@@ -919,7 +1213,7 @@
             '</div>',
             '<div class="edge-trim-metrics">',
             '<span>output ' + result.outputWidth + ' × ' + result.outputHeight + '</span>',
-            '<span>mode ' + capitalize(result.modeUsed) + '</span>',
+            '<span>' + getResultMeta(result) + '</span>',
             '</div>',
             '<div class="edge-trim-card-actions">',
             '<button class="edge-trim-button" type="button" data-download="' + escapeHtml(result.fileName) + '">download</button>',
@@ -983,6 +1277,20 @@
 
       function capitalize(value) {
         return value.charAt(0).toUpperCase() + value.slice(1);
+      }
+
+      function getResultStatus(result) {
+        if (result.toolMode === "pad") {
+          return result.trimmed ? "padded." : "already fits.";
+        }
+        return result.trimmed ? "trimmed." : "unchanged.";
+      }
+
+      function getResultMeta(result) {
+        if (result.toolMode === "pad") {
+          return "ratio " + result.modeUsed;
+        }
+        return "mode " + capitalize(result.modeUsed);
       }
     })();
   </script>
