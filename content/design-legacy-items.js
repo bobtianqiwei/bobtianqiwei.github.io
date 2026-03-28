@@ -191,7 +191,7 @@ module.exports = {
   },
   "bob-s-cat": {
     "slug": "bob-s-cat",
-    "href": "https://zerowidth.ai/c/demo/dvNpxWQDAJ3bDsW0Bai9/draft",
+    "href": "/works/bobscat/",
     "className": "project-link-block w-inline-block",
     "image": "/images/IMG_1026-2.jpg",
     "contentHtml": "Bob&#x27;s Cat",

@@ -62,9 +62,6 @@ body.design-portfolio-page {
   --design-toggle-thumb: #9a9a9a;
   --design-toggle-icon-active: #4f4f4f;
   --design-toggle-icon-inactive: #7f7f7f;
-  --theme-scrollbar-track: #ececec;
-  --theme-scrollbar-thumb: #c6c6c6;
-  --theme-scrollbar-thumb-hover: #b4b4b4;
 }
 
 body.design-portfolio-page {
@@ -91,9 +88,6 @@ body.design-portfolio-page[data-design-theme="dark"] {
   --design-toggle-thumb: #b8b1aa;
   --design-toggle-icon-active: #f1e9e0;
   --design-toggle-icon-inactive: #b4aca4;
-  --theme-scrollbar-track: #1f1f1f;
-  --theme-scrollbar-thumb: #505050;
-  --theme-scrollbar-thumb-hover: #666666;
 }
 
 body.design-portfolio-page .design-portfolio-scroll {
@@ -1746,7 +1740,7 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
         </div>
         <div class="work-column w-col w-col-6">
           <a href="/design/sympathetic-orchestra-paper/" class="work-image-link w-inline-block">
-            <div class="w-layout-blockcontainer w-container"><img src="/images/Sympathetic-Orchestra-new_1.jpg" loading="lazy" alt="" class="image-100">
+            <div class="w-layout-blockcontainer w-container"><img src="/images/Sympathetic-Orchestra-new.jpg" loading="lazy" alt="" class="image-100">
               <div class="project-name-link">Sympathetic Orchestra</div>
             </div>
           </a>
@@ -1772,6 +1766,12 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
     <div class="work-columns w-row">
       <div class="column-13 w-col w-col-4">
         <div class="w-container">
+          <a href="https://anythingmarketing.created.app/affiliate" target="_blank" class="project-link-block w-inline-block">
+            <img src="/images/anything-affiliate-program.jpg" loading="lazy" alt="" class="image-38">
+            <div class="work-page-project-name">Anything Affiliate Program Page</div>
+          </a>
+        </div>
+        <div class="w-container">
           <a href="/design/artifactor/" class="project-link-block w-inline-block">
             <img src="/images/artifactor-cover.png" loading="lazy" alt="" class="image-38">
             <div class="work-page-project-name">ArtiFactor</div>
@@ -1785,6 +1785,12 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
         </div>
       </div>
       <div class="column-14 w-col w-col-4">
+        <div class="w-container">
+          <a href="https://brandresources.created.app/" target="_blank" class="project-link-block w-inline-block">
+            <img src="/images/brandresources.created.app_.png" loading="lazy" alt="" class="image-38">
+            <div class="work-page-project-name">Anything Brand Resources Page</div>
+          </a>
+        </div>
         <div class="w-container">
           <a href="/design/tao/" class="project-link-block w-inline-block">
             <img src="/images/Tao-beta-2.png" loading="lazy" alt="" class="image-38">
@@ -1806,7 +1812,7 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
           </a>
         </div>
         <div class="w-container">
-          <a href="https://zerowidth.ai/c/demo/dvNpxWQDAJ3bDsW0Bai9/draft" target="_blank" class="project-link-block w-inline-block">
+          <a href="/works/bobscat/" class="project-link-block w-inline-block">
             <img src="/images/IMG_1026-2.jpg" loading="lazy" alt="" class="image-38">
             <div class="work-page-project-name">Bob&#x27;s Cat</div>
           </a>
@@ -1834,12 +1840,6 @@ body.design-portfolio-page .design-theme-toggle:focus-visible .design-theme-togg
           <a href="/works/nnmplifier/" class="project-link-block w-inline-block">
             <img src="/images/nnmplifier.jpeg" loading="lazy" alt="" class="image-38">
             <div class="work-page-project-name">NNMPLIFIER</div>
-          </a>
-        </div>
-        <div class="w-container">
-          <a href="/design/hui/" class="project-link-block w-inline-block">
-            <img src="/images/模型渲染.149.png" loading="lazy" alt="" class="image-38">
-            <div class="work-page-project-name">HUI（回）</div>
           </a>
         </div>
         <div class="w-container">
@@ -2312,11 +2312,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   buildProjectGrid("#design-software", [
     "Anything",
-    "EKPHRASIS",
     "Sympathetic Orchestra",
+    "PartSelect Chat Agent",
+    "EKPHRASIS",
+    "Anything Affiliate Program Page",
+    "Anything Brand Resources Page",
     "Terminal Zen",
     "ArtiFactor",
-    "PartSelect Chat Agent",
     "Tao",
     "Bob's Cat",
     "Desktop Buddha",
@@ -2324,11 +2326,10 @@ document.addEventListener("DOMContentLoaded", function () {
   ]);
 
   buildProjectGrid("#design-installations", [
-    "Stringed Harmony",
     "Water Synthesizer",
     "NNMPLIFIER",
-    "HUI（回）",
     "A Fish in The Northern Ocean",
+    "Stringed Harmony",
     "Plano"
   ]);
 
