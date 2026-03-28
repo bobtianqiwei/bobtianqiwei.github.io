@@ -312,7 +312,7 @@
       '<div class="bob-cat-widget-title"><img src="/images/projects/bobscat.jpg" alt="Bob\'s Cat"><span>Bob\'s Cat</span></div>',
       '<div class="site-panel-actions"><button type="button" class="bob-cat-widget-settings">Settings</button><a href="' + buildBobCatExpandHref() + '" class="bob-cat-widget-expand">Expand</a><button type="button" class="bob-cat-widget-close">Close</button></div>',
       "</div>",
-      '<iframe class="bob-cat-widget-frame" title="Bob\'s Cat" loading="lazy"></iframe>',
+      '<iframe class="bob-cat-widget-frame" title="Bob\'s Cat" loading="lazy" allowtransparency="true"></iframe>',
       "</div>"
     ].join("");
 
