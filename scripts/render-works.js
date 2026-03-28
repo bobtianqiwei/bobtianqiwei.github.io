@@ -209,6 +209,18 @@ function renderResearchCard(item) {
 }
 
 function renderMusic(columns) {
+  const maxRows = Math.max(...columns.map((items) => items.length));
+  const items = [];
+
+  for (let rowIndex = 0; rowIndex < maxRows; rowIndex += 1) {
+    columns.forEach((columnItems) => {
+      const item = columnItems[rowIndex];
+      if (item) {
+        items.push(item);
+      }
+    });
+  }
+
   return `    <div class="w-layout-hflex">
       <h1 id="works-music" class="works-page-heading">MUSIC</h1>
       <div class="w-layout-hflex flex-block-in-works-page-heading">
@@ -216,15 +228,13 @@ function renderMusic(columns) {
         <a href="https://space.bilibili.com/39406265?spm_id_from=333.1007.0.0" target="_blank" class="works-page-heading-link">Bilibili</a>
       </div>
     </div>
-    <div class="music-columns-on-work-page w-row">
-${columns.map((items) => `      <div class="work-column w-col w-col-4 w-col-small-4">
-${items.map((item) => `        <a href="${item.href}" target="_blank" class="music-link-block w-inline-block">
-          <div class="music-link-container w-container">${renderImage(item.image, item.imageClass)}
-            <div class="music-title">${item.titleHtml}</div>
-            <div class="music-name-block">${item.nameHtml}</div>
-          </div>
-        </a>`).join("\n")}
-      </div>`).join("\n")}
+    <div class="music-grid">
+${items.map((item) => `      <a href="${item.href}" target="_blank" class="music-link-block w-inline-block">
+        <div class="music-link-container w-container">${renderImage(item.image, item.imageClass)}
+          <div class="music-title">${item.titleHtml}</div>
+          <div class="music-name-block">${item.nameHtml}</div>
+        </div>
+      </a>`).join("\n")}
     </div>`;
 }
 

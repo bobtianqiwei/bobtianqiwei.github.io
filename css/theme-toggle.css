@@ -250,6 +250,46 @@ html[data-theme-enabled="true"] .navigation-item:active {
   margin-left: 4px;
 }
 
+.music-link-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  margin-bottom: 0;
+}
+
+.music-link-container .image-38,
+.music-link-container .music-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+}
+
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 20px;
+}
+
+.music-title {
+  min-height: 0;
+  margin-top: 12px;
+  margin-bottom: 0;
+  color: var(--theme-text, #333);
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.music-name-block {
+  margin-top: 8px;
+  color: var(--theme-muted, #666);
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
 @media screen and (max-width: 991px) {
   .research-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -257,6 +297,20 @@ html[data-theme-enabled="true"] .navigation-item:active {
 
   .research-card-title {
     font-size: 18px;
+  }
+
+  .music-title {
+    font-size: 18px;
+  }
+
+  .music-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .music-grid {
+    grid-template-columns: 1fr;
   }
 }
 
