@@ -586,10 +586,15 @@ html[data-theme-enabled="true"] span {
 .back-to-top {
   background-color: var(--back-to-top-bg);
   bottom: calc(var(--footer-offset) + 12px);
+  border: 0;
+  border-radius: 0;
+  box-shadow: 0 0 20px #00000024;
+  cursor: pointer;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   opacity: 1;
+  height: 45px;
   padding-left: 6px;
   right: -11px;
   width: 45px;
@@ -605,6 +610,8 @@ html[data-theme-enabled="true"] span {
 }
 
 .back-to-top-image {
+  display: block;
+  flex-shrink: 0;
   width: 22px;
   height: 22px;
   margin-top: 11px;

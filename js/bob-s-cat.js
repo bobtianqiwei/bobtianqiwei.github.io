@@ -4,6 +4,10 @@
   const CHAT_STATE_STORAGE_KEY = "bob-cat-chat-state";
   const MAX_HISTORY_MESSAGES = 10;
   const PROJECTS_MARKER = "[[BOB_CAT_PROJECTS:";
+  const URL_PARAMETERS = new URLSearchParams(window.location.search);
+  const EMBED_MODE = URL_PARAMETERS.get("embed") === "1";
+  const PAGE_CONTEXT_TITLE = URL_PARAMETERS.get("contextTitle") || "";
+  const PAGE_CONTEXT_PATH = URL_PARAMETERS.get("contextPath") || "";
   const PROVIDERS = {
     gemini: {
       label: "Gemini",
@@ -206,6 +210,11 @@
     "Bob:",
     BIO,
     "",
+    "Current page context:",
+    PAGE_CONTEXT_TITLE || PAGE_CONTEXT_PATH
+      ? "The user may currently be browsing this page on Bob's website: " + [PAGE_CONTEXT_TITLE, PAGE_CONTEXT_PATH].filter(Boolean).join(" | ")
+      : "No extra current-page context was provided.",
+    "",
     "Projects:",
     PROJECTS.map(function (project) {
       return [
@@ -362,6 +371,14 @@
 
   function closeSettings() {
     elements.settings.open = false;
+  }
+
+  function openSettings() {
+    elements.settings.open = true;
+  }
+
+  function toggleSettings() {
+    elements.settings.open = !elements.settings.open;
   }
 
   async function showWelcomeMessage(animated) {
@@ -677,6 +694,12 @@
   }
 
   function renderPreview() {
+    if (EMBED_MODE) {
+      setPreviewVisible(false);
+      elements.previewFrame.removeAttribute("src");
+      return;
+    }
+
     if (!state.previewSlugs.length || !state.activeProjectSlug || !PROJECTS_BY_SLUG[state.activeProjectSlug]) {
       setPreviewVisible(false);
       elements.previewFrame.removeAttribute("src");
@@ -1152,6 +1175,20 @@
     elements.closeSettingsButton.addEventListener("click", closeSettings);
     elements.providerSelect.addEventListener("change", updateApiKeyField);
 
+    window.addEventListener("message", function (event) {
+      if (event.origin !== window.location.origin || !event.data || typeof event.data !== "object") {
+        return;
+      }
+
+      if (event.data.type === "bob-cat-open-settings") {
+        openSettings();
+      } else if (event.data.type === "bob-cat-close-settings") {
+        closeSettings();
+      } else if (event.data.type === "bob-cat-toggle-settings") {
+        toggleSettings();
+      }
+    });
+
     elements.form.addEventListener("submit", function (event) {
       event.preventDefault();
       sendMessage(elements.input.value);
@@ -1178,6 +1215,10 @@
 
   async function init() {
     window.localStorage.removeItem("bob-cat-proxy-url");
+    if (EMBED_MODE) {
+      document.documentElement.dataset.bobCatEmbed = "true";
+      elements.input.placeholder = "Ask about this page...";
+    }
     elements.providerSelect.value = getStoredProvider();
     updateApiKeyField();
     bindEvents();
