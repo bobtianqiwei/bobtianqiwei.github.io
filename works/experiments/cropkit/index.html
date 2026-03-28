@@ -699,26 +699,6 @@
             </div>
           </div>
 
-          <div class="edge-trim-toggle-group">
-            <h2 class="edge-trim-section-title">mode</h2>
-            <label>
-              <div class="edge-trim-radio-row">
-                <label>
-                  <input type="radio" name="trim-mode" value="auto" checked>
-                  <span>Auto</span>
-                </label>
-                <label>
-                  <input type="radio" name="trim-mode" value="white">
-                  <span>White</span>
-                </label>
-                <label>
-                  <input type="radio" name="trim-mode" value="black">
-                  <span>Black</span>
-                </label>
-              </div>
-            </label>
-          </div>
-
           <div class="edge-trim-actions">
             <div class="edge-trim-actions-buttons">
               <button class="edge-trim-button" id="process-button" type="button">PROCESS</button>
@@ -1018,13 +998,19 @@
 
       function detectCropBounds(imageData, mode, tolerance, coverage) {
         if (mode === "auto") {
+          const sampledMode = {
+            type: "sampled",
+            color: sampleBorderColor(imageData)
+          };
+          const sampledResult = detectCropBoundsForMode(imageData, sampledMode, tolerance, coverage);
           const whiteResult = detectCropBoundsForMode(imageData, "white", tolerance, coverage);
           const blackResult = detectCropBoundsForMode(imageData, "black", tolerance, coverage);
+          const sampledGain = cropGain(sampledResult, imageData.width, imageData.height);
           const whiteGain = cropGain(whiteResult, imageData.width, imageData.height);
           const blackGain = cropGain(blackResult, imageData.width, imageData.height);
 
-          if (whiteGain === 0 && blackGain === 0) {
-            return whiteResult;
+          if (sampledGain >= whiteGain && sampledGain >= blackGain) {
+            return sampledResult;
           }
 
           if (blackGain > whiteGain) {
@@ -1035,6 +1021,50 @@
         }
 
         return detectCropBoundsForMode(imageData, mode, tolerance, coverage);
+      }
+
+      function sampleBorderColor(imageData) {
+        const width = imageData.width;
+        const height = imageData.height;
+        const data = imageData.data;
+        const samples = [];
+        const step = Math.max(1, Math.floor(Math.max(width, height) / 120));
+
+        function pushPixel(x, y) {
+          const pointer = (y * width + x) * 4;
+          const alpha = data[pointer + 3];
+          if (alpha < 10) return;
+          samples.push([
+            data[pointer],
+            data[pointer + 1],
+            data[pointer + 2]
+          ]);
+        }
+
+        for (let x = 0; x < width; x += step) {
+          pushPixel(x, 0);
+          pushPixel(x, height - 1);
+        }
+
+        for (let y = 0; y < height; y += step) {
+          pushPixel(0, y);
+          pushPixel(width - 1, y);
+        }
+
+        if (!samples.length) {
+          return { red: 255, green: 255, blue: 255 };
+        }
+
+        const reds = samples.map(function (pixel) { return pixel[0]; }).sort(function (a, b) { return a - b; });
+        const greens = samples.map(function (pixel) { return pixel[1]; }).sort(function (a, b) { return a - b; });
+        const blues = samples.map(function (pixel) { return pixel[2]; }).sort(function (a, b) { return a - b; });
+        const middle = Math.floor(samples.length / 2);
+
+        return {
+          red: reds[middle],
+          green: greens[middle],
+          blue: blues[middle]
+        };
       }
 
       function buildPadBounds(width, height, ratioText) {
@@ -1070,6 +1100,7 @@
       function detectCropBoundsForMode(imageData, mode, tolerance, coverage) {
         const width = imageData.width;
         const height = imageData.height;
+        const modeLabel = typeof mode === "object" ? "auto" : mode;
         const maxHorizontalScan = Math.max(1, Math.floor(height * 0.45));
         const maxVerticalScan = Math.max(1, Math.floor(width * 0.45));
 
@@ -1123,7 +1154,7 @@
             width: width,
             height: height,
             trimmed: false,
-            modeUsed: mode
+            modeUsed: modeLabel
           };
         }
 
@@ -1135,7 +1166,7 @@
           width: right - left + 1,
           height: bottom - top + 1,
           trimmed: top > 0 || left > 0 || right < width - 1 || bottom < height - 1,
-          modeUsed: mode
+          modeUsed: modeLabel
         };
       }
 
@@ -1169,6 +1200,8 @@
         const height = imageData.height;
         const total = axis === "row" ? width : height;
         let matches = 0;
+        const sampledThreshold = Math.max(18, tolerance * 2);
+        const sampledThresholdSquared = sampledThreshold * sampledThreshold;
 
         for (let step = 0; step < total; step += 1) {
           const x = axis === "row" ? step : index;
@@ -1185,7 +1218,15 @@
           const green = data[pointer + 1];
           const blue = data[pointer + 2];
 
-          if (mode === "white") {
+          if (typeof mode === "object" && mode.type === "sampled") {
+            const redDiff = red - mode.color.red;
+            const greenDiff = green - mode.color.green;
+            const blueDiff = blue - mode.color.blue;
+            const distanceSquared = (redDiff * redDiff) + (greenDiff * greenDiff) + (blueDiff * blueDiff);
+            if (distanceSquared <= sampledThresholdSquared) {
+              matches += 1;
+            }
+          } else if (mode === "white") {
             if (red >= 255 - tolerance && green >= 255 - tolerance && blue >= 255 - tolerance) {
               matches += 1;
             }
@@ -1387,7 +1428,7 @@
         if (result.toolMode === "pad") {
           return "ratio " + result.modeUsed;
         }
-        return "mode " + capitalize(result.modeUsed);
+        return "mode " + (result.modeUsed === "auto" ? "auto" : capitalize(result.modeUsed));
       }
     })();
   </script>
