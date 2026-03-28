@@ -9,6 +9,7 @@
   --bob-cat-border-strong: rgba(23, 23, 23, 0.16);
   --bob-cat-accent: #171717;
   --bob-cat-shadow: 0 18px 50px rgba(23, 23, 23, 0.06);
+  --bob-cat-space: 16px;
   --bob-cat-radius-xl: 0px;
   --bob-cat-radius-lg: 0px;
   --bob-cat-radius-md: 0px;
@@ -114,7 +115,7 @@ body {
   min-height: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
+  gap: var(--bob-cat-space);
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
@@ -123,7 +124,7 @@ body {
 
 .bob-cat-chat-panel,
 .bob-cat-preview-panel {
-  padding: 18px 18px 14px;
+  padding: var(--bob-cat-space);
   height: 100%;
 }
 
@@ -551,7 +552,7 @@ html[data-theme="dark"] .bob-cat-message-body pre {
 .bob-cat-composer-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 6px;
+  gap: 0;
   align-items: center;
   padding: 0;
   border: 0;
@@ -624,7 +625,7 @@ html[data-theme="dark"] .bob-cat-message-body pre {
   align-items: center;
   justify-content: space-between;
   gap: 10px;
-  margin: 0;
+  margin: 0 0 var(--bob-cat-space);
   flex-shrink: 0;
   min-width: 0;
   padding-bottom: 0;
