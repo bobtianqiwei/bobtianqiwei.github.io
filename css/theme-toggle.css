@@ -187,6 +187,85 @@ html[data-theme-enabled="true"] .navigation-item:active {
   background-color: var(--theme-hover);
 }
 
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 20px;
+  margin-top: 6px;
+}
+
+.research-card-link {
+  display: block;
+  width: 100%;
+  color: inherit;
+  text-decoration: none;
+}
+
+.research-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.research-card-inner .image-100 {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+}
+
+.research-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 12px;
+}
+
+.research-card-title {
+  color: var(--theme-text, #333);
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.research-card-authors {
+  color: var(--theme-muted, #666);
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.45;
+}
+
+.research-card-venue {
+  color: var(--theme-text, #333);
+  font-family: Open Sans, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: .03em;
+}
+
+.research-card-venue .best-paper-award {
+  display: inline-block;
+  margin-left: 4px;
+}
+
+@media screen and (max-width: 991px) {
+  .research-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .research-card-title {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .research-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Keep image-based work title sections transparent so hero images remain visible. */
 html[data-theme-enabled="true"] .div-block-4 > .work-detail-page-container,
 html[data-theme-enabled="true"] .div-block-10 > .work-detail-page-container,

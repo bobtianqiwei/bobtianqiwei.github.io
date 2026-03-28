@@ -174,14 +174,38 @@ ${rows.join("\n")}
 
 function renderResearch(items) {
   return `    <h1 id="works-research" class="works-page-heading">RESEARCH</h1>
-${items.map((item) => {
-    const target = isExternal(item.href) ? ' target="_blank"' : "";
-    return `    <a href="${item.href}"${target} class="link-100 w-inline-block">
-      <div class="w-layout-grid grid-research">${renderImage(item.image)}
-        <div class="research-cards-text">${item.contentHtml}</div>
-      </div>
-    </a>`;
-  }).join("\n")}`;
+    <div class="research-grid">
+${items.map((item) => renderResearchCard(item)).join("\n")}
+    </div>`;
+}
+
+function parseResearchContent(contentHtml) {
+  const parts = contentHtml
+    .replace(/<br>\s*$/i, "")
+    .split(/<br><br>/i)
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+  return {
+    titleHtml: parts[0] || "",
+    authorsHtml: parts[1] || "",
+    venueHtml: parts.slice(2).join("<br><br>")
+  };
+}
+
+function renderResearchCard(item) {
+  const target = isExternal(item.href) ? ' target="_blank"' : "";
+  const research = parseResearchContent(item.contentHtml);
+
+  return `        <a href="${item.href}"${target} class="research-card-link w-inline-block">
+          <div class="w-container research-card-inner">${renderImage(item.image, "image-100")}
+            <div class="research-card-text">
+              <div class="research-card-title">${research.titleHtml}</div>
+              <div class="research-card-authors">${research.authorsHtml}</div>
+              <div class="research-card-venue">${research.venueHtml}</div>
+            </div>
+          </div>
+        </a>`;
 }
 
 function renderMusic(columns) {
