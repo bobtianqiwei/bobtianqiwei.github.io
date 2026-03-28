@@ -331,6 +331,14 @@
       cursor: pointer;
     }
 
+    .edge-trim-custom-color-wrap[hidden] {
+      display: none;
+    }
+
+    .edge-trim-custom-color-wrap {
+      margin-top: 6px;
+    }
+
     .edge-trim-config-panel[hidden] {
       display: none;
     }
@@ -687,10 +695,13 @@
                     <input type="radio" name="pad-bg-preset" value="#000000">
                     <span>black</span>
                   </label>
+                  <label>
+                    <input type="radio" name="pad-bg-preset" value="custom">
+                    <span>Custom</span>
+                  </label>
                 </div>
               </label>
-              <label for="pad-bg-color">
-                <span>custom</span>
+              <label for="pad-bg-color" class="edge-trim-custom-color-wrap" id="pad-custom-color-wrap" hidden>
                 <div class="edge-trim-color-row">
                   <input class="edge-trim-color-input" id="pad-bg-color" type="color" value="#ffffff">
                   <span id="pad-bg-color-value">#ffffff</span>
@@ -747,6 +758,7 @@
       const padConfig = document.getElementById("pad-config");
       const padBgColor = document.getElementById("pad-bg-color");
       const padBgColorValue = document.getElementById("pad-bg-color-value");
+      const padCustomColorWrap = document.getElementById("pad-custom-color-wrap");
 
       Array.from(document.querySelectorAll('input[name="tool-mode"]')).forEach(function (input) {
         input.addEventListener("change", syncVisibleConfig);
@@ -754,8 +766,11 @@
 
       Array.from(document.querySelectorAll('input[name="pad-bg-preset"]')).forEach(function (input) {
         input.addEventListener("change", function () {
-          padBgColor.value = input.value;
-          padBgColorValue.textContent = input.value.toLowerCase();
+          if (input.value !== "custom") {
+            padBgColor.value = input.value;
+            padBgColorValue.textContent = input.value.toLowerCase();
+          }
+          syncPadCustomVisibility();
         });
       });
 
@@ -772,6 +787,7 @@
       });
 
       syncVisibleConfig();
+      syncPadCustomVisibility();
 
       ["dragenter", "dragover"].forEach(function (eventName) {
         dropzone.addEventListener(eventName, function (event) {
@@ -871,6 +887,12 @@
         const toolMode = getToolMode();
         trimConfig.hidden = toolMode !== "trim";
         padConfig.hidden = toolMode !== "pad";
+      }
+
+      function syncPadCustomVisibility() {
+        const checked = document.querySelector('input[name="pad-bg-preset"]:checked');
+        const isCustom = checked && checked.value === "custom";
+        padCustomColorWrap.hidden = !isCustom;
       }
 
       async function processFiles() {
