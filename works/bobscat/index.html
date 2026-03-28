@@ -63,18 +63,16 @@
                   <option value="claude">Claude</option>
                 </select>
               </label>
-              <label class="bob-cat-key-field" for="bob-cat-proxy-url">
-                <span class="bob-cat-field-label">Vercel proxy URL</span>
-                <input id="bob-cat-proxy-url" type="url" placeholder="https://your-project.vercel.app/api/bob-cat">
-              </label>
               <label class="bob-cat-key-field" for="bob-cat-api-key">
-                <span class="bob-cat-field-label" id="bob-cat-api-key-label">Direct Gemini key (optional)</span>
+                <span class="bob-cat-field-label" id="bob-cat-api-key-label">Direct Gemini key</span>
                 <input id="bob-cat-api-key" type="password" placeholder="Optional local testing key">
               </label>
               <p class="bob-cat-settings-note">This page is a static GitHub Pages site with no backend of our own, so we do not collect your API key or any other information here. If you enter a key, it is stored only in the local storage of the browser you are using right now.</p>
               <div class="bob-cat-toolbar-actions">
                 <button type="button" class="bob-cat-secondary-button" id="save-settings">Save</button>
+                <button type="button" class="bob-cat-secondary-button" id="delete-api-key">Delete API key</button>
                 <button type="button" class="bob-cat-secondary-button" id="clear-chat">Clear chat</button>
+                <button type="button" class="bob-cat-secondary-button" id="close-settings">Close</button>
               </div>
             </div>
           </details>

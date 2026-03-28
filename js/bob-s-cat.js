@@ -1,7 +1,7 @@
 // bob-s-cat.js developed by Bob Tianqi Wei
 (function () {
   const PROVIDER_STORAGE_KEY = "bob-cat-provider";
-  const PROXY_URL_STORAGE_KEY = "bob-cat-proxy-url";
+  const CHAT_STATE_STORAGE_KEY = "bob-cat-chat-state";
   const MAX_HISTORY_MESSAGES = 10;
   const PROJECTS_MARKER = "[[BOB_CAT_PROJECTS:";
   const PROVIDERS = {
@@ -9,22 +9,22 @@
       label: "Gemini",
       storageKey: "bob-cat-gemini-api-key",
       model: "gemini-2.5-flash",
-      keyLabel: "Direct Gemini key (optional)",
-      keyPlaceholder: "Optional Gemini API key"
+      keyLabel: "Direct Gemini key",
+      keyPlaceholder: "Gemini API key"
     },
     openai: {
       label: "OpenAI",
       storageKey: "bob-cat-openai-api-key",
       model: "gpt-4o-mini",
-      keyLabel: "Direct OpenAI key (optional)",
-      keyPlaceholder: "Optional OpenAI API key"
+      keyLabel: "Direct OpenAI key",
+      keyPlaceholder: "OpenAI API key"
     },
     claude: {
       label: "Claude",
       storageKey: "bob-cat-claude-api-key",
       model: "claude-sonnet-4-6",
-      keyLabel: "Direct Claude key (optional)",
-      keyPlaceholder: "Optional Claude API key"
+      keyLabel: "Direct Claude key",
+      keyPlaceholder: "Claude API key"
     }
   };
 
@@ -232,12 +232,14 @@
 
   const elements = {
     page: document.getElementById("bob-cat-page"),
+    settings: document.querySelector(".bob-cat-settings"),
     providerSelect: document.getElementById("bob-cat-provider"),
-    proxyUrlInput: document.getElementById("bob-cat-proxy-url"),
     apiKeyLabel: document.getElementById("bob-cat-api-key-label"),
     apiKeyInput: document.getElementById("bob-cat-api-key"),
     saveSettingsButton: document.getElementById("save-settings"),
+    deleteApiKeyButton: document.getElementById("delete-api-key"),
     clearChatButton: document.getElementById("clear-chat"),
+    closeSettingsButton: document.getElementById("close-settings"),
     status: document.getElementById("bob-cat-status"),
     emptyState: document.getElementById("bob-cat-empty-state"),
     suggestions: document.getElementById("bob-cat-suggestions"),
@@ -264,8 +266,55 @@
     return window.localStorage.getItem(getProviderConfig(provider).storageKey) || "";
   }
 
-  function getStoredProxyUrl() {
-    return window.localStorage.getItem(PROXY_URL_STORAGE_KEY) || "";
+  function saveChatState() {
+    const payload = {
+      messages: state.messages.filter(function (message) {
+        return !message.pending;
+      }),
+      previewSlugs: normalizePreviewSlugs(state.previewSlugs),
+      activeProjectSlug: typeof state.activeProjectSlug === "string" ? state.activeProjectSlug : null
+    };
+
+    window.localStorage.setItem(CHAT_STATE_STORAGE_KEY, JSON.stringify(payload));
+  }
+
+  function clearStoredChatState() {
+    window.localStorage.removeItem(CHAT_STATE_STORAGE_KEY);
+  }
+
+  function loadStoredChatState() {
+    const raw = window.localStorage.getItem(CHAT_STATE_STORAGE_KEY);
+
+    if (!raw) {
+      return false;
+    }
+
+    try {
+      const parsed = JSON.parse(raw);
+      const messages = Array.isArray(parsed.messages)
+        ? parsed.messages.filter(function (message) {
+          return message
+            && (message.role === "assistant" || message.role === "user")
+            && typeof message.text === "string";
+        })
+        : [];
+      const previewSlugs = normalizePreviewSlugs(parsed.previewSlugs);
+      const activeProjectSlug = typeof parsed.activeProjectSlug === "string" && previewSlugs.indexOf(parsed.activeProjectSlug) !== -1
+        ? parsed.activeProjectSlug
+        : (previewSlugs[0] || null);
+
+      if (!messages.length) {
+        return false;
+      }
+
+      state.messages = messages;
+      state.previewSlugs = previewSlugs;
+      state.activeProjectSlug = activeProjectSlug;
+      return true;
+    } catch (error) {
+      clearStoredChatState();
+      return false;
+    }
   }
 
   function updateApiKeyField() {
@@ -282,27 +331,15 @@
 
   function saveSettings() {
     const provider = elements.providerSelect.value;
-    const proxyUrl = elements.proxyUrlInput.value.trim();
     const apiKey = elements.apiKeyInput.value.trim();
     const providerConfig = getProviderConfig(provider);
 
     window.localStorage.setItem(PROVIDER_STORAGE_KEY, provider);
 
-    if (proxyUrl) {
-      window.localStorage.setItem(PROXY_URL_STORAGE_KEY, proxyUrl);
-    } else {
-      window.localStorage.removeItem(PROXY_URL_STORAGE_KEY);
-    }
-
     if (apiKey) {
       window.localStorage.setItem(providerConfig.storageKey, apiKey);
     } else {
       window.localStorage.removeItem(providerConfig.storageKey);
-    }
-
-    if (proxyUrl) {
-      setStatus("Settings saved. Live replies will try the Vercel proxy first.");
-      return;
     }
 
     if (apiKey) {
@@ -313,18 +350,44 @@
     setStatus("Saved state cleared. Bob's Cat will use fallback replies only.");
   }
 
-  function resetChat() {
-    state.messages = [
-      {
-        role: "assistant",
-        text: "Meow, I'm Bob's Cat. It's so lovely to meet you."
-      }
-    ];
+  function deleteStoredApiKey() {
+    const provider = elements.providerSelect.value;
+    const providerConfig = getProviderConfig(provider);
+    window.localStorage.removeItem(providerConfig.storageKey);
+    elements.apiKeyInput.value = "";
+    setStatus(providerConfig.label + " API key deleted from this browser.");
+  }
+
+  function closeSettings() {
+    elements.settings.open = false;
+  }
+
+  async function showWelcomeMessage(animated) {
+    state.messages = [];
     state.previewSlugs = [];
     state.activeProjectSlug = null;
     renderMessages();
     renderPreview();
-    setStatus(getStoredProxyUrl() || getStoredApiKey(getStoredProvider()) ? "Chat cleared." : "No live endpoint configured. Fallback replies are still available.");
+
+    if (animated) {
+      await animateAssistantMessage("Meow, I'm Bob's Cat. It's so lovely to meet you.");
+    } else {
+      state.messages = [
+        {
+          role: "assistant",
+          text: "Meow, I'm Bob's Cat. It's so lovely to meet you."
+        }
+      ];
+      renderMessages();
+    }
+
+    saveChatState();
+  }
+
+  async function resetChat() {
+    clearStoredChatState();
+    await showWelcomeMessage(true);
+    setStatus(getStoredApiKey(getStoredProvider()) ? "Chat cleared." : "No live API key configured. Fallback replies are still available.");
   }
 
   function createMessageNode(message) {
@@ -364,25 +427,74 @@
 
   function renderRichText(container, text) {
     container.innerHTML = "";
-    const paragraphs = String(text || "")
+    const blocks = String(text || "")
       .split(/\n\s*\n/)
-      .map(function (paragraph) {
-        return paragraph.trim();
+      .map(function (block) {
+        return block.trim();
       })
       .filter(Boolean);
 
-    if (!paragraphs.length) {
+    if (!blocks.length) {
       const paragraph = document.createElement("p");
       paragraph.textContent = "";
       container.appendChild(paragraph);
       return;
     }
 
-    paragraphs.forEach(function (content) {
+    blocks.forEach(function (block) {
+      if (/^```/.test(block) && /```$/.test(block)) {
+        const codeBlock = document.createElement("pre");
+        const code = document.createElement("code");
+        code.textContent = block.replace(/^```[^\n]*\n?/, "").replace(/\n?```$/, "");
+        codeBlock.appendChild(code);
+        container.appendChild(codeBlock);
+        return;
+      }
+
+      const lines = block.split("\n");
+      const isList = lines.every(function (line) {
+        return /^([-*]|\d+\.)\s+/.test(line.trim());
+      });
+
+      if (isList) {
+        const isOrdered = lines.every(function (line) {
+          return /^\d+\.\s+/.test(line.trim());
+        });
+        const list = document.createElement(isOrdered ? "ol" : "ul");
+
+        lines.forEach(function (line) {
+          const item = document.createElement("li");
+          item.innerHTML = renderInlineMarkdown(line.replace(/^([-*]|\d+\.)\s+/, "").trim());
+          list.appendChild(item);
+        });
+
+        container.appendChild(list);
+        return;
+      }
+
       const paragraph = document.createElement("p");
-      paragraph.textContent = content;
+      paragraph.innerHTML = renderInlineMarkdown(lines.join("<br>"));
       container.appendChild(paragraph);
     });
+  }
+
+  function escapeHtml(text) {
+    return String(text || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function renderInlineMarkdown(text) {
+    let html = escapeHtml(String(text || ""));
+    html = html.replace(/&lt;br&gt;/g, "<br>");
+    html = html.replace(/`([^`]+)`/g, "<code>$1</code>");
+    html = html.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    html = html.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+    return html;
   }
 
   function renderMessages() {
@@ -539,7 +651,7 @@
       if (!state.previewVisible) {
         elements.previewPanel.hidden = true;
       }
-    }, 320);
+    }, 1000);
   }
 
   function renderPreview() {
@@ -566,6 +678,7 @@
     state.previewSlugs = normalizedSlugs;
     state.activeProjectSlug = normalizedSlugs[0];
     renderPreview();
+    saveChatState();
   }
 
   function buildConversationContents() {
@@ -677,7 +790,7 @@
     }
 
     return {
-      answer: "Meow... I am in fallback mode right now, so I can answer common questions about Bob, design, engineering, art, music, research, AI, and some physical computing topics. If you ask something very specific and I do not have the facts, I will tell you honestly, purr.",
+      answer: "Meow... I am in fallback mode right now, so I can answer common questions about Bob, design, engineering, art, music, research, AI, and some physical computing topics. If you ask something very specific and I do not have the facts, I will tell you honestly, purr. You can also add your own API key in Settings if you want a fuller live answer.",
       projects: []
     };
   }
@@ -917,23 +1030,6 @@
     }, "Claude request failed.");
   }
 
-  async function callProxyStream(proxyUrl, onTextChunk) {
-    const response = await fetch(proxyUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        provider: getStoredProvider(),
-        model: getProviderConfig(getStoredProvider()).model,
-        systemPrompt: SYSTEM_PROMPT,
-        contents: buildConversationContents()
-      })
-    });
-
-    return readGeminiStream(response, onTextChunk);
-  }
-
   function setBusy(isBusy) {
     elements.sendButton.disabled = isBusy;
     elements.input.disabled = isBusy;
@@ -945,7 +1041,6 @@
     const trimmed = text.trim();
     const provider = getStoredProvider();
     const providerConfig = getProviderConfig(provider);
-    const proxyUrl = getStoredProxyUrl();
     const apiKey = getStoredApiKey(provider);
 
     if (!trimmed) {
@@ -963,22 +1058,16 @@
     };
     state.messages.push(assistantMessage);
     renderMessages();
+    saveChatState();
     elements.input.value = "";
-    setStatus(proxyUrl ? "Trying Vercel proxy..." : apiKey ? "Trying " + providerConfig.label + "..." : "Using fallback mode...");
+    setStatus(apiKey ? "Trying " + providerConfig.label + "..." : "Using fallback mode...");
     setBusy(true);
 
     try {
       let finalRawText = "";
       let projects = [];
 
-      if (proxyUrl) {
-        assistantMessage.pending = false;
-        renderMessages();
-        finalRawText = await callProxyStream(proxyUrl, function (chunkText, fullText) {
-          updateStreamingAssistantMessage(assistantMessage, fullText);
-        });
-        projects = parseProjectsFromRaw(finalRawText);
-      } else if (apiKey) {
+      if (apiKey) {
         assistantMessage.pending = false;
         renderMessages();
         if (provider === "gemini") {
@@ -1003,6 +1092,7 @@
         renderMessages();
         updatePreview(fallbackOnly.projects);
         await animateAssistantMessage(fallbackOnly.answer);
+        saveChatState();
         setStatus("Fallback reply generated.");
         return;
       }
@@ -1015,9 +1105,8 @@
       assistantMessage.pending = false;
       renderMessages();
       updatePreview(projects);
-      if (proxyUrl) {
-        setStatus("Reply streamed through the Vercel proxy.");
-      } else if (apiKey) {
+      saveChatState();
+      if (apiKey) {
         setStatus("Reply streamed through " + providerConfig.label + ".");
       }
     } catch (error) {
@@ -1026,6 +1115,7 @@
       renderMessages();
       updatePreview(fallback.projects);
       await animateAssistantMessage(fallback.answer);
+      saveChatState();
       setStatus("Live request failed, so Bob's Cat switched to a fallback reply.");
       window.console.error(error);
     } finally {
@@ -1035,7 +1125,9 @@
 
   function bindEvents() {
     elements.saveSettingsButton.addEventListener("click", saveSettings);
+    elements.deleteApiKeyButton.addEventListener("click", deleteStoredApiKey);
     elements.clearChatButton.addEventListener("click", resetChat);
+    elements.closeSettingsButton.addEventListener("click", closeSettings);
     elements.providerSelect.addEventListener("change", updateApiKeyField);
 
     elements.form.addEventListener("submit", function (event) {
@@ -1062,17 +1154,17 @@
     });
   }
 
-  function init() {
+  async function init() {
+    window.localStorage.removeItem("bob-cat-proxy-url");
     elements.providerSelect.value = getStoredProvider();
-    elements.proxyUrlInput.value = getStoredProxyUrl();
     updateApiKeyField();
-    renderMessages();
-    renderPreview();
     bindEvents();
 
-    if (getStoredProxyUrl()) {
-      setStatus("Vercel proxy URL loaded from this browser.");
-      return;
+    if (loadStoredChatState()) {
+      renderMessages();
+      renderPreview();
+    } else {
+      await showWelcomeMessage(true);
     }
 
     if (getStoredApiKey(getStoredProvider())) {

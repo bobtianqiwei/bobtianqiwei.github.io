@@ -112,7 +112,7 @@ body {
   justify-content: center;
   align-items: stretch;
   overflow: hidden;
-  transition: grid-template-columns 320ms ease, gap 320ms ease;
+  transition: grid-template-columns 1000ms ease, gap 1000ms ease;
 }
 
 .bob-cat-chat-panel,
@@ -127,7 +127,7 @@ body {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  transition: width 320ms ease, max-width 320ms ease, transform 320ms ease, margin 320ms ease;
+  transition: width 1000ms ease, max-width 1000ms ease, transform 1000ms ease, margin 1000ms ease;
   overflow: hidden;
 }
 
@@ -237,6 +237,10 @@ html[data-theme="dark"] .bob-cat-key-field select:focus {
   gap: 8px;
 }
 
+.bob-cat-toolbar-actions {
+  margin-top: 10px;
+}
+
 .bob-cat-primary-button,
 .bob-cat-secondary-button,
 .bob-cat-chip,
@@ -270,7 +274,7 @@ html[data-theme="dark"] .bob-cat-key-field select:focus {
 .bob-cat-secondary-button,
 .bob-cat-chip,
 .bob-cat-preview-tab {
-  padding: 8px 10px;
+  padding: 4px 8px;
   font-size: 13px;
   border-radius: 0;
 }
@@ -439,6 +443,69 @@ html[data-theme="dark"] .bob-cat-loading-dot {
   margin-top: 12px;
 }
 
+.bob-cat-message-body ul,
+.bob-cat-message-body ol {
+  margin: 0;
+  padding-left: 22px;
+  color: var(--bob-cat-text);
+}
+
+.bob-cat-message-body p + ul,
+.bob-cat-message-body p + ol,
+.bob-cat-message-body ul + p,
+.bob-cat-message-body ol + p,
+.bob-cat-message-body ul + ul,
+.bob-cat-message-body ol + ol {
+  margin-top: 12px;
+}
+
+.bob-cat-message-body li + li {
+  margin-top: 6px;
+}
+
+.bob-cat-message-body code {
+  padding: 1px 5px;
+  border: 1px solid var(--bob-cat-border);
+  background: rgba(0, 0, 0, 0.03);
+  font-family: "SFMono-Regular", "Menlo", "Consolas", monospace;
+  font-size: 0.92em;
+}
+
+html[data-theme="dark"] .bob-cat-message-body code {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bob-cat-message-body pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--bob-cat-border);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.bob-cat-message-body p + pre,
+.bob-cat-message-body pre + p,
+.bob-cat-message-body ul + pre,
+.bob-cat-message-body ol + pre {
+  margin-top: 12px;
+}
+
+html[data-theme="dark"] .bob-cat-message-body pre {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.bob-cat-message-body pre code {
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.bob-cat-message-body a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .bob-cat-composer {
   margin-top: 10px;
   flex-shrink: 0;
@@ -504,7 +571,7 @@ html[data-theme="dark"] .bob-cat-loading-dot {
   opacity: 0;
   transform: translateX(40px) scale(0.985);
   pointer-events: none;
-  transition: opacity 320ms ease, transform 320ms ease;
+  transition: opacity 1000ms ease, transform 1000ms ease;
 }
 
 .bob-cat-page.preview-active .bob-cat-preview-panel {
