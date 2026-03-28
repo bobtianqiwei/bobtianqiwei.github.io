@@ -9,6 +9,7 @@
   const themeStylesheetPath = "/css/theme-toggle.css";
   const themeStylesheetId = "site-theme-stylesheet";
   const bobCatWidgetStyleId = "bob-cat-widget-styles";
+  const utilityPanelAnimationMs = 520;
   const systemDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
 
   function normalizePath(pathname) {
@@ -196,7 +197,7 @@
       ".site-utility-stack .site-utility-button.site-avatar-button img.back-to-top-image{object-fit:cover;filter:none !important;}",
       ".site-utility-stack .site-utility-icon{display:block;flex-shrink:0;width:22px;height:22px;margin-top:11px;margin-right:0;margin-left:0;position:relative;z-index:1;stroke:currentColor;fill:none;transition:color .48s ease,stroke .48s ease;}",
       ".site-utility-stack .site-settings-trigger .site-utility-icon{fill:none;stroke:currentColor;stroke-width:1.7;}",
-      ".site-utility-panel{position:fixed;right:15px;border:1px solid rgba(23,23,23,.1);background:rgba(255,255,255,.96);box-shadow:0 18px 50px rgba(23,23,23,.12);backdrop-filter:blur(16px);opacity:0;transform:translateY(18px) scale(.985);pointer-events:none;transition:opacity .24s ease,transform .24s ease;overflow:hidden;display:flex;flex-direction:column;}",
+      ".site-utility-panel{position:fixed;right:15px;border:1px solid rgba(23,23,23,.1);background:rgba(255,255,255,.96);box-shadow:0 18px 50px rgba(23,23,23,.12);backdrop-filter:blur(16px);opacity:0;transform:translateX(26px) scale(.985);transform-origin:bottom right;pointer-events:none;transition:opacity .52s cubic-bezier(.22,1,.36,1),transform .52s cubic-bezier(.22,1,.36,1);overflow:hidden;display:flex;flex-direction:column;will-change:opacity,transform;}",
       "html[data-theme='dark'] .site-utility-panel{border-color:rgba(255,255,255,.1);background:rgba(24,24,24,.96);box-shadow:0 18px 50px rgba(0,0,0,.28);}",
       ".site-utility-stack[data-bobcat-enabled='false'] .bob-cat-widget-trigger{display:none;}",
       ".site-utility-stack.is-bob-open .bob-cat-widget-panel,.site-utility-stack.is-settings-open .site-settings-panel{opacity:1;transform:translateY(0) scale(1);pointer-events:auto;}",
@@ -362,8 +363,11 @@
         frame.setAttribute("src", buildBobCatWidgetSrc());
       }
       panel.hidden = false;
+      void panel.offsetWidth;
       window.requestAnimationFrame(function () {
-        root.classList.add("is-bob-open");
+        window.requestAnimationFrame(function () {
+          root.classList.add("is-bob-open");
+        });
       });
       positionUtilityStack(root);
     }
@@ -374,15 +378,18 @@
         if (!root.classList.contains("is-bob-open")) {
           panel.hidden = true;
         }
-      }, 240);
+      }, utilityPanelAnimationMs);
     }
 
     function openSettings() {
       closePanel();
       syncSettingsButtons();
       settingsPanel.hidden = false;
+      void settingsPanel.offsetWidth;
       window.requestAnimationFrame(function () {
-        root.classList.add("is-settings-open");
+        window.requestAnimationFrame(function () {
+          root.classList.add("is-settings-open");
+        });
       });
       positionUtilityStack(root);
     }
@@ -393,7 +400,7 @@
         if (!root.classList.contains("is-settings-open")) {
           settingsPanel.hidden = true;
         }
-      }, 240);
+      }, utilityPanelAnimationMs);
     }
 
     backToTopTrigger.addEventListener("click", function () {
