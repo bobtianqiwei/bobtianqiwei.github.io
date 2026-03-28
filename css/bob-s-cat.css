@@ -84,23 +84,29 @@ body {
   color: var(--bob-cat-text);
   font-family: "Montserrat", "Open Sans", "Helvetica Neue", Arial, sans-serif;
   font-size: clamp(1.5rem, 2.8vw, 2.1rem);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.03em;
   line-height: 1.02;
 }
 
-.bob-cat-subtitle,
 .bob-cat-status,
 .bob-cat-message-body p,
 .bob-cat-chip {
   font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
 }
 
-.bob-cat-subtitle {
-  margin: 5px 0 0;
-  color: var(--bob-cat-muted);
-  font-size: 13px;
-  line-height: 1.45;
+.bob-cat-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.bob-cat-avatar {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  flex-shrink: 0;
 }
 
 .bob-cat-layout {
@@ -122,12 +128,13 @@ body {
 }
 
 .bob-cat-chat-panel {
-  width: min(100%, 960px);
+  width: 100%;
+  max-width: 960px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   min-width: 0;
-  transition: width 1000ms ease, max-width 1000ms ease, transform 1000ms ease, margin 1000ms ease;
+  justify-self: center;
   overflow: hidden;
 }
 
@@ -135,9 +142,27 @@ body {
   grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.7fr);
 }
 
+.bob-cat-page.preview-entering .bob-cat-layout {
+  grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1.7fr);
+}
+
+.bob-cat-page.preview-collapsing .bob-cat-layout {
+  grid-template-columns: minmax(0, 1fr) 0fr;
+  gap: 0;
+}
+
 .bob-cat-page.preview-active .bob-cat-chat-panel {
-  width: 100%;
-  margin: 0;
+  justify-self: stretch;
+  max-width: none;
+}
+
+.bob-cat-page.preview-entering .bob-cat-chat-panel {
+  justify-self: stretch;
+  max-width: none;
+}
+
+.bob-cat-page.preview-collapsing .bob-cat-chat-panel {
+  justify-self: stretch;
   max-width: none;
 }
 
@@ -578,6 +603,12 @@ html[data-theme="dark"] .bob-cat-message-body pre {
   opacity: 1;
   transform: translateX(0) scale(1);
   pointer-events: auto;
+}
+
+.bob-cat-page.preview-collapsing .bob-cat-preview-panel {
+  opacity: 0;
+  transform: translateX(40px) scale(0.985);
+  pointer-events: none;
 }
 
 .bob-cat-preview-tabs {

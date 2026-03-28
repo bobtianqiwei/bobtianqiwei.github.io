@@ -227,7 +227,9 @@
     ],
     activeProjectSlug: null,
     previewSlugs: [],
-    previewVisible: false
+    previewVisible: false,
+    previewHideTimer: null,
+    previewShowTimer: null
   };
 
   const elements = {
@@ -631,14 +633,30 @@
       return;
     }
 
+    if (state.previewHideTimer) {
+      window.clearTimeout(state.previewHideTimer);
+      state.previewHideTimer = null;
+    }
+
+    if (state.previewShowTimer) {
+      window.clearTimeout(state.previewShowTimer);
+      state.previewShowTimer = null;
+    }
+
     state.previewVisible = isVisible;
 
     if (isVisible) {
       elements.previewPanel.hidden = false;
+      elements.page.classList.remove("preview-collapsing");
+      elements.page.classList.add("preview-entering");
       window.requestAnimationFrame(function () {
         window.requestAnimationFrame(function () {
           if (state.previewVisible) {
             elements.page.classList.add("preview-active");
+            state.previewShowTimer = window.setTimeout(function () {
+              elements.page.classList.remove("preview-entering");
+              state.previewShowTimer = null;
+            }, 1000);
           }
         });
       });
@@ -646,11 +664,15 @@
     }
 
     elements.page.classList.remove("preview-active");
+    elements.page.classList.remove("preview-entering");
+    elements.page.classList.add("preview-collapsing");
 
-    window.setTimeout(function () {
+    state.previewHideTimer = window.setTimeout(function () {
       if (!state.previewVisible) {
+        elements.page.classList.remove("preview-collapsing");
         elements.previewPanel.hidden = true;
       }
+      state.previewHideTimer = null;
     }, 1000);
   }
 
