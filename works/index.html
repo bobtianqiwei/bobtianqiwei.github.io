@@ -36,6 +36,24 @@
     mix-blend-mode: normal !important;
     background: transparent !important;
   }
+
+  .cropkit-placeholder-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8%;
+    background: #f0f0f0;
+    color: #222222;
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(1.05rem, 2.3vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
   </style>
 </head>
 <body class="body-4">
@@ -1812,7 +1830,7 @@
       </div>
       <div class="w-col w-col-2">
         <a href="/works/experiments/cropkit/" class="project-link-block w-inline-block">
-          <div class="w-container"><img src="/works/experiments/cropkit/cover.svg" loading="lazy" alt="" class="image-100">
+          <div class="w-container"><div class="image-100 cropkit-placeholder-card">cropkit</div>
             <div class="work-page-project-name">cropkit</div>
           </div>
         </a>

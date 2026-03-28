@@ -1251,7 +1251,9 @@ module.exports = {
       "section": "EXPERIMENTS",
       "href": "/works/experiments/cropkit/",
       "className": "project-link-block w-inline-block",
-      "image": "/works/experiments/cropkit/cover.svg",
+      "image": {
+        "placeholderText": "cropkit"
+      },
       "contentHtml": "cropkit",
       "lightbox": null,
       "order": 5

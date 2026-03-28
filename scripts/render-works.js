@@ -69,6 +69,24 @@ ${themeBootstrapScript()}
     mix-blend-mode: normal !important;
     background: transparent !important;
   }
+
+  .cropkit-placeholder-card {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8%;
+    background: #f0f0f0;
+    color: #222222;
+    font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+    font-size: clamp(1.05rem, 2.3vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.1;
+    text-align: center;
+    text-wrap: balance;
+    overflow-wrap: anywhere;
+  }
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -80,6 +98,9 @@ ${scripts()}
 }
 
 function renderImage(imgSrc, extraClass = "image-100") {
+  if (imgSrc && typeof imgSrc === "object" && imgSrc.placeholderText) {
+    return `<div class="${extraClass} cropkit-placeholder-card">${imgSrc.placeholderText}</div>`;
+  }
   return `<img src="${imgSrc}" loading="lazy" alt="" class="${extraClass}">`;
 }
 
