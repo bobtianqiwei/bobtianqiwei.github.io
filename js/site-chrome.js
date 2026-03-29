@@ -108,6 +108,11 @@
 
     const eligible = document.documentElement.dataset.themeEnabled === "true";
     toggles.forEach(function (toggle) {
+      if (toggle.classList.contains("site-utility-source")) {
+        toggle.hidden = true;
+        return;
+      }
+
       toggle.hidden = !eligible;
 
       if (!eligible) {
