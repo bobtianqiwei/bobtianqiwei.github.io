@@ -30,7 +30,7 @@ window.VISION_REFLECTION_CONTENT = {
         "In 2023 when I graduated, Shengmen and I held a small concert together at the Tsinghua University Music Library. We opened the concert with a four hand of Bach’s BWV 106 (God’s time is the very best time). Later, at the graduation concert of the Student Art Troupe Clavier Team, we played an encore on two pianos at New Tsinghua School Concert Hall, my own arrangement of Zhao Jiping’s Lieder, Virtues of Orchid (《幽蘭操》). I kept the final lyrics:",
         "“蘭之猗猗，揚揚其香。眾香拱之，幽幽其芳。” (“The orchids flourish, their fragrance drifting high. Surrounded by other flowers, yet their scent remains pure and deep.”)",
         "as a farewell to my undergraduate years.",
-        "Shengmen was reported missing in Feb 2025 in Netherlands, later found suicided in a lake near his home. His Goldberg Variation 13 is still my bedtime alarm. It always take me back t0 2020, in the concert hall under the glow of a phone flashlight."
+        "Shengmen was reported missing in Feb 2025 in Netherlands, later found suicided in a lake near his home. His Goldberg Variation 13 is still my bedtime alarm. It always take me back to the concert hall under the glow of a phone flashlight."
       ],
       video: {
         src: "https://www.youtube.com/embed/qbW99RrqNqw?si=VH5fy08xDDw6F0YP",
