@@ -559,6 +559,11 @@
           element.classList.add("is-visible");
         });
         document.documentElement.dataset.pageFade = "done";
+        window.setTimeout(function () {
+          items.forEach((element) => {
+            element.style.transitionDelay = "";
+          });
+        }, 220);
       });
     });
   }
