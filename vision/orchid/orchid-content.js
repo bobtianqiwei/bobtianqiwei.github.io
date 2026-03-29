@@ -15,7 +15,7 @@ window.VISION_REFLECTION_CONTENT = {
     {
       paragraphs: [
         "Shengmen Luo was my best friend in my undergraduate years.",
-        "In 2019, I just joined the Tsinghua University Student Art Troupe, I wasn’t very into Bach. Then I met Shengmen. We always have late night snacks together in Taoli dining hall and sit on the playground talking for hours. He took me through the back entrance of Meng Minwei Concert Hall, he use only the flashlight on his phone, secretly played the grand piano for me and explain the beauty of Bach’s music."
+        "In 2019, I just joined the Tsinghua University Student Art Troupe, I wasn’t very into Bach. Then I met Shengmen. We always have late night snacks together in Taoli dining hall and sit on the playground talking for hours. He took me through the back entrance of Meng Minwei Concert Hall, using the flashlight on his phone, played the grand piano for me and explain Bach’s music."
       ],
       audio: {
         src: "/vision/orchid/Goldberg_var13_Shengmen_Luo.mp3",
