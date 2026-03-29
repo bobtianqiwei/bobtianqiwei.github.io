@@ -58,7 +58,14 @@ window.VISION_CONTENT_DATA = {
     {
       title: "The External Brain We've All Adored",
       author: "Bob Tianqi Wei",
+      date: "Nov 28, 2023",
       href: "https://youtu.be/vs9UzEYcjiY"
+    },
+    {
+      title: "Virtues of the Silent Orchid",
+      author: "Bob Tianqi Wei",
+      date: "Mar 29, 2026",
+      href: "/vision/orchid/"
     }
   ]
 };

@@ -51,8 +51,12 @@
     var link = document.createElement("a");
     link.className = "vision-resource-link";
     link.href = item.href;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    var isExternal = /^https?:\/\//.test(item.href || "");
+
+    if (isExternal) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
 
     var title = document.createElement("div");
     title.className = "vision-resource-title";
@@ -60,7 +64,7 @@
 
     var author = document.createElement("div");
     author.className = "vision-resource-meta";
-    author.textContent = item.author;
+    author.textContent = [item.author, item.date].filter(Boolean).join(" · ");
 
     link.appendChild(title);
     link.appendChild(author);
@@ -74,8 +78,18 @@
       return;
     }
 
+    var listItems = items.slice();
+
+    if (containerId === "vision-reflection-list") {
+      listItems.sort(function (a, b) {
+        var timeA = Date.parse(a.date || "") || 0;
+        var timeB = Date.parse(b.date || "") || 0;
+        return timeB - timeA;
+      });
+    }
+
     container.innerHTML = "";
-    items.forEach(function (item) {
+    listItems.forEach(function (item) {
       container.appendChild(buildCard(item));
     });
   }
