@@ -225,8 +225,10 @@
       ".site-settings-option .theme-toggle{align-self:flex-start;}",
       ".site-settings-option .theme-toggle-track::before{content:'☀';}",
       ".site-settings-option .theme-toggle-track::after{content:'☾';}",
+      ".site-settings-option .site-bobcat-toggle .theme-toggle-track::before,.site-settings-option .site-bobcat-toggle .theme-toggle-track::after{z-index:2;}",
       ".site-settings-option .site-bobcat-toggle .theme-toggle-track::before{content:'On';font-size:10px;letter-spacing:.02em;left:2px;}",
       ".site-settings-option .site-bobcat-toggle .theme-toggle-track::after{content:'Off';font-size:10px;letter-spacing:.02em;right:2px;}",
+      ".site-settings-option .site-bobcat-toggle .theme-toggle-thumb{position:relative;z-index:1;}",
       "html[data-theme-enabled='true'] .site-settings-option .site-bobcat-toggle .theme-toggle-thumb{transform:translateX(24px) !important;}",
       "html[data-theme-enabled='true'] .site-settings-option .site-bobcat-toggle[aria-pressed='true'] .theme-toggle-thumb{transform:translateX(0) !important;}",
       "@media screen and (max-width:767px){.bob-cat-widget-panel{right:9px;width:calc(100vw - 18px);height:min(64dvh,520px);}.site-settings-panel{right:9px;width:calc(100vw - 18px);}}"
