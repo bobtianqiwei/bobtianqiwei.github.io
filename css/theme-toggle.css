@@ -122,6 +122,15 @@ html[data-theme-enabled="true"] .navigation-items {
   text-shadow: none;
 }
 
+html[data-theme-enabled="true"] .menu-button {
+  color: var(--theme-text);
+  transition: var(--theme-transition);
+}
+
+html[data-theme-enabled="true"][data-theme="dark"] .menu-icon {
+  filter: brightness(0) invert(1);
+}
+
 html[data-theme-enabled="true"] body,
 html[data-theme-enabled="true"] p,
 html[data-theme-enabled="true"] label,
