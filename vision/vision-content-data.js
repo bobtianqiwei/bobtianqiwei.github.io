@@ -66,6 +66,12 @@ window.VISION_CONTENT_DATA = {
       author: "Bob Tianqi Wei",
       date: "Mar 29, 2026",
       href: "/vision/orchid/"
+    },
+    {
+      title: "Pavane pour une infante défunte",
+      author: "Bob Tianqi Wei",
+      date: "Jun 2, 2026",
+      href: "/vision/pavane/"
     }
   ]
 };
