@@ -76,6 +76,29 @@ module.exports = {
       eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   },
+  childPages: [
+    {
+      slug: "privacy",
+      content: {
+        title: "Privacy",
+        description: "A short description for this child page.",
+        hero: {
+          headline: "",
+          metaLines: []
+        },
+        sections: []
+      },
+      views: {
+        works: {
+          outputPath: "works/new-project/privacy/index.html",
+          metaTitle: "New Project - Privacy",
+          backHref: "/works/new-project/",
+          backLabel: "BACK TO PROJECT",
+          layout: "works-case-study"
+        }
+      }
+    }
+  ],
   notes: {
     // After adding or changing views, update every homepage/index entry that surfaces this project.
     // This includes repeated appearances across works sections and any design/swe homepage links.
