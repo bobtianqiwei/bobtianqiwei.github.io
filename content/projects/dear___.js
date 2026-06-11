@@ -52,26 +52,30 @@ module.exports = {
           },
           {
             title: "4. Exhibition submissions",
-            bodyHtml: "<p>If you choose to submit memories to a dear___ exhibition, the app may prepare a submission package that includes selected materials, such as:</p><ul><li>Exported memory cards</li><li>Masked images</li><li>Optional original photos</li><li>Diary text</li><li>Date information</li><li>Music information</li><li>Consent information</li></ul><p>Submission is optional. Before submission, you will be shown what materials may be included. Original photos should not be submitted unless you explicitly choose to include them.</p><p>Exhibition submissions may be reviewed, stored, and displayed as part of the dear___ exhibition only according to the permissions you provide in the submission form.</p>"
+            bodyHtml: "<p>If you choose to submit memories to a dear___ exhibition, the app may prepare a local submission package as a .zip file. You choose which memories to include, save the .zip file, and manually upload it through a Google Form.</p><p>The package may include selected materials, such as:</p><ul><li>Exported memory cards</li><li>Masked images or cover masks</li><li>Optional original photos</li><li>Diary text</li><li>Date information</li><li>Music information or audio files</li><li>Consent information</li><li>A metadata JSON file describing the submission</li></ul><p>Submission is optional. Before creating the package, you will be shown what materials may be included. Original photos should not be submitted unless you explicitly choose to include them. If you choose to let viewers erase the cover, the package may include both the original photo and its cover mask. If you choose not to include the original photo, the app may include a covered image instead.</p><p>Exhibition submissions may be reviewed, stored, and displayed as part of the dear___ exhibition only according to the permissions you provide in the submission form.</p>"
           },
           {
             title: "5. Third-party services",
-            bodyHtml: "<p>If you submit memories through a Google Form, email, or another external service, your submitted materials may also be handled according to that service's privacy policy.</p><p>dear___ does not use advertising SDKs and does not track you across apps or websites.</p>"
+            bodyHtml: "<p>If you submit memories through a Google Form, email, or another external service, your submitted materials may also be handled according to that service's privacy policy. If the Google Form asks for contact information, such as your name or email address, that information is provided by you through Google Form.</p><p>If you connect Apple Music, dear___ may store Apple Music song information, such as song IDs, titles, and artist names, as memory metadata. Apple Music search and playback are handled by Apple MusicKit. dear___ does not receive your Apple Music account credentials.</p><p>dear___ does not use advertising SDKs and does not track you across apps or websites.</p>"
           },
           {
-            title: "6. Data deletion",
+            title: "6. iCloud sync",
+            bodyHtml: "<p>If you turn on iCloud sync, your album data may be copied to your own iCloud account so it can sync through Apple's services. This sync is controlled by your Apple ID, iCloud settings, and Apple's privacy practices. dear___ does not operate its own iCloud server and does not directly access the contents of your iCloud account.</p>"
+          },
+          {
+            title: "7. In-app purchases",
+            bodyHtml: "<p>dear___ may offer optional consumable in-app purchases to support the project. Purchases are processed by Apple. dear___ does not receive your payment card details.</p>"
+          },
+          {
+            title: "8. Data deletion",
             bodyHtml: "<p>You can delete local memories inside the app by deleting the relevant memory or removing the app from your device.</p><p>If you submitted materials to an exhibition and want to request deletion, contact us at <a href=\"mailto:roberttqwei@gmail.com\" class=\"link-in-paragraph\">roberttqwei@gmail.com</a>.</p>"
           },
           {
-            title: "7. Children",
-            bodyHtml: "<p>dear___ is not designed for children under 13. Please do not submit personal information from children without appropriate permission.</p>"
-          },
-          {
-            title: "8. Changes to this policy",
+            title: "9. Changes to this policy",
             bodyHtml: "<p>We may update this Privacy Policy if the app changes. The updated version will be posted on this page with a new Last updated date.</p>"
           },
           {
-            title: "9. Contact",
+            title: "10. Contact",
             bodyHtml: "<p>For privacy questions, deletion requests, or support, contact:</p><p><a href=\"mailto:roberttqwei@gmail.com\" class=\"link-in-paragraph\">roberttqwei@gmail.com</a></p>"
           }
         ]
@@ -114,7 +118,15 @@ module.exports = {
               },
               {
                 title: "How do exhibition submissions work?",
-                bodyHtml: "<p>If you choose to submit to an exhibition, dear___ may create a submission package containing selected memory materials. You will be shown what may be included before submission.</p>"
+                bodyHtml: "<p>If you choose to submit to an exhibition, dear___ may create a .zip submission package containing selected memory materials. You choose which memories and materials to include, save the .zip file, and manually upload it through the Google Form.</p>"
+              },
+              {
+                title: "How does iCloud sync work?",
+                bodyHtml: "<p>If you turn on iCloud sync, your album data may sync through your own iCloud account. You can turn this off in the app settings.</p>"
+              },
+              {
+                title: "How do support purchases work?",
+                bodyHtml: "<p>Optional support purchases are processed by Apple. dear___ does not receive your payment card details.</p>"
               },
               {
                 title: "How do I request removal of an exhibition submission?",
