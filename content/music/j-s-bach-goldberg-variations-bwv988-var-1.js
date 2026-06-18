@@ -1,7 +1,7 @@
 // content/music/j-s-bach-goldberg-variations-bwv988-var-1.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "j-s-bach-goldberg-variations-bwv988-var-1",
-  "column": 1,
+  "column": 2,
   "order": 2,
   "href": "https://youtu.be/GoxGp-2o5mY?si=sTIMAlQIdNJlILzx",
   "image": "/images/988.1.jpg",

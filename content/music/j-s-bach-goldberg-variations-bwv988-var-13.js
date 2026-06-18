@@ -1,7 +1,7 @@
 // content/music/j-s-bach-goldberg-variations-bwv988-var-13.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "j-s-bach-goldberg-variations-bwv988-var-13",
-  "column": 1,
+  "column": 2,
   "order": 1,
   "href": "https://youtu.be/PiTuADxZYjY",
   "image": "/images/goldberg-var.13-New-Tsinghua-School.jpg",
