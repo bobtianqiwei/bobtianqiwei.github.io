@@ -1,7 +1,7 @@
 // content/music/what-a-friend-we-have-in-jesus-acapella.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "what-a-friend-we-have-in-jesus-acapella",
-  "column": 1,
+  "column": 2,
   "order": 4,
   "href": "https://youtu.be/Y4GNEGcCB0g",
   "image": "/images/what-a-friend.jpg",

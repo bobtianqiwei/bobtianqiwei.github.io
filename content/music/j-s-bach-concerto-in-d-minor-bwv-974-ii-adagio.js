@@ -1,8 +1,8 @@
 // content/music/j-s-bach-concerto-in-d-minor-bwv-974-ii-adagio.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "j-s-bach-concerto-in-d-minor-bwv-974-ii-adagio",
-  "column": 2,
-  "order": 3,
+  "column": 0,
+  "order": 4,
   "href": "https://youtu.be/F6NvoJlciis",
   "image": "/images/_DSC9302.jpg",
   "imageClass": "music-image",

@@ -1,8 +1,8 @@
 // content/music/j-s-bach-goldberg-variations-bwv988-aria.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "j-s-bach-goldberg-variations-bwv988-aria",
-  "column": 2,
-  "order": 4,
+  "column": 0,
+  "order": 5,
   "href": "https://youtu.be/mKBbREgokv0",
   "image": "/images/_DSC9323.jpg",
   "imageClass": "music-image",

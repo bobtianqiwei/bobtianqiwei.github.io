@@ -1,7 +1,7 @@
 // content/music/j-s-bach-keyboard-concerto-no-1-in-d-minor-bwv-1052-i-allegro-in-metal-computer-.js developed by Bob Tianqi Wei
 module.exports = {
   "slug": "j-s-bach-keyboard-concerto-no-1-in-d-minor-bwv-1052-i-allegro-in-metal-computer-",
-  "column": 0,
+  "column": 1,
   "order": 5,
   "href": "https://youtu.be/5vYctqTg-pw",
   "image": "/images/IMG_2225.JPG",
