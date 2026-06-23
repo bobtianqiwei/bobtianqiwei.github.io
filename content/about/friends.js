@@ -51,11 +51,6 @@ window.aboutFriends = [
     descriptionHtml: "Artist <br>Computer Scientist"
   },
   {
-    href: "https://www.linkedin.com/in/jiashu-liu-b129a7190",
-    name: "Jiashu Liu",
-    descriptionHtml: "Computer Scientist"
-  },
-  {
     href: "https://jiayi.ink",
     name: "Jiayi Liu",
     descriptionHtml: "Designer<br>Artist"
@@ -64,11 +59,6 @@ window.aboutFriends = [
     href: "https://katherine-liu.com/",
     name: "Katherine Liu",
     descriptionHtml: "Creative Technologist <br>UX Designer"
-  },
-  {
-    href: "https://scholar.google.com/citations?user=_Y93NacAAAAJ&amp;hl=en&amp;oi=ao",
-    name: "Kondo Gen",
-    descriptionHtml: "Civil Engineer<br>"
   },
   {
     href: "https://lilucy.at/",
@@ -94,11 +84,6 @@ window.aboutFriends = [
     href: "https://shmuh.co/",
     name: "Shm Garanganao Almeda",
     descriptionHtml: "Artist <br>Computer Scientist"
-  },
-  {
-    href: "https://www.stephaniewang.design/",
-    name: "Stephanie Wang",
-    descriptionHtml: "UX Designer<br>"
   },
   {
     href: "https://yutianyu.design/",

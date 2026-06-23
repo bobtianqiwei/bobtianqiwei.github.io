@@ -9,10 +9,6 @@ window.aboutCollaborations = [
     nameHtml: "Caseysimone Ballestas"
   },
   {
-    href: "https://design.berkeley.edu/profiles/chris-myers",
-    nameHtml: "Chris Myers"
-  },
-  {
     href: "https://www.createanything.com/",
     image: {
       src: "/images/Anything-logo.svg",
@@ -41,15 +37,7 @@ window.aboutCollaborations = [
     nameHtml: "sabbatical."
   },
   {
-    href: "https://shmuh.co/",
-    nameHtml: "Shm Garanganao Almeda"
-  },
-  {
     href: "https://www.ischool.berkeley.edu/people/stefanie-hutka",
     nameHtml: "Stefanie Hutka"
-  },
-  {
-    href: "https://yutianyu.design/",
-    nameHtml: "Tianyu Yu"
   }
 ];
