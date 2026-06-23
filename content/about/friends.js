@@ -31,6 +31,11 @@ window.aboutFriends = [
     descriptionHtml: "Industrial Designer<br>Creative Technologist<br>"
   },
   {
+    href: "https://danielchen0.github.io/",
+    name: "Daniel Chen",
+    descriptionHtml: "AI Researcher"
+  },
+  {
     href: "https://guang-yng.github.io/",
     name: "Guang Yang",
     descriptionHtml: "AI for Music Researcher<br>Computer Scientist<br>"
