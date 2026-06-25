@@ -217,6 +217,30 @@
       }).join("");
     }
 
+    function renderNews(container, items, expanded) {
+      const visibleCount = expanded ? items.length : Math.min(items.length, 5);
+      const visibleItems = items.slice(0, visibleCount);
+      const newsHtml = visibleItems.map(function (item) {
+        return "- " + item;
+      }).join("<br>");
+
+      if (items.length <= 5) {
+        container.innerHTML = newsHtml;
+        return;
+      }
+
+      const buttonText = expanded ? "Show less" : "Show more";
+      const buttonIcon = expanded ? "&#8593;" : "&#8595;";
+      container.innerHTML = newsHtml + '<br><button type="button" id="about-news-toggle" class="about-news-toggle"><span>' + buttonText + '</span><span class="about-news-toggle-icon" aria-hidden="true">' + buttonIcon + "</span></button>";
+
+      const toggle = document.getElementById("about-news-toggle");
+      if (toggle) {
+        toggle.addEventListener("click", function () {
+          renderNews(container, items, !expanded);
+        });
+      }
+    }
+
     const profile = window.aboutProfile || null;
     const newsContainer = document.getElementById("about-news-list");
     const items = Array.isArray(window.aboutNewsItems) ? window.aboutNewsItems : [];
@@ -235,9 +259,7 @@
       return;
     }
 
-    newsContainer.innerHTML = items.map(function (item) {
-      return "- " + item;
-    }).join("<br>");
+    renderNews(newsContainer, items, false);
 
     renderCollaborations("about-collaborations-list", collaborations);
     renderFriends("about-friends-list", friends);

@@ -3626,6 +3626,32 @@ figcaption {
   background-color: #cecece;
 }
 
+.about-news-toggle {
+  color: var(--theme-muted, var(--grey1));
+  background: none;
+  border: 0;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  transition: color .2s, opacity .2s;
+}
+
+.about-news-toggle:hover {
+  color: var(--theme-muted, var(--grey1));
+  opacity: .72;
+}
+
+.about-news-toggle-icon {
+  font-size: .9em;
+  line-height: 1;
+}
+
 .container-13 {
   margin-top: auto;
   margin-left: 0;

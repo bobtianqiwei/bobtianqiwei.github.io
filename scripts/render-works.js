@@ -293,20 +293,94 @@ ${renderExperiments(indexSections["EXPERIMENTS"])}
   <script>
   (function () {
     var links = document.querySelectorAll('.works-catalog-link[href^="#"]');
+    var activeAnchorScroll = null;
+
+    function getTargetTop(target) {
+      return Math.max(0, Math.round(target.getBoundingClientRect().top + window.scrollY));
+    }
+
+    function stopActiveAnchorScroll() {
+      if (!activeAnchorScroll) {
+        return;
+      }
+
+      window.cancelAnimationFrame(activeAnchorScroll.frame);
+      activeAnchorScroll.imageListeners.forEach(function (entry) {
+        entry.image.removeEventListener("load", entry.listener);
+      });
+      activeAnchorScroll.cancelListeners.forEach(function (entry) {
+        window.removeEventListener(entry.eventName, entry.listener);
+      });
+      activeAnchorScroll = null;
+    }
+
+    function stabilizeAnchorScroll(target) {
+      stopActiveAnchorScroll();
+
+      var startedAt = performance.now();
+      var imageListeners = [];
+      var cancelListeners = [];
+
+      function align() {
+        var top = getTargetTop(target);
+        var distance = Math.abs(window.scrollY - top);
+
+        if (distance > 1) {
+          window.scrollTo({ top: top, left: 0, behavior: "auto" });
+        }
+
+        if (performance.now() - startedAt > 1800) {
+          stopActiveAnchorScroll();
+          return;
+        }
+
+        if (activeAnchorScroll) {
+          activeAnchorScroll.frame = window.requestAnimationFrame(align);
+        }
+      }
+
+      activeAnchorScroll = {
+        frame: 0,
+        imageListeners: imageListeners,
+        cancelListeners: cancelListeners
+      };
+
+      ["wheel", "touchstart", "keydown"].forEach(function (eventName) {
+        var listener = stopActiveAnchorScroll;
+        window.addEventListener(eventName, listener, { once: true, passive: true });
+        cancelListeners.push({ eventName: eventName, listener: listener });
+      });
+
+      document.querySelectorAll("img").forEach(function (image) {
+        if (image.complete) {
+          return;
+        }
+
+        var listener = function () {
+          if (activeAnchorScroll) {
+            window.scrollTo({ top: getTargetTop(target), left: 0, behavior: "auto" });
+          }
+        };
+
+        image.addEventListener("load", listener, { once: true });
+        imageListeners.push({ image: image, listener: listener });
+      });
+
+      align();
+    }
 
     links.forEach(function (link) {
       link.addEventListener("click", function (event) {
         var href = link.getAttribute("href");
-        var target = href ? document.querySelector(href) : null;
+        var target = href ? document.getElementById(href.slice(1)) : null;
 
         if (!target) {
           return;
         }
 
         event.preventDefault();
-        var top = target.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo(0, Math.max(0, Math.round(top)));
         history.replaceState(null, "", href);
+        stabilizeAnchorScroll(target);
       });
     });
   })();
