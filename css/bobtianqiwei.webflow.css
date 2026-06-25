@@ -3648,8 +3648,20 @@ figcaption {
 }
 
 .about-news-toggle-icon {
-  font-size: .9em;
-  line-height: 1;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  width: .42em;
+  height: .42em;
+  margin-left: 1px;
+  transform: translateY(-.12em) rotate(45deg);
+}
+
+.about-news-toggle-icon.is-up {
+  transform: translateY(.12em) rotate(225deg);
+}
+
+.about-news-date {
+  color: var(--theme-muted, var(--grey1));
 }
 
 .container-13 {

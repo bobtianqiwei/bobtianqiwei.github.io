@@ -221,7 +221,11 @@
       const visibleCount = expanded ? items.length : Math.min(items.length, 5);
       const visibleItems = items.slice(0, visibleCount);
       const newsHtml = visibleItems.map(function (item) {
-        return "- " + item;
+        if (typeof item === "string") {
+          return item;
+        }
+
+        return '<span class="about-news-date">' + item.date + '</span> - ' + item.textHtml;
       }).join("<br>");
 
       if (items.length <= 5) {
@@ -230,8 +234,8 @@
       }
 
       const buttonText = expanded ? "Show less" : "Show more";
-      const buttonIcon = expanded ? "&#8593;" : "&#8595;";
-      container.innerHTML = newsHtml + '<br><button type="button" id="about-news-toggle" class="about-news-toggle"><span>' + buttonText + '</span><span class="about-news-toggle-icon" aria-hidden="true">' + buttonIcon + "</span></button>";
+      const buttonIconClass = expanded ? "about-news-toggle-icon is-up" : "about-news-toggle-icon";
+      container.innerHTML = newsHtml + '<br><button type="button" id="about-news-toggle" class="about-news-toggle"><span>' + buttonText + '</span><span class="' + buttonIconClass + '" aria-hidden="true"></span></button>';
 
       const toggle = document.getElementById("about-news-toggle");
       if (toggle) {
