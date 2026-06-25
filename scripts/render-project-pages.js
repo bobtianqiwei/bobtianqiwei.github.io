@@ -63,76 +63,6 @@ function sharedProjectMediaHead() {
     mix-blend-mode: normal !important;
     background: transparent !important;
   }
-
-  .project-publications {
-    display: flex;
-    flex-direction: column;
-    gap: 34px;
-    margin: 4px 0 8px;
-  }
-
-  .project-publication-entry {
-    padding-top: 2px;
-  }
-
-  .project-publication-title,
-  .project-publication-meta,
-  .project-publication-links,
-  .project-publication-abstract-label,
-  .project-publication-abstract {
-    margin: 0;
-  }
-
-  .project-publication-title {
-    color: var(--theme-text, #171717);
-    font-size: 17px;
-    font-weight: 400;
-    line-height: 1.58;
-  }
-
-  .project-publication-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  .project-publication-meta,
-  .project-publication-links,
-  .project-publication-abstract {
-    color: var(--theme-text, #171717);
-    font-family: Open Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.72;
-  }
-
-  .project-publication-meta,
-  .project-publication-links {
-    margin-top: 4px;
-  }
-
-  .project-publication-links a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.12em;
-  }
-
-  .project-publication-abstract-label {
-    margin-top: 10px;
-    color: var(--theme-text, #171717);
-    font-size: 15px;
-    font-weight: 400;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-  }
-
-  .project-publication-abstract {
-    margin-top: 4px;
-    color: var(--theme-text, #171717);
-    font-family: Open Sans, sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    line-height: 1.72;
-  }
   </style>`;
 }
 
@@ -822,21 +752,7 @@ function renderSweClassicStyles() {
   return `  <script src="/js/classic-status-topbar.js" defer></script>
   <script src="/js/classic-nav.js" defer></script>
   <script src="/js/project-pages-swe-classic.js" defer></script>
-  <link href="/css/project-pages-swe-classic.css" rel="stylesheet" type="text/css">
-  <style>
-  .project-publication-title {
-    font-size: 14px;
-    line-height: 1.55;
-  }
-
-  .project-publication-meta,
-  .project-publication-links,
-  .project-publication-abstract-label,
-  .project-publication-abstract {
-    font-size: 12px;
-    line-height: 1.65;
-  }
-  </style>`;
+  <link href="/css/project-pages-swe-classic.css" rel="stylesheet" type="text/css">`;
 }
 
 function renderSweClassicCardGrid(cards) {
@@ -962,19 +878,6 @@ function designCaseStudyStyles() {
       column-count: 1;
     }
   }
-
-  .project-publication-title {
-    font-size: 17px;
-    line-height: 1.58;
-  }
-
-  .project-publication-meta,
-  .project-publication-links,
-  .project-publication-abstract-label,
-  .project-publication-abstract {
-    font-size: 15px;
-    line-height: 1.7;
-  }
   </style>`;
 }
 
@@ -1076,19 +979,6 @@ function renderWorksCaseStudyStyles() {
       line-height: 1.6;
       column-count: 1;
     }
-  }
-
-  .project-publication-title {
-    font-size: 20px;
-    line-height: 1.45;
-  }
-
-  .project-publication-meta,
-  .project-publication-links,
-  .project-publication-abstract-label,
-  .project-publication-abstract {
-    font-size: 18px;
-    line-height: 1.4;
   }
   </style>`;
 }

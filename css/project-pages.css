@@ -161,6 +161,113 @@
   height: auto;
 }
 
+.project-publications {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  margin: 4px 0 8px;
+  text-align: left;
+}
+
+.project-publication-entry {
+  padding-top: 2px;
+  text-align: left;
+}
+
+.project-publication-title,
+.project-publication-meta,
+.project-publication-links,
+.project-publication-abstract-label,
+.project-publication-abstract {
+  margin: 0;
+  text-align: left;
+}
+
+.project-publication-title {
+  color: var(--theme-text, #171717);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.58;
+}
+
+.project-publication-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-publication-meta,
+.project-publication-links,
+.project-publication-abstract {
+  color: var(--theme-text, #171717);
+  font-family: Open Sans, sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.72;
+}
+
+.project-publication-meta,
+.project-publication-links {
+  margin-top: 4px;
+}
+
+.project-publication-links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.project-publication-abstract-label {
+  margin-top: 10px;
+  color: var(--theme-text, #171717);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.project-publication-abstract {
+  margin-top: 4px;
+}
+
+.work-detail-page-container .project-publication-title {
+  font-size: 20px;
+  line-height: 1.45;
+}
+
+.work-detail-page-container .project-publication-meta,
+.work-detail-page-container .project-publication-links,
+.work-detail-page-container .project-publication-abstract-label,
+.work-detail-page-container .project-publication-abstract {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.design-project-page .project-publication-title {
+  font-size: 17px;
+  line-height: 1.58;
+}
+
+.design-project-page .project-publication-meta,
+.design-project-page .project-publication-links,
+.design-project-page .project-publication-abstract-label,
+.design-project-page .project-publication-abstract {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.page .project-publication-title {
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.page .project-publication-meta,
+.page .project-publication-links,
+.page .project-publication-abstract-label,
+.page .project-publication-abstract {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
 html[data-theme="dark"] .design-project-image-card {
   background: #202020;
 }
