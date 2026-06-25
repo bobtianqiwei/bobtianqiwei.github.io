@@ -6,11 +6,6 @@ window.aboutFriends = [
     descriptionHtml: "Lychee Sushi Mother <br>Best Carillon Partner Ever"
   },
   {
-    href: "https://www.andyshensiyang.com/",
-    name: "Andy Siyang Shen",
-    descriptionHtml: "Interdisciplinary Designer"
-  },
-  {
     href: "https://www.baeuke.com/",
     name: "Baurzhan Abenov",
     descriptionHtml: "Design Engineer<br>Computer Scientist"
