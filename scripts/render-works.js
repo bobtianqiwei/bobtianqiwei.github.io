@@ -20,6 +20,52 @@ function isExternal(href) {
   return /^https?:\/\//.test(href);
 }
 
+function getImageDimensions(src) {
+  if (!src || typeof src !== "string" || !src.startsWith("/images/")) {
+    return null;
+  }
+
+  const imagePath = path.join(repoRoot, src.replace(/^\//, ""));
+
+  if (!fs.existsSync(imagePath)) {
+    return null;
+  }
+
+  const buffer = fs.readFileSync(imagePath);
+
+  if (buffer.length >= 24 && buffer.toString("ascii", 1, 4) === "PNG") {
+    return {
+      width: buffer.readUInt32BE(16),
+      height: buffer.readUInt32BE(20)
+    };
+  }
+
+  if (buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8) {
+    let offset = 2;
+
+    while (offset < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+
+      const marker = buffer[offset + 1];
+      const length = buffer.readUInt16BE(offset + 2);
+
+      if (marker >= 0xc0 && marker <= 0xc3) {
+        return {
+          width: buffer.readUInt16BE(offset + 7),
+          height: buffer.readUInt16BE(offset + 5)
+        };
+      }
+
+      offset += 2 + length;
+    }
+  }
+
+  return null;
+}
+
 function scripts() {
   return `  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=63004a13914e30681af6d7b7" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="/js/site-chrome.js" type="text/javascript"></script>
@@ -87,6 +133,12 @@ ${themeBootstrapScript()}
     text-wrap: balance;
     overflow-wrap: anywhere;
   }
+
+  .body-4 .image-100,
+  .body-4 .image-38,
+  .body-4 .music-image {
+    height: auto;
+  }
   </style>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -101,7 +153,11 @@ function renderImage(imgSrc, extraClass = "image-100") {
   if (imgSrc && typeof imgSrc === "object" && imgSrc.placeholderText) {
     return `<div class="${extraClass} cropkit-placeholder-card">${imgSrc.placeholderText}</div>`;
   }
-  return `<img src="${imgSrc}" loading="lazy" alt="" class="${extraClass}">`;
+
+  const dimensions = getImageDimensions(imgSrc);
+  const dimensionAttrs = dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : "";
+
+  return `<img src="${imgSrc}" loading="lazy" decoding="async"${dimensionAttrs} alt="" class="${extraClass}">`;
 }
 
 function renderAnchorCard(item, titleClass = "work-page-project-name", imageClass = "image-38") {
@@ -293,81 +349,6 @@ ${renderExperiments(indexSections["EXPERIMENTS"])}
   <script>
   (function () {
     var links = document.querySelectorAll('.works-catalog-link[href^="#"]');
-    var activeAnchorScroll = null;
-
-    function getTargetTop(target) {
-      return Math.max(0, Math.round(target.getBoundingClientRect().top + window.scrollY));
-    }
-
-    function stopActiveAnchorScroll() {
-      if (!activeAnchorScroll) {
-        return;
-      }
-
-      window.cancelAnimationFrame(activeAnchorScroll.frame);
-      activeAnchorScroll.imageListeners.forEach(function (entry) {
-        entry.image.removeEventListener("load", entry.listener);
-      });
-      activeAnchorScroll.cancelListeners.forEach(function (entry) {
-        window.removeEventListener(entry.eventName, entry.listener);
-      });
-      activeAnchorScroll = null;
-    }
-
-    function stabilizeAnchorScroll(target) {
-      stopActiveAnchorScroll();
-
-      var startedAt = performance.now();
-      var imageListeners = [];
-      var cancelListeners = [];
-
-      function align() {
-        var top = getTargetTop(target);
-        var distance = Math.abs(window.scrollY - top);
-
-        if (distance > 1) {
-          window.scrollTo({ top: top, left: 0, behavior: "auto" });
-        }
-
-        if (performance.now() - startedAt > 1800) {
-          stopActiveAnchorScroll();
-          return;
-        }
-
-        if (activeAnchorScroll) {
-          activeAnchorScroll.frame = window.requestAnimationFrame(align);
-        }
-      }
-
-      activeAnchorScroll = {
-        frame: 0,
-        imageListeners: imageListeners,
-        cancelListeners: cancelListeners
-      };
-
-      ["wheel", "touchstart", "keydown"].forEach(function (eventName) {
-        var listener = stopActiveAnchorScroll;
-        window.addEventListener(eventName, listener, { once: true, passive: true });
-        cancelListeners.push({ eventName: eventName, listener: listener });
-      });
-
-      document.querySelectorAll("img").forEach(function (image) {
-        if (image.complete) {
-          return;
-        }
-
-        var listener = function () {
-          if (activeAnchorScroll) {
-            window.scrollTo({ top: getTargetTop(target), left: 0, behavior: "auto" });
-          }
-        };
-
-        image.addEventListener("load", listener, { once: true });
-        imageListeners.push({ image: image, listener: listener });
-      });
-
-      align();
-    }
 
     links.forEach(function (link) {
       link.addEventListener("click", function (event) {
@@ -380,7 +361,7 @@ ${renderExperiments(indexSections["EXPERIMENTS"])}
 
         event.preventDefault();
         history.replaceState(null, "", href);
-        stabilizeAnchorScroll(target);
+        target.scrollIntoView({ behavior: "auto", block: "start" });
       });
     });
   })();
