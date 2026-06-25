@@ -5,13 +5,6 @@ window.aboutCollaborations = [
     nameHtml: "<strong>Bjoern Hartmann</strong>"
   },
   {
-    href: "https://www.createanything.com/",
-    image: {
-      src: "/images/Anything-logo.svg",
-      className: "image-in-collaborations createanything-logo"
-    }
-  },
-  {
     href: "https://bse.berkeley.edu/dor-abrahamson",
     nameHtml: "<strong>Dor Abrahamson</strong>"
   },
@@ -20,20 +13,27 @@ window.aboutCollaborations = [
     nameHtml: "Kimiko Ryokai"
   },
   {
-    href: "https://me.berkeley.edu/people/lining-yao/",
+    href: "hhttps://morphingmatter.org/member/lining-yao",
     nameHtml: "<strong>Lining Yao</strong>"
   },
   {
-    href: "https://www.ad.tsinghua.edu.cn/info/1226/15186.htm",
+    href: "https://www.enad.tsinghua.edu.cn/info/1226/1310.htm",
     nameHtml: "<strong>Lintao Tang</strong>"
+  },
+  {
+    href: "https://www.ischool.berkeley.edu/people/stefanie-hutka",
+    nameHtml: "Stefanie Hutka"
+  },
+  {
+    href: "https://www.createanything.com/",
+    image: {
+      src: "/images/Anything-logo.svg",
+      className: "image-in-collaborations createanything-logo"
+    }
   },
   {
     href: "https://www.instagram.com/sabbatical.lab",
     customClass: "sabbatical",
     nameHtml: "sabbatical."
-  },
-  {
-    href: "https://www.ischool.berkeley.edu/people/stefanie-hutka",
-    nameHtml: "Stefanie Hutka"
   }
 ];
