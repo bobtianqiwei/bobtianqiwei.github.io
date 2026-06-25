@@ -4871,6 +4871,12 @@ figcaption {
     text-align: left;
   }
 
+  .work-detail-page-container .project-overview-grid .heading-black-2 {
+    text-align: left;
+    font-size: 24px;
+    line-height: 125%;
+  }
+
   .paragraph-light-white, .paragraph-light-chinese-white {
     text-align: justify;
     margin-bottom: 10px;
@@ -6019,6 +6025,11 @@ figcaption {
     text-align: left;
     font-size: 35px;
     line-height: 100%;
+  }
+
+  .work-detail-page-container .project-overview-grid .heading-black-2 {
+    font-size: 21px;
+    line-height: 128%;
   }
 
   .paragraph-light-white {
