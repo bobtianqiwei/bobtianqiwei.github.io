@@ -13,7 +13,7 @@ window.aboutCollaborations = [
     nameHtml: "Kimiko Ryokai"
   },
   {
-    href: "hhttps://morphingmatter.org/member/lining-yao",
+    href: "https://morphingmatter.org/member/lining-yao",
     nameHtml: "<strong>Lining Yao</strong>"
   },
   {
