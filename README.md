@@ -62,7 +62,7 @@ The shared template reference is:
 ## Render Scripts
 
 - [`scripts/render-works.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/scripts/render-works.js)
-  Builds `/works/` and `/works/all-works/`.
+  Builds `/works/`.
 
 - [`scripts/render-project-pages.js`](/Volumes/Disk/Programming/bobtianqiwei.github.io/scripts/render-project-pages.js)
   Builds project detail pages from `content/projects/`.

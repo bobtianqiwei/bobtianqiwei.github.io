@@ -469,4 +469,3 @@ function renderPage(page) {
 
 const allWorksHtml = renderAllWorks();
 writeFile("works/index.html", allWorksHtml);
-writeFile("works/all-works/index.html", allWorksHtml);
