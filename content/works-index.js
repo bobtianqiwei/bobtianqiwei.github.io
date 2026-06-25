@@ -75,21 +75,12 @@ module.exports = {
     },
     {
       "section": "ESSENTIALS",
-      "href": "/works/floro/",
-      "className": "work-image-link w-inline-block",
-      "image": "/images/养花机和水箱渲染2.37-2.jpg",
-      "contentHtml": "Floro",
-      "lightbox": null,
-      "order": 9
-    },
-    {
-      "section": "ESSENTIALS",
       "href": "/works/digital-paradise/",
       "className": "work-image-link w-inline-block",
       "image": "/images/Screenshot-2022-11-25-at-11.32.57.jpg",
       "contentHtml": "Digital Paradise",
       "lightbox": null,
-      "order": 10
+      "order": 11
     },
     {
       "section": "ESSENTIALS",
@@ -98,16 +89,7 @@ module.exports = {
       "image": "/images/模型渲染.149.png",
       "contentHtml": "HUI（回）",
       "lightbox": null,
-      "order": 11
-    },
-    {
-      "section": "ESSENTIALS",
-      "href": "/works/a-fish-in-the-northern-ocean/",
-      "className": "work-image-link w-inline-block",
-      "image": "/images/9331623639553_.pic_hd.jpg",
-      "contentHtml": "A Fish in The Northern Ocean（北冥有鱼）",
-      "lightbox": null,
-      "order": 12
+      "order": 10
     },
     {
       "section": "RESEARCH",
