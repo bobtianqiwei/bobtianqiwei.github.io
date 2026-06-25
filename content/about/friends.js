@@ -26,6 +26,11 @@ window.aboutFriends = [
     descriptionHtml: "ML Researcher<br>Computer Scientist<br>"
   },
   {
+    href: "https://www.caseysimone.com/",
+    name: "Caseysimone Ballestas",
+    descriptionHtml: "Design Engineering Researcher"
+  },
+  {
     href: "https://cmarcelino.com/",
     name: "Christine Marcelino",
     descriptionHtml: "Industrial Designer<br>Creative Technologist<br>"

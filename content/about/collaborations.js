@@ -5,10 +5,6 @@ window.aboutCollaborations = [
     nameHtml: "<strong>Bjoern Hartmann</strong>"
   },
   {
-    href: "https://www.caseysimone.com/",
-    nameHtml: "Caseysimone Ballestas"
-  },
-  {
     href: "https://www.createanything.com/",
     image: {
       src: "/images/Anything-logo.svg",
