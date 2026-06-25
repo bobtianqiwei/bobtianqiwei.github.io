@@ -63,6 +63,76 @@ function sharedProjectMediaHead() {
     mix-blend-mode: normal !important;
     background: transparent !important;
   }
+
+  .project-publications {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+    margin: 4px 0 8px;
+  }
+
+  .project-publication-entry {
+    padding-top: 2px;
+  }
+
+  .project-publication-title,
+  .project-publication-meta,
+  .project-publication-links,
+  .project-publication-abstract-label,
+  .project-publication-abstract {
+    margin: 0;
+  }
+
+  .project-publication-title {
+    color: var(--theme-text, #171717);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.58;
+  }
+
+  .project-publication-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .project-publication-meta,
+  .project-publication-links,
+  .project-publication-abstract {
+    color: var(--theme-text, #171717);
+    font-family: Open Sans, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.72;
+  }
+
+  .project-publication-meta,
+  .project-publication-links {
+    margin-top: 4px;
+  }
+
+  .project-publication-links a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.12em;
+  }
+
+  .project-publication-abstract-label {
+    margin-top: 10px;
+    color: var(--theme-text, #171717);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+
+  .project-publication-abstract {
+    margin-top: 4px;
+    color: var(--theme-text, #171717);
+    font-family: Open Sans, sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.72;
+  }
   </style>`;
 }
 
@@ -283,12 +353,71 @@ function getSectionCodeBlocks(section) {
   return section.codeBlocks;
 }
 
+function getSectionPublications(section) {
+  if (!Array.isArray(section.publications)) {
+    return [];
+  }
+
+  return section.publications;
+}
+
 function getSectionRows(section) {
   if (!Array.isArray(section.rows)) {
     return [];
   }
 
   return section.rows;
+}
+
+function escapeAndBreakLines(value) {
+  return escapeHtml(value).replace(/\n/g, "<br>");
+}
+
+function renderPublicationTitle(publication) {
+  const titleHtml = `<strong>${escapeHtml(publication.title || "")}</strong>`;
+
+  if (publication.href) {
+    return `<a href="${publication.href}" target="_blank" class="link-in-paragraph">${titleHtml}</a>`;
+  }
+
+  return titleHtml;
+}
+
+function renderPublicationMeta(publication) {
+  const lines = [publication.authors, publication.venue, publication.status].filter(Boolean);
+  return lines.length ? `<p class="project-publication-meta">${escapeAndBreakLines(lines.join("\n"))}</p>` : "";
+}
+
+function renderPublicationLinks(publication) {
+  if (!Array.isArray(publication.links) || publication.links.length === 0) {
+    return "";
+  }
+
+  return `      <p class="project-publication-links">${publication.links.map((link) => `<a href="${link.href}" target="_blank" class="link-in-paragraph">${escapeHtml(link.label)}</a>`).join("<br>")}</p>`;
+}
+
+function renderPublicationAbstract(publication) {
+  if (!publication.abstract) {
+    return "";
+  }
+
+  return `      <p class="project-publication-abstract-label">ABSTRACT</p>
+      <div class="project-publication-abstract">${escapeAndBreakLines(publication.abstract)}</div>`;
+}
+
+function renderPublications(publications) {
+  if (!publications.length) {
+    return "";
+  }
+
+  return `    <div class="project-publications">
+${publications.map((publication) => `      <article class="project-publication-entry">
+        <p class="project-publication-title">${renderPublicationTitle(publication)}</p>
+${renderPublicationMeta(publication)}
+${renderPublicationLinks(publication)}
+${renderPublicationAbstract(publication)}
+      </article>`).join("\n")}
+    </div>`;
 }
 
 function getSectionLeadHtml(section) {
@@ -472,13 +601,14 @@ function renderWorksColumnCell(project, cell) {
   const videos = getSectionVideos(cell);
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
+  const publications = getSectionPublications(cell);
   const images = cell.images || [];
   const imageColumns = cell.imageColumns || 2;
   const slides = cell.slides || [];
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `        <p class="big-title-3">${cell.title}</p>\n` : ""}${leadHtml ? `        <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `        <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `        <p class="big-title-3">${cell.title}</p>\n` : ""}${leadHtml ? `        <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `        <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}`;
 }
 
 function renderWorksRows(project, rows) {
@@ -510,13 +640,14 @@ function renderDesignColumnCell(project, cell) {
   const videos = getSectionVideos(cell);
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
+  const publications = getSectionPublications(cell);
   const images = cell.images || [];
   const slides = cell.slides || [];
   const cardColumns = cell.cardColumns || 2;
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${leadHtml ? `              <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${leadHtml ? `              <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}`;
 }
 
 function renderDesignRows(project, rows) {
@@ -548,12 +679,13 @@ function renderClassicColumnCell(project, cell) {
   const videos = getSectionVideos(cell);
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
+  const publications = getSectionPublications(cell);
   const images = cell.images || [];
   const slides = cell.slides || [];
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `            <h3 class="project-subtitle">${cell.title}</h3>\n` : ""}${leadHtml ? `            <p class="paragraph-big project-lead">${remapSweClassicHtml(leadHtml)}</p>\n` : ""}${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${quote ? `${renderClassicQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `            <h3 class="project-subtitle">${cell.title}</h3>\n` : ""}${leadHtml ? `            <p class="paragraph-big project-lead">${remapSweClassicHtml(leadHtml)}</p>\n` : ""}${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${quote ? `${renderClassicQuote(quote)}\n` : ""}`;
 }
 
 function renderClassicRows(project, rows) {
@@ -602,6 +734,7 @@ function renderSharedSections(project) {
     const videos = getSectionVideos(section);
     const figures = getSectionFigures(section);
     const codeBlocks = getSectionCodeBlocks(section);
+    const publications = getSectionPublications(section);
     const rows = getSectionRows(section);
     const images = section.images || [];
     const imageColumns = section.imageColumns || 2;
@@ -614,15 +747,16 @@ function renderSharedSections(project) {
       const blockVideos = getSectionVideos(block);
       const blockFigures = getSectionFigures(block);
       const blockCodeBlocks = getSectionCodeBlocks(block);
+      const blockPublications = getSectionPublications(block);
       const blockImages = block.images || [];
       const blockImageColumns = block.imageColumns || 2;
       const blockSlides = block.slides || [];
       const blockLeadHtml = getSectionLeadHtml(block);
       const blockQuote = getSectionQuote(block);
-      return `${block.title ? `    <p class="big-title-3">${block.title}</p>\n` : ""}${blockLeadHtml ? `    <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `    <div class="paragraph-light">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderWorksSlides(blockSlides)}\n` : blockImages.length ? `${renderWorksImageGrid(blockImages, blockImageColumns)}\n` : ""}${blockCodeBlocks.length ? `${renderWorksCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderCardGrid(blockCards)}\n` : ""}${blockQuote ? `${renderWorksQuote(blockQuote)}\n` : ""}`;
+      return `${block.title ? `    <p class="big-title-3">${block.title}</p>\n` : ""}${blockLeadHtml ? `    <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `    <div class="paragraph-light">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderWorksSlides(blockSlides)}\n` : blockImages.length ? `${renderWorksImageGrid(blockImages, blockImageColumns)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderWorksCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderCardGrid(blockCards)}\n` : ""}${blockQuote ? `${renderWorksQuote(blockQuote)}\n` : ""}`;
     }).join("");
 
-    return `${section.title ? `    <div class="big-title-2">${section.title}</div>\n` : ""}${leadHtml ? `    <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `    <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns)}\n` : ""}${rows.length ? `${renderWorksRows(project, rows)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}${blocks}`;
+    return `${section.title ? `    <div class="big-title-2">${section.title}</div>\n` : ""}${leadHtml ? `    <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `    <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns)}\n` : ""}${rows.length ? `${renderWorksRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}${blocks}`;
   }).join("");
 }
 
@@ -648,6 +782,7 @@ function renderDesignSections(project) {
     const videos = getSectionVideos(section);
     const figures = getSectionFigures(section);
     const codeBlocks = getSectionCodeBlocks(section);
+    const publications = getSectionPublications(section);
     const rows = getSectionRows(section);
     const images = section.images || [];
     const slides = section.slides || [];
@@ -660,6 +795,7 @@ function renderDesignSections(project) {
       const blockVideos = getSectionVideos(block);
       const blockFigures = getSectionFigures(block);
       const blockCodeBlocks = getSectionCodeBlocks(block);
+      const blockPublications = getSectionPublications(block);
       const blockImages = block.images || [];
       const blockSlides = block.slides || [];
       const blockCardColumns = block.cardColumns || 2;
@@ -667,7 +803,7 @@ function renderDesignSections(project) {
       const blockQuote = getSectionQuote(block);
       return `      <section class="design-project-subsection">
 ${block.title ? `        <h3 class="design-project-subsection-title">${block.title}</h3>\n` : ""}        <div class="design-project-subsection-body">
-${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards, blockCardColumns)}\n` : ""}${blockQuote ? `${renderDesignQuote(blockQuote)}\n` : ""}        </div>
+${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards, blockCardColumns)}\n` : ""}${blockQuote ? `${renderDesignQuote(blockQuote)}\n` : ""}        </div>
       </section>`;
     }).join("\n");
 
@@ -676,7 +812,7 @@ ${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHt
         <div class="design-project-section-head">
 ${section.title ? `          <h2 class="design-project-section-title">${section.title}</h2>\n` : ""}        </div>
         <div class="${bodyClass}">
-${leadHtml ? `          <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}${blocks}
+${leadHtml ? `          <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}${blocks}
         </div>
       </section>`;
   }).join("\n");
@@ -686,7 +822,21 @@ function renderSweClassicStyles() {
   return `  <script src="/js/classic-status-topbar.js" defer></script>
   <script src="/js/classic-nav.js" defer></script>
   <script src="/js/project-pages-swe-classic.js" defer></script>
-  <link href="/css/project-pages-swe-classic.css" rel="stylesheet" type="text/css">`;
+  <link href="/css/project-pages-swe-classic.css" rel="stylesheet" type="text/css">
+  <style>
+  .project-publication-title {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .project-publication-meta,
+  .project-publication-links,
+  .project-publication-abstract-label,
+  .project-publication-abstract {
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  </style>`;
 }
 
 function renderSweClassicCardGrid(cards) {
@@ -721,6 +871,7 @@ ${renderYouTube(heroVideo).replace(/^/gm, "            ")}
     const videos = getSectionVideos(section);
     const figures = getSectionFigures(section);
     const codeBlocks = getSectionCodeBlocks(section);
+    const publications = getSectionPublications(section);
     const rows = getSectionRows(section);
     const images = section.images || [];
     const slides = section.slides || [];
@@ -730,17 +881,18 @@ ${renderYouTube(heroVideo).replace(/^/gm, "            ")}
       const blockVideos = getSectionVideos(block);
       const blockFigures = getSectionFigures(block);
       const blockCodeBlocks = getSectionCodeBlocks(block);
+      const blockPublications = getSectionPublications(block);
       const blockImages = block.images || [];
       const blockSlides = block.slides || [];
       return `          <div class="project-section">
             <h3 class="project-subtitle">${block.title}</h3>
-${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderClassicSlides(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages)}\n` : ""}${blockCodeBlocks.length ? `${renderClassicCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
+${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderClassicSlides(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderClassicCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
     }).join("\n");
 
     return `        <div class="box" id="${index === 0 ? "overview" : index === 1 ? "details" : `section-${index + 1}`}">
           <div class="box-title">${section.title}</div>
           <div class="box-body">
-${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${rows.length ? `${renderClassicRows(project, rows)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
+${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${rows.length ? `${renderClassicRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
           </div>
         </div>`;
   }).join("\n");
@@ -809,6 +961,19 @@ function designCaseStudyStyles() {
       line-height: 1.72;
       column-count: 1;
     }
+  }
+
+  .project-publication-title {
+    font-size: 17px;
+    line-height: 1.58;
+  }
+
+  .project-publication-meta,
+  .project-publication-links,
+  .project-publication-abstract-label,
+  .project-publication-abstract {
+    font-size: 15px;
+    line-height: 1.7;
   }
   </style>`;
 }
@@ -911,6 +1076,19 @@ function renderWorksCaseStudyStyles() {
       line-height: 1.6;
       column-count: 1;
     }
+  }
+
+  .project-publication-title {
+    font-size: 20px;
+    line-height: 1.45;
+  }
+
+  .project-publication-meta,
+  .project-publication-links,
+  .project-publication-abstract-label,
+  .project-publication-abstract {
+    font-size: 18px;
+    line-height: 1.4;
   }
   </style>`;
 }
