@@ -2,7 +2,7 @@
 window.aboutMentorship = [
   {
     href: "https://www.andyshensiyang.com/",
-    name: "Andy Shen",
+    name: "Andy Siyang Shen",
     descriptionHtml: "Robotics Researcher<br>2024-2025"
   }
 ];
