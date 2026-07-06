@@ -20,6 +20,7 @@
       --theme-muted: #737d85;
       --theme-border: #dfe4e8;
       --theme-button-fill: #252b30;
+      --contact-card-logo-filter: brightness(0) saturate(100%);
     }
     html[data-theme-enabled="true"][data-theme="dark"] {
       --theme-bg: #121518;
@@ -27,6 +28,7 @@
       --theme-muted: #929ca4;
       --theme-border: #2c3237;
       --theme-button-fill: #e1e6e9;
+      --contact-card-logo-filter: none;
     }
     body { min-height: 100vh; margin: 0; }
     .contact-card-page { min-height: 100vh; display: grid; place-items: center; padding: 56px 24px; box-sizing: border-box; }
@@ -34,13 +36,18 @@
     .contact-card, .contact-card * { border-radius: 0 !important; }
     .contact-card-back { display: inline-block; margin-bottom: 32px; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; text-decoration: none; }
     .contact-card-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 64px; align-items: start; padding-top: 32px; border-top: 1px solid var(--theme-border, #ddd); }
-    .contact-card-photo { display: block; width: 144px; height: 144px; margin: 0 0 28px; object-fit: cover; }
-    .contact-card-name { margin: 0 0 8px; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: clamp(32px, 5vw, 46px); font-weight: 500; line-height: 1.05; }
-    .contact-card-role { margin: 0 0 32px; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 14px; line-height: 1.5; }
-    .contact-card-details { border-top: 1px solid var(--theme-border, #ddd); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; }
+    .contact-card-visual { container-type: inline-size; width: 100%; margin-bottom: 28px; display: grid; grid-template-columns: minmax(0, 1fr) 30%; column-gap: 4%; align-items: stretch; background: transparent; }
+    .contact-card-visual-left { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
+    .contact-card-logo { display: block; width: 20cqw; height: auto; transform: translate(-.34cqw, -.34cqw); filter: var(--contact-card-logo-filter); }
+    .contact-card-photo { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+    .contact-card-copy { max-width: 100%; white-space: nowrap; }
+    .contact-card-name { margin: 0 0 1.2cqw; color: var(--theme-text) !important; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 5.8cqw; font-weight: 500; line-height: 1.05; }
+    .contact-card-role { margin: 0; color: var(--theme-muted) !important; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 3.4cqw; line-height: 1.35; }
+    .contact-card-details { width: 100%; border-top: 1px solid var(--theme-border, #ddd); box-sizing: border-box; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; }
     .contact-card-detail { display: flex; justify-content: space-between; gap: 24px; padding: 10px 0; border-bottom: 1px solid var(--theme-border, #ddd); }
     .contact-card-label { color: var(--theme-muted, #6b6b6b); }
     .contact-card-details a { color: inherit; text-align: right; text-decoration: none; }
+    .contact-card-address { text-align: right; }
     .contact-card-qr-panel { text-align: center; }
     .contact-card-qr-link { display: block; width: 100%; margin: 0 0 20px; }
     .contact-card-qr { display: block; width: 100%; height: auto; background: #fff; }
@@ -60,9 +67,7 @@
       .contact-card-page { display: block; padding: 24px 20px; }
       .contact-card-back { margin-bottom: 20px; }
       .contact-card-layout { grid-template-columns: 1fr; gap: 20px; padding-top: 20px; }
-      .contact-card-photo { width: 104px; height: 104px; margin-bottom: 18px; }
-      .contact-card-name { font-size: 32px; }
-      .contact-card-role { margin-bottom: 20px; }
+      .contact-card-visual { margin-bottom: 20px; }
       .contact-card-detail { padding: 8px 0; }
       .contact-card-qr-panel { width: min(100%, 190px); margin: 0 auto; }
       .contact-card-qr-link { margin-bottom: 14px; }
@@ -76,13 +81,20 @@
       <a class="contact-card-back" href="/about/">Back to About</a>
       <div class="contact-card-layout">
         <div class="contact-card-identity">
-          <img class="contact-card-photo" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Bob Tianqi Wei at the Golden Gate Bridge">
-          <h1 class="contact-card-name" id="contact-card-name">Bob Tianqi Wei</h1>
-          <p class="contact-card-role">Research Assistant<br>MIT Media Lab</p>
+          <div class="contact-card-visual">
+            <div class="contact-card-visual-left">
+              <img class="contact-card-logo" src="/images/mit-media-lab-logo-white.png" alt="MIT Media Lab">
+              <div class="contact-card-copy">
+                <h1 class="contact-card-name" id="contact-card-name">Bob Tianqi Wei</h1>
+                <p class="contact-card-role">Research Assistant</p>
+              </div>
+            </div>
+            <img class="contact-card-photo" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Bob Tianqi Wei at the Golden Gate Bridge">
+          </div>
           <div class="contact-card-details">
             <div class="contact-card-detail"><span class="contact-card-label">Email</span><a href="mailto:bobwei@mit.edu">bobwei@mit.edu</a></div>
             <div class="contact-card-detail"><span class="contact-card-label">Website</span><a href="https://bobtianqiwei.com/">bobtianqiwei.com</a></div>
-            <div class="contact-card-detail"><span class="contact-card-label">Address</span><a href="https://maps.google.com/?q=75+Amherst+Street+Cambridge+MA+02142">75 Amherst Street<br>Cambridge, MA 02142</a></div>
+            <div class="contact-card-detail"><span class="contact-card-label">Address</span><span class="contact-card-address">MIT Media Lab<br><a href="https://maps.google.com/?q=75+Amherst+Street+Cambridge+MA+02142">75 Amherst Street</a> E14-464F<br><a href="https://maps.google.com/?q=75+Amherst+Street+Cambridge+MA+02142">Cambridge, MA 02139</a></span></div>
             <div class="contact-card-detail"><span class="contact-card-label">LinkedIn</span><a href="https://www.linkedin.com/in/bobtianqiwei/">bobtianqiwei</a></div>
             <div class="contact-card-detail"><span class="contact-card-label">Instagram</span><a href="https://www.instagram.com/rob3rtwei/">rob3rtwei</a></div>
           </div>
