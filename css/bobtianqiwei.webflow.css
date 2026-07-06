@@ -4997,6 +4997,10 @@ figcaption {
     width: 90%;
   }
 
+  #about-profile-links {
+    text-align: left;
+  }
+
   .heading-jumbo {
     font-size: 50px;
     line-height: 64px;
@@ -6006,8 +6010,14 @@ figcaption {
   .column-16 {
     height: 100%;
     margin-bottom: 0;
+    padding-left: 10px;
+    padding-right: 10px;
     position: relative;
     inset: 0% auto auto 0%;
+  }
+
+  .div-block-image-about {
+    padding-right: 0;
   }
 
   .image-about {
@@ -6035,6 +6045,16 @@ figcaption {
   .friends-grid {
     text-align: center;
     grid-template-columns: 1fr 1fr;
+  }
+
+  #about-collaborations-list .createanything-logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  #about-news-list {
+    text-align: left;
   }
 
   .container-15 {
