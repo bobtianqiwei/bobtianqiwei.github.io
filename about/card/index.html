@@ -1,0 +1,55 @@
+<!DOCTYPE html><!-- index.html developed by Bob Tianqi Wei -->
+<html lang="en" data-theme-enabled="true" data-site-chrome-context="page">
+<head>
+  <meta charset="utf-8">
+  <title>Contact Card - Bob Tianqi Wei</title>
+  <meta name="description" content="Contact card for Bob Tianqi Wei, Research Assistant at the MIT Media Lab.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>(function(){try{var root=document.documentElement;var stored=localStorage.getItem("site-theme-preference");root.dataset.theme=(stored==="light"||stored==="dark")?stored:(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");}catch(e){}})();</script>
+  <link href="/css/normalize.css" rel="stylesheet" type="text/css">
+  <link href="/css/theme-toggle.css" rel="stylesheet" type="text/css">
+  <link href="/css/webflow.css" rel="stylesheet" type="text/css">
+  <link href="/css/bobtianqiwei.webflow.css" rel="stylesheet" type="text/css">
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+  <link href="/images/webclip.png" rel="apple-touch-icon">
+  <script>window.addEventListener("load",function(){window.location.replace("/contact/bob-tianqi-wei.vcf");});</script>
+  <style>
+    body { min-height: 100vh; margin: 0; }
+    .contact-card-page { min-height: 100vh; display: grid; place-items: center; padding: 88px 24px 48px; box-sizing: border-box; }
+    .contact-card { width: min(100%, 390px); text-align: center; }
+    .contact-card, .contact-card * { border-radius: 0 !important; }
+    .contact-card-back { display: inline-block; margin-bottom: 42px; color: inherit; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 14px; text-decoration: none; }
+    .contact-card-photo { display: block; width: 160px; height: 160px; margin: 0 auto 24px; object-fit: cover; }
+    .contact-card-name { margin: 0 0 8px; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: clamp(30px, 8vw, 42px); font-weight: 500; line-height: 1.1; }
+    .contact-card-role { margin: 0 0 20px; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 15px; line-height: 1.45; }
+    .contact-card-details { margin: 0 0 30px; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; line-height: 1.7; }
+    .contact-card-details a { color: inherit; text-decoration: none; }
+    .contact-card-qr-link { display: block; width: min(72vw, 280px); margin: 0 auto 24px; }
+    .contact-card-qr { display: block; width: 100%; height: auto; background: #fff; }
+    .contact-card-action { display: inline-block; padding: 10px 18px; background: var(--theme-button-fill, #111); color: var(--theme-bg, #fff) !important; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 14px; text-decoration: none; }
+    .contact-card-hint { margin: 16px 0 0; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 12px; }
+    @media (max-width: 479px) { .contact-card-page { padding-top: 48px; } .contact-card-back { margin-bottom: 32px; } }
+  </style>
+</head>
+<body>
+  <main class="contact-card-page">
+    <section class="contact-card" aria-labelledby="contact-card-name">
+      <a class="contact-card-back" href="/about/">Back to About</a>
+      <img class="contact-card-photo" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Bob Tianqi Wei at the Golden Gate Bridge">
+      <h1 class="contact-card-name" id="contact-card-name">Bob Tianqi Wei</h1>
+      <p class="contact-card-role">Research Assistant<br>MIT Media Lab</p>
+      <p class="contact-card-details">
+        <a href="mailto:bobwei@mit.edu">bobwei@mit.edu</a><br>
+        <a href="https://bobtianqiwei.com/">bobtianqiwei.com</a><br>
+        <a href="https://www.linkedin.com/in/bobtianqiwei/">LinkedIn</a> · <a href="https://www.instagram.com/rob3rtwei/">Instagram</a><br>
+        <a href="tel:+15108162381">+1 510-816-2381</a>
+      </p>
+      <a class="contact-card-qr-link" href="/about/card/" aria-label="Open Bob Tianqi Wei's contact card">
+        <img class="contact-card-qr" src="/contact/bob-tianqi-wei-qr.png" alt="QR code for Bob Tianqi Wei's contact card">
+      </a>
+      <a class="contact-card-action" href="/contact/bob-tianqi-wei.vcf">Add to Contacts</a>
+      <p class="contact-card-hint">Scan the QR code to save this contact.</p>
+    </section>
+  </main>
+</body>
+</html>

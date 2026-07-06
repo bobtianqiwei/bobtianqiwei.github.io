@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Wei;Bob Tianqi;;;
+FN:Bob Tianqi Wei
+ORG:MIT Media Lab
+TITLE:Research Assistant
+EMAIL;TYPE=INTERNET:bobwei@mit.edu
+TEL;TYPE=CELL:+15108162381
+URL:https://bobtianqiwei.com/
+PHOTO;VALUE=URI:https://bobtianqiwei.com/website_files/pictures/goldengate/
+ bob@goldengate_square.jpg
+X-SOCIALPROFILE;TYPE=github:https://github.com/bobtianqiwei
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/bobtianqiwei/
+X-SOCIALPROFILE;TYPE=instagram:https://www.instagram.com/rob3rtwei/
+NOTE:Research Assistant at the MIT Media Lab.
+REV:20260706T000000Z
+END:VCARD

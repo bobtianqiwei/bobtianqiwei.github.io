@@ -19,6 +19,10 @@ window.aboutProfile = {
     {
       href: "https://www.youtube.com/channel/UCfxLPK0-77H4iC3pHukSrIg",
       label: "YouTube"
+    },
+    {
+      href: "/about/card/",
+      label: "Contact Card"
     }
   ],
   portrait: {
