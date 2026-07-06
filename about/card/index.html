@@ -45,8 +45,17 @@
     .contact-card-qr-link { display: block; width: 100%; margin: 0 0 20px; }
     .contact-card-qr { display: block; width: 100%; height: auto; background: #fff; }
     .contact-card-action { display: block; padding: 11px 16px; background: var(--theme-button-fill, #111); color: var(--theme-bg, #fff) !important; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; text-align: center; text-decoration: none; }
-    html[data-theme-enabled="true"] .contact-card-action { color: var(--theme-bg) !important; }
+    html[data-theme-enabled="true"] .contact-card-action,
+    html[data-theme-enabled="true"] .contact-card-action:link,
+    html[data-theme-enabled="true"] .contact-card-action:visited,
+    html[data-theme-enabled="true"] .contact-card-action:hover,
+    html[data-theme-enabled="true"] .contact-card-action:active,
+    html[data-theme-enabled="true"] .contact-card-action:focus {
+      color: var(--theme-bg) !important;
+      -webkit-text-fill-color: var(--theme-bg) !important;
+    }
     .contact-card-hint { margin: 12px 0 0; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 11px; line-height: 1.4; }
+    .contact-card-browser-hint { margin: 8px 0 0; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 11px; line-height: 1.4; }
     @media (max-width: 640px) {
       .contact-card-page { display: block; padding: 24px 20px; }
       .contact-card-back { margin-bottom: 20px; }
@@ -84,6 +93,7 @@
           </a>
           <a class="contact-card-action" href="/contact/bob-tianqi-wei.vcf">Add to Contacts</a>
           <p class="contact-card-hint">Tap Create New Contact to save.</p>
+          <p class="contact-card-browser-hint">If Save Contact doesn't work, open this page in your system browser. Some in-app browsers block contact downloads.</p>
         </div>
       </div>
     </section>
