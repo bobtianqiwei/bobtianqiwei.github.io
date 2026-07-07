@@ -5947,6 +5947,23 @@ figcaption {
     margin-right: 0;
   }
 
+  .works-index-page .work-page-div-block {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+
+  .works-index-page .work-columns,
+  .works-index-page .work-essentials-columns {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .works-index-page .work-columns > .w-col,
+  .works-index-page .work-essentials-columns > .w-col {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   .work-column {
     padding-left: 10px;
     padding-right: 10px;

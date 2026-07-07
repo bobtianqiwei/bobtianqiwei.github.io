@@ -371,7 +371,7 @@ ${renderFooter()}`;
   return pageShell({
     title: "Works - Bob Tianqi Wei",
     description: "Bob Tianqi Wei's works: research, design, engineering, fine art, and music.",
-    bodyClass: "body-4",
+    bodyClass: "body-4 works-index-page",
     body
   });
 }
