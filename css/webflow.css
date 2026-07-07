@@ -691,7 +691,7 @@ textarea.w-select {
     width: 100%;
   }
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 767px) {
   .w-container {
     max-width: none;
   }
@@ -1701,7 +1701,7 @@ textarea.w-select {
     padding-left: 10px;
   }
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 767px) {
   .w-nav[data-collapse='tiny'] .w-nav-menu {
     display: none;
   }
@@ -1756,7 +1756,7 @@ textarea.w-select {
 .w--tab-active {
   display: block;
 }
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 767px) {
   .w-tab-link {
     display: block;
   }

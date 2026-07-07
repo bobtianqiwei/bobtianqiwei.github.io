@@ -5608,7 +5608,7 @@ figcaption {
   }
 }
 
-@media screen and (max-width: 479px) {
+@media screen and (max-width: 767px) {
   .rich-text {
     width: 100%;
     max-width: none;
@@ -5943,8 +5943,8 @@ figcaption {
 
   .work-essentials-columns {
     width: auto;
-    margin-left: -10px;
-    margin-right: -10px;
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .work-column {
