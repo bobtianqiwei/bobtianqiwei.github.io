@@ -258,6 +258,7 @@
     form: document.getElementById("bob-cat-form"),
     input: document.getElementById("bob-cat-input"),
     sendButton: document.getElementById("send-message"),
+    splitter: document.getElementById("bob-cat-splitter"),
     previewPanel: document.getElementById("project-preview-panel"),
     previewLink: document.getElementById("project-preview-link"),
     previewTabs: document.getElementById("project-preview-tabs"),
@@ -664,6 +665,7 @@
 
     if (isVisible) {
       elements.previewPanel.hidden = false;
+      elements.splitter.hidden = false;
       elements.page.classList.remove("preview-collapsing");
       elements.page.classList.add("preview-entering");
       window.requestAnimationFrame(function () {
@@ -687,6 +689,7 @@
     state.previewHideTimer = window.setTimeout(function () {
       if (!state.previewVisible) {
         elements.page.classList.remove("preview-collapsing");
+        elements.splitter.hidden = true;
         elements.previewPanel.hidden = true;
       }
       state.previewHideTimer = null;
@@ -1174,6 +1177,43 @@
     elements.clearChatButton.addEventListener("click", resetChat);
     elements.closeSettingsButton.addEventListener("click", closeSettings);
     elements.providerSelect.addEventListener("change", updateApiKeyField);
+
+    function setMobileSplit(clientY) {
+      const layout = elements.splitter.parentElement;
+      const rect = layout.getBoundingClientRect();
+      const ratio = Math.min(80, Math.max(20, ((clientY - rect.top) / rect.height) * 100));
+      const roundedRatio = Math.round(ratio);
+
+      layout.style.setProperty("--bob-cat-chat-ratio", ratio + "%");
+      elements.splitter.setAttribute("aria-valuenow", String(roundedRatio));
+    }
+
+    elements.splitter.addEventListener("pointerdown", function (event) {
+      if (!window.matchMedia("(max-width: 991px)").matches) {
+        return;
+      }
+
+      elements.splitter.setPointerCapture(event.pointerId);
+      elements.page.classList.add("is-resizing");
+      setMobileSplit(event.clientY);
+    });
+
+    elements.splitter.addEventListener("pointermove", function (event) {
+      if (!elements.page.classList.contains("is-resizing")) {
+        return;
+      }
+
+      setMobileSplit(event.clientY);
+    });
+
+    elements.splitter.addEventListener("pointerup", function (event) {
+      elements.splitter.releasePointerCapture(event.pointerId);
+      elements.page.classList.remove("is-resizing");
+    });
+
+    elements.splitter.addEventListener("pointercancel", function () {
+      elements.page.classList.remove("is-resizing");
+    });
 
     window.addEventListener("message", function (event) {
       if (event.origin !== window.location.origin || !event.data || typeof event.data !== "object") {

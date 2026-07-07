@@ -663,6 +663,14 @@ html[data-theme="dark"] .bob-cat-message-body pre {
   display: none;
 }
 
+.bob-cat-splitter {
+  display: none;
+}
+
+.bob-cat-splitter[hidden] {
+  display: none;
+}
+
 .bob-cat-preview-panel {
   position: relative;
   width: 100%;
@@ -792,12 +800,38 @@ html[data-theme="dark"] .bob-cat-preview-tab {
 
   .bob-cat-page.preview-active .bob-cat-layout {
     grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, var(--bob-cat-chat-ratio, 52%)) 16px minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .bob-cat-page.preview-active .bob-cat-splitter {
+    cursor: row-resize;
+    touch-action: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  .bob-cat-splitter span {
+    background: var(--bob-cat-border-strong);
+    width: 44px;
+    height: 3px;
+  }
+
+  .bob-cat-page.is-resizing,
+  .bob-cat-page.is-resizing * {
+    cursor: row-resize;
+    user-select: none;
+  }
+
+  .bob-cat-page.is-resizing iframe {
+    pointer-events: none;
   }
 
   .bob-cat-preview-panel {
     position: relative;
     width: 100%;
-    height: min(48dvh, 520px);
+    height: 100%;
     margin-top: 0;
     opacity: 1;
     transform: none;
