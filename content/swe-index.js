@@ -2,6 +2,12 @@
 module.exports = {
   trustedBy: [
     {
+      href: "https://www.media.mit.edu/",
+      image: "/images/mit-media-lab-logo-white.png",
+      alt: "MIT Media Lab",
+      imageClass: "trust-item--invert"
+    },
+    {
       href: "https://eecs.berkeley.edu/",
       image: "/images/berkeley-eecs-bw.png",
       alt: "UC Berkeley EECS"
@@ -25,12 +31,6 @@ module.exports = {
       href: "https://instalily.ai/",
       image: "/images/instalily.png",
       alt: "Instalily"
-    },
-    {
-      href: "https://collov.ai/",
-      image: "/images/collov-official.png",
-      alt: "Collov AI",
-      imageClass: "trust-item--invert"
     }
   ],
   essentials: [
