@@ -481,6 +481,9 @@
         var buttons;
         var backButton;
         var forwardButton;
+        var historyEntries = [];
+        var historyIndex = -1;
+        var pendingDirection = 0;
 
         if (!iframe || !toolbar || toolbar.dataset.historyBound === "true") {
           return false;
@@ -495,18 +498,76 @@
         }
 
         toolbar.dataset.historyBound = "true";
-        backButton.className = "ie__function_bar__button";
-        forwardButton.className = "ie__function_bar__button";
+
+        function updateButtons() {
+          backButton.className = historyIndex > 0
+            ? "ie__function_bar__button"
+            : "ie__function_bar__button--disable";
+          forwardButton.className = historyIndex < historyEntries.length - 1
+            ? "ie__function_bar__button"
+            : "ie__function_bar__button--disable";
+        }
+
+        function getCurrentUrl() {
+          try {
+            return iframe.contentWindow.location.href;
+          } catch (error) {
+            return iframe.src;
+          }
+        }
+
+        function recordNavigation() {
+          var currentUrl = getCurrentUrl();
+          var iframeWindow;
+
+          if (pendingDirection !== 0) {
+            historyIndex += pendingDirection;
+            pendingDirection = 0;
+          } else if (historyEntries[historyIndex] !== currentUrl) {
+            historyEntries = historyEntries.slice(0, historyIndex + 1);
+            historyEntries.push(currentUrl);
+            historyIndex = historyEntries.length - 1;
+          }
+
+          updateButtons();
+
+          try {
+            iframeWindow = iframe.contentWindow;
+            if (!iframeWindow.__winxpHistoryTracking) {
+              iframeWindow.__winxpHistoryTracking = true;
+              iframeWindow.addEventListener("hashchange", recordNavigation);
+            }
+          } catch (error) {
+            return;
+          }
+        }
+
+        historyEntries.push(iframe.src);
+        historyIndex = 0;
+        updateButtons();
+        iframe.addEventListener("load", recordNavigation);
 
         backButton.addEventListener("click", function (event) {
           event.preventDefault();
           event.stopImmediatePropagation();
+
+          if (historyIndex <= 0) {
+            return;
+          }
+
+          pendingDirection = -1;
           iframe.contentWindow.history.back();
         }, true);
 
         forwardButton.addEventListener("click", function (event) {
           event.preventDefault();
           event.stopImmediatePropagation();
+
+          if (historyIndex >= historyEntries.length - 1) {
+            return;
+          }
+
+          pendingDirection = 1;
           iframe.contentWindow.history.forward();
         }, true);
 
