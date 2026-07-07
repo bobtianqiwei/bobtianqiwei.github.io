@@ -800,7 +800,7 @@ html[data-theme="dark"] .bob-cat-preview-tab {
 
   .bob-cat-page.preview-active .bob-cat-layout {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(0, var(--bob-cat-chat-ratio, 52%)) 16px minmax(0, 1fr);
+    grid-template-rows: minmax(0, var(--bob-cat-chat-ratio, 65%)) 16px minmax(0, 1fr);
     gap: 0;
   }
 
