@@ -473,5 +473,59 @@
       bootWallpaperManager();
     }());
   </script>
+  <script>
+    (function () {
+      function bindInternetExplorerHistory() {
+        var iframe = document.querySelector('.ie__content iframe[src="/swe/classic/"]');
+        var toolbar = document.querySelector(".ie__function_bar");
+        var buttons;
+        var backButton;
+        var forwardButton;
+
+        if (!iframe || !toolbar || toolbar.dataset.historyBound === "true") {
+          return false;
+        }
+
+        buttons = toolbar.children;
+        backButton = buttons[0];
+        forwardButton = buttons[1];
+
+        if (!backButton || !forwardButton) {
+          return false;
+        }
+
+        toolbar.dataset.historyBound = "true";
+        backButton.className = "ie__function_bar__button";
+        forwardButton.className = "ie__function_bar__button";
+
+        backButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          iframe.contentWindow.history.back();
+        }, true);
+
+        forwardButton.addEventListener("click", function (event) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          iframe.contentWindow.history.forward();
+        }, true);
+
+        return true;
+      }
+
+      if (!bindInternetExplorerHistory()) {
+        var observer = new MutationObserver(function () {
+          if (bindInternetExplorerHistory()) {
+            observer.disconnect();
+          }
+        });
+
+        observer.observe(document.getElementById("root"), {
+          childList: true,
+          subtree: true
+        });
+      }
+    }());
+  </script>
 </body>
 </html>
