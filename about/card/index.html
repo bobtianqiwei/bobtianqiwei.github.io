@@ -36,7 +36,6 @@
     .contact-card-page { min-height: 100vh; display: grid; place-items: center; padding: 56px 24px; box-sizing: border-box; }
     .contact-card { width: min(100%, 720px); }
     .contact-card, .contact-card * { border-radius: 0 !important; }
-    .contact-card-back { display: inline-block; margin-bottom: 32px; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; text-decoration: none; }
     .contact-card-layout { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 64px; align-items: start; padding-top: 32px; border-top: 1px solid var(--theme-border, #ddd); }
     .contact-card-visual { container-type: inline-size; width: 100%; margin-bottom: 28px; display: grid; grid-template-columns: minmax(0, 1fr) 30%; column-gap: 4%; align-items: stretch; background: transparent; }
     .contact-card-visual-left { min-width: 0; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; }
@@ -67,7 +66,6 @@
     .contact-card-browser-hint { margin: 8px 0 0; color: var(--theme-muted, #6b6b6b); font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 11px; line-height: 1.4; }
     @media (max-width: 640px) {
       .contact-card-page { display: block; padding: 24px 20px; }
-      .contact-card-back { margin-bottom: 20px; }
       .contact-card-layout { grid-template-columns: 1fr; gap: 20px; padding-top: 20px; }
       .contact-card-visual { margin-bottom: 20px; }
       .contact-card-detail { padding: 8px 0; }
@@ -80,7 +78,6 @@
 <body>
   <main class="contact-card-page">
     <section class="contact-card" aria-labelledby="contact-card-name">
-      <a class="contact-card-back" href="/about/">Back to About</a>
       <div class="contact-card-layout">
         <div class="contact-card-identity">
           <div class="contact-card-visual">
