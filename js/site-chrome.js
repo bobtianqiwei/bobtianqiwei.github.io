@@ -231,7 +231,7 @@
       ".site-settings-option .site-bobcat-toggle .theme-toggle-thumb{position:relative;z-index:1;}",
       "html[data-theme-enabled='true'] .site-settings-option .site-bobcat-toggle .theme-toggle-thumb{transform:translateX(24px) !important;}",
       "html[data-theme-enabled='true'] .site-settings-option .site-bobcat-toggle[aria-pressed='true'] .theme-toggle-thumb{transform:translateX(0) !important;}",
-      "@media screen and (max-width:767px){.bob-cat-widget-panel{right:9px;width:calc(100vw - 18px);height:min(64dvh,520px);}.site-settings-panel{right:9px;width:calc(100vw - 18px);}}"
+      "@media screen and (max-width:767px){.bob-cat-widget-panel{width:calc(100vw - 54px);height:min(64dvh,520px);}.site-settings-panel{right:9px;width:calc(100vw - 18px);}}"
     ].join("");
     document.head.appendChild(style);
   }
