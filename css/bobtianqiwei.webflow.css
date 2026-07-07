@@ -6092,21 +6092,46 @@ figcaption {
   .columns-about-bio {
     flex-flow: column;
     height: auto;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 0;
     display: block;
+    position: relative;
   }
 
   .column-16 {
-    height: 100%;
+    width: 72px;
+    height: 72px;
     margin-bottom: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    position: relative;
-    inset: 0% auto auto 0%;
+    padding-left: 0;
+    padding-right: 0;
+    position: absolute;
+    inset: 0 0 auto auto;
+  }
+
+  .column-17 {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  #about-profile-name,
+  #about-profile-pronouns {
+    padding-right: 92px;
   }
 
   .div-block-image-about {
+    background-image: url('../website_files/pictures/grand_canyon/bob@grand_canyon_square.jpg') !important;
+    background-position: center;
+    background-size: cover;
+    width: 72px;
+    height: 72px;
+    padding-left: 0;
     padding-right: 0;
+  }
+
+  #about-profile-portrait .image-about-animation,
+  #about-profile-portrait-caption {
+    display: none;
   }
 
   .image-about {
