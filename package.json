@@ -2,6 +2,7 @@
   "name": "bobtianqiwei-github-io",
   "private": true,
   "scripts": {
+    "build:audio-playlist": "node scripts/generate-audio-playlist.js",
     "build:design-index": "node scripts/render-design-index.js",
     "build:projects": "node scripts/render-project-pages.js",
     "build:swe-index": "node scripts/render-swe-classic-index.js",

@@ -30,6 +30,11 @@
 - `column` controls which of the 3 music columns the item belongs to.
 - `order` controls the top-to-bottom order inside that column.
 
+`content/audio/`
+
+- Shared audio files and playlist data used across Vision, Works, and SWE pages.
+- `playlist.js` stores the shared track list.
+
 Build command:
 
 ```bash
