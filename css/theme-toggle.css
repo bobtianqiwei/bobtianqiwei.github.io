@@ -4,6 +4,7 @@
   --theme-surface: #ffffff;
   --theme-text: #171717;
   --theme-muted: #6b6b6b;
+  --theme-subtle-link: #858d93;
   --theme-border: rgba(23, 23, 23, 0.12);
   --theme-hover: rgba(23, 23, 23, 0.06);
   --theme-button-fill: rgba(23, 23, 23, 0.4);
@@ -27,6 +28,7 @@ html[data-theme="dark"] {
   --theme-surface: #1a1a1a;
   --theme-text: #f2ede6;
   --theme-muted: #beb8af;
+  --theme-subtle-link: #858d93;
   --theme-border: rgba(242, 237, 230, 0.14);
   --theme-hover: rgba(242, 237, 230, 0.08);
   --theme-button-fill: rgba(242, 237, 230, 0.4);
@@ -189,6 +191,15 @@ html[data-theme-enabled="true"] .works-page-heading-link:hover,
 html[data-theme-enabled="true"] .works-catalog-link:hover,
 html[data-theme-enabled="true"] a:hover {
   color: var(--theme-text) !important;
+}
+
+html[data-theme-enabled="true"] .link-in-paragraph-grey,
+html[data-theme-enabled="true"] .link-in-paragraph-grey:visited,
+html[data-theme-enabled="true"] .link-in-paragraph-grey:hover,
+html[data-theme-enabled="true"] .link-in-paragraph-grey:active {
+  color: var(--theme-subtle-link) !important;
+  -webkit-text-fill-color: var(--theme-subtle-link) !important;
+  text-decoration-color: var(--theme-subtle-link) !important;
 }
 
 html[data-theme-enabled="true"] .navigation-item:hover,

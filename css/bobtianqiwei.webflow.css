@@ -4911,10 +4911,6 @@ figcaption {
     bottom: 0%;
   }
 
-  .heading-4-copy {
-    text-align: center;
-  }
-
   .div-block-12-copy {
     margin-left: 23px;
     margin-right: 23px;
@@ -5054,6 +5050,16 @@ figcaption {
     text-align: center;
     white-space: nowrap;
     display: flex;
+  }
+
+  #about-news-list {
+    text-align: left;
+  }
+
+  #about-collaborations-list .createanything-logo {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
   }
 
   .heading-jumbo {
@@ -6111,16 +6117,6 @@ figcaption {
   .friends-grid {
     text-align: center;
     grid-template-columns: 1fr 1fr;
-  }
-
-  #about-collaborations-list .createanything-logo {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
-
-  #about-news-list {
-    text-align: left;
   }
 
   #about-profile-links {
