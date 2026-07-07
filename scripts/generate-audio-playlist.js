@@ -8,6 +8,8 @@ const playlistPath = path.join(audioDirectory, "playlist.js");
 const winampBundlePath = path.join(repoRoot, "swe", "winxp", "static", "js", "main.df788235.js");
 const audioExtensions = new Set([".aac", ".flac", ".m4a", ".mp3", ".ogg", ".wav"]);
 const sharedPlaylistExpression = "Or=(window.siteAudioLibrary||[]).map(function(e){return{url:e.url,metaData:{title:e.title,artist:e.artist}}})";
+const originalDesktopIcons = 'Kr=[{id:0,icon:jr,title:"Internet Explorer",component:Nn,isFocus:!1},{id:1,icon:vr,title:"Minesweeper",component:Ar,isFocus:!1},{id:2,icon:Fr,title:"My Computer",component:xr,isFocus:!1},{id:3,icon:_r,title:"Notepad",component:Sr,isFocus:!1},{id:4,icon:Lr,title:"Winamp",component:Nr,isFocus:!1},{id:5,icon:Pr,title:"Paint",component:Rr,isFocus:!1}]';
+const updatedDesktopIcons = 'Kr=[{id:0,icon:jr,title:"Internet Explorer",component:Nn,isFocus:!1},{id:4,icon:Lr,title:"Winamp",component:Nr,isFocus:!1},{id:1,icon:vr,title:"Minesweeper",component:Ar,isFocus:!1},{id:2,icon:Fr,title:"My Computer",component:xr,isFocus:!1},{id:3,icon:_r,title:"Notepad",component:Sr,isFocus:!1},{id:5,icon:Pr,title:"Paint",component:Rr,isFocus:!1}]';
 
 function getTrack(filename) {
   const extension = path.extname(filename);
@@ -42,7 +44,7 @@ const output = `// playlist.js developed by Bob Tianqi Wei\nwindow.siteAudioLibr
 
 fs.writeFileSync(playlistPath, output);
 
-const winampBundle = fs.readFileSync(winampBundlePath, "utf8");
+let winampBundle = fs.readFileSync(winampBundlePath, "utf8");
 
 if (!winampBundle.includes(sharedPlaylistExpression)) {
   const playlistStart = winampBundle.indexOf("Or=[{url:");
@@ -52,8 +54,10 @@ if (!winampBundle.includes(sharedPlaylistExpression)) {
     throw new Error("Unable to locate the Winamp playlist in the active bundle.");
   }
 
-  const updatedBundle = `${winampBundle.slice(0, playlistStart)}${sharedPlaylistExpression}${winampBundle.slice(playlistEnd + 1)}`;
-  fs.writeFileSync(winampBundlePath, updatedBundle);
+  winampBundle = `${winampBundle.slice(0, playlistStart)}${sharedPlaylistExpression}${winampBundle.slice(playlistEnd + 1)}`;
 }
+
+winampBundle = winampBundle.replace(originalDesktopIcons, updatedDesktopIcons);
+fs.writeFileSync(winampBundlePath, winampBundle);
 
 console.log(`Generated ${tracks.length} track${tracks.length === 1 ? "" : "s"} in content/audio/playlist.js.`);
