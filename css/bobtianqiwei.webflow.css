@@ -3672,6 +3672,24 @@ figcaption {
   inset: 0%;
 }
 
+#about-profile-links {
+  flex-wrap: wrap;
+  gap: 20px;
+  display: flex;
+}
+
+#about-profile-links::before,
+#about-profile-links::after {
+  content: none;
+  display: none;
+}
+
+#about-profile-links .about-button {
+  flex-shrink: 0;
+  margin: 0;
+  white-space: nowrap;
+}
+
 .column-17 {
   height: 100%;
 }
@@ -3936,6 +3954,12 @@ figcaption {
   font-family: Open Sans, sans-serif;
   font-size: 10px;
   line-height: 130%;
+}
+
+#about-profile-portrait-caption {
+  font-size: 10px;
+  line-height: 130%;
+  -webkit-text-size-adjust: 100%;
 }
 
 .album-pic-text.cc-position-name {
@@ -4999,6 +5023,37 @@ figcaption {
 
   #about-profile-links {
     text-align: left;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  #about-profile-links::before,
+  #about-profile-links::after {
+    content: none;
+    display: none;
+  }
+
+  #about-profile-links .about-button {
+    flex: 1 1 110px;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 110px;
+    max-width: none;
+    height: 38px;
+    margin: 0;
+    padding-left: 8px;
+    padding-right: 8px;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+    display: flex;
   }
 
   .heading-jumbo {
@@ -5442,6 +5497,13 @@ figcaption {
 
   .column-16 {
     margin-bottom: 39px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .div-block-image-about {
+    width: 100%;
+    padding-right: 0;
   }
 
   .image-about {
@@ -5576,6 +5638,10 @@ figcaption {
     padding-left: 15px;
     padding-right: 15px;
     position: relative;
+  }
+
+  .logo-link {
+    margin-left: calc(5vw + 5px);
   }
 
   .menu-button, .menu-button.w--open {
@@ -6055,6 +6121,37 @@ figcaption {
 
   #about-news-list {
     text-align: left;
+  }
+
+  #about-profile-links {
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 100%;
+    max-width: none;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  #about-profile-links::before,
+  #about-profile-links::after {
+    content: none;
+    display: none;
+  }
+
+  #about-profile-links .about-button {
+    flex: 1 1 110px;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    min-width: 110px;
+    max-width: none;
+    height: 38px;
+    margin: 0;
+    box-sizing: border-box;
+    text-align: center;
+    display: flex;
   }
 
   .container-15 {
