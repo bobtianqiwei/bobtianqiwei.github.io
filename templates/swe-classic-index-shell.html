@@ -350,6 +350,43 @@
       text-transform: uppercase;
     }
 
+    .recommendation {
+      padding: 10px 0;
+      border-top: 1px solid #e2ebf6;
+    }
+
+    .recommendation:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .recommendation:last-child {
+      padding-bottom: 0;
+    }
+
+    .recommendation p {
+      margin: 0;
+    }
+
+    .recommendation-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .recommendation-name {
+      font: 600 12px Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    .recommendation-title {
+      color: #5a6f8d;
+      font-size: 10px;
+    }
+
+    .recommendation-text {
+      padding-top: 8px;
+    }
+
     .footer {
       padding: 10px 12px;
       border-top: 1px solid rgba(118, 145, 187, 0.72);
@@ -685,6 +722,7 @@
               <a href="#trusted">Trusted By</a>
               <a href="#essentials">Essentials</a>
               <a href="#projects">Selected Projects</a>
+              <a href="#recommendations">Recommendations</a>
             </div>
           </div>
 
@@ -887,8 +925,20 @@
         tickerTimer = window.setTimeout(renderNewsItem, delay);
       }
 
+      function formatNewsItem(item) {
+        if (typeof item === "string") {
+          return item;
+        }
+
+        if (!item || !item.textHtml) {
+          return "";
+        }
+
+        return item.date ? "<strong>" + item.date + "</strong> - " + item.textHtml : item.textHtml;
+      }
+
       function renderNewsItem() {
-        var nextItem = newsItems[index];
+        var nextItem = formatNewsItem(newsItems[index]);
 
         ticker.classList.add("is-refreshing");
         window.setTimeout(function () {

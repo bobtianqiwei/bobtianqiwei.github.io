@@ -359,6 +359,43 @@
       text-transform: uppercase;
     }
 
+    .recommendation {
+      padding: 10px 0;
+      border-top: 1px solid #e2ebf6;
+    }
+
+    .recommendation:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .recommendation:last-child {
+      padding-bottom: 0;
+    }
+
+    .recommendation p {
+      margin: 0;
+    }
+
+    .recommendation-header {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .recommendation-name {
+      font: 600 12px Tahoma, Verdana, Arial, sans-serif;
+    }
+
+    .recommendation-title {
+      color: #5a6f8d;
+      font-size: 10px;
+    }
+
+    .recommendation-text {
+      padding-top: 8px;
+    }
+
     .footer {
       padding: 10px 12px;
       border-top: 1px solid rgba(118, 145, 187, 0.72);
@@ -694,6 +731,7 @@
               <a href="#trusted">Trusted By</a>
               <a href="#essentials">Essentials</a>
               <a href="#projects">Selected Projects</a>
+              <a href="#recommendations">Recommendations</a>
             </div>
           </div>
 
@@ -847,6 +885,20 @@
               </table>
             </div>
           </div>
+
+          <div class="box" id="recommendations">
+            <div class="box-title">Recommendations</div>
+            <div class="box-body recommendation-list">
+              <div class="recommendation">
+                <div class="recommendation-header"><p class="recommendation-name"><a href="https://www.linkedin.com/in/emilyau/" target="_blank" rel="noreferrer">Emily Au</a></p><p class="recommendation-title">Operations Director at eTopus Technology, Inc.</p></div>
+                <p class="recommendation-text">I had the opportunity to work closely with Bob and was consistently impressed by his strong ownership mindset and professionalism. Bob proactively drives work forward, communicates progress clearly, identifies next steps, and willingly takes on additional responsibilities whenever opportunities arise. He approached every project with curiosity, accountability, and attention to detail. Beyond his technical and analytical capabilities, Bob is highly collaborative and adaptable. He works effectively across teams, builds strong relationships with stakeholders, and remains responsive and dependable even when working across different time zones. He is also a fast learner who actively embraces new tools, technologies, and challenges, making him a valuable contributor in dynamic environments. Bob combines strong design thinking, problem-solving skills, and a positive attitude with a genuine desire to create meaningful impact. I am confident he will continue to excel in both his academic journey and future professional endeavors. I highly recommend Bob and look forward to seeing his future achievements.</p>
+              </div>
+              <div class="recommendation">
+                <div class="recommendation-header"><p class="recommendation-name"><a href="https://www.linkedin.com/in/ruipeng-ge-35780124b/" target="_blank" rel="noreferrer">Ruipeng Ge</a></p><p class="recommendation-title">Operations Engineer at eTopus Technology Inc.</p></div>
+                <p class="recommendation-text">Bob works as a great software engineer at eTopus and shows strong professional skills in UI/UX design, frontend development, data processing, visualization and more. He contributed in various projects in operations and information systems. He is very thoughtful, collaborative, and a great problem solver. I'm glad to work with him again!</p>
+              </div>
+            </div>
+          </div>
         </td>
       </tr>
     </table>
@@ -910,8 +962,20 @@
         tickerTimer = window.setTimeout(renderNewsItem, delay);
       }
 
+      function formatNewsItem(item) {
+        if (typeof item === "string") {
+          return item;
+        }
+
+        if (!item || !item.textHtml) {
+          return "";
+        }
+
+        return item.date ? "<strong>" + item.date + "</strong> - " + item.textHtml : item.textHtml;
+      }
+
       function renderNewsItem() {
-        var nextItem = newsItems[index];
+        var nextItem = formatNewsItem(newsItems[index]);
 
         ticker.classList.add("is-refreshing");
         window.setTimeout(function () {

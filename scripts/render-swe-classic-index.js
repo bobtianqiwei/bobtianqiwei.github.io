@@ -53,6 +53,18 @@ ${sweIndex.selectedProjects.map((item) => `                <tr>
           </div>`;
 }
 
+function renderRecommendations() {
+  return `          <div class="box" id="recommendations">
+            <div class="box-title">Recommendations</div>
+            <div class="box-body recommendation-list">
+${sweIndex.recommendations.map((item) => `              <div class="recommendation">
+                <div class="recommendation-header"><p class="recommendation-name"><a href="${item.href}" target="_blank" rel="noreferrer">${item.name}</a></p><p class="recommendation-title">${item.title}</p></div>
+                <p class="recommendation-text">${item.text}</p>
+              </div>`).join("\n")}
+            </div>
+          </div>`;
+}
+
 function main() {
   const shell = fs.readFileSync(templatePath, "utf8");
   const startMarker = '          <div class="box" id="trusted">';
@@ -64,7 +76,7 @@ function main() {
     throw new Error("Unable to locate dynamic region in SWE classic index shell.");
   }
 
-  const dynamicHtml = `${renderTrustedBy()}\n\n${renderEssentials()}\n\n${renderSelectedProjects()}`;
+  const dynamicHtml = `${renderTrustedBy()}\n\n${renderEssentials()}\n\n${renderSelectedProjects()}\n\n${renderRecommendations()}`;
   const output = `${shell.slice(0, startIndex)}${dynamicHtml}${shell.slice(endIndex)}`;
   fs.writeFileSync(outputPath, output);
 }

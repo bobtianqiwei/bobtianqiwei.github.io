@@ -114,5 +114,19 @@ module.exports = {
       title: "Water Synthesizer",
       description: "An experimental project investigating sound, interface behavior, and live interaction."
     }
+  ],
+  recommendations: [
+    {
+      name: "Emily Au",
+      href: "https://www.linkedin.com/in/emilyau/",
+      title: "Operations Director at eTopus Technology, Inc.",
+      text: "I had the opportunity to work closely with Bob and was consistently impressed by his strong ownership mindset and professionalism. Bob proactively drives work forward, communicates progress clearly, identifies next steps, and willingly takes on additional responsibilities whenever opportunities arise. He approached every project with curiosity, accountability, and attention to detail. Beyond his technical and analytical capabilities, Bob is highly collaborative and adaptable. He works effectively across teams, builds strong relationships with stakeholders, and remains responsive and dependable even when working across different time zones. He is also a fast learner who actively embraces new tools, technologies, and challenges, making him a valuable contributor in dynamic environments. Bob combines strong design thinking, problem-solving skills, and a positive attitude with a genuine desire to create meaningful impact. I am confident he will continue to excel in both his academic journey and future professional endeavors. I highly recommend Bob and look forward to seeing his future achievements."
+    },
+    {
+      name: "Ruipeng Ge",
+      href: "https://www.linkedin.com/in/ruipeng-ge-35780124b/",
+      title: "Operations Engineer at eTopus Technology Inc.",
+      text: "Bob works as a great software engineer at eTopus and shows strong professional skills in UI/UX design, frontend development, data processing, visualization and more. He contributed in various projects in operations and information systems. He is very thoughtful, collaborative, and a great problem solver. I'm glad to work with him again!"
+    }
   ]
 };
