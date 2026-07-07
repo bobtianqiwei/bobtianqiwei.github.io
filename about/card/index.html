@@ -21,6 +21,7 @@
       --theme-border: #dfe4e8;
       --theme-button-fill: #252b30;
       --contact-card-logo-filter: brightness(0) saturate(100%);
+      --contact-card-qr-filter: none;
     }
     html[data-theme-enabled="true"][data-theme="dark"] {
       --theme-bg: #121518;
@@ -29,6 +30,7 @@
       --theme-border: #2c3237;
       --theme-button-fill: #e1e6e9;
       --contact-card-logo-filter: none;
+      --contact-card-qr-filter: invert(1);
     }
     body { min-height: 100vh; margin: 0; }
     .contact-card-page { min-height: 100vh; display: grid; place-items: center; padding: 56px 24px; box-sizing: border-box; }
@@ -50,7 +52,7 @@
     .contact-card-address { text-align: right; }
     .contact-card-qr-panel { text-align: center; }
     .contact-card-qr-link { display: block; width: 100%; margin: 0 0 20px; }
-    .contact-card-qr { display: block; width: 100%; height: auto; background: #fff; }
+    .contact-card-qr { display: block; width: 100%; height: auto; background: transparent; filter: var(--contact-card-qr-filter); }
     .contact-card-action { display: block; padding: 11px 16px; background: var(--theme-button-fill, #111); color: var(--theme-bg, #fff) !important; font-family: Manrope Variablefont Wght, Arial, sans-serif; font-size: 13px; text-align: center; text-decoration: none; }
     html[data-theme-enabled="true"] .contact-card-action,
     html[data-theme-enabled="true"] .contact-card-action:link,
@@ -101,7 +103,7 @@
         </div>
         <div class="contact-card-qr-panel">
           <a class="contact-card-qr-link" href="/about/card/" aria-label="Open Bob Tianqi Wei's contact card">
-            <img class="contact-card-qr" src="/contact/bob-tianqi-wei-qr.png" alt="QR code for Bob Tianqi Wei's contact card">
+            <img class="contact-card-qr" src="/contact/bob-tianqi-wei-qr-transparent.png" alt="QR code for Bob Tianqi Wei's contact card">
           </a>
           <a class="contact-card-action" href="/contact/bob-tianqi-wei.vcf">Add to Contacts</a>
           <p class="contact-card-hint">Tap Create New Contact to save.</p>
