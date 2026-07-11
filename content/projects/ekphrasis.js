@@ -5,7 +5,7 @@ module.exports = {
     title: "EKPHRASIS",
     description: "An AI-mediated learning system that helps students interpret abstract graphic design vocabulary through comparative visual feedback.",
     hero: {
-      headline: "A comparative visual feedback system for making tacit graphic design vocabulary more concrete, inspectable, and actionable.",
+      headline: "An AI-mediated design learning platform that makes tacit graphic design vocabulary concrete through comparative feedback and turn-taking interaction.",
       metaLines: [
         "Bob Tianqi Wei and Shayne Shen, Shm Almeda, Bjoern Hartmann",
         "UC Berkeley",
@@ -25,13 +25,28 @@ module.exports = {
         bodyHtml: "<p>The new full-paper framing sharpens the research question behind EKPHRASIS: graphic design critique is often difficult for novices because its language is specialized, multiply interpretable, and underspecified until it is grounded in visual context.</p><p>Formative interviews with 11 graphic design educators and professionals surfaced three recurring barriers. <strong>Jargon</strong> makes critique feel insider-only, especially for learners from outside design or across language backgrounds. <strong>Ambiguity</strong> means a term like <em>contrast</em> may point to several different visual operations at once. <strong>Vagueness</strong> means words such as <em>harmony</em> can be recognizable in use while still resisting fixed rules.</p><p>These findings motivated EKPHRASIS as a system that makes design vocabulary inspectable rather than merely definable.</p>"
       },
       {
-        title: "Core Interaction",
-        video: {
-          youtubeId: "z9hrltHGZ-E",
-          title: "EKPHRASIS LBW video",
-          caption: "Video"
-        },
-        bodyHtml: "<p>The main learning loop is intentionally simple: compose, compare, and revise. A learner creates a block-based composition in response to a target term, requests feedback, and receives a spectrum of less aligned and more aligned variations around their own work. Instead of presenting a single ideal answer, the system externalizes visual differences so the learner can inspect them, interpret the target term, and decide what to change next.</p><p>This comparative structure is what makes EKPHRASIS interesting as a learning interface. It supports subjective interpretation and reflection rather than collapsing design judgment into a one-shot automated verdict.</p>"
+        title: "Two Learning Interactions",
+        bodyHtml: "<p>EKPHRASIS explores two complementary interaction models for learning abstract design concepts: comparative visual feedback and turn-taking practice on a shared canvas.</p>",
+        blocks: [
+          {
+            title: "Comparative Visual Feedback",
+            bodyHtml: "<p>Learners create a composition and compare it with less aligned and more aligned variations generated around their own work. This makes abstract vocabulary inspectable through visible differences and supports reflection before revision.</p>",
+            video: {
+              youtubeId: "z9hrltHGZ-E",
+              title: "EKPHRASIS LBW video",
+              caption: "Video"
+            }
+          },
+          {
+            title: "Turn-Taking Practice: EKPHRASIS Chess",
+            bodyHtml: "<p>EKPHRASIS Chess extends comparative feedback into an ongoing shared-canvas interaction. The learner and AI take turns adding blocks to the same composition while working with a selected target concept. In Help mode, the AI moves the composition toward the concept. In Oppose mode, it creates resistance while the learner continues trying to reach or maintain the target. In Random mode, it introduces an open-ended alternative. When the composition reaches a model-confidence threshold, the system pauses and asks the learner to inspect the result and explain whether they agree.</p>",
+            video: {
+              src: "https://www.youtube.com/embed/0tgsTTini3w?si=Fkp1sO06eVpoWSRY",
+              title: "EKPHRASIS Chess video",
+              allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            }
+          }
+        ]
       },
       {
         title: "System Overview",
@@ -46,10 +61,18 @@ module.exports = {
         blocks: [
           {
             title: "Visual Aids",
-            bodyHtml: "<p>The core mode for the project. Learners create a composition, request visual feedback, and inspect less aligned and more aligned examples around their own artifact. The interface keeps the learner's work in the middle and returns comparative examples rather than a single corrected answer, making the target term easier to inspect and debate.</p>",
+            bodyHtml: "<p>Learners create a composition, request visual feedback, and inspect less aligned and more aligned examples around their own artifact. The interface keeps the learner's work in the middle and returns comparative examples rather than a single corrected answer, making the target term easier to inspect and debate.</p>",
             figure: {
               src: "/images/ekphrasis-visual-aids.png",
               caption: "Visual Aids mode: the learner's composition is contextualized by less aligned and more aligned examples for the target vocabulary."
+            }
+          },
+          {
+            title: "EKPHRASIS Chess",
+            bodyHtml: "<p>The learner and AI take turns adding blocks to a shared composition while practicing a selected design concept through support, resistance, or open-ended variation.</p>",
+            figure: {
+              src: "/images/ekphrasis-chess.png",
+              caption: "EKPHRASIS Chess supports turn-taking practice through Help, Oppose, and Random modes."
             }
           },
           {
@@ -63,20 +86,19 @@ module.exports = {
             ]
           },
           {
-            title: "Additional Modes",
-            bodyHtml: "<p>The broader prototype also includes Chess for turn-taking exploration with the computer, Test Model for inspecting predictions across uploaded examples, and Label Data for collecting new labeled compositions to extend the dataset. These supporting modes are secondary to the main learning interface, but they show how the project has grown into a fuller experimental platform.</p>",
+            title: "Supporting Tools",
+            bodyHtml: "<p>Test Model supports inspecting predictions across uploaded examples, and Label Data supports collecting new labeled compositions to extend the dataset.</p>",
             images: [
-              "/images/ekphrasis-chess.png",
               "/images/ekphrasis-test-model.png",
               "/images/ekphrasis-label-data.png"
             ],
-            imageColumns: 3
+            imageColumns: 2
           }
         ]
       },
       {
         title: "Research Trajectory",
-        bodyHtml: "<p>The published CHI 2025 paper established the feasibility of EKPHRASIS as an educational interface for graphic design vocabulary. The current full paper extends that framing substantially: it formalizes the formative study, articulates the design implications of jargon, ambiguity, and vagueness, reports pilot observations, and lays out a controlled-study plan for testing learning mechanisms.</p><p>At this stage, the strongest claim is not efficacy. It is that comparative visual feedback appears to be a promising interface for externalizing tacit design knowledge, supporting contrastive sensemaking, and helping learners translate critique into concrete revisions.</p>"
+        bodyHtml: "<p>The published CHI 2025 work introduced EKPHRASIS through comparative visual aids. The ongoing full paper develops this direction through a stronger formative study, pilot observations, and a controlled-study plan. EKPHRASIS Chess explores a complementary turn-taking interaction in which learners practice design concepts through support, resistance, and reflection on a shared canvas.</p>"
       },
       {
         title: "Publications",
@@ -110,7 +132,7 @@ module.exports = {
             authors: "Bob Tianqi Wei and Shayne Shen, Shm Almeda, Dor Abrahamson, Bjoern Hartmann",
             venue: "UIST 2026 demo",
             status: "IN PROGRESS",
-            abstract: "Graphic design education often relies on examples and critique to teach abstract visual concepts such as balance and hierarchy. However, novices may struggle to translate these vague concepts into concrete visual actions, especially because the reasoning behind visual decisions is often tacit. We present a demonstration of EKPHRASIS Chess, an interactive design learning system that uses a simplified shared canvas to help learners explore the relationship between visual concepts and compositional changes. A user first places a basic visual element, such as a block, and an AI agent responds by adding another element according to a selected target concept. The system supports three response modes: Help, in which the AI moves the composition toward the concept; Oppose, in which it intentionally destabilizes or counteracts the concept; and Random, in which it produces an unrelated alternative. By comparing these contrasting responses, learners can observe how specific changes in position, scale, color, and visual relation affect the expression of an abstract design concept. This demonstration invites attendees to explore how human-AI turn-taking can make tacit design knowledge visible and support reflection, experimentation, and concept learning in graphic design education."
+            abstract: "Graphic design education often relies on examples and critique to teach abstract visual concepts such as balance and hierarchy. However, novices may struggle to translate these vague concepts into concrete visual actions, especially because the reasoning behind visual decisions is often tacit. We present a demonstration of EKPHRASIS Chess, an interactive design learning system that uses a simplified shared canvas to help learners explore the relationship between visual concepts and compositional changes. A user first places a basic visual element, such as a block, and an AI agent responds by adding another element according to a selected target concept. The system supports three response modes: Help, in which the AI moves the composition toward the concept; Oppose, in which the AI acts as a contrastive opponent that tries to destabilize the target concept while the learner attempts to maintain or recover it; and Random, in which it produces an unrelated alternative. By comparing these contrasting responses, learners can observe how specific changes in position, scale, color, and visual relation affect the expression of an abstract design concept. This demonstration invites attendees to explore how human-AI turn-taking can make tacit design knowledge visible and support reflection, experimentation, and concept learning in graphic design education."
           }
         ]
       },
