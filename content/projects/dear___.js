@@ -3,15 +3,68 @@ module.exports = {
   slug: "dear___",
   content: {
     title: "dear___",
-    description: "",
+    description: "dear___ is a mobile memory album that uses ephemeral reveal to make encounters with personal photo archives partial, temporary, and reversible.",
     hero: {
-      headline: "",
-      metaLines: []
+      headline: "A mobile memory album that lets people approach emotionally charged photographs slowly, partially, and temporarily.",
+      metaLines: [
+        "Bob Tianqi Wei and Hiroshi Ishii",
+        "MIT Media Lab",
+        "Research · Interaction Design · iOS Development · 2026"
+      ]
     },
     sections: [
       {
-        title: "Links",
+        title: "The Idea",
+        bodyHtml: "<p>Personal photo archives make memories immediately visible. But after loss or separation, seeing a photograph can bring past closeness back all at once, intensified by the pain of present absence.</p><p>dear___ explores another way of encountering personal memories. Instead of permanently displaying or deleting a photograph, users can cover people or regions with editable white masks, reveal them through touch, and watch the mask gradually return.</p>",
+        video: {
+          src: "https://www.youtube.com/embed/keVKziKvyEw?si=Vzl8lhm1TruQulvv",
+          title: "dear___ demo video",
+          allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        }
+      },
+      {
+        title: "Ephemeral Reveal",
+        bodyHtml: "<style>.dear-theme-image-dark{display:none!important}html[data-theme=\"dark\"] .dear-theme-image-light{display:none!important}html[data-theme=\"dark\"] .dear-theme-image-dark{display:block!important}</style><p>dear___ treats absence as an interactive material through a five-stage interaction.</p><p><strong>Compose</strong><br>Add a photograph, diary entry, music, and time.</p><p><strong>Mask</strong><br>Create and edit a white cover over a person or region.</p><p><strong>Touch Reveal</strong><br>Erase the mask through touch.</p><p><strong>Presence Appears</strong><br>The photograph, diary text, and music emerge together.</p><p><strong>Absence Returns</strong><br>The mask gradually restores itself.</p><figure class=\"project-figure dear-theme-figure\"><img src=\"/images/dear-flow-light.png\" loading=\"lazy\" alt=\"dear___ interaction flow from composing a memory to the return of its mask\" class=\"project-figure-image dear-theme-image dear-theme-image-light\"><img src=\"/images/dear-flow-dark.png\" loading=\"lazy\" alt=\"dear___ interaction flow on a dark background\" class=\"project-figure-image dear-theme-image dear-theme-image-dark\"><figcaption class=\"image-description\">Compose, mask, touch reveal, presence appears, and absence returns.</figcaption></figure>"
+      },
+      {
+        title: "Designing the Memory Object",
+        rows: [
+          {
+            left: {
+              bodyHtml: "<p><strong>Compose a Memory Object</strong><br>Each memory in dear___ is more than a photograph. It can contain a mask, diary text, music, temporal metadata, and interaction state. Together, these layers form a personal memory object that can be edited and revisited over time.</p><p><strong>Computer Vision Suggests. The User Decides.</strong><br>dear___ can generate an initial cover using foreground or person segmentation. The result remains fully editable: users can paint, erase, undo, and reshape the mask. Automation accelerates the process without deciding what absence should look like.</p><p><strong>The Reveal Is Temporary</strong><br>In most reveal interfaces, the cover is something to remove. In dear___, re-covering is equally important. The memory can be approached without being permanently exposed. Presence and absence remain in motion within the same artifact.</p><p><strong>Memory Across Time</strong><br>Memories can be found through browsing, but they can also return through time. dear___ uses photo dates, edit dates, “on this day” reminders, and weekly prompts to resurface past moments without pretending to restore the person or relationship itself.</p><p><strong>Consent-Aware Sharing</strong><br>A private memory does not need to become fully public. When users save, share, or submit a memory, they choose which layers may leave the private archive.</p>"
+            },
+            right: {
+              bodyHtml: "<figure class=\"project-figure\"><img src=\"/images/dear-consent-sharing.png\" loading=\"lazy\" alt=\"Consent-aware sharing controls in dear___\" class=\"project-figure-image\" style=\"width:auto;max-height:360px;margin:0 auto\"><figcaption class=\"image-description\">Users choose which layers may leave the private archive.</figcaption></figure>"
+            }
+          }
+        ]
+      },
+      {
+        title: "Usage Scenario",
+        bodyHtml: "<p>Eli is navigating the end of a close relationship. He does not want to delete the photographs, songs, and messages that remain, but seeing them fully in an ordinary gallery makes the happiness of the past return all at once, sharpened by the pain of present absence.</p><p>He creates an album in dear___, imports a small group of photographs, and places white masks over the person who is no longer present. He adjusts each mask by hand, writes short notes that read like diary entries or unsent letters, and attaches songs that still carry the shape of that time.</p><p>Later, Eli opens the album. Familiar places appear first—a doorway, a table, a corner of a room—while the person remains covered as a white silhouette. He slowly erases part of the mask. As the figure emerges, the diary text becomes visible and the music begins. After a short pause, the mask returns, and the memory settles back into absence.</p><p>The interaction does not restore the person or erase them. It gives Eli a controlled way to approach their traces, sit with what remains, and address them across time rather than all at once. Over repeated visits, composing masks, writing unsent letters, and watching covers return become small reflective rituals.</p>"
+      },
+      {
+        title: "Technical Implementation",
+        bodyHtml: "<p>dear___ is a native SwiftUI iOS application. Each local memory object can contain a photograph, editable mask, title, diary text, audio or music reference, photo date, edit date, and export metadata. Apple's Vision APIs assist with foreground or person segmentation, while manual paint and erase tools keep the final mask under user control. The app also supports touch-based reveal and restoration, temporal reminders, share-card rendering, portable album data, and consent-aware export.</p>"
+      },
+      {
+        title: "Publication",
+        publications: [
+          {
+            title: "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives",
+            authors: "Bob Tianqi Wei and Hiroshi Ishii",
+            venue: "UIST 2026 demo",
+            status: "SUBMITTED",
+            abstract: "Personal photo archives preserve traces of people, places, and moments, but they often make memory access fast, flat, and fully visible. For emotionally charged memories, immediate visibility may not always be the desired mode of interaction. We present dear___, a mobile memory album that explores ephemeral reveal as an interaction pattern for TeleAbsence. In dear___, users compose personal photos with editable white masks, diary text, music, and temporal metadata. A user can erase the mask through touch to reveal the photograph and its associated layers; after a short interval, the mask gradually returns, making the encounter partial, temporary, and reversible. The system also supports computer-vision-assisted mask generation, manual cover editing, memory notifications, share cards, and consent-aware export. Rather than simulating an absent person, dear___ works with existing traces and lets users decide how presence should briefly appear, fade, and return to absence. This demo contributes a working mobile system and interaction concept for designing absence as an interactive material in personal photo archives."
+          }
+        ]
+      },
+      {
+        title: "Project Links",
         bodyHtml: "<p><a href=\"/works/dear___/privacy/\" class=\"link-in-paragraph\">Privacy Policy</a></p><p><a href=\"/works/dear___/support/\" class=\"link-in-paragraph\">Support</a></p>"
+      },
+      {
+        bodyHtml: "<p>We all come to accept the absence of those we have loved, but we can still talk to them across time.</p>"
       }
     ]
   },
@@ -22,6 +75,22 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/dear___/index.html",
+      metaTitle: "dear___ - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
+    },
+    swe: {
+      outputPath: "swe/classic/dear___/index.html",
+      metaTitle: "dear___ - Software Engineering Portfolio",
+      backHref: "/swe/classic/",
+      backLabel: "BACK TO SOFTWARE ENGINEERING",
+      layout: "swe-classic-case-study",
+      eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   },
   childPages: [

@@ -51,6 +51,14 @@ module.exports = {
       description: "A comparative visual feedback system for helping learners interpret tacit graphic design vocabulary through interactive AI-mediated critique."
     },
     {
+      href: "/swe/classic/dear___/",
+      image: "/images/dear-cover.png",
+      alt: "dear___",
+      title: "dear___",
+      meta: "iOS memory system / interaction design",
+      description: "A native SwiftUI memory album combining editable masks, touch-based reveal, temporal reminders, and consent-aware sharing."
+    },
+    {
       href: "/swe/classic/artifactor/",
       image: "/images/artifactor-cover.png",
       alt: "ArtiFactor",

@@ -12,6 +12,15 @@ module.exports = {
     },
     {
       "section": "ESSENTIALS",
+      "href": "/works/dear___/",
+      "className": "work-image-link w-inline-block",
+      "image": "/images/dear-cover.png",
+      "contentHtml": "dear___",
+      "lightbox": null,
+      "order": 6.5
+    },
+    {
+      "section": "ESSENTIALS",
       "href": "/works/morphingskin/",
       "className": "work-image-link w-inline-block",
       "image": "/images/MorphingSkin.jpg",
@@ -66,15 +75,6 @@ module.exports = {
     },
     {
       "section": "ESSENTIALS",
-      "href": "/works/illuminatio/",
-      "className": "work-image-link w-inline-block",
-      "image": "/images/Illuminating-Product.jpg",
-      "contentHtml": "ILLUMINATIO",
-      "lightbox": null,
-      "order": 8
-    },
-    {
-      "section": "ESSENTIALS",
       "href": "/works/digital-paradise/",
       "className": "work-image-link w-inline-block",
       "image": "/images/Screenshot-2022-11-25-at-11.32.57.jpg",
@@ -99,6 +99,15 @@ module.exports = {
       "contentHtml": "Generating Visual Aids to Help Students Understand Graphic Design with EKPHRASIS<br><br>Bob Tianqi Wei and Shayne Shen, Shm Almeda, Bjoern Hartmann<br><br>CHI 2025<br>",
       "lightbox": null,
       "order": 1
+    },
+    {
+      "section": "RESEARCH",
+      "href": "/works/dear___/",
+      "className": "link-100 w-inline-block",
+      "image": "/images/dear-research-cover.png",
+      "contentHtml": "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong> and Hiroshi Ishii<br><br>UIST 2026 demo, submitted<br>",
+      "lightbox": null,
+      "order": 1.5
     },
     {
       "section": "RESEARCH",
@@ -845,21 +854,12 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
-      "href": "https://anythingmarketing.created.app/affiliate",
+      "href": "/works/dear___/",
       "className": "project-link-block w-inline-block",
-      "image": "/images/anything-affiliate-program.jpg",
-      "contentHtml": "Anything Affiliate Program Page",
+      "image": "/images/dear-cover.png",
+      "contentHtml": "dear___",
       "lightbox": null,
-      "order": 6
-    },
-    {
-      "section": "DIGITAL INTERFACES",
-      "href": "https://brandresources.created.app/",
-      "className": "project-link-block w-inline-block",
-      "image": "/images/brandresources.created.app_.png",
-      "contentHtml": "Anything Brand Resources Page",
-      "lightbox": null,
-      "order": 7
+      "order": 0
     },
     {
       "section": "DIGITAL INTERFACES",

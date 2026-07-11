@@ -45,10 +45,10 @@ module.exports = {
       featureRows: [
         [
           fromIndex({ href: "/works/morphingskin/", section: "ESSENTIALS" }),
-          fromIndex({ href: "/works/illuminatio/", section: "ESSENTIALS" })
+          fromIndex({ href: "/works/illuminatio/", section: "TANGIBLE SYSTEMS" })
         ],
         [
-          fromIndex({ href: "/works/floro/", section: "ESSENTIALS" }),
+          fromIndex({ href: "/works/floro/", section: "TANGIBLE SYSTEMS" }),
           fromLegacy("palette-plate")
         ]
       ],
@@ -102,7 +102,10 @@ module.exports = {
       ],
       columns: [
         [
-          fromLegacy("anything-affiliate-program-page"),
+          {
+            ...fromIndex({ href: "/works/dear___/", section: "ESSENTIALS" }),
+            href: "/design/dear___/"
+          },
           {
             ...fromIndex({ href: "https://github.com/s-almeda/ArtiFactor", section: "DIGITAL INTERFACES" }),
             href: "/design/artifactor/"
@@ -110,7 +113,6 @@ module.exports = {
           fromIndex({ href: "/works/desktop-buddha/", section: "DIGITAL INTERFACES" })
         ],
         [
-          fromLegacy("anything-brand-resources-page"),
           {
             ...fromLegacy("tao"),
             href: "/design/tao/"
