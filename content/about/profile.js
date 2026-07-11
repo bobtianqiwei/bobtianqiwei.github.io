@@ -1,7 +1,7 @@
 // profile.js developed by Bob Tianqi Wei
 window.aboutProfile = {
   nameHtml: "Bob Tianqi Wei<br>魏 天祺",
-  pronounsHtml: "\"Tien-Chi\", he/they <a href=\"http://www.mypronouns.org/he-him\" target=\"_blank\" class=\"link-in-paragraph-grey\">(What is this?)</a>",
+  pronounsHtml: "\"Tien-Chi\", he/they <a href=\"http://www.mypronouns.org/he-him\" target=\"_blank\" class=\"link-in-paragraph-grey pronouns-help-link\">(What is this?)</a>",
   bioHtml: "I am an HCI researcher at the <a href=\"https://bid.berkeley.edu/\" target=\"_blank\" class=\"link-in-paragraph\">Berkeley Institute of Design Lab (BiD)</a> in EECS, working with Professor <a href=\"https://people.eecs.berkeley.edu/~bjoern/\" target=\"_blank\" class=\"link-in-paragraph\">Björn Hartmann</a> and <a href=\"https://shmuh.co/\" target=\"_blank\" class=\"link-in-paragraph\">Shm Almeda</a>. I hold an MDes in Human–Computer Interaction from the UC Berkeley College of Engineering and a BA in Industrial Design from Tsinghua University. <br>‍<br>My research sits at the intersection of human–computer interaction, AI, and embodied / material interfaces. I design and study systems that use AI and novel hardware to support tacit skill learning, creative work, and responsible forms of automation.<br>‍<br>Outside of research, I am a classical musician, designer and frontend engineer, and I often bring these practices into my teaching and interactive prototypes.<br>",
   links: [
     {
