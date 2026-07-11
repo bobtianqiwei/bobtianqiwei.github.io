@@ -806,8 +806,7 @@ ${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHt
     }).join("\n");
 
     return `        <div class="box" id="${index === 0 ? "overview" : index === 1 ? "details" : `section-${index + 1}`}">
-          <div class="box-title">${section.title}</div>
-          <div class="box-body">
+${section.title ? `          <div class="box-title">${section.title}</div>\n` : ""}          <div class="box-body">
 ${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${rows.length ? `${renderClassicRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
           </div>
         </div>`;
