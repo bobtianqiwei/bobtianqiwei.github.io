@@ -26,11 +26,6 @@ module.exports = {
       href: "https://www.createanything.com/",
       image: "/images/Anything-logo.svg",
       alt: "Anything"
-    },
-    {
-      href: "https://instalily.ai/",
-      image: "/images/instalily.png",
-      alt: "Instalily"
     }
   ],
   essentials: [
