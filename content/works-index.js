@@ -17,7 +17,7 @@ module.exports = {
       "image": "/images/dear-cover.png",
       "contentHtml": "dear___",
       "lightbox": null,
-      "order": 6.5
+      "order": 3
     },
     {
       "section": "ESSENTIALS",
@@ -35,7 +35,7 @@ module.exports = {
       "image": "/images/stringed-harmony.jpg",
       "contentHtml": "Stringed Harmony",
       "lightbox": null,
-      "order": 3
+      "order": 6.5
     },
     {
       "section": "ESSENTIALS",
