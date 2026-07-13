@@ -1,0 +1,71 @@
+/* vision/reflection-page.css developed by Bob Tianqi Wei */
+.vision-reflection-section-heading {
+  margin: 0 0 16px;
+  color: var(--theme-text, #333);
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: .04em;
+}
+
+html[data-theme="light"] .vision-reflection-section-heading {
+  color: #272727;
+}
+
+.vision-reflection-related {
+  margin-top: 52px;
+  padding-top: 18px;
+  border-top: 1px solid var(--theme-border, rgba(23, 23, 23, 0.12));
+}
+
+.vision-reflection-related-heading {
+  margin-bottom: 18px;
+}
+
+.vision-reflection-related-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.vision-reflection-related-link {
+  display: block;
+  color: var(--theme-text, #333);
+  text-decoration: none;
+}
+
+.vision-reflection-related-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  transition: opacity 160ms ease;
+}
+
+.vision-reflection-related-title {
+  display: block;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  transition: opacity 160ms ease;
+}
+
+.vision-reflection-related-link:hover .vision-reflection-related-image,
+.vision-reflection-related-link:hover .vision-reflection-related-title {
+  opacity: .8;
+}
+
+html[data-theme="light"] .vision-reflection-related-link {
+  color: #272727;
+}
+
+@media screen and (max-width: 767px) {
+  .vision-reflection-section-heading {
+    font-size: 19px;
+  }
+
+  .vision-reflection-related-grid {
+    grid-template-columns: 1fr;
+  }
+}
