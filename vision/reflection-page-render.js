@@ -130,6 +130,20 @@
     selectLanguage(selectedLanguage);
   }
 
+  function loadLanguageFonts(languages) {
+    var usesChinese = Array.isArray(languages) && languages.some(function (language) {
+      return language && typeof language.code === "string" && language.code.indexOf("zh") === 0;
+    });
+
+    if (usesChinese && window.WebFont) {
+      window.WebFont.load({
+        google: {
+          families: ["Noto Sans SC:300,400"]
+        }
+      });
+    }
+  }
+
   var data = window.VISION_REFLECTION_CONTENT || {};
   var title = document.querySelector("[data-reflection-title]");
   var subtitle = document.querySelector("[data-reflection-subtitle]");
@@ -158,5 +172,6 @@
       : "";
   }
 
+  loadLanguageFonts(data.languages);
   renderLanguageSwitch(data.languages, data.defaultLanguage, sections);
 })();

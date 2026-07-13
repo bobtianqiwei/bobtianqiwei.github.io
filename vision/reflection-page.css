@@ -75,6 +75,10 @@ html[data-theme="light"] .vision-reflection-section-heading {
   margin-top: 0;
 }
 
+.vision-reflection-section[data-reflection-language^="zh"] > p {
+  font-family: "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+}
+
 .vision-reflection-section.is-language-active > p {
   animation: vision-reflection-language-line-in .25s ease both;
   animation-delay: var(--vision-reflection-language-delay, 0ms);

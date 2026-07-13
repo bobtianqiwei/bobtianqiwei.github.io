@@ -177,6 +177,54 @@ function escapeHtml(value) {
     .replace(/'/g, "&#39;");
 }
 
+const codeKeywords = new Set([
+  "and", "as", "async", "await", "break", "case", "catch", "class", "const",
+  "continue", "def", "do", "elif", "else", "enum", "except", "false", "finally",
+  "float", "for", "foreach", "from", "if", "import", "in", "int", "is", "lambda",
+  "let", "new", "none", "not", "null", "or", "pass", "private", "protected", "public",
+  "return", "static", "string", "struct", "super", "switch", "this", "throw", "true",
+  "try", "using", "var", "void", "while", "with", "yield"
+]);
+
+function highlightCode(value) {
+  const source = String(value || "");
+  const tokenPattern = /#[^\n]*|\/\/[^\n]*|\/\*[\s\S]*?\*\/|"""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b\d+(?:\.\d+)?\b|\b[A-Za-z_][A-Za-z0-9_]*\b/g;
+  let output = "";
+  let lastIndex = 0;
+  let match;
+  let expectsName = false;
+
+  while ((match = tokenPattern.exec(source))) {
+    const token = match[0];
+    const lowerToken = token.toLowerCase();
+    let className = "";
+
+    output += escapeHtml(source.slice(lastIndex, match.index));
+
+    if (token.startsWith("#") || token.startsWith("//") || token.startsWith("/*")) {
+      className = "project-code-comment";
+    } else if (token.startsWith("\"") || token.startsWith("'")) {
+      className = "project-code-string";
+    } else if (/^\d/.test(token)) {
+      className = "project-code-number";
+    } else if (codeKeywords.has(lowerToken)) {
+      className = "project-code-keyword";
+      expectsName = lowerToken === "class" || lowerToken === "def" || lowerToken === "struct";
+    } else if (expectsName || /^\s*\(/.test(source.slice(tokenPattern.lastIndex))) {
+      className = "project-code-name";
+      expectsName = false;
+    }
+
+    output += className
+      ? `<span class="${className}">${escapeHtml(token)}</span>`
+      : escapeHtml(token);
+    lastIndex = tokenPattern.lastIndex;
+  }
+
+  return (output + escapeHtml(source.slice(lastIndex)))
+    .replace(/^ +$/gm, (spaces) => "&#32;".repeat(spaces.length));
+}
+
 function renderCardGrid(cards) {
   const columns = [cards.slice(0, 1), cards.slice(1, 2), cards.slice(2, 3)];
   return `    <div class="work-columns w-row">
@@ -428,9 +476,7 @@ ${slides.map((slide) => `        <div class="w-slide">${renderImage(typeof slide
 
 function renderWorksCodeBlocks(codeBlocks) {
   return `    <div class="project-code-list">
-${codeBlocks.map((block) => `      <section class="project-code-card">
-${block.title ? `        <h3 class="project-code-title">${block.title}</h3>\n` : ""}${block.language ? `        <p class="project-code-meta">${escapeHtml(block.language)}</p>\n` : ""}        <pre class="project-code-block"><code>${escapeHtml(block.code || "")}</code></pre>
-${block.caption ? `        <p class="project-code-caption">${block.caption}</p>` : ""}      </section>`).join("\n")}
+${codeBlocks.map((block) => `      <pre contenteditable="false" class="project-code-block"><code>${highlightCode(block.code)}</code></pre>`).join("\n")}
     </div>`;
 }
 
@@ -467,9 +513,7 @@ ${slides.map((slide) => `              <div class="w-slide">${renderImage(typeof
 
 function renderDesignCodeBlocks(codeBlocks) {
   return `          <div class="project-code-list">
-${codeBlocks.map((block) => `            <section class="project-code-card">
-${block.title ? `              <h3 class="project-code-title">${block.title}</h3>\n` : ""}${block.language ? `              <p class="project-code-meta">${escapeHtml(block.language)}</p>\n` : ""}              <pre class="project-code-block"><code>${escapeHtml(block.code || "")}</code></pre>
-${block.caption ? `              <p class="project-code-caption">${block.caption}</p>` : ""}            </section>`).join("\n")}
+${codeBlocks.map((block) => `            <pre contenteditable="false" class="project-code-block"><code>${highlightCode(block.code)}</code></pre>`).join("\n")}
           </div>`;
 }
 
@@ -508,9 +552,7 @@ ${slides.map((_, index) => `          <button type="button" class="classic-slide
 
 function renderClassicCodeBlocks(codeBlocks) {
   return `      <div class="project-code-list">
-${codeBlocks.map((block) => `        <section class="project-code-card">
-${block.title ? `          <h3 class="project-code-title">${block.title}</h3>\n` : ""}${block.language ? `          <p class="project-code-meta">${escapeHtml(block.language)}</p>\n` : ""}          <pre class="project-code-block"><code>${escapeHtml(block.code || "")}</code></pre>
-${block.caption ? `          <p class="project-code-caption">${block.caption}</p>` : ""}        </section>`).join("\n")}
+${codeBlocks.map((block) => `        <pre contenteditable="false" class="project-code-block"><code>${highlightCode(block.code)}</code></pre>`).join("\n")}
       </div>`;
 }
 
@@ -1084,8 +1126,7 @@ function renderWorksCaseStudy(project, view) {
   <div class="work-detail-page-container">
     <div class="w-layout-grid project-overview-grid">
       <h1 class="heading-black-big">${project.content.title}</h1>
-      ${project.content.hero.headline ? `<h1 class="heading-black-2">${project.content.hero.headline}</h1>` : ""}
-      <div class="paragraph-title-black">${project.content.hero.metaLines.join("<br>")}</div>
+${project.content.hero.headline ? `      <h1 class="heading-black-2">${project.content.hero.headline}</h1>\n` : ""}      <div class="paragraph-title-black">${project.content.hero.metaLines.join("<br>")}</div>
     </div>
 ${heroImage ? `${renderWorksFigure(typeof heroImage === "string" ? { src: heroImage } : heroImage)}
 ` : ""}
