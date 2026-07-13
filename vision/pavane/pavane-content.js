@@ -3,6 +3,11 @@ window.VISION_REFLECTION_CONTENT = {
   title: "Pavane pour une infante défunte",
   author: "Bob Tianqi Wei",
   date: "Jun 2, 2026",
+  languages: [
+    { code: "en", label: "EN" },
+    { code: "zh", label: "中文" }
+  ],
+  defaultLanguage: "en",
   intro: [],
   sections: [
     {
@@ -13,6 +18,7 @@ window.VISION_REFLECTION_CONTENT = {
       }
     },
     {
+      language: "en",
       paragraphs: [
         "This is the last stretch of time I have to play this piano before I leave San Francisco.",
         "127 years ago, Ravel saw a painting of a young Spanish princess and wrote this melancholy pavane. He wasn't mourning a dead princess, he was mourning beautiful time that had passed. Now I play this piece to say goodbye to the place that has been my home for 3 years.",
@@ -30,6 +36,7 @@ window.VISION_REFLECTION_CONTENT = {
       ]
     },
     {
+      language: "zh",
       paragraphs: [
         "这是我今年离开旧金山之前最后一段可以弹这架钢琴的时光了。",
         "127年前，拉威尔看到一幅西班牙小公主的油画，写下了这首惆怅的舞曲。他不是真的在纪念一个死去的公主，而是在怀念美好的旧时光。现在我在即将搬离旧金山的时候用这首曲子向我三年来的家告别。",

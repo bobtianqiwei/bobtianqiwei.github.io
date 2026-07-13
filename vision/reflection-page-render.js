@@ -47,13 +47,87 @@
     var paragraphs = joinParagraphs(section.paragraphs);
     var video = renderVideo(section.video);
     var audio = renderAudio(section.audio);
+    var language = section.language
+      ? ' data-reflection-language="' + section.language + '" lang="' + section.language + '"'
+      : "";
 
-    return '<section class="vision-reflection-section">' +
+    return '<section class="vision-reflection-section"' + language + ">" +
       heading +
       paragraphs +
       video +
       audio +
       "</section>";
+  }
+
+  function renderLanguageSwitch(languages, defaultLanguage, sections) {
+    if (!Array.isArray(languages) || languages.length < 2 || !sections) {
+      return;
+    }
+
+    var options = languages.filter(function (language) {
+      return language && language.code && language.label;
+    });
+
+    if (options.length < 2) {
+      return;
+    }
+
+    var selectedLanguage = options.some(function (language) {
+      return language.code === defaultLanguage;
+    }) ? defaultLanguage : options[0].code;
+    var firstLanguageSection = sections.querySelector("[data-reflection-language]");
+    var switcher = document.createElement("div");
+
+    if (!firstLanguageSection) {
+      return;
+    }
+
+    switcher.className = "vision-reflection-language-switch";
+    switcher.setAttribute("role", "group");
+    switcher.setAttribute("aria-label", "Article language");
+
+    function selectLanguage(languageCode) {
+      var selectedIndex = options.findIndex(function (language) {
+        return language.code === languageCode;
+      });
+
+      switcher.style.setProperty("--vision-reflection-language-offset", selectedIndex * 40 + "px");
+      switcher.querySelectorAll("button").forEach(function (button) {
+        button.setAttribute("aria-pressed", button.dataset.language === languageCode ? "true" : "false");
+      });
+
+      sections.querySelectorAll("[data-reflection-language]").forEach(function (section) {
+        var isActive = section.dataset.reflectionLanguage === languageCode;
+        var paragraphIndex = 0;
+
+        Array.prototype.forEach.call(section.children, function (child) {
+          if (child.tagName === "P") {
+            child.style.setProperty("--vision-reflection-language-delay", paragraphIndex * 45 + "ms");
+            paragraphIndex += 1;
+          }
+        });
+
+        section.hidden = !isActive;
+        section.classList.toggle("is-language-active", isActive);
+      });
+    }
+
+    options.forEach(function (language) {
+      var button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "vision-reflection-language-button";
+      button.dataset.language = language.code;
+      button.textContent = language.label;
+      button.addEventListener("click", function () {
+        selectLanguage(language.code);
+      });
+      switcher.appendChild(button);
+    });
+
+    sections.classList.add("vision-reflection-has-language-switch");
+    sections.insertBefore(switcher, firstLanguageSection);
+    selectLanguage(selectedLanguage);
   }
 
   var data = window.VISION_REFLECTION_CONTENT || {};
@@ -83,4 +157,6 @@
       ? data.sections.map(renderSection).join("")
       : "";
   }
+
+  renderLanguageSwitch(data.languages, data.defaultLanguage, sections);
 })();
