@@ -1,0 +1,70 @@
+<!-- works/experiments/buddha-machine/index.html developed by Bob Tianqi Wei -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A minimal ASCII Buddha machine.">
+  <title>Buddha Machine</title>
+  <link rel="stylesheet" href="/works/experiments/buddha-machine/buddha-machine.css">
+</head>
+<body>
+  <main>
+    <div class="artwork">
+      <pre class="ascii-art" data-art aria-label="ASCII Buddha with rotating rays"></pre>
+      <script type="text/plain" data-buddha-source>                   *oo0oo*
+                  o8888888o
+                  88" . "88
+                  (| -_- |)
+                  0\  =  /0
+                ___/`---'\___
+              .' \\|     |// '.
+             / \\|||  :  |||// \
+            / _||||| -:- |||||- \
+           |   | \\\  -  /// |   |
+           | \_|  ''\---/''  |_/ |
+           \  .-\__  '-'  ___/-. /
+         ***'. .'  /--.--\\  `. .'***
+      ."" '<  `.***\_<|>\_/***.' >' "".
+     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+     \  \ `_.   \_ **\\ /** _/   .-` /  /
+ =====`-.____`.___ \_____/***.-`***.-'=====
+                   `=---='
+
+
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+           菩提本无树   明镜亦非台
+           本来无BUG    何必常修改</script>
+    </div>
+  </main>
+
+  <section class="player" aria-label="Audio player">
+    <button class="play-button" type="button" data-play data-state="paused" aria-label="Play the Great Compassion Mantra">
+      <svg class="player-icon play-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M8 5v14l11-7z"></path>
+      </svg>
+      <svg class="player-icon pause-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M7 5h4v14H7zM13 5h4v14h-4z"></path>
+      </svg>
+    </button>
+    <div class="rate-control">
+      <button
+        class="knob"
+        type="button"
+        role="slider"
+        aria-label="Speed and pitch"
+        aria-valuemin="0.50"
+        aria-valuemax="1.50"
+        aria-valuenow="1.00"
+        aria-valuetext="1.00 times"
+        tabindex="0"
+        data-knob
+      ><span class="knob-mark" aria-hidden="true"></span></button>
+      <output class="rate-output" data-rate>1.00×</output>
+    </div>
+  </section>
+
+  <audio src="/works/experiments/buddha-machine/audio/great-compassion-mantra.mp3" preload="metadata" data-audio></audio>
+  <script src="/works/experiments/buddha-machine/buddha-machine.js"></script>
+</body>
+</html>

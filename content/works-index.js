@@ -1896,6 +1896,17 @@ module.exports = {
       "contentHtml": "cropkit",
       "lightbox": null,
       "order": 5
+    },
+    {
+      "section": "EXPERIMENTS",
+      "href": "/works/experiments/buddha-machine/",
+      "className": "project-link-block w-inline-block",
+      "image": {
+        "placeholderText": "buddha machine"
+      },
+      "contentHtml": "buddha machine",
+      "lightbox": null,
+      "order": 6
     }
   ]
 };

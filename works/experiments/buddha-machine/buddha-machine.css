@@ -1,0 +1,157 @@
+/* works/experiments/buddha-machine/buddha-machine.css developed by Bob Tianqi Wei */
+:root {
+  color-scheme: dark;
+  --background: #090909;
+  --foreground: #e7e5dc;
+  --muted: #8e8c85;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", "Noto Sans Mono CJK SC", monospace;
+}
+
+main {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 2rem 8rem 8rem 2rem;
+  overflow: auto;
+}
+
+.artwork {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.ascii-art {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  width: 100vw;
+  height: 100svh;
+  margin: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--muted) 72%, var(--background));
+  font: inherit;
+  font-size: clamp(7px, 1.12vw, 15px);
+  line-height: 1.24;
+  pointer-events: none;
+  user-select: none;
+  white-space: pre;
+}
+
+.buddha-text {
+  color: var(--foreground);
+}
+
+.player {
+  position: fixed;
+  z-index: 2;
+  right: 1rem;
+  bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.75rem;
+  border: 1px solid var(--foreground);
+  background: var(--background);
+}
+
+.play-button,
+.knob {
+  margin: 0;
+  border: 1px solid var(--foreground);
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.play-button {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+
+.player-icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  grid-area: 1 / 1;
+  fill: currentColor;
+}
+
+.pause-icon,
+.play-button[data-state="playing"] .play-icon {
+  display: none;
+}
+
+.play-button[data-state="playing"] .pause-icon {
+  display: block;
+}
+
+.play-button:hover,
+.play-button:focus-visible,
+.knob:hover,
+.knob:focus-visible {
+  background: var(--foreground);
+  color: var(--background);
+  outline: none;
+}
+
+.rate-control {
+  display: grid;
+  justify-items: center;
+  gap: 0.25rem;
+}
+
+.knob {
+  --angle: 0deg;
+  position: relative;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  border-radius: 50%;
+  transform: rotate(var(--angle));
+}
+
+.knob-mark {
+  position: absolute;
+  top: 0.3rem;
+  left: 50%;
+  width: 1px;
+  height: 0.85rem;
+  background: currentColor;
+}
+
+.rate-output {
+  color: var(--muted);
+  font-size: 0.65rem;
+  line-height: 1;
+}
+
+@media (max-width: 600px) {
+  main {
+    place-items: start center;
+    padding: 2rem 0.5rem 8rem;
+  }
+
+  .ascii-art {
+    font-size: clamp(6.4px, 2vw, 8px);
+  }
+}
