@@ -91,7 +91,15 @@ module.exports = {
       "backLabel": "ALL WORKS",
       "metaTitle": "Digital Paradise by Bob Tianqi Wei",
       "appearance": "digital-paradise"
+    },
+    "design": {
+      "outputPath": "design/digital-paradise/index.html",
+      "layout": "design-case-study",
+      "backHref": "/design/",
+      "backLabel": "BACK TO DESIGN",
+      "metaTitle": "Digital Paradise - Design Portfolio",
+      "eyebrow": "DESIGN PORTFOLIO",
+      "appearance": "digital-paradise"
     }
   }
 };
-

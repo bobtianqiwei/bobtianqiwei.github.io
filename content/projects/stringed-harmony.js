@@ -54,6 +54,14 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/stringed-harmony/index.html",
+      metaTitle: "Stringed Harmony - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
     }
   }
 };

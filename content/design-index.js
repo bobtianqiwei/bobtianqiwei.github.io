@@ -37,6 +37,13 @@ function fromLegacy(slug) {
   return clone(entry);
 }
 
+function forDesign(entry, slug) {
+  return {
+    ...entry,
+    href: `/design/${slug}/`
+  };
+}
+
 module.exports = {
   sections: [
     {
@@ -44,7 +51,7 @@ module.exports = {
       title: "OBJECTS",
       featureRows: [
         [
-          fromIndex({ href: "/works/morphingskin/", section: "ESSENTIALS" }),
+          forDesign(fromIndex({ href: "/works/morphingskin/", section: "ESSENTIALS" }), "morphingskin"),
           fromIndex({ href: "/works/illuminatio/", section: "TANGIBLE SYSTEMS" })
         ],
         [
@@ -60,15 +67,15 @@ module.exports = {
           fromLegacy("espresso-machine-and-quick-capsule-case")
         ],
         [
-          fromIndex({ href: "/works/hook-loop-units/", section: "TANGIBLE SYSTEMS" }),
+          forDesign(fromIndex({ href: "/works/hook-loop-units/", section: "TANGIBLE SYSTEMS" }), "hook-loop-units"),
           fromLegacy("computer-aided-design-coursework"),
           fromLegacy("plano"),
           fromLegacy("gentlegrip-brews")
         ],
         [
-          fromIndex({ href: "/works/a-fish-in-the-northern-ocean/", section: "TANGIBLE SYSTEMS" }),
+          forDesign(fromIndex({ href: "/works/a-fish-in-the-northern-ocean/", section: "TANGIBLE SYSTEMS" }), "a-fish-in-the-northern-ocean"),
           fromLegacy("tangible-peripheral-for-computer"),
-          fromIndex({ href: "/works/memory-lacing-system/", section: "TANGIBLE SYSTEMS" })
+          forDesign(fromIndex({ href: "/works/memory-lacing-system/", section: "TANGIBLE SYSTEMS" }), "memory-lacing-system")
         ]
       ]
     },
@@ -110,14 +117,14 @@ module.exports = {
             ...fromIndex({ href: "https://github.com/s-almeda/ArtiFactor", section: "DIGITAL INTERFACES" }),
             href: "/design/artifactor/"
           },
-          fromIndex({ href: "/works/desktop-buddha/", section: "DIGITAL INTERFACES" })
+          forDesign(fromIndex({ href: "/works/desktop-buddha/", section: "DIGITAL INTERFACES" }), "desktop-buddha")
         ],
         [
           {
             ...fromLegacy("tao"),
             href: "/design/tao/"
           },
-          fromIndex({ href: "/works/digital-paradise/", section: "DIGITAL INTERFACES" })
+          forDesign(fromIndex({ href: "/works/digital-paradise/", section: "DIGITAL INTERFACES" }), "digital-paradise")
         ],
         [
           fromLegacy("terminal-zen"),
@@ -134,14 +141,14 @@ module.exports = {
             ...fromIndex({ href: "/works/water-synthesizer/", section: "TANGIBLE SYSTEMS" }),
             href: "/design/water-synthesizer/"
           },
-          fromLegacy("stringed-harmony")
+          forDesign(fromLegacy("stringed-harmony"), "stringed-harmony")
         ],
         [
-          fromIndex({ href: "/works/nnmplifier/", section: "TANGIBLE SYSTEMS" }),
+          forDesign(fromIndex({ href: "/works/nnmplifier/", section: "TANGIBLE SYSTEMS" }), "nnmplifier"),
           fromLegacy("plano")
         ],
         [
-          fromIndex({ href: "/works/a-fish-in-the-northern-ocean/", section: "TANGIBLE SYSTEMS" })
+          forDesign(fromIndex({ href: "/works/a-fish-in-the-northern-ocean/", section: "TANGIBLE SYSTEMS" }), "a-fish-in-the-northern-ocean")
         ]
       ]
     }

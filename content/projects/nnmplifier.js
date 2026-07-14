@@ -70,6 +70,14 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       metaTitle: "Nnmplifier"
+    },
+    design: {
+      outputPath: "design/nnmplifier/index.html",
+      layout: "design-case-study",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      metaTitle: "Nnmplifier - Design Portfolio",
+      eyebrow: "DESIGN PORTFOLIO"
     }
   }
 };

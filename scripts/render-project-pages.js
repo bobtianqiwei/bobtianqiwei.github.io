@@ -580,9 +580,32 @@ ${eyebrow}      <div class="project-quote-text">${quote.bodyHtml || ""}</div>
     </blockquote>`;
 }
 
-function renderDesignImageGrid(images) {
-  return `          <div class="design-project-image-grid">
-${images.map((image) => `            <div class="design-project-image-card">${renderImage(typeof image === "string" ? image : image.src, "design-project-gallery-image")}</div>`).join("\n")}
+function renderDesignImageGrid(images, columns = 2, layout = "grid") {
+  const columnClass = columns === 4
+    ? " design-project-image-grid-4"
+    : columns === 3
+      ? " design-project-image-grid-3"
+      : "";
+  const equalHeight = layout === "equal-height";
+  const layoutClass = equalHeight ? " design-project-image-grid-equal-height" : "";
+  const ratios = images.map((image) => {
+    const src = typeof image === "string" ? image : image.src;
+    const dimensions = getImageDimensions(src);
+    return dimensions && dimensions.height ? dimensions.width / dimensions.height : 1;
+  });
+  const gridStyle = equalHeight
+    ? ` style="grid-template-columns:${ratios.map((ratio) => `${ratio.toFixed(6)}fr`).join(" ")}"`
+    : "";
+
+  return `          <div class="design-project-image-grid${columnClass}${layoutClass}"${gridStyle}>
+${images.map((image) => {
+    const item = typeof image === "string" ? { src: image } : image;
+    const caption = item.captionHtml || item.caption || "";
+    const captionClass = item.captionAlign === "left" ? " project-image-caption-left" : "";
+    const tagName = caption ? "figure" : "div";
+    return `            <${tagName} class="design-project-image-card">${renderImage(item.src, "design-project-gallery-image")}${caption ? `
+              <figcaption class="image-description project-image-caption${captionClass}">${caption}</figcaption>` : ""}</${tagName}>`;
+  }).join("\n")}
           </div>`;
 }
 
@@ -604,8 +627,9 @@ ${slides.map((slide) => `              <div class="w-slide">${renderImage(typeof
           </div>`;
 }
 
-function renderDesignCodeBlocks(codeBlocks) {
-  return `          <div class="project-code-list">
+function renderDesignCodeBlocks(codeBlocks, columns = 1) {
+  const columnClass = columns > 1 ? ` project-code-list-${Math.min(columns, 4)}` : "";
+  return `          <div class="project-code-list${columnClass}">
 ${codeBlocks.map((block) => `            <pre contenteditable="false" class="project-code-block"><code>${highlightCode(block.code)}</code></pre>`).join("\n")}
           </div>`;
 }
@@ -617,9 +641,32 @@ ${eyebrow}            <div class="project-quote-text">${quote.bodyHtml || ""}</d
           </blockquote>`;
 }
 
-function renderClassicImageGrid(images) {
-  return `      <div class="project-image-grid">
-${images.map((image) => `        <div class="project-card-thumb">${renderImage(typeof image === "string" ? image : image.src, "project-gallery-image")}</div>`).join("\n")}
+function renderClassicImageGrid(images, columns = 2, layout = "grid") {
+  const columnClass = columns === 4
+    ? " project-image-grid-4"
+    : columns === 3
+      ? " project-image-grid-3"
+      : "";
+  const equalHeight = layout === "equal-height";
+  const layoutClass = equalHeight ? " project-image-grid-equal-height" : "";
+  const ratios = images.map((image) => {
+    const src = typeof image === "string" ? image : image.src;
+    const dimensions = getImageDimensions(src);
+    return dimensions && dimensions.height ? dimensions.width / dimensions.height : 1;
+  });
+  const gridStyle = equalHeight
+    ? ` style="grid-template-columns:${ratios.map((ratio) => `${ratio.toFixed(6)}fr`).join(" ")}"`
+    : "";
+
+  return `      <div class="project-image-grid${columnClass}${layoutClass}"${gridStyle}>
+${images.map((image) => {
+    const item = typeof image === "string" ? { src: image } : image;
+    const caption = item.captionHtml || item.caption || "";
+    const captionClass = item.captionAlign === "left" ? " project-image-caption-left" : "";
+    const tagName = caption ? "figure" : "div";
+    return `        <${tagName} class="project-card-thumb">${renderImage(item.src, "project-gallery-image")}${caption ? `
+          <figcaption class="image-description project-image-caption${captionClass}">${caption}</figcaption>` : ""}</${tagName}>`;
+  }).join("\n")}
       </div>`;
 }
 
@@ -643,8 +690,9 @@ ${slides.map((_, index) => `          <button type="button" class="classic-slide
       </div>`;
 }
 
-function renderClassicCodeBlocks(codeBlocks) {
-  return `      <div class="project-code-list">
+function renderClassicCodeBlocks(codeBlocks, columns = 1) {
+  const columnClass = columns > 1 ? ` project-code-list-${Math.min(columns, 4)}` : "";
+  return `      <div class="project-code-list${columnClass}">
 ${codeBlocks.map((block) => `        <pre contenteditable="false" class="project-code-block"><code>${highlightCode(block.code)}</code></pre>`).join("\n")}
       </div>`;
 }
@@ -667,6 +715,7 @@ function renderWorksColumnCell(project, cell) {
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
   const publications = getSectionPublications(cell);
+  const mediaItems = Array.isArray(cell.mediaItems) ? cell.mediaItems : [];
   const images = cell.images || [];
   const imageColumns = cell.imageColumns || 2;
   const imageLayout = cell.imageLayout || "grid";
@@ -675,7 +724,7 @@ function renderWorksColumnCell(project, cell) {
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `        <p class="big-title-3">${cell.title}</p>\n` : ""}${leadHtml ? `        <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `        <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns, imageLayout)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `        <p class="big-title-3">${cell.title}</p>\n` : ""}${leadHtml ? `        <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `        <div class="paragraph-light">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderWorksFigure(figure)}\n`).join("")}${mediaItems.length ? `${renderWorksMediaGrid(mediaItems)}\n` : ""}${slides.length ? `${renderWorksSlides(slides)}\n` : images.length ? `${renderWorksImageGrid(images, imageColumns, imageLayout)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderWorksCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderCardGrid(cards)}\n` : ""}${quote ? `${renderWorksQuote(quote)}\n` : ""}`;
 }
 
 function renderWorksRows(project, rows) {
@@ -708,13 +757,17 @@ function renderDesignColumnCell(project, cell) {
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
   const publications = getSectionPublications(cell);
+  const mediaItems = Array.isArray(cell.mediaItems) ? cell.mediaItems : [];
   const images = cell.images || [];
+  const imageColumns = cell.imageColumns || 2;
+  const imageLayout = cell.imageLayout || "grid";
+  const codeColumns = cell.codeColumns || 1;
   const slides = cell.slides || [];
   const cardColumns = cell.cardColumns || 2;
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${leadHtml ? `              <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `              <h3 class="design-project-subsection-title">${cell.title}</h3>\n` : ""}${leadHtml ? `              <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `              <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${mediaItems.length ? `${renderWorksMediaGrid(mediaItems)}\n` : ""}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images, imageColumns, imageLayout)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}`;
 }
 
 function renderDesignRows(project, rows) {
@@ -747,12 +800,16 @@ function renderClassicColumnCell(project, cell) {
   const figures = getSectionFigures(cell);
   const codeBlocks = getSectionCodeBlocks(cell);
   const publications = getSectionPublications(cell);
+  const mediaItems = Array.isArray(cell.mediaItems) ? cell.mediaItems : [];
   const images = cell.images || [];
+  const imageColumns = cell.imageColumns || 2;
+  const imageLayout = cell.imageLayout || "grid";
+  const codeColumns = cell.codeColumns || 1;
   const slides = cell.slides || [];
   const leadHtml = getSectionLeadHtml(cell);
   const quote = getSectionQuote(cell);
 
-  return `${cell.title ? `            <h3 class="project-subtitle">${cell.title}</h3>\n` : ""}${leadHtml ? `            <p class="paragraph-big project-lead">${remapSweClassicHtml(leadHtml)}</p>\n` : ""}${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${quote ? `${renderClassicQuote(quote)}\n` : ""}`;
+  return `${cell.title ? `            <h3 class="project-subtitle">${cell.title}</h3>\n` : ""}${leadHtml ? `            <p class="paragraph-big project-lead">${remapSweClassicHtml(leadHtml)}</p>\n` : ""}${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${mediaItems.length ? `${renderWorksMediaGrid(mediaItems)}\n` : ""}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images, imageColumns, imageLayout)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${quote ? `${renderClassicQuote(quote)}\n` : ""}`;
 }
 
 function renderClassicRows(project, rows) {
@@ -857,7 +914,11 @@ function renderDesignSections(project) {
     const codeBlocks = getSectionCodeBlocks(section);
     const publications = getSectionPublications(section);
     const rows = getSectionRows(section);
+    const mediaItems = Array.isArray(section.mediaItems) ? section.mediaItems : [];
     const images = section.images || [];
+    const imageColumns = section.imageColumns || 2;
+    const imageLayout = section.imageLayout || "grid";
+    const codeColumns = section.codeColumns || 1;
     const slides = section.slides || [];
     const cardColumns = section.cardColumns || 2;
     const leadHtml = getSectionLeadHtml(section);
@@ -869,14 +930,18 @@ function renderDesignSections(project) {
       const blockFigures = getSectionFigures(block);
       const blockCodeBlocks = getSectionCodeBlocks(block);
       const blockPublications = getSectionPublications(block);
+      const blockMediaItems = Array.isArray(block.mediaItems) ? block.mediaItems : [];
       const blockImages = block.images || [];
+      const blockImageColumns = block.imageColumns || 2;
+      const blockImageLayout = block.imageLayout || "grid";
+      const blockCodeColumns = block.codeColumns || 1;
       const blockSlides = block.slides || [];
       const blockCardColumns = block.cardColumns || 2;
       const blockLeadHtml = getSectionLeadHtml(block);
       const blockQuote = getSectionQuote(block);
       return `      <section class="design-project-subsection">
 ${block.title ? `        <h3 class="design-project-subsection-title">${block.title}</h3>\n` : ""}        <div class="design-project-subsection-body">
-${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards, blockCardColumns)}\n` : ""}${blockQuote ? `${renderDesignQuote(blockQuote)}\n` : ""}        </div>
+${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHtml}</p>\n` : ""}${blockBodyHtml ? `          <div class="design-project-richtext">${blockBodyHtml}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video)}\n`).join("")}${blockFigures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${blockMediaItems.length ? `${renderWorksMediaGrid(blockMediaItems)}\n` : ""}${blockSlides.length ? `${renderDesignSlides(blockSlides)}\n` : blockImages.length ? `${renderDesignImageGrid(blockImages, blockImageColumns, blockImageLayout)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderDesignCodeBlocks(blockCodeBlocks, blockCodeColumns)}\n` : ""}${blockCards.length ? `${renderDesignCardGrid(blockCards, blockCardColumns)}\n` : ""}${blockQuote ? `${renderDesignQuote(blockQuote)}\n` : ""}        </div>
       </section>`;
     }).join("\n");
 
@@ -885,7 +950,7 @@ ${blockLeadHtml ? `          <p class="paragraph-big project-lead">${blockLeadHt
         <div class="design-project-section-head">
 ${section.title ? `          <h2 class="design-project-section-title">${section.title}</h2>\n` : ""}        </div>
         <div class="${bodyClass}">
-${leadHtml ? `          <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}${blocks}
+${leadHtml ? `          <p class="paragraph-big project-lead">${leadHtml}</p>\n` : ""}${bodyHtml ? `          <div class="design-project-richtext">${bodyHtml}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video)}\n`).join("")}${figures.map((figure) => `${renderDesignFigure(figure)}\n`).join("")}${mediaItems.length ? `${renderWorksMediaGrid(mediaItems)}\n` : ""}${slides.length ? `${renderDesignSlides(slides)}\n` : images.length ? `${renderDesignImageGrid(images, imageColumns, imageLayout)}\n` : ""}${rows.length ? `${renderDesignRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderDesignCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderDesignCardGrid(cards, cardColumns)}\n` : ""}${quote ? `${renderDesignQuote(quote)}\n` : ""}${blocks}
         </div>
       </section>`;
   }).join("\n");
@@ -932,7 +997,11 @@ ${renderYouTube(heroVideo).replace(/^/gm, "            ")}
     const codeBlocks = getSectionCodeBlocks(section);
     const publications = getSectionPublications(section);
     const rows = getSectionRows(section);
+    const mediaItems = Array.isArray(section.mediaItems) ? section.mediaItems : [];
     const images = section.images || [];
+    const imageColumns = section.imageColumns || 2;
+    const imageLayout = section.imageLayout || "grid";
+    const codeColumns = section.codeColumns || 1;
     const slides = section.slides || [];
     const blocks = (section.blocks || []).map((block) => {
       const blockBodyHtml = getSectionBodyHtml(block);
@@ -941,16 +1010,20 @@ ${renderYouTube(heroVideo).replace(/^/gm, "            ")}
       const blockFigures = getSectionFigures(block);
       const blockCodeBlocks = getSectionCodeBlocks(block);
       const blockPublications = getSectionPublications(block);
+      const blockMediaItems = Array.isArray(block.mediaItems) ? block.mediaItems : [];
       const blockImages = block.images || [];
+      const blockImageColumns = block.imageColumns || 2;
+      const blockImageLayout = block.imageLayout || "grid";
+      const blockCodeColumns = block.codeColumns || 1;
       const blockSlides = block.slides || [];
       return `          <div class="project-section">
             <h3 class="project-subtitle">${block.title}</h3>
-${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockSlides.length ? `${renderClassicSlides(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderClassicCodeBlocks(blockCodeBlocks)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
+${blockBodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(blockBodyHtml)}</div>\n` : ""}${blockVideos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${blockFigures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${blockMediaItems.length ? `${renderWorksMediaGrid(blockMediaItems)}\n` : ""}${blockSlides.length ? `${renderClassicSlides(blockSlides)}\n` : blockImages.length ? `${renderClassicImageGrid(blockImages, blockImageColumns, blockImageLayout)}\n` : ""}${blockPublications.length ? `${renderPublications(blockPublications)}\n` : ""}${blockCodeBlocks.length ? `${renderClassicCodeBlocks(blockCodeBlocks, blockCodeColumns)}\n` : ""}${blockCards.length ? `${renderSweClassicCardGrid(blockCards)}\n` : ""}          </div>`;
     }).join("\n");
 
     return `        <div class="box" id="${index === 0 ? "overview" : index === 1 ? "details" : `section-${index + 1}`}">
 ${section.title ? `          <div class="box-title">${section.title}</div>\n` : ""}          <div class="box-body">
-${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images)}\n` : ""}${rows.length ? `${renderClassicRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
+${bodyHtml ? `            <div class="project-richtext">${remapSweClassicHtml(bodyHtml)}</div>\n` : ""}${videos.map((video) => `${renderYouTube(video).replace(/^/gm, "            ")}\n`).join("")}${figures.map((figure) => `${renderClassicFigure(figure)}\n`).join("")}${mediaItems.length ? `${renderWorksMediaGrid(mediaItems)}\n` : ""}${slides.length ? `${renderClassicSlides(slides)}\n` : images.length ? `${renderClassicImageGrid(images, imageColumns, imageLayout)}\n` : ""}${rows.length ? `${renderClassicRows(project, rows)}\n` : ""}${publications.length ? `${renderPublications(publications)}\n` : ""}${codeBlocks.length ? `${renderClassicCodeBlocks(codeBlocks, codeColumns)}\n` : ""}${cards.length ? `${renderSweClassicCardGrid(cards)}\n` : ""}${blocks}
           </div>
         </div>`;
   }).join("\n");

@@ -260,6 +260,14 @@ img {
   max-width: 100%;
 }
 
+.project-image-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.project-image-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
 .classic-slider {
   position: relative;
   margin-top: 14px;

@@ -52,6 +52,14 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       metaTitle: "Memory Lacing System for Sneakers by Bob Tianqi Wei"
+    },
+    design: {
+      outputPath: "design/memory-lacing-system/index.html",
+      layout: "design-case-study",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      metaTitle: "Memory Lacing System for Sneakers - Design Portfolio",
+      eyebrow: "DESIGN PORTFOLIO"
     }
   }
 };

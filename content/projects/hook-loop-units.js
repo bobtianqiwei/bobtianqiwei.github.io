@@ -85,6 +85,14 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       metaTitle: "Hook-Loop Units（贴贴）by Bob Tianqi Wei"
+    },
+    design: {
+      outputPath: "design/hook-loop-units/index.html",
+      layout: "design-case-study",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      metaTitle: "Hook-Loop Units - Design Portfolio",
+      eyebrow: "DESIGN PORTFOLIO"
     }
   }
 };

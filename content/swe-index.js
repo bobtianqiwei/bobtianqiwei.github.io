@@ -108,7 +108,7 @@ module.exports = {
       description: "A visual and interface concept with a stronger emphasis on aesthetics and browsing flow."
     },
     {
-      href: "/works/desktop-buddha/",
+      href: "/swe/classic/desktop-buddha/",
       title: "Desktop Buddha",
       description: "A desktop-inspired interactive project with a distinct visual language."
     },

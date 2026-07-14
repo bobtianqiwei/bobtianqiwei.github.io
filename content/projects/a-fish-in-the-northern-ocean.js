@@ -184,6 +184,14 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       metaTitle: "A Fish in the Northern Ocean （北冥有鱼） by Bob Tianqi Wei"
+    },
+    design: {
+      outputPath: "design/a-fish-in-the-northern-ocean/index.html",
+      layout: "design-case-study",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      metaTitle: "A Fish in the Northern Ocean - Design Portfolio",
+      eyebrow: "DESIGN PORTFOLIO"
     }
   }
 };

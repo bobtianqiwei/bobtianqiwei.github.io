@@ -123,9 +123,22 @@
   margin-top: 18px;
 }
 
+.design-project-image-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.design-project-image-grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.design-project-image-grid-equal-height {
+  align-items: start;
+}
+
 .design-project-image-card {
+  margin: 0;
   overflow: hidden;
-  background: #f2f2f2;
+  background: transparent;
 }
 
 .project-code-list {
@@ -322,7 +335,7 @@
 }
 
 html[data-theme="dark"] .design-project-image-card {
-  background: #202020;
+  background: transparent;
 }
 
 html[data-theme="dark"] .video-frame {
@@ -342,6 +355,10 @@ html[data-page-theme="digital-paradise"] body {
   }
 
   .project-image-grid-equal-height {
+    grid-template-columns: 1fr !important;
+  }
+
+  .design-project-image-grid-equal-height {
     grid-template-columns: 1fr !important;
   }
 

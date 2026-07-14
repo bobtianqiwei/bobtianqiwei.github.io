@@ -198,6 +198,22 @@ if __name__ == '__main__':
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/desktop-buddha/index.html",
+      metaTitle: "Desktop Buddha - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
+    },
+    swe: {
+      outputPath: "swe/classic/desktop-buddha/index.html",
+      metaTitle: "Desktop Buddha - Software Engineering Portfolio",
+      backHref: "/swe/classic/",
+      backLabel: "BACK TO SOFTWARE ENGINEERING",
+      layout: "swe-classic-case-study",
+      eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   }
 };

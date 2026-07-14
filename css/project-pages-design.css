@@ -342,6 +342,63 @@ html[data-theme="dark"] .design-ekphrasis-link:hover {
   background: #262626;
 }
 
+html[data-page-theme="digital-paradise"] .design-project-page,
+html[data-page-theme="digital-paradise"] .design-project-shell,
+html[data-page-theme="digital-paradise"] .design-project-subsection-body {
+  background: #000000;
+}
+
+html[data-page-theme="digital-paradise"] .design-project-title,
+html[data-page-theme="digital-paradise"] .design-project-subsection-title {
+  color: #efebe6;
+}
+
+html[data-page-theme="digital-paradise"] .design-project-headline,
+html[data-page-theme="digital-paradise"] .design-project-section-title,
+html[data-page-theme="digital-paradise"] .design-project-richtext,
+html[data-page-theme="digital-paradise"] .design-project-richtext p,
+html[data-page-theme="digital-paradise"] .design-project-card-title,
+html[data-page-theme="digital-paradise"] .design-project-section-body .image-description {
+  color: #d3cdc6;
+}
+
+html[data-page-theme="digital-paradise"] .design-project-meta,
+html[data-page-theme="digital-paradise"] .design-project-hero .image-description {
+  color: #b5aea6;
+}
+
+html[data-page-theme="digital-paradise"] .design-project-section {
+  border-top-color: #2f2f2f;
+}
+
+html[data-page-theme="digital-paradise"] .design-project-card-media,
+html[data-page-theme="digital-paradise"] .design-project-image-card {
+  background: #000000;
+}
+
+html[data-page-theme="digital-paradise"] .design-ekphrasis-footer {
+  border-top-color: #383838;
+  background: #000000;
+}
+
+html[data-page-theme="digital-paradise"] .design-ekphrasis-logo {
+  filter: invert(1) brightness(1.08);
+}
+
+html[data-page-theme="digital-paradise"] .design-ekphrasis-wordmark,
+html[data-page-theme="digital-paradise"] .design-ekphrasis-link {
+  color: #d3cdc6;
+}
+
+html[data-page-theme="digital-paradise"] .design-ekphrasis-link {
+  border-color: #383838;
+  background: #000000;
+}
+
+html[data-page-theme="digital-paradise"] .design-ekphrasis-link:hover {
+  background: #0a0a0a;
+}
+
 @media screen and (max-width: 767px) {
   .design-project-page {
     --design-footer-height: 96px;
