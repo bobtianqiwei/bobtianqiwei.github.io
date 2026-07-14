@@ -872,6 +872,15 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
+      "href": "/works/experiments/buddha-machine/",
+      "className": "project-link-block w-inline-block",
+      "image": "/images/buddha-machine-cover.png",
+      "contentHtml": "Buddha Machine",
+      "lightbox": null,
+      "order": 7
+    },
+    {
+      "section": "DIGITAL INTERFACES",
       "href": "https://github.com/s-almeda/ArtiFactor",
       "className": "project-link-block w-inline-block",
       "image": "/images/artifactor-cover.png",
@@ -916,6 +925,17 @@ module.exports = {
       "order": 1,
       "column": 0,
       "columnOrder": 1
+    },
+    {
+      "section": "FINE ART",
+      "href": "/works/experiments/buddha-machine/",
+      "className": "fine-art-link-block w-inline-block",
+      "image": "/images/buddha-machine-cover.png",
+      "contentHtml": "Buddha Machine",
+      "lightbox": null,
+      "order": 0,
+      "column": 0,
+      "columnOrder": 1.5
     },
     {
       "section": "FINE ART",

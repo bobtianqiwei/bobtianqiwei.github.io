@@ -120,6 +120,7 @@ module.exports = {
           forDesign(fromIndex({ href: "/works/desktop-buddha/", section: "DIGITAL INTERFACES" }), "desktop-buddha")
         ],
         [
+          fromIndex({ href: "/works/experiments/buddha-machine/", section: "DIGITAL INTERFACES" }),
           {
             ...fromLegacy("tao"),
             href: "/design/tao/"

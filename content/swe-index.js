@@ -78,6 +78,14 @@ module.exports = {
       description: "An AI-assisted shopping and support experience designed to help users navigate appliance parts more efficiently."
     },
     {
+      href: "/works/experiments/buddha-machine/",
+      image: "/images/buddha-machine-cover.png",
+      alt: "Buddha Machine",
+      title: "Buddha Machine",
+      meta: "Interactive artwork / creative coding",
+      description: "An interactive ASCII artwork with rotating light, audio playback, and live character transformations."
+    },
+    {
       href: "/swe/classic/tao/",
       image: "/images/Tao-beta-2.png",
       alt: "Tao",
