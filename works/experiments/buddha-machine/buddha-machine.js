@@ -5,6 +5,9 @@ const knob = document.querySelector("[data-knob]");
 const rateOutput = document.querySelector("[data-rate]");
 const art = document.querySelector("[data-art]");
 const buddhaLines = document.querySelector("[data-buddha-source]").textContent.trimEnd().split("\n");
+const firstBuddhaBlankLine = buddhaLines.findIndex((line) => line.trim() === "");
+const buddhaBodyLineCount = firstBuddhaBlankLine === -1 ? buddhaLines.length : firstBuddhaBlankLine;
+const morphCharacters = "@#$%&*+=?/\\|<>[]{}()01xo:;,.~^";
 
 const minRate = 0.5;
 const maxRate = 1.5;
@@ -17,6 +20,9 @@ let lastRayTimestamp = 0;
 let rayRotation = 0;
 let rayAnimationFrame = 0;
 let measuredCellWidth = 0;
+let isMorphing = false;
+let morphPhase = 0;
+let morphInterval = 0;
 
 audio.preservesPitch = false;
 audio.webkitPreservesPitch = false;
@@ -65,6 +71,16 @@ function rayCharacter(angle, distance, rayIndex) {
 
 function characterWidth(character) {
   return character.codePointAt(0) > 255 ? 2 : 1;
+}
+
+function morphCharacter(character) {
+  let index = (character.codePointAt(0) + morphPhase * 5) % morphCharacters.length;
+
+  if (morphCharacters[index] === character) {
+    index = (index + 1) % morphCharacters.length;
+  }
+
+  return morphCharacters[index];
 }
 
 function escapeHtml(value) {
@@ -171,8 +187,6 @@ function renderArt(showRays, rotation = 0) {
     Array.from(line).reduce((width, character) => width + characterWidth(character), 0)
   )));
   const buddhaLeft = centerX - Math.floor(buddhaWidth / 2);
-  const firstBlankLine = buddhaLines.findIndex((line) => line.trim() === "");
-  const bodyLineCount = firstBlankLine === -1 ? buddhaLines.length : firstBlankLine;
 
   buddhaLines.forEach((line, lineIndex) => {
     let column = buddhaLeft;
@@ -184,7 +198,7 @@ function renderArt(showRays, rotation = 0) {
 
     const characters = Array.from(line);
 
-    if (lineIndex < bodyLineCount) {
+    if (lineIndex < buddhaBodyLineCount) {
       let maskColumn = buddhaLeft;
       let maskStart = -1;
       let maskEnd = -1;
@@ -209,7 +223,9 @@ function renderArt(showRays, rotation = 0) {
       const width = characterWidth(character);
 
       if (character !== " " && column >= 0 && column < columns) {
-        grid[row][column] = character;
+        grid[row][column] = isMorphing && lineIndex < buddhaBodyLineCount
+          ? morphCharacter(character)
+          : character;
         buddhaCells[row][column] = 1;
 
         if (width === 2 && column + 1 < columns) {
@@ -259,6 +275,35 @@ function stopRays() {
   renderArt(false, rayRotation);
 }
 
+function renderCurrentArt() {
+  renderArt(!audio.paused, rayRotation);
+}
+
+function startMorphing() {
+  if (isMorphing) {
+    return;
+  }
+
+  isMorphing = true;
+  morphPhase += 1;
+  renderCurrentArt();
+  morphInterval = window.setInterval(() => {
+    morphPhase += 1;
+    renderCurrentArt();
+  }, 90);
+}
+
+function stopMorphing() {
+  if (!isMorphing) {
+    return;
+  }
+
+  isMorphing = false;
+  window.clearInterval(morphInterval);
+  morphInterval = 0;
+  renderCurrentArt();
+}
+
 playButton.addEventListener("click", async () => {
   if (!audio.paused) {
     audio.pause();
@@ -290,6 +335,7 @@ audio.addEventListener("ended", () => {
 });
 
 knob.addEventListener("pointerdown", (event) => {
+  startMorphing();
   dragStartY = event.clientY;
   dragStartRate = rate;
   knob.setPointerCapture(event.pointerId);
@@ -311,14 +357,21 @@ knob.addEventListener("wheel", (event) => {
 knob.addEventListener("keydown", (event) => {
   if (["ArrowUp", "ArrowRight"].includes(event.key)) {
     event.preventDefault();
+    startMorphing();
     setRate(rate + rateStep);
   }
 
   if (["ArrowDown", "ArrowLeft"].includes(event.key)) {
     event.preventDefault();
+    startMorphing();
     setRate(rate - rateStep);
   }
 });
+
+knob.addEventListener("pointerup", stopMorphing);
+knob.addEventListener("pointercancel", stopMorphing);
+knob.addEventListener("keyup", stopMorphing);
+knob.addEventListener("blur", stopMorphing);
 
 setRate(rate);
 renderArt(false);

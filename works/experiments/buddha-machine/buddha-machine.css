@@ -44,17 +44,33 @@ main {
   height: 100svh;
   margin: 0;
   overflow: hidden;
-  color: color-mix(in srgb, var(--muted) 72%, var(--background));
+  color: transparent;
+  background: conic-gradient(
+    from -90deg at 50% 50%,
+    hsl(354 10% 34%),
+    hsl(31 10% 34%),
+    hsl(55 10% 34%),
+    hsl(140 10% 34%),
+    hsl(184 10% 34%),
+    hsl(220 10% 34%),
+    hsl(263 10% 34%),
+    hsl(316 10% 34%),
+    hsl(354 10% 34%)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
   font: inherit;
   font-size: clamp(7px, 1.12vw, 15px);
   line-height: 1.24;
   pointer-events: none;
   user-select: none;
+  -webkit-text-fill-color: transparent;
   white-space: pre;
 }
 
 .buddha-text {
-  color: var(--foreground);
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
 }
 
 .player {
