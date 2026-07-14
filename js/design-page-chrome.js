@@ -69,10 +69,16 @@
         color: #111;
       }
 
-      .design-page-about-grid,
-      .design-page-cv-grid {
+      .design-page-about-grid {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 56px;
+        align-items: start;
+      }
+
+      .design-page-cv-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
         gap: 56px;
         align-items: start;
       }
@@ -162,6 +168,18 @@
         font-size: 15px;
         font-weight: 300;
         line-height: 1.35;
+      }
+
+      .design-page-cv-item-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 16px;
+        align-items: baseline;
+      }
+
+      .design-page-cv-date {
+        text-align: right;
+        white-space: nowrap;
       }
 
       .design-page-cv-skills .design-page-cv-item {
@@ -360,14 +378,15 @@
             <div>
               <div class="design-page-cv-section">
                 <h3 id="design-cv-title" class="design-page-cv-section-title">Education</h3>
-                <p class="design-page-cv-item"><strong>University of California, Berkeley</strong>M.Des in Human-Computer Interaction<br>2023 - 2024</p>
-                <p class="design-page-cv-item"><strong>Tsinghua University</strong>B.A. in Industrial and Product Design<br>2019 - 2023</p>
+                <p class="design-page-cv-item"><strong>Massachusetts Institute of Technology, Media Lab</strong><span class="design-page-cv-item-row"><span>M.S. in Human-Computer Interaction</span><span class="design-page-cv-date">2026 - 2028</span></span></p>
+                <p class="design-page-cv-item"><strong>University of California, Berkeley</strong><span class="design-page-cv-item-row"><span>M.Des in Human-Computer Interaction</span><span class="design-page-cv-date">2023 - 2024</span></span></p>
+                <p class="design-page-cv-item"><strong>Tsinghua University</strong><span class="design-page-cv-item-row"><span>B.A. in Industrial and Product Design</span><span class="design-page-cv-date">2019 - 2023</span></span></p>
               </div>
               <div class="design-page-cv-section">
                 <h3 class="design-page-cv-section-title">Experience</h3>
-                <p class="design-page-cv-item"><strong>eTopus Technology Inc.</strong>Design Engineer<br>2025 - Present</p>
-                <p class="design-page-cv-item"><strong>Create, Inc.</strong>Frontend Engineer<br>2025</p>
-                <p class="design-page-cv-item"><strong>Berkeley Institute of Design Lab</strong>Research Assistant, UC Berkeley EECS<br>2023 - Present</p>
+                <p class="design-page-cv-item"><strong>eTopus Technology Inc.</strong><span class="design-page-cv-item-row"><span>Design Engineer</span><span class="design-page-cv-date">Oct 2025 - Jun 2026</span></span></p>
+                <p class="design-page-cv-item"><strong>Create, Inc.</strong><span class="design-page-cv-item-row"><span>Frontend Engineer</span><span class="design-page-cv-date">Jul 2025 - Sep 2025</span></span></p>
+                <p class="design-page-cv-item"><strong>Berkeley Institute of Design Lab</strong><span class="design-page-cv-item-row"><span>Research Assistant, UC Berkeley EECS</span><span class="design-page-cv-date">Nov 2023 - Jan 2026</span></span></p>
               </div>
             </div>
             <div class="design-page-cv-skills">
