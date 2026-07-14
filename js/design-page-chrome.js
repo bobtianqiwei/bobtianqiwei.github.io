@@ -1,12 +1,57 @@
 // js/design-page-chrome.js developed by Bob Tianqi Wei
 (function () {
-  var pageRoot = document.querySelector(".design-project-page");
-  if (!pageRoot) {
-    return;
-  }
+  function start() {
+    var pageRoot = document.querySelector(".design-project-page");
+    var designProfile = window.designProfile;
+    if (!pageRoot || !designProfile) {
+      return;
+    }
 
-  var themeStorageKey = "site-theme-preference";
-  var systemDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    var themeStorageKey = "site-theme-preference";
+    var systemDarkMode = window.matchMedia("(prefers-color-scheme: dark)");
+
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderAboutContent() {
+      var about = designProfile.about;
+      return `<p class="design-page-about-bio">${escapeHtml(about.projectBio)}</p>
+              <p class="design-page-about-email"><a href="${escapeHtml(about.emailHref)}">${escapeHtml(about.emailLabel)}</a></p>
+              <p class="design-page-about-link"><a href="${escapeHtml(about.websiteHref)}" target="_blank">${escapeHtml(about.websiteLabel)}</a></p>
+              <p class="design-page-about-note">${escapeHtml(about.note)}</p>`;
+    }
+
+    function renderCvItems(items, headingKey, detailKey) {
+      return items.map(function (item) {
+        return `<p class="design-page-cv-item"><strong>${escapeHtml(item[headingKey])}</strong><span class="design-page-cv-item-row"><span>${escapeHtml(item[detailKey])}</span><span class="design-page-cv-date">${escapeHtml(item.date)}</span></span></p>`;
+      }).join("");
+    }
+
+    function renderCvContent() {
+      return `<div>
+              <div class="design-page-cv-section">
+                <h3 id="design-cv-title" class="design-page-cv-section-title">Education</h3>
+                ${renderCvItems(designProfile.education, "institution", "degree")}
+              </div>
+              <div class="design-page-cv-section">
+                <h3 class="design-page-cv-section-title">Experience</h3>
+                ${renderCvItems(designProfile.experience, "organization", "role")}
+              </div>
+            </div>
+            <div class="design-page-cv-skills">
+              <div class="design-page-cv-section">
+                <h3 class="design-page-cv-section-title">Skillset</h3>
+                ${designProfile.skills.map(function (skill) {
+                  return `<p class="design-page-cv-item">${escapeHtml(skill)}</p>`;
+                }).join("")}
+              </div>
+            </div>`;
+    }
 
   function injectStyles() {
     if (document.getElementById("design-page-chrome-styles")) {
@@ -342,10 +387,7 @@
           <div class="design-page-about-grid">
             <div>
               <h2 id="design-about-title" class="design-page-about-name">Bob Tianqi Wei</h2>
-              <p class="design-page-about-bio">Design engineer focused on digital and tangible interfaces for emerging technologies. I turn complex systems into clear, fast interfaces through prototyping, user research, and code. I work end to end from CAD / Figma to production with an eye for craft, accessibility, and performance.</p>
-              <p class="design-page-about-email"><a href="mailto:bobtianqiwei@berkeley.edu">bobtianqiwei@berkeley.edu</a></p>
-              <p class="design-page-about-link"><a href="https://bobtianqiwei.com" target="_blank">bobtianqiwei.com</a></p>
-              <p class="design-page-about-note">This website and its contents are protected by copyright.</p>
+              ${renderAboutContent()}
               <div class="design-page-theme-toggle-row">
                 <button type="button" class="design-page-theme-toggle" data-design-theme-toggle aria-label="Toggle dark mode" aria-pressed="false">
                   <span class="design-page-theme-toggle-track">
@@ -375,33 +417,7 @@
         <div class="design-page-cv-modal" role="dialog" aria-modal="true" aria-labelledby="design-cv-title">
           <button type="button" class="design-page-modal-close" aria-label="Close" data-design-cv-close>&times;</button>
           <div class="design-page-cv-grid">
-            <div>
-              <div class="design-page-cv-section">
-                <h3 id="design-cv-title" class="design-page-cv-section-title">Education</h3>
-                <p class="design-page-cv-item"><strong>Massachusetts Institute of Technology, Media Lab</strong><span class="design-page-cv-item-row"><span>M.S. in Human-Computer Interaction</span><span class="design-page-cv-date">2026 - 2028</span></span></p>
-                <p class="design-page-cv-item"><strong>University of California, Berkeley</strong><span class="design-page-cv-item-row"><span>M.Des in Human-Computer Interaction</span><span class="design-page-cv-date">2023 - 2024</span></span></p>
-                <p class="design-page-cv-item"><strong>Tsinghua University</strong><span class="design-page-cv-item-row"><span>B.A. in Industrial and Product Design</span><span class="design-page-cv-date">2019 - 2023</span></span></p>
-              </div>
-              <div class="design-page-cv-section">
-                <h3 class="design-page-cv-section-title">Experience</h3>
-                <p class="design-page-cv-item"><strong>eTopus Technology Inc.</strong><span class="design-page-cv-item-row"><span>Design Engineer</span><span class="design-page-cv-date">Oct 2025 - Jun 2026</span></span></p>
-                <p class="design-page-cv-item"><strong>Create, Inc.</strong><span class="design-page-cv-item-row"><span>Frontend Engineer</span><span class="design-page-cv-date">Jul 2025 - Sep 2025</span></span></p>
-                <p class="design-page-cv-item"><strong>Berkeley Institute of Design Lab</strong><span class="design-page-cv-item-row"><span>Research Assistant, UC Berkeley EECS</span><span class="design-page-cv-date">Nov 2023 - Jan 2026</span></span></p>
-              </div>
-            </div>
-            <div class="design-page-cv-skills">
-              <div class="design-page-cv-section">
-                <h3 class="design-page-cv-section-title">Skillset</h3>
-                <p class="design-page-cv-item">Interaction Design</p>
-                <p class="design-page-cv-item">Product Thinking</p>
-                <p class="design-page-cv-item">Design Systems</p>
-                <p class="design-page-cv-item">Rapid Prototyping</p>
-                <p class="design-page-cv-item">Advanced Prototyping</p>
-                <p class="design-page-cv-item">Human-AI Interaction</p>
-                <p class="design-page-cv-item">Creative Coding</p>
-                <p class="design-page-cv-item">Front-End Prototyping</p>
-              </div>
-            </div>
+            ${renderCvContent()}
           </div>
         </div>
       </div>
@@ -490,4 +506,18 @@
     }
     applyTheme(resolveTheme());
   });
+  }
+
+  if (window.designProfile) {
+    start();
+    return;
+  }
+
+  var profileScript = document.createElement("script");
+  profileScript.src = "/content/design-profile.js";
+  profileScript.onload = start;
+  profileScript.onerror = function () {
+    console.error("Unable to load Design profile data.");
+  };
+  document.head.appendChild(profileScript);
 })();
