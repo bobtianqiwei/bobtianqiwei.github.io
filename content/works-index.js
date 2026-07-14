@@ -1857,7 +1857,7 @@ module.exports = {
       "image": "/images/dog.jpg",
       "contentHtml": "Today&#x27;s lucky dog",
       "lightbox": null,
-      "order": 1
+      "order": 2
     },
     {
       "section": "EXPERIMENTS",
@@ -1866,7 +1866,7 @@ module.exports = {
       "image": "/images/cat.jpg",
       "contentHtml": "Today&#x27;s lucky cat",
       "lightbox": null,
-      "order": 2
+      "order": 3
     },
     {
       "section": "EXPERIMENTS",
@@ -1875,7 +1875,7 @@ module.exports = {
       "image": "/images/IMG_8577.jpg",
       "contentHtml": "yes or no",
       "lightbox": null,
-      "order": 3
+      "order": 4
     },
     {
       "section": "EXPERIMENTS",
@@ -1884,7 +1884,7 @@ module.exports = {
       "image": "/images/pokemon.png",
       "contentHtml": "Which Pokémon are you today?",
       "lightbox": null,
-      "order": 4
+      "order": 5
     },
     {
       "section": "EXPERIMENTS",
@@ -1895,18 +1895,16 @@ module.exports = {
       },
       "contentHtml": "cropkit",
       "lightbox": null,
-      "order": 5
+      "order": 6
     },
     {
       "section": "EXPERIMENTS",
       "href": "/works/experiments/buddha-machine/",
       "className": "project-link-block w-inline-block",
-      "image": {
-        "placeholderText": "buddha machine"
-      },
+      "image": "/images/buddha-machine-cover.png",
       "contentHtml": "buddha machine",
       "lightbox": null,
-      "order": 6
+      "order": 1
     }
   ]
 };
