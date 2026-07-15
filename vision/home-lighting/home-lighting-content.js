@@ -25,7 +25,7 @@
   }
 
   var englishBlocks = [
-    paragraph("My undergraduate thesis project was about lighting. Earlier this year, I left a comment under a post on Xiaohongshu (a Chinese social platform) that went viral. The first line was:"),
+    paragraph("My undergraduate thesis project was about lighting. Earlier this year, a comment that I left under a post on Xiaohongshu (a Chinese social platform) went viral. The first line was:"),
     quote("First, turn off that ceiling light."),
     paragraph("That's kind of an absolute statement. Ceiling lights are fine to use. They're good for cleaning, finding things, or when you need a lot of brightness. The problem is that many homes rely on just one light in the center of the room, trying to evenly light everything. That kind of light lets you see the space, but it doesn't adapt well to reading, working, resting, or winding down before bed, and it makes it hard for a space to have any sense of depth."),
     paragraph("Good home lighting needs to consider three things at once: what people are doing in this space, what state the body is in at that point in the day, and how the eye should naturally travel through the room."),
@@ -128,7 +128,7 @@
   ];
 
   var chineseBlocks = [
-    paragraph("我本科毕业设计研究的是照明。今年早些时候，我在一条小红书笔记下面留的一段关于照明的评论火了，第一句是："),
+    paragraph("我本科毕业设计研究的是照明。今年早些时候，我在一条关于照明改造的小红书笔记下面留的一段评论火了，第一句是："),
     quote("首先把那个顶灯关了。"),
     paragraph("这句话有点儿绝对。顶灯当然可以用，在打扫房间、寻找物品或需要高亮度时，它很方便。问题在于，很多家庭只用一盏位于房间中央的灯，试图平均照亮所有东西。这样的光可以让人看清空间，却很难适应阅读、工作、休息和睡前活动，也很难让空间产生层次。"),
     paragraph("好的家庭照明，需要同时考虑三件事：人在这里做什么，身体在一天中的什么状态，以及目光应该如何经过这个空间。"),
