@@ -1,5 +1,5 @@
 // vision/vision-content-data.js developed by Bob Tianqi Wei
-window.VISION_CONTENT_DATA = {
+var VISION_CONTENT_DATA = {
   visionSection: {
     image: {
       src: "/images/vision-1.jpg",
@@ -97,3 +97,11 @@ window.VISION_CONTENT_DATA = {
     }
   ]
 };
+
+if (typeof window !== "undefined") {
+  window.VISION_CONTENT_DATA = VISION_CONTENT_DATA;
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = VISION_CONTENT_DATA;
+}
