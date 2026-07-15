@@ -30,7 +30,7 @@
     paragraph("That's kind of an absolute statement. Ceiling lights are fine to use. They're good for cleaning, finding things, or when you need a lot of brightness. The problem is that many homes rely on just one light in the center of the room, trying to evenly light everything. That kind of light lets you see the space, but it doesn't adapt well to reading, working, resting, or winding down before bed, and it makes it hard for a space to have any sense of depth."),
     paragraph("Good home lighting needs to consider three things at once: what people are doing in this space, what state the body is in at that point in the day, and how the eye should naturally travel through the room."),
     images([
-      { src: "/images/home-lighting-cover.jpg?v=20260715", alt: "The room in the Evening lighting scene" }
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The room in the Evening lighting scene" }
     ], "My home at NEMA in San Francisco, 2025–2026. Lighting set to the Evening scene."),
 
     heading("1. Think About Function First, Fixtures Second"),
@@ -110,7 +110,7 @@
     paragraph("The value of saved scenes isn't just convenience. It turns the day's work, relaxation, and wind-down into distinct states of the space. Lighting control systems are well suited for exactly this, using presets to quickly adjust brightness, distribution, and color temperature for different activities."),
     images([
       { src: "/images/home-lighting/daytime.jpg", alt: "The Daytime lighting scene" },
-      { src: "/images/home-lighting-cover.jpg?v=20260715", alt: "The Evening lighting scene" },
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The Evening lighting scene" },
       { src: "/images/home-lighting/before-sleeping.jpg", alt: "The Before Sleeping lighting scene" }
     ], "Daytime · Evening · Before Sleeping"),
 
@@ -133,7 +133,7 @@
     paragraph("这句话有点儿绝对。顶灯当然可以用，在打扫房间、寻找物品或需要高亮度时，它很方便。问题在于，很多家庭只用一盏位于房间中央的灯，试图平均照亮所有东西。这样的光可以让人看清空间，却很难适应阅读、工作、休息和睡前活动，也很难让空间产生层次。"),
     paragraph("好的家庭照明，需要同时考虑三件事：人在这里做什么，身体在一天中的什么状态，以及目光应该如何经过这个空间。"),
     images([
-      { src: "/images/home-lighting-cover.jpg?v=20260715", alt: "使用 Evening 灯光场景的房间" }
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "使用 Evening 灯光场景的房间" }
     ], "我在旧金山 NEMA 公寓的家，2025–2026。照明设置为 Evening 场景。"),
 
     heading("一、先考虑功能，再考虑灯具"),
@@ -213,7 +213,7 @@
     paragraph("预设场景的价值不只在于方便。它把一天中的工作、放松和睡眠准备，转化成不同的空间状态。照明控制系统也正适合通过预设场景，为不同活动快速调整亮度、分布和色温。"),
     images([
       { src: "/images/home-lighting/daytime.jpg", alt: "Daytime 灯光场景" },
-      { src: "/images/home-lighting-cover.jpg?v=20260715", alt: "Evening 灯光场景" },
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "Evening 灯光场景" },
       { src: "/images/home-lighting/before-sleeping.jpg", alt: "Before Sleeping 灯光场景" }
     ], "Daytime · Evening · Before Sleeping"),
 

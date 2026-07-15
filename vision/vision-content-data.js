@@ -61,7 +61,7 @@ var VISION_CONTENT_DATA = {
       date: "Jul 14, 2026",
       href: "/vision/home-lighting/",
       image: {
-        src: "/images/home-lighting-cover.jpg?v=20260715",
+        src: "/images/home-lighting-cover.jpg?v=20260715-2",
         alt: "Home lighting in the evening"
       }
     },
