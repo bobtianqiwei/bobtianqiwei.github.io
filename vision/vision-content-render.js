@@ -66,8 +66,26 @@
     author.className = "vision-resource-meta";
     author.textContent = [item.author, item.date].filter(Boolean).join(" · ");
 
-    link.appendChild(title);
-    link.appendChild(author);
+    if (item.image) {
+      var image = document.createElement("img");
+      image.className = "vision-resource-image";
+      image.src = item.image.src;
+      image.alt = item.image.alt || "";
+      image.loading = "lazy";
+      image.decoding = "async";
+
+      var copy = document.createElement("div");
+      copy.className = "vision-resource-copy";
+      copy.appendChild(title);
+      copy.appendChild(author);
+
+      link.classList.add("vision-resource-link-with-image");
+      link.appendChild(image);
+      link.appendChild(copy);
+    } else {
+      link.appendChild(title);
+      link.appendChild(author);
+    }
     article.appendChild(link);
     return article;
   }

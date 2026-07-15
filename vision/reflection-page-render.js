@@ -42,9 +42,75 @@
       "</div>";
   }
 
+  function renderBlock(block) {
+    if (!block || !block.type) {
+      return "";
+    }
+
+    if (block.type === "paragraph") {
+      return "<p>" + (block.text || "") + "</p>";
+    }
+
+    if (block.type === "quote") {
+      return '<blockquote class="vision-reflection-quote"><p>' + (block.text || "") + "</p></blockquote>";
+    }
+
+    if (block.type === "heading") {
+      return '<h2 class="vision-reflection-section-heading vision-reflection-block-heading">' + (block.text || "") + "</h2>";
+    }
+
+    if (block.type === "subheading") {
+      return '<h3 class="vision-reflection-subheading">' + (block.text || "") + "</h3>";
+    }
+
+    if (block.type === "list") {
+      var listTag = block.ordered ? "ol" : "ul";
+      var items = Array.isArray(block.items) ? block.items : [];
+
+      return "<" + listTag + ' class="vision-reflection-list">' + items.map(function (item) {
+        return "<li>" + item + "</li>";
+      }).join("") + "</" + listTag + ">";
+    }
+
+    if (block.type === "imagePlaceholder") {
+      var placeholders = Array.isArray(block.items) && block.items.length ? block.items : ["PHOTO"];
+      var columnCount = Math.min(placeholders.length, 3);
+
+      return '<figure class="vision-reflection-placeholder-group">' +
+        '<div class="vision-reflection-placeholder-grid vision-reflection-placeholder-grid-' + columnCount + '">' +
+        placeholders.map(function (label) {
+          return '<div class="vision-reflection-placeholder">' + label + "</div>";
+        }).join("") +
+        "</div>" +
+        (block.caption ? '<figcaption class="vision-reflection-placeholder-caption">' + block.caption + "</figcaption>" : "") +
+        "</figure>";
+    }
+
+    if (block.type === "images") {
+      var images = Array.isArray(block.items) ? block.items : [];
+      var imageColumnCount = Math.min(Math.max(images.length, 1), 3);
+
+      return '<figure class="vision-reflection-placeholder-group">' +
+        '<div class="vision-reflection-placeholder-grid vision-reflection-placeholder-grid-' + imageColumnCount + '">' +
+        images.map(function (image) {
+          return '<img class="vision-reflection-image" src="' + image.src + '" alt="' + (image.alt || "") + '" loading="lazy" decoding="async">';
+        }).join("") +
+        "</div>" +
+        (block.caption ? '<figcaption class="vision-reflection-placeholder-caption">' + block.caption + "</figcaption>" : "") +
+        "</figure>";
+    }
+
+    return "";
+  }
+
+  function renderBlocks(blocks) {
+    return Array.isArray(blocks) ? blocks.map(renderBlock).join("") : "";
+  }
+
   function renderSection(section) {
     var heading = section.heading ? '<h2 class="vision-reflection-section-heading">' + section.heading + "</h2>" : "";
     var paragraphs = joinParagraphs(section.paragraphs);
+    var blocks = renderBlocks(section.blocks);
     var video = renderVideo(section.video);
     var audio = renderAudio(section.audio);
     var language = section.language
@@ -54,12 +120,13 @@
     return '<section class="vision-reflection-section"' + language + ">" +
       heading +
       paragraphs +
+      blocks +
       video +
       audio +
       "</section>";
   }
 
-  function renderLanguageSwitch(languages, defaultLanguage, sections) {
+  function renderLanguageSwitch(languages, defaultLanguage, sections, title) {
     if (!Array.isArray(languages) || languages.length < 2 || !sections) {
       return;
     }
@@ -90,6 +157,13 @@
       var selectedIndex = options.findIndex(function (language) {
         return language.code === languageCode;
       });
+      var selectedOption = options[selectedIndex];
+      var isFirstActiveSection = true;
+
+      if (selectedOption.title && title) {
+        title.textContent = selectedOption.title;
+        document.title = selectedOption.title + " - Bob Tianqi Wei";
+      }
 
       switcher.style.setProperty("--vision-reflection-language-offset", selectedIndex * 40 + "px");
       switcher.querySelectorAll("button").forEach(function (button) {
@@ -109,6 +183,11 @@
 
         section.hidden = !isActive;
         section.classList.toggle("is-language-active", isActive);
+        section.classList.toggle("is-language-first", isActive && isFirstActiveSection);
+
+        if (isActive) {
+          isFirstActiveSection = false;
+        }
       });
     }
 
@@ -173,5 +252,5 @@
   }
 
   loadLanguageFonts(data.languages);
-  renderLanguageSwitch(data.languages, data.defaultLanguage, sections);
+  renderLanguageSwitch(data.languages, data.defaultLanguage, sections, title);
 })();

@@ -56,22 +56,44 @@ window.VISION_CONTENT_DATA = {
   ],
   reflections: [
     {
+      title: "How to Make Home Lighting Both Functional and Aesthetic",
+      author: "Bob Tianqi Wei",
+      date: "Jul 14, 2026",
+      href: "/vision/home-lighting/",
+      image: {
+        src: "/images/home-lighting-cover.jpg?v=20260715",
+        alt: "Home lighting in the evening"
+      }
+    },
+    {
       title: "The External Brain We've All Adored",
       author: "Bob Tianqi Wei",
       date: "Nov 28, 2023",
-      href: "/vision/external-brain/"
+      href: "/vision/external-brain/",
+      image: {
+        src: "/images/external-brain-cover.png",
+        alt: "A sculptural external brain"
+      }
     },
     {
       title: "Virtues of the Silent Orchid",
       author: "Bob Tianqi Wei",
       date: "Mar 29, 2026",
-      href: "/vision/orchid/"
+      href: "/vision/orchid/",
+      image: {
+        src: "/images/youlancao.jpeg",
+        alt: "Virtues of the Silent Orchid performance"
+      }
     },
     {
       title: "Pavane pour une infante défunte",
       author: "Bob Tianqi Wei",
       date: "Jun 2, 2026",
-      href: "/vision/pavane/"
+      href: "/vision/pavane/",
+      image: {
+        src: "/images/pavane-blog-cover.jpg",
+        alt: "Tianqi Wei beside a grand piano"
+      }
     }
   ]
 };
