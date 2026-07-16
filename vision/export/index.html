@@ -1,0 +1,59 @@
+<!DOCTYPE html><!-- vision/export/index.html developed by Bob Tianqi Wei -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Vision Export - Bob Tianqi Wei</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+  <link href="/vision/export/export.css" rel="stylesheet">
+  <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
+</head>
+<body>
+  <main class="export-shell">
+    <header class="export-header">
+      <h1>VISION EXPORT</h1>
+      <a href="/vision/">BACK TO VISION</a>
+    </header>
+
+    <form class="export-controls" id="export-controls">
+      <label class="export-field">
+        <span>ARTICLE</span>
+        <select id="article" name="article">
+          <option value="/vision/home-lighting/">如何让家庭照明兼顾功能与美学</option>
+          <option value="/vision/pavane/">Pavane pour une infante défunte</option>
+        </select>
+      </label>
+
+      <fieldset class="export-field export-theme">
+        <legend>THEME</legend>
+        <div class="export-theme-options">
+          <label><input type="radio" name="theme" value="light" checked><span>LIGHT</span></label>
+          <label><input type="radio" name="theme" value="dark"><span>DARK</span></label>
+        </div>
+      </fieldset>
+
+      <button class="export-generate" type="submit">GENERATE</button>
+    </form>
+
+    <div class="export-progress" id="export-progress" aria-live="polite"></div>
+
+    <section class="export-results" id="export-results" hidden>
+      <div class="export-results-header">
+        <span id="export-count"></span>
+        <button type="button" id="download-all">DOWNLOAD ALL</button>
+      </div>
+      <div class="export-grid" id="export-grid"></div>
+    </section>
+  </main>
+
+  <div class="export-render-stage" aria-hidden="true">
+    <iframe id="export-frame" title="Article export renderer"></iframe>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+  <script src="/vision/export/export.js"></script>
+</body>
+</html>
