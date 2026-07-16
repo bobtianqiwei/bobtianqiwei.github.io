@@ -20,8 +20,8 @@
     return { type: "list", items: items, ordered: Boolean(ordered) };
   }
 
-  function images(items, caption) {
-    return { type: "images", items: items, caption: caption };
+  function images(items) {
+    return { type: "images", items: items };
   }
 
   var englishBlocks = [
@@ -30,8 +30,8 @@
     paragraph("That's kind of an absolute statement. Ceiling lights are fine to use. They're good for cleaning, finding things, or when you need a lot of brightness. The problem is that many homes rely on just one light in the center of the room, trying to evenly light everything. That kind of light lets you see the space, but it doesn't adapt well to reading, working, resting, or winding down before bed, and it makes it hard for a space to have any sense of depth."),
     paragraph("Good home lighting needs to consider three things at once: what people are doing in this space, what state the body is in at that point in the day, and how the eye should naturally travel through the room."),
     images([
-      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The room in the Evening lighting scene" }
-    ], "My home at NEMA in San Francisco, 2025–2026. Lighting set to the Evening scene."),
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The room in the Evening lighting scene", caption: "My home at NEMA in San Francisco, 2025–2026. Lighting set to the Evening scene." }
+    ]),
 
     heading("1. Think About Function First, Fixtures Second"),
     paragraph("When I design lighting, I don't start by asking what fixtures to buy. I start by asking: what is someone doing in this spot?"),
@@ -42,9 +42,9 @@
     paragraph("<strong>Accent lighting</strong> is mostly about mood and creating a visual focal point, like a small floor light, a light by the window, or a decorative light. It doesn't need to light up the whole room, just make one spot appealing."),
     paragraph("A room usually needs several light sources working together. Lights placed at different spots, angles, and brightness levels can divide a room into reading, working, and resting zones, and also soften harsh contrasts between light and dark."),
     images([
-      { src: "/images/home-lighting/ceiling-light-only.jpg", alt: "A room lit only by a ceiling light" },
-      { src: "/images/home-lighting/layered-lighting.jpg", alt: "The same room with layered lighting" }
-    ], "Ceiling light only · Layered lighting"),
+      { src: "/images/home-lighting/ceiling-light-only.jpg", alt: "A room lit only by a ceiling light", caption: "Ceiling light only" },
+      { src: "/images/home-lighting/layered-lighting.jpg", alt: "The same room with layered lighting", caption: "Layered lighting" }
+    ]),
 
     heading("2. Comfortable Light Starts With Avoiding Glare"),
     paragraph("Whether a light works well isn't just about brightness. You also need to notice whether the light source hits your eyes directly, and whether it reflects off screens, glass, or shiny furniture."),
@@ -58,8 +58,8 @@
     ]),
     paragraph("Lighting that's too even makes a room feel flat; too much contrast forces your eyes to keep adjusting. A comfortable space needs some variation between light and dark, along with overall balance."),
     images([
-      { src: "/images/home-lighting/desk-without-glare.jpg", alt: "A desk lit without a visible source of glare" }
-    ], "Ambient light behind the screen keeps bright light sources out of view."),
+      { src: "/images/home-lighting/desk-without-glare.jpg", alt: "A desk lit without a visible source of glare", caption: "Ambient light behind the screen keeps bright light sources out of view." }
+    ]),
 
     heading("3. Light Also Tells the Body What Time It Is"),
     paragraph("Light helps us see things, but it also plays a role in regulating our internal body clock."),
@@ -81,8 +81,8 @@
     paragraph("Balance doesn't have to be symmetrical. For example, if the left side of your view has a large but softly lit area, you can balance it with a smaller but slightly brighter light on the right. The two sides don't need to match, they just need similar visual weight."),
     paragraph("In my own room, the light on the plants by the window acts as an accent light. At night, it draws the eye naturally across the room toward the plants and the window, making the space feel visually extended."),
     images([
-      { src: "/images/home-lighting/plants-as-focal-point.jpg", alt: "Illuminated plants forming a focal point near the window" }
-    ], "The illuminated plants draw the eye toward the window."),
+      { src: "/images/home-lighting/plants-as-focal-point.jpg", alt: "Illuminated plants forming a focal point near the window", caption: "The illuminated plants draw the eye toward the window." }
+    ]),
 
     heading("5. Lighting Design Also Depends on the Surfaces Being Lit"),
     paragraph("Light ultimately lands on walls, floors, furniture, fabric, plants, and skin. So the lamp itself is only half the design, the other half comes from materials."),
@@ -91,10 +91,10 @@
     paragraph("The finish of a surface matters too. Matte materials scatter light fairly evenly; glass, metal, and glossy black furniture can create very bright, localized reflections. Even a dark-colored object can produce glare if it has a mirror-like surface."),
     paragraph("How bright a surface appears to us depends both on the light hitting it and on how well that surface reflects light. That means lighting design has to be considered together with the colors and materials in a room."),
     images([
-      { src: "/images/home-lighting/white-wall.jpg", alt: "Light reflected from a white wall" },
-      { src: "/images/home-lighting/yellow-rug.jpg", alt: "Light reflected from a yellow rug" },
-      { src: "/images/home-lighting/black-rug.jpg", alt: "Light absorbed by a black rug" }
-    ], "White wall · Yellow rug · Black rug"),
+      { src: "/images/home-lighting/white-wall.jpg", alt: "Light reflected from a white wall", caption: "White wall" },
+      { src: "/images/home-lighting/yellow-rug.jpg", alt: "Light reflected from a yellow rug", caption: "Yellow rug" },
+      { src: "/images/home-lighting/black-rug.jpg", alt: "Light absorbed by a black rug", caption: "Black rug" }
+    ]),
 
     heading("6. Use Smart Home Tech to Save Different States of Living"),
     paragraph("When a room has a lot of lights, adjusting each one individually gets tedious fast. I've connected most of my lights to Apple Home and saved three main scenes."),
@@ -109,10 +109,10 @@
     paragraph("Red light doesn't have some magical sleep-inducing power, but at very low brightness, it tends to contain less short-wavelength light, which can somewhat reduce nighttime light's stimulating effect. At this point, the screen brightness should come down too."),
     paragraph("The value of saved scenes isn't just convenience. It turns the day's work, relaxation, and wind-down into distinct states of the space. Lighting control systems are well suited for exactly this, using presets to quickly adjust brightness, distribution, and color temperature for different activities."),
     images([
-      { src: "/images/home-lighting/daytime.jpg", alt: "The Daytime lighting scene" },
-      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The Evening lighting scene" },
-      { src: "/images/home-lighting/before-sleeping.jpg", alt: "The Before Sleeping lighting scene" }
-    ], "Daytime · Evening · Before Sleeping"),
+      { src: "/images/home-lighting/daytime.jpg", alt: "The Daytime lighting scene", caption: "Daytime" },
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "The Evening lighting scene", caption: "Evening" },
+      { src: "/images/home-lighting/before-sleeping.jpg", alt: "The Before Sleeping lighting scene", caption: "Before Sleeping" }
+    ]),
 
     heading("7. A Simple Method for Designing Your Own Home Lighting"),
     paragraph("Here's a five-step starting point for designing your own home lighting:"),
@@ -133,8 +133,8 @@
     paragraph("这句话有点儿绝对。顶灯当然可以用，在打扫房间、寻找物品或需要高亮度时，它很方便。问题在于，很多家庭只用一盏位于房间中央的灯，试图平均照亮所有东西。这样的光可以让人看清空间，却很难适应阅读、工作、休息和睡前活动，也很难让空间产生层次。"),
     paragraph("好的家庭照明，需要同时考虑三件事：人在这里做什么，身体在一天中的什么状态，以及目光应该如何经过这个空间。"),
     images([
-      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "使用 Evening 灯光场景的房间" }
-    ], "我在旧金山 NEMA 公寓的家，2025–2026。照明设置为 Evening 场景。"),
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "使用 Evening 灯光场景的房间", caption: "我在旧金山 NEMA 公寓的家，2025–2026。照明设置为 Evening 场景。" }
+    ]),
 
     heading("一、先考虑功能，再考虑灯具"),
     paragraph("设计照明时，我首先不会问应该买什么灯，而会问：人在这个位置准备做什么？"),
@@ -145,9 +145,9 @@
     paragraph("<strong>氛围照明</strong>主要负责营造感受和建立视觉焦点，例如地面上的小灯、窗边灯或装饰灯。它不需要照亮整个空间，只需要让某个局部产生吸引力。"),
     paragraph("一个房间通常需要多种光源共同工作。不同位置、方向和亮度的光，能够划分阅读、工作和休息区域，也能减少过大的明暗反差。"),
     images([
-      { src: "/images/home-lighting/ceiling-light-only.jpg", alt: "只开顶灯的房间" },
-      { src: "/images/home-lighting/layered-lighting.jpg", alt: "使用多层照明的同一房间" }
-    ], "只开顶灯 · 多层照明"),
+      { src: "/images/home-lighting/ceiling-light-only.jpg", alt: "只开顶灯的房间", caption: "只开顶灯" },
+      { src: "/images/home-lighting/layered-lighting.jpg", alt: "使用多层照明的同一房间", caption: "多层照明" }
+    ]),
 
     heading("二、让光线舒服，首先要避免眩光"),
     paragraph("判断一盏灯是否合适，不能只看它够不够亮。还要观察光源是否直接进入视线，以及它会不会反射在屏幕、玻璃或亮面家具上。"),
@@ -161,8 +161,8 @@
     ]),
     paragraph("过于均匀的照明会让房间单调，反差过大又会迫使眼睛不断适应。舒适的空间需要明暗变化，也需要整体上的亮度平衡。"),
     images([
-      { src: "/images/home-lighting/desk-without-glare.jpg", alt: "没有可见眩光光源的电脑桌" }
-    ], "屏幕后方的背景光让高亮度光源避开视线。"),
+      { src: "/images/home-lighting/desk-without-glare.jpg", alt: "没有可见眩光光源的电脑桌", caption: "屏幕后方的背景光让高亮度光源避开视线。" }
+    ]),
 
     heading("三、灯光也在告诉身体现在是什么时间"),
     paragraph("光帮助我们看见物体，也参与调节人体的昼夜节律。"),
@@ -184,8 +184,8 @@
     paragraph("不对称也可以达到平衡。例如，视线左侧有一片面积较大但亮度柔和的光，右侧可以用一盏面积较小但稍亮的灯来平衡。两边不需要长得一样，只需要拥有接近的视觉重量。"),
     paragraph("在我的房间里，窗边植物的灯就是一个重点光。晚上，它会让视线自然越过房间，落在植物和窗户附近，使空间在视觉上得到延伸。"),
     images([
-      { src: "/images/home-lighting/plants-as-focal-point.jpg", alt: "窗边被照亮并形成视觉焦点的植物" }
-    ], "被照亮的植物将视线引向窗边。"),
+      { src: "/images/home-lighting/plants-as-focal-point.jpg", alt: "窗边被照亮并形成视觉焦点的植物", caption: "被照亮的植物将视线引向窗边。" }
+    ]),
 
     heading("五、照明设计也要考虑被照亮的表面"),
     paragraph("灯光最终会落在墙面、地板、家具、织物、植物和人的皮肤上。因此，灯本身只完成了一半设计，另一半由材料完成。"),
@@ -194,10 +194,10 @@
     paragraph("表面的光泽同样重要。哑光材料会把光线较均匀地散开；玻璃、金属和亮面黑色家具可能产生非常明亮的局部反射。一个物体整体颜色很深，也可能因为镜面反射而产生眩光。"),
     paragraph("人眼感受到的表面亮度，既取决于照到表面上的光，也取决于表面对光的反射能力。照明设计因此需要与室内的颜色和材料共同考虑。"),
     images([
-      { src: "/images/home-lighting/white-wall.jpg", alt: "白墙反射的光" },
-      { src: "/images/home-lighting/yellow-rug.jpg", alt: "黄色地毯反射的光" },
-      { src: "/images/home-lighting/black-rug.jpg", alt: "黑色地毯吸收的光" }
-    ], "白墙 · 黄色地毯 · 黑色地毯"),
+      { src: "/images/home-lighting/white-wall.jpg", alt: "白墙反射的光", caption: "白墙" },
+      { src: "/images/home-lighting/yellow-rug.jpg", alt: "黄色地毯反射的光", caption: "黄色地毯" },
+      { src: "/images/home-lighting/black-rug.jpg", alt: "黑色地毯吸收的光", caption: "黑色地毯" }
+    ]),
 
     heading("六、用智能家居保存不同的生活状态"),
     paragraph("当一个房间里有很多灯时，每次逐个调节会非常麻烦。我把大部分灯接入 Apple Home，并保存成三个主要场景。"),
@@ -212,10 +212,10 @@
     paragraph("红色并不具有神奇的助眠作用，但在亮度很低的情况下，它所包含的短波成分通常较少，能够相对减弱夜间光线的刺激。此时屏幕也应该同步降低亮度。"),
     paragraph("预设场景的价值不只在于方便。它把一天中的工作、放松和睡眠准备，转化成不同的空间状态。照明控制系统也正适合通过预设场景，为不同活动快速调整亮度、分布和色温。"),
     images([
-      { src: "/images/home-lighting/daytime.jpg", alt: "Daytime 灯光场景" },
-      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "Evening 灯光场景" },
-      { src: "/images/home-lighting/before-sleeping.jpg", alt: "Before Sleeping 灯光场景" }
-    ], "Daytime · Evening · Before Sleeping"),
+      { src: "/images/home-lighting/daytime.jpg", alt: "Daytime 灯光场景", caption: "Daytime" },
+      { src: "/images/home-lighting-cover.jpg?v=20260715-2", alt: "Evening 灯光场景", caption: "Evening" },
+      { src: "/images/home-lighting/before-sleeping.jpg", alt: "Before Sleeping 灯光场景", caption: "Before Sleeping" }
+    ]),
 
     heading("七、一个简单的家庭照明设计方法"),
     paragraph("设计自己的家庭照明，可以从下面五步开始："),

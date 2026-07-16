@@ -93,10 +93,12 @@
       return '<figure class="vision-reflection-placeholder-group">' +
         '<div class="vision-reflection-placeholder-grid vision-reflection-placeholder-grid-' + imageColumnCount + '">' +
         images.map(function (image) {
-          return '<img class="vision-reflection-image" src="' + image.src + '" alt="' + (image.alt || "") + '" loading="lazy" decoding="async">';
+          return '<div class="vision-reflection-image-item">' +
+            '<img class="vision-reflection-image" src="' + image.src + '" alt="' + (image.alt || "") + '" loading="lazy" decoding="async">' +
+            (image.caption ? '<div class="vision-reflection-placeholder-caption">' + image.caption + "</div>" : "") +
+            "</div>";
         }).join("") +
         "</div>" +
-        (block.caption ? '<figcaption class="vision-reflection-placeholder-caption">' + block.caption + "</figcaption>" : "") +
         "</figure>";
     }
 

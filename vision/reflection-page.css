@@ -170,8 +170,13 @@ html[data-theme="light"] .vision-reflection-section-heading {
   height: auto;
 }
 
-.vision-reflection-placeholder-caption {
-  margin-top: 10px;
+.vision-reflection-image-item {
+  min-width: 0;
+}
+
+.vision-reflection-placeholder-caption,
+.vision-reflection-media-caption {
+  margin: 5px 0 0;
   color: var(--theme-muted, #666);
   font-family: Open Sans, sans-serif;
   font-size: 12px;
