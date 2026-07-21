@@ -29,10 +29,10 @@
   align-items: center;
   gap: 10px;
   padding: 12px 18px;
-  border: 1px solid #171717;
+  border: 1px solid var(--theme-text, #171717);
   border-radius: 10px;
-  background: #171717;
-  color: #ffffff;
+  background: var(--theme-text, #171717);
+  color: var(--theme-bg, #ffffff);
   font-family: Open Sans, sans-serif;
   font-size: 14px;
   font-weight: 500;
@@ -42,13 +42,19 @@
 }
 
 .project-app-store-button:hover {
-  color: #ffffff;
+  color: var(--theme-bg, #ffffff);
   opacity: 0.82;
   transform: translateY(-1px);
 }
 
+html[data-theme-enabled="true"] a.project-app-store-button,
+html[data-theme-enabled="true"] a.project-app-store-button:hover,
+.project-app-store-button > span {
+  color: var(--theme-bg, #ffffff) !important;
+}
+
 .project-app-store-button:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--theme-text, #171717);
   outline-offset: 3px;
 }
 
@@ -56,7 +62,7 @@
   width: 18px;
   height: 24px;
   flex: none;
-  fill: currentColor;
+  fill: var(--theme-bg, #ffffff);
 }
 
 .project-figure-image {
