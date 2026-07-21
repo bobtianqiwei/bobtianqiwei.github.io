@@ -65,6 +65,52 @@ html[data-theme-enabled="true"] a.project-app-store-button:hover,
   fill: var(--theme-bg, #ffffff);
 }
 
+.dear-interaction-flow {
+  margin-top: 18px;
+}
+
+.dear-interaction-desktop-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.dear-interaction-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.dear-interaction-item {
+  min-width: 0;
+  text-align: center;
+}
+
+.dear-interaction-mobile-image {
+  display: none;
+}
+
+.dear-interaction-title {
+  margin: 0 0 10px;
+  color: var(--theme-text, #171717);
+  font-family: Open Sans, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.dear-interaction-description {
+  margin: 0;
+  color: var(--theme-text, #171717);
+  font-family: Open Sans, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.6;
+  text-align: center;
+}
+
 .project-figure-image {
   display: block;
   width: 100%;
@@ -393,6 +439,32 @@ html[data-page-theme="digital-paradise"] body {
 }
 
 @media screen and (max-width: 767px) {
+  .dear-interaction-desktop-image {
+    display: none;
+  }
+
+  .dear-interaction-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    margin-top: 0;
+  }
+
+  .dear-interaction-mobile-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 18px;
+  }
+
+  .dear-interaction-title {
+    margin-bottom: 8px;
+    font-size: 20px;
+  }
+
+  .dear-interaction-description {
+    font-size: 16px;
+  }
+
   .project-image-grid,
   .design-project-image-grid,
   .project-two-column-row {
