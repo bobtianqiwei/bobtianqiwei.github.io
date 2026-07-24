@@ -102,6 +102,17 @@
         "</figure>";
     }
 
+    if (block.type === "fullWidthImage") {
+      if (!block.src) {
+        return "";
+      }
+
+      return '<figure class="vision-reflection-full-width-image-block">' +
+        '<img class="vision-reflection-full-width-image" src="' + block.src + '" alt="' + (block.alt || "") + '" loading="lazy" decoding="async">' +
+        (block.caption ? '<figcaption class="vision-reflection-placeholder-caption">' + block.caption + "</figcaption>" : "") +
+        "</figure>";
+    }
+
     return "";
   }
 

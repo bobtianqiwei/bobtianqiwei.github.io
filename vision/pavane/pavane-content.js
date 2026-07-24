@@ -51,6 +51,15 @@ window.VISION_REFLECTION_CONTENT = {
         "我终将向它告别。这架雅马哈钢琴要被卖掉，就像我们都要学会接受所爱之人的缺席，在我人生里改变了我的人，和这段回忆，也都和旧金山同时结束了。",
         "于是我用帕凡舞曲来好好告别。现在帕凡舞曲练完了，下一首也要开始了。"
       ]
+    },
+    {
+      blocks: [
+        {
+          type: "fullWidthImage",
+          src: "/vision/pavane/pavane-at-home.jpg",
+          alt: "A piano and guitar in Bob Tianqi Wei's San Francisco home"
+        }
+      ]
     }
   ]
 };
