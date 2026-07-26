@@ -79,7 +79,7 @@ html[data-theme-enabled="true"] a.project-app-store-button:hover,
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .dear-interaction-item {
@@ -92,23 +92,27 @@ html[data-theme-enabled="true"] a.project-app-store-button:hover,
 }
 
 .dear-interaction-title {
-  margin: 0 0 10px;
+  margin: 0 0 4px;
   color: var(--theme-text, #171717);
   font-family: Open Sans, sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
   text-align: center;
 }
 
 .dear-interaction-description {
   margin: 0;
-  color: var(--theme-text, #171717);
+  color: var(--theme-muted, #6b6b6b) !important;
   font-family: Open Sans, sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 300;
-  line-height: 1.6;
+  line-height: 1.5;
   text-align: center;
+}
+
+html[data-theme-enabled="true"] p.dear-interaction-description {
+  color: var(--theme-muted, #6b6b6b) !important;
 }
 
 .project-figure-image {
@@ -453,16 +457,16 @@ html[data-page-theme="digital-paradise"] body {
     display: block;
     width: 100%;
     height: auto;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
   }
 
   .dear-interaction-title {
-    margin-bottom: 8px;
-    font-size: 20px;
+    margin-bottom: 4px;
+    font-size: 16px;
   }
 
   .dear-interaction-description {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .project-image-grid,

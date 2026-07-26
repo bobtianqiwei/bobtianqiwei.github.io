@@ -104,7 +104,7 @@ module.exports = {
       "section": "RESEARCH",
       "href": "/works/dear___/",
       "className": "link-100 w-inline-block",
-      "image": "/images/dear-research-cover.png",
+      "image": "/images/dear-cover.png",
       "contentHtml": "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong> and Hiroshi Ishii<br><br>UIST 2026 demo, submitted<br>",
       "lightbox": null,
       "order": 1.5
