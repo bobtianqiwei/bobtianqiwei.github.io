@@ -818,6 +818,15 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
+      "href": "/works/kindred/",
+      "className": "project-link-block w-inline-block",
+      "image": "/images/kindred-cover.jpg",
+      "contentHtml": "Kindred",
+      "lightbox": null,
+      "order": 0.5
+    },
+    {
+      "section": "DIGITAL INTERFACES",
       "href": "/works/ekphrasis/",
       "className": "project-link-block w-inline-block",
       "image": "/images/ekphrasis.jpg",

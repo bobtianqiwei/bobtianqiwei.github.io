@@ -114,6 +114,10 @@ module.exports = {
             href: "/design/dear___/"
           },
           {
+            ...fromIndex({ href: "/works/kindred/", section: "DIGITAL INTERFACES" }),
+            href: "/design/kindred/"
+          },
+          {
             ...fromIndex({ href: "https://github.com/s-almeda/ArtiFactor", section: "DIGITAL INTERFACES" }),
             href: "/design/artifactor/"
           },

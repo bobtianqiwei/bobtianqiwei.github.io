@@ -54,6 +54,14 @@ module.exports = {
       description: "A native SwiftUI memory album combining editable masks, touch-based reveal, temporal reminders, and consent-aware sharing."
     },
     {
+      href: "/swe/classic/kindred/",
+      image: "/images/kindred-cover.jpg",
+      alt: "Kindred",
+      title: "Kindred",
+      meta: "Private journal / native iOS app",
+      description: "A native SwiftUI journal that connects personal writing with people, time, place, feelings, and private reflection."
+    },
+    {
       href: "/swe/classic/artifactor/",
       image: "/images/artifactor-cover.png",
       alt: "ArtiFactor",

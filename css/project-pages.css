@@ -91,7 +91,7 @@ html[data-theme-enabled="true"] a.project-app-store-button:hover,
   display: none;
 }
 
-.dear-interaction-title {
+.dear-interaction-item .dear-interaction-title {
   margin: 0 0 4px;
   color: var(--theme-text, #171717);
   font-family: Open Sans, sans-serif;
@@ -101,7 +101,7 @@ html[data-theme-enabled="true"] a.project-app-store-button:hover,
   text-align: center;
 }
 
-.dear-interaction-description {
+.dear-interaction-item .dear-interaction-description {
   margin: 0;
   color: var(--theme-muted, #6b6b6b) !important;
   font-family: Open Sans, sans-serif;
@@ -442,6 +442,238 @@ html[data-page-theme="digital-paradise"] body {
   background-color: #000000 !important;
 }
 
+.kindred-text-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0 36px;
+}
+
+.kindred-text-columns-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kindred-column-illustration {
+  display: block;
+  width: min(180px, 82%);
+  height: auto;
+  margin: 0 auto 22px;
+}
+
+.kindred-design-grid {
+  --kindred-accent: #47614f;
+  --kindred-line: rgba(23, 23, 23, 0.14);
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 28px 0 36px;
+}
+
+html[data-theme="dark"] .kindred-design-grid {
+  --kindred-accent: #8fa391;
+  --kindred-line: rgba(242, 237, 230, 0.16);
+}
+
+.kindred-design-visual {
+  height: 150px;
+  margin-bottom: 22px;
+  color: var(--theme-text, #171717);
+  font-family: "Iowan Old Style", "IowanOldStyle-Roman", Georgia, serif;
+}
+
+.kindred-structure-visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+
+.kindred-mini-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.kindred-mini-tags span {
+  padding: 7px 10px;
+  border: 1px solid var(--kindred-line);
+  border-radius: 999px;
+  color: var(--theme-text, #171717);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.kindred-mini-tags .is-selected {
+  border-color: var(--kindred-accent);
+  background: var(--kindred-accent);
+  color: #fff;
+}
+
+.kindred-mini-input {
+  display: grid;
+  gap: 8px;
+  padding: 13px;
+  border: 1px solid var(--kindred-line);
+  border-radius: 10px;
+}
+
+.kindred-mini-input span {
+  display: block;
+  height: 1px;
+  background: var(--kindred-line);
+}
+
+.kindred-mini-input span:nth-child(2) { width: 86%; }
+.kindred-mini-input span:nth-child(3) { width: 58%; }
+
+.kindred-disclosure-visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kindred-disclosure-visual > div {
+  display: flex;
+  min-height: 38px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--kindred-line);
+  color: var(--theme-text, #171717);
+  font-size: 13px;
+}
+
+.kindred-disclosure-visual > div:first-child {
+  border-top: 1px solid var(--kindred-line);
+}
+
+.kindred-disclosure-visual i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--kindred-accent);
+}
+
+.kindred-disclosure-visual .is-optional {
+  color: var(--theme-muted, #6b6b6b);
+}
+
+.kindred-disclosure-visual b {
+  color: var(--kindred-accent);
+  font-family: Open Sans, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.kindred-language-visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kindred-language-visual strong,
+.kindred-language-visual small {
+  display: block;
+}
+
+.kindred-language-visual strong {
+  color: var(--theme-text, #171717);
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+
+.kindred-language-visual small {
+  margin-top: 9px;
+  color: var(--theme-muted, #6b6b6b);
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.kindred-design-grid .kindred-language-visual > p {
+  margin: 14px 0 0;
+  color: var(--kindred-accent) !important;
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.kindred-native-visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.kindred-native-toggle {
+  display: flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--kindred-line);
+  font-size: 14px;
+}
+
+.kindred-native-toggle i {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--kindred-accent);
+}
+
+.kindred-native-toggle i::after {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+  content: "";
+}
+
+.kindred-native-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 4px;
+  padding-top: 24px;
+}
+
+.kindred-native-tabs span {
+  position: relative;
+  overflow: hidden;
+  padding-top: 13px;
+  color: var(--theme-muted, #6b6b6b);
+  font-size: 9px;
+  line-height: 1.2;
+  text-align: center;
+  text-overflow: ellipsis;
+}
+
+.kindred-native-tabs span::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.kindred-native-tabs .is-active {
+  color: var(--kindred-accent);
+}
+
+.kindred-feature-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 0 10px;
+}
+
 @media screen and (max-width: 767px) {
   .dear-interaction-desktop-image {
     display: none;
@@ -460,12 +692,12 @@ html[data-page-theme="digital-paradise"] body {
     margin-bottom: 10px;
   }
 
-  .dear-interaction-title {
+  .dear-interaction-item .dear-interaction-title {
     margin-bottom: 4px;
     font-size: 16px;
   }
 
-  .dear-interaction-description {
+  .dear-interaction-item .dear-interaction-description {
     font-size: 14px;
   }
 
@@ -491,5 +723,15 @@ html[data-page-theme="digital-paradise"] body {
   .project-code-list-3,
   .project-code-list-4 {
     grid-template-columns: 1fr;
+  }
+
+  .kindred-text-columns,
+  .kindred-text-columns-three,
+  .kindred-design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kindred-design-grid {
+    gap: 44px;
   }
 }

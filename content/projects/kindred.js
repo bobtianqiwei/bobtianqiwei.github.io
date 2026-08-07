@@ -3,22 +3,45 @@ module.exports = {
   slug: "kindred",
   content: {
     title: "Kindred",
-    description: "Kindred is a private iPhone journal for dating, intimacy, and relationships.",
+    description: "Kindred is a private iPhone journal for relationships, intimate moments, and reflection over time.",
     hero: {
-      headline: "A private journal for dating, intimacy, and relationships.",
+      headline: "A private iPhone journal for relationships, intimate moments, and reflection over time.",
       metaLines: [
         "Bob Tianqi Wei",
-        "Product Design · iOS Development · 2026",
+        "Independent Product · Product Design · iOS Development · 2026",
         "In development"
       ]
     },
     sections: [
       {
-        bodyHtml: "<p>Kindred helps people privately record meaningful moments by person, activity, time, place, and feeling while keeping free-form writing at the center. It is a native iPhone app built with SwiftUI and SwiftData.</p>"
+        bodyHtml: "<p>Kindred helps people preserve meaningful experiences with the context needed to revisit them later. Each entry combines personal writing with people, activities, time, place, feelings, photos, and optional health details.</p><div class=\"project-app-store-cta\"><a href=\"https://apps.apple.com/app/kindred-private-journal/id6792446484\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"project-app-store-button\" aria-label=\"Download Kindred on the App Store\"><svg viewBox=\"0 0 384 512\" aria-hidden=\"true\" class=\"project-app-store-icon\"><path d=\"M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-77.7-19.7C63.3 141.2 4 183.5 4 269.5c0 25.5 4.6 51.6 13.9 78.3 12.4 35.5 57.1 122.5 103.8 121.1 24.4-.6 41.7-17.3 73.5-17.3 30.8 0 46.9 17.3 74.1 17.3 47.1-.7 87.7-79.8 99.5-115.4-63.1-29.7-59.8-83-50.1-84.8zM260.5 104.5c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 68.6-34.3z\"></path></svg><span>Download on the App Store</span></a></div>"
       },
       {
-        title: "Private by design",
-        bodyHtml: "<p>Kindred has no separate account, advertising, social profile, or third-party analytics SDK. App data is stored on the device and synced through the user's private iCloud account. Optional Apple Health integration is controlled by the user.</p>"
+        title: "The problem",
+        bodyHtml: "<div class=\"kindred-text-columns kindred-text-columns-three\"><section class=\"dear-interaction-item\"><img src=\"/images/kindred-context-disappears.png\" loading=\"lazy\" alt=\"Context markers becoming buried between journal pages\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">Context disappears</h3><p class=\"dear-interaction-description\">General-purpose journals preserve a story, but people, activities, places, and feelings remain buried in unstructured notes.</p></section><section class=\"dear-interaction-item\"><img src=\"/images/kindred-memories-disconnected.png\" loading=\"lazy\" alt=\"Photo, calendar, and conversation records separated by a broken connection\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">Memories stay disconnected</h3><p class=\"dear-interaction-description\">Photos, calendar events, messages, and private reflections live in separate places, making a relationship difficult to revisit as a whole.</p></section><section class=\"dear-interaction-item\"><img src=\"/images/kindred-sensitive-material.png\" loading=\"lazy\" alt=\"A private letter protected inside a soft cover\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">The material is sensitive</h3><p class=\"dear-interaction-description\">Intimate records require clear controls, restrained language, and a data model designed around privacy from the start.</p></section></div>"
+      },
+      {
+        title: "How it works",
+        bodyHtml: "<p>A Moment connects personal writing with people and context, then carries that record into five focused views.</p><div class=\"dear-interaction-flow\"><div class=\"dear-interaction-grid\"><article class=\"dear-interaction-item\"><img src=\"/images/kindred-add-moment.png\" loading=\"lazy\" alt=\"Kindred Add Moment editor\" class=\"kindred-feature-image\"><h3 class=\"dear-interaction-title\">Add Moment</h3><p class=\"dear-interaction-description\">Record what happened and the details worth keeping.</p></article><article class=\"dear-interaction-item\"><img src=\"/images/kindred-journal.png\" loading=\"lazy\" alt=\"Kindred Journal timeline\" class=\"kindred-feature-image\"><h3 class=\"dear-interaction-title\">Journal</h3><p class=\"dear-interaction-description\">Read moments as a private chronological story.</p></article><article class=\"dear-interaction-item\"><img src=\"/images/kindred-calendar.png\" loading=\"lazy\" alt=\"Kindred Calendar view\" class=\"kindred-feature-image\"><h3 class=\"dear-interaction-title\">Calendar</h3><p class=\"dear-interaction-description\">See experiences across days and months.</p></article><article class=\"dear-interaction-item\"><img src=\"/images/kindred-people.png\" loading=\"lazy\" alt=\"Kindred People view\" class=\"kindred-feature-image\"><h3 class=\"dear-interaction-title\">People</h3><p class=\"dear-interaction-description\">Keep each relationship and its shared history together.</p></article><article class=\"dear-interaction-item\"><img src=\"/images/kindred-insights.png\" loading=\"lazy\" alt=\"Kindred Insights view\" class=\"kindred-feature-image\"><h3 class=\"dear-interaction-title\">Insights</h3><p class=\"dear-interaction-description\">Review gentle patterns without scores or judgment.</p></article></div></div>"
+      },
+      {
+        title: "Design approach",
+        bodyHtml: [
+          "<div class=\"kindred-design-grid\">",
+          "<section class=\"dear-interaction-item\"><div class=\"kindred-design-visual kindred-structure-visual\" aria-hidden=\"true\"><div class=\"kindred-editor-header\"><span class=\"kindred-glass-control\">Cancel</span><strong>Add Moment</strong><span class=\"kindred-glass-control is-disabled\">Save</span></div><div class=\"kindred-editor-section-head\"><strong>What happened?</strong><span><i class=\"kindred-app-icon kindred-icon-edit\"></i>Edit</span></div><div class=\"kindred-mini-tags\"><span>Date</span><span>Conversation</span><span>Kiss</span><span>+ Add</span></div></div><h3 class=\"dear-interaction-title\">Structured and personal</h3><p class=\"dear-interaction-description\">Optional fields add people, activities, place, and feelings while free-form writing remains central.</p></section>",
+          "<section class=\"dear-interaction-item\"><div class=\"kindred-design-visual kindred-disclosure-visual\" aria-hidden=\"true\"><div class=\"kindred-settings-header\"><span class=\"kindred-glass-control kindred-glass-icon\"><i class=\"kindred-app-icon kindred-icon-privacy\"></i></span><strong>Privacy</strong></div><div class=\"kindred-settings-row\"><span>App Lock</span><i class=\"kindred-native-switch\"></i></div><div class=\"kindred-settings-row is-secondary\"><span>Optional details</span><b>+</b></div></div><h3 class=\"dear-interaction-title\">Progressive disclosure</h3><p class=\"dear-interaction-description\">Additional fields appear only when relevant, keeping the recording flow focused and manageable.</p></section>",
+          "<section class=\"dear-interaction-item\"><div class=\"kindred-design-visual kindred-language-visual\" aria-hidden=\"true\"><span class=\"kindred-glass-control kindred-filter-control\">Filter</span><div class=\"kindred-journal-row\"><span class=\"kindred-journal-avatar\">J</span><div><strong>Conversation <em>with Julian</em></strong><small>Jul 24 · 10:00 AM</small><p>I took the morning for myself.</p></div></div></div><h3 class=\"dear-interaction-title\">Calm, direct language</h3><p class=\"dear-interaction-description\">Neutral labels and descriptive insights support reflection without rating a person's experiences.</p></section>",
+          "<section class=\"dear-interaction-item\"><div class=\"kindred-design-visual kindred-native-visual\" aria-hidden=\"true\"><div class=\"kindred-native-content\"><span></span><span></span><span></span></div><div class=\"kindred-tab-controls\"><div class=\"kindred-glass-control kindred-tab-bar\"><i class=\"kindred-app-icon kindred-icon-journal is-active\"></i><i class=\"kindred-app-icon kindred-icon-calendar\"></i><i class=\"kindred-app-icon kindred-icon-people\"></i><i class=\"kindred-app-icon kindred-icon-person\"></i></div><span class=\"kindred-glass-control kindred-tab-add\"><i class=\"kindred-app-icon kindred-icon-add\"></i></span></div></div><h3 class=\"dear-interaction-title\">Native interaction</h3><p class=\"dear-interaction-description\">iOS 26 navigation and controls provide Liquid Glass, motion, contrast, and accessibility automatically.</p></section>",
+          "</div>"
+        ].join("")
+      },
+      {
+        title: "Privacy by design",
+        bodyHtml: "<div class=\"kindred-text-columns kindred-text-columns-three\"><section class=\"dear-interaction-item\"><img src=\"/images/kindred-private-storage.png\" loading=\"lazy\" alt=\"A locked journal stored inside a cloud\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">Private storage</h3><p class=\"dear-interaction-description\">SwiftData keeps records on the device and CloudKit can sync them through the user's private iCloud database. Kindred has no separate account, advertising, or third-party analytics SDK.</p></section><section class=\"dear-interaction-item\"><img src=\"/images/kindred-explicit-protection.png\" loading=\"lazy\" alt=\"A shield with a checkmark and privacy control\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">Explicit protection</h3><p class=\"dear-interaction-description\">App Lock uses Face ID, Touch ID, or the device passcode. Apple Health access remains optional and each Health sync is controlled by the user.</p></section><section class=\"dear-interaction-item\"><img src=\"/images/kindred-data-ownership.png\" loading=\"lazy\" alt=\"A record box with export and restore arrows\" class=\"kindred-column-illustration\"><h3 class=\"dear-interaction-title\">Data ownership</h3><p class=\"dear-interaction-description\">Complete backup, restore, and deletion controls make personal records portable and removable.</p></section></div>"
+      },
+      {
+        title: "What's next",
+        bodyHtml: "<p>I plan to explore optional partner collaboration while preserving the privacy and individual control at the center of Kindred. If you have feedback or ideas, I would be glad to hear from you at <a href=\"mailto:roberttqwei@gmail.com\" class=\"link-in-paragraph\">roberttqwei@gmail.com</a>.</p>"
       },
       {
         title: "Project Links",
@@ -33,6 +56,22 @@ module.exports = {
       backHref: "/works/",
       backLabel: "ALL WORKS",
       layout: "works-case-study"
+    },
+    design: {
+      outputPath: "design/kindred/index.html",
+      metaTitle: "Kindred - Design Portfolio",
+      backHref: "/design/",
+      backLabel: "BACK TO DESIGN",
+      layout: "design-case-study",
+      eyebrow: "DESIGN PORTFOLIO"
+    },
+    swe: {
+      outputPath: "swe/classic/kindred/index.html",
+      metaTitle: "Kindred - Software Engineering Portfolio",
+      backHref: "/swe/classic/",
+      backLabel: "BACK TO SOFTWARE ENGINEERING",
+      layout: "swe-classic-case-study",
+      eyebrow: "SOFTWARE ENGINEERING PORTFOLIO"
     }
   },
   childPages: [
