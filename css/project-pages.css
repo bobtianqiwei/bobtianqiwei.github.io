@@ -510,6 +510,35 @@ html[data-theme="dark"] .kindred-design-grid {
   isolation: isolate;
 }
 
+.kindred-design-visual.is-scaled {
+  --kindred-design-scale: 1;
+  height: auto;
+  padding: 0;
+  overflow: visible;
+  aspect-ratio: 220 / 178;
+  background: transparent;
+  border-radius: 0;
+  isolation: auto;
+}
+
+.kindred-design-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 178px;
+  padding: 14px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--kindred-ui-page);
+  color: var(--kindred-ui-ink);
+  font-family: "Iowan Old Style", "IowanOldStyle-Roman", Georgia, serif;
+  isolation: isolate;
+  transform: scale(var(--kindred-design-scale));
+  transform-origin: top left;
+}
+
 .kindred-glass-control {
   position: relative;
   z-index: 1;
@@ -743,6 +772,14 @@ html[data-theme="dark"] .kindred-design-grid {
   padding-top: 54px;
 }
 
+.kindred-language-visual.is-scaled {
+  padding-top: 0;
+}
+
+.kindred-language-visual .kindred-design-canvas {
+  padding-top: 54px;
+}
+
 .kindred-filter-control {
   position: absolute;
   top: 14px;
@@ -808,6 +845,14 @@ html[data-theme="dark"] .kindred-design-grid {
 }
 
 .kindred-native-visual {
+  padding-bottom: 76px;
+}
+
+.kindred-native-visual.is-scaled {
+  padding-bottom: 0;
+}
+
+.kindred-native-visual .kindred-design-canvas {
   padding-bottom: 76px;
 }
 
