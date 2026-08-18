@@ -2,7 +2,7 @@
 window.aboutNewsItems = [
   {
     date: "Fall 2026",
-    textHtml: "I am so excited to be joining the MIT Media Lab, <a href=\"https://www.media.mit.edu/groups/tangible-media/overview/\" target=\"_blank\" class=\"link-in-paragraph\">Tangible Media Group</a>!"
+    textHtml: "I am joining the MIT Media Lab, <a href=\"https://www.media.mit.edu/groups/tangible-media/overview/\" target=\"_blank\" class=\"link-in-paragraph\">Tangible Media Group</a>!"
   },
   {
     date: "UIST 2025",
@@ -18,7 +18,7 @@ window.aboutNewsItems = [
   },
   {
     date: "Dec 22, 2024",
-    textHtml: "I had the honor of delivering a speech at the UC Berkeley Master of Design graduation ceremony at Hertz Hall."
+    textHtml: "I delivered a speech at the UC Berkeley Master of Design graduation ceremony at Hertz Hall."
   },
   {
     date: "Dec 20, 2024",
