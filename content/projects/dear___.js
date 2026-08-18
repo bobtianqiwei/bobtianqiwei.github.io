@@ -42,9 +42,15 @@ module.exports = {
         publications: [
           {
             title: "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives",
+            href: "https://dl.acm.org/doi/10.1145/3830397.3842443",
             authors: "Bob Tianqi Wei and Hiroshi Ishii",
             venue: "UIST 2026 demo",
-            status: "SUBMITTED",
+            links: [
+              {
+                href: "https://doi.org/10.1145/3830397.3842443",
+                label: "https://doi.org/10.1145/3830397.3842443"
+              }
+            ],
             abstract: "Personal photo archives preserve traces of people, places, and moments, but they often make memory access fast, flat, and fully visible. For emotionally charged memories, immediate visibility may not always be the desired mode of interaction. We present dear___, a mobile memory album that explores ephemeral reveal as an interaction pattern for TeleAbsence. In dear___, users compose personal photos with editable white masks, diary text, music, and temporal metadata. A user can erase the mask through touch to reveal the photograph and its associated layers; after a short interval, the mask gradually returns, making the encounter partial, temporary, and reversible. The system also supports computer-vision-assisted mask generation, manual cover editing, memory notifications, share cards, and consent-aware export. Rather than simulating an absent person, dear___ works with existing traces and lets users decide how presence should briefly appear, fade, and return to absence. This demo contributes a working mobile system and interaction concept for designing absence as an interactive material in personal photo archives."
           }
         ]

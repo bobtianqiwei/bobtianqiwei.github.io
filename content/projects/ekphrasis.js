@@ -129,9 +129,15 @@ module.exports = {
           },
           {
             title: "EKPHRASIS Chess: A Turn-Taking AI Canvas for Graphic Design Concept Learning",
+            href: "https://dl.acm.org/doi/10.1145/3830397.3842440",
             authors: "Bob Tianqi Wei and Shayne Shen, Shm Almeda, Dor Abrahamson, Bjoern Hartmann",
             venue: "UIST 2026 demo",
-            status: "IN PROGRESS",
+            links: [
+              {
+                href: "https://doi.org/10.1145/3830397.3842440",
+                label: "https://doi.org/10.1145/3830397.3842440"
+              }
+            ],
             abstract: "Graphic design education often relies on examples and critique to teach abstract visual concepts such as balance and hierarchy. However, novices may struggle to translate these vague concepts into concrete visual actions, especially because the reasoning behind visual decisions is often tacit. We present a demonstration of EKPHRASIS Chess, an interactive design learning system that uses a simplified shared canvas to help learners explore the relationship between visual concepts and compositional changes. A user first places a basic visual element, such as a block, and an AI agent responds by adding another element according to a selected target concept. The system supports three response modes: Help, in which the AI moves the composition toward the concept; Oppose, in which the AI acts as a contrastive opponent that tries to destabilize the target concept while the learner attempts to maintain or recover it; and Random, in which it produces an unrelated alternative. By comparing these contrasting responses, learners can observe how specific changes in position, scale, color, and visual relation affect the expression of an abstract design concept. This demonstration invites attendees to explore how human-AI turn-taking can make tacit design knowledge visible and support reflection, experimentation, and concept learning in graphic design education."
           }
         ]

@@ -96,7 +96,7 @@ module.exports = {
       "href": "/works/ekphrasis/",
       "className": "link-100 w-inline-block",
       "image": "/images/ekphrasis.jpg",
-      "contentHtml": "Generating Visual Aids to Help Students Understand Graphic Design with EKPHRASIS<br><br>Bob Tianqi Wei and Shayne Shen, Shm Almeda, Bjoern Hartmann<br><br>CHI 2025<br>",
+      "contentHtml": "Generating Visual Aids to Help Students Understand Graphic Design with EKPHRASIS<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong> and Shayne Shen, Shm Almeda, Bjoern Hartmann<br><br>CHI 2025<br>",
       "lightbox": null,
       "order": 1
     },
@@ -105,7 +105,7 @@ module.exports = {
       "href": "/works/dear___/",
       "className": "link-100 w-inline-block",
       "image": "/images/dear-cover.png",
-      "contentHtml": "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong> and Hiroshi Ishii<br><br>UIST 2026 demo, submitted<br>",
+      "contentHtml": "dear___: Ephemeral Reveal for Interactive Absence in Personal Photo Archives<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong> and Hiroshi Ishii<br><br>UIST 2026 demo<br>",
       "lightbox": null,
       "order": 1.5
     },
@@ -123,7 +123,7 @@ module.exports = {
       "href": "/works/sympathetic-orchestra-paper/",
       "className": "link-100 w-inline-block",
       "image": "/images/Sympathetic-Orchestra-new_1.jpg",
-      "contentHtml": "Sympathetic Orchestra: A Responsive Virtual Orchestra for Embodied Interpretive Practice in Conducting<br><br>Bob Tianqi Wei, Shm Almeda, Shayne Shen, Ethan Tam, and Dor Abrahamson.<br><br>CHI 2026<br>",
+      "contentHtml": "Sympathetic Orchestra: A Responsive Virtual Orchestra for Embodied Interpretive Practice in Conducting<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong>, Shm Almeda, Shayne Shen, Ethan Tam, and Dor Abrahamson.<br><br>CHI 2026<br>",
       "lightbox": null,
       "order": 3
     },
@@ -159,7 +159,7 @@ module.exports = {
       "href": "/works/sympathetic-orchestra-paper/",
       "className": "link-100 w-inline-block",
       "image": "/images/Sympathetic-Orchestra-fig-1.1.jpg",
-      "contentHtml": "Demonstration of Sympathetic Orchestra: An Interactive Conducting Education System for Responsive, Tacit Skill Development <br><br>Bob Tianqi Wei, Shm Almeda, Ethan Tam, and Dor Abrahamson.<br><br>UIST 2024<br>",
+      "contentHtml": "Demonstration of Sympathetic Orchestra: An Interactive Conducting Education System for Responsive, Tacit Skill Development <br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong>, Shm Almeda, Ethan Tam, and Dor Abrahamson.<br><br>UIST 2024<br>",
       "lightbox": null,
       "order": 7
     },
@@ -168,7 +168,7 @@ module.exports = {
       "href": "/works/illuminatio-full-text/",
       "className": "link-100 w-inline-block",
       "image": "/images/Illuminating-Product.jpg",
-      "contentHtml": "ILLUMINATIO: Towards Biologically-Informed, AI-Driven Adaptive Environment Control with Situated Pervasive Illumination Devices<br><br>Bob Tianqi Wei, Zhendong Xiao, Shm Almeda, and Lintao Tang.<br><br>2023<br>",
+      "contentHtml": "ILLUMINATIO: Towards Biologically-Informed, AI-Driven Adaptive Environment Control with Situated Pervasive Illumination Devices<br><br><strong class=\"italic-bold-in-research-title\">Bob Tianqi Wei</strong>, Zhendong Xiao, Shm Almeda, and Lintao Tang.<br><br>2023<br>",
       "lightbox": null,
       "order": 8
     },
@@ -177,7 +177,7 @@ module.exports = {
       "href": "https://drive.google.com/file/d/1fcP8EizJDB_8-QX0nd0WQMWcR37ULKwZ/view?usp=sharing",
       "className": "link-100 w-inline-block",
       "image": "/images/professional-hearing.jpg",
-      "contentHtml": "Building Professional Hearing: Research on New Tools and Educational Methods for Enhancing the Understanding and Processing of Polyphonic Music<br><br>Tianqi (Bob) Wei, Prof. Dor Abrahamson.<br><br>2023<br>",
+      "contentHtml": "Building Professional Hearing: Research on New Tools and Educational Methods for Enhancing the Understanding and Processing of Polyphonic Music<br><br><strong class=\"italic-bold-in-research-title\">Tianqi (Bob) Wei</strong>, Prof. Dor Abrahamson.<br><br>2023<br>",
       "lightbox": null,
       "order": 9
     },
