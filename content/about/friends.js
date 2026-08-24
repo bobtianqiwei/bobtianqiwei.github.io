@@ -5,16 +5,16 @@ window.aboutFriends = [
     name: "Abigail Chen",
     descriptionHtml: "Lychee Sushi Mother <br>Best Carillon Partner Ever"
   },
-  {
+  /* {
     href: "https://www.baeuke.com/",
     name: "Baurzhan Abenov",
     descriptionHtml: "Design Engineer<br>Computer Scientist"
-  },
-  {
+  }, */
+  /* {
     href: "https://space.bilibili.com/475419922",
     name: "Bingjing Zhang",
     descriptionHtml: "Integrated Circuit Designer<br>Musician"
-  },
+  }, */
   {
     href: "https://changliu-drpatient.github.io/",
     name: "Chang Liu",

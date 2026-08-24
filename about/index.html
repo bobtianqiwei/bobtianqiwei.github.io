@@ -228,7 +228,8 @@
         }
 
         const contentClass = item.customClass || "friends-name";
-        return '<a href="' + item.href + '" target="_blank" class="friends-link-block w-inline-block"><div class="' + contentClass + '">' + item.nameHtml + "</div></a>";
+        const description = item.descriptionHtml ? '<div class="friends-description">' + item.descriptionHtml + "</div>" : "";
+        return '<a href="' + item.href + '" target="_blank" class="friends-link-block w-inline-block"><div class="' + contentClass + '">' + item.nameHtml + "</div>" + description + "</a>";
       }).join("");
     }
 
