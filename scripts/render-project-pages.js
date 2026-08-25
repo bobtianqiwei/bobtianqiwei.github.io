@@ -1295,6 +1295,9 @@ function renderPlainTextPageStyles() {
 function renderWorksCaseStudy(project, view) {
   const heroVideo = getHeroVideo(project);
   const heroImage = project.content.hero?.image;
+  const participationLink = view.participationLink
+    ? `    <p class="paragraph-light"><a href="${view.participationLink.href}" target="_blank" rel="noreferrer" class="link-in-paragraph">${view.participationLink.label}</a></p>\n`
+    : "";
   return {
     body: `${renderNav("works")}
   <div class="work-detail-page-container">
@@ -1302,9 +1305,10 @@ function renderWorksCaseStudy(project, view) {
       <h1 class="heading-black-big">${project.content.title}</h1>
 ${project.content.hero.headline ? `      <h1 class="heading-black-2">${project.content.hero.headline}</h1>\n` : ""}      <div class="paragraph-title-black">${project.content.hero.metaLines.join("<br>")}</div>
     </div>
+${participationLink}
 ${heroImage ? `${renderWorksFigure(typeof heroImage === "string" ? { src: heroImage } : heroImage)}
 ` : ""}
-${heroVideo ? `${renderYouTube(heroVideo)}\n` : ""}${renderSharedSections(project)}
+${heroVideo ? `${renderYouTube(heroVideo)}\n` : ""}${renderSharedSections(project)}${participationLink}
   </div>
   <a href="${view.backHref}" class="all-works w-inline-block">
     <h1 class="all-works-head-black">${view.backLabel}</h1>

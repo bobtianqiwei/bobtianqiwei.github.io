@@ -154,7 +154,11 @@ module.exports = {
       metaTitle: "EKPHRASIS",
       backHref: "/works/",
       backLabel: "ALL WORKS",
-      layout: "works-case-study"
+      layout: "works-case-study",
+      participationLink: {
+        href: "https://forms.gle/rXftURQJgmEpbges5",
+        label: "Participate in Our Research"
+      }
     },
     design: {
       outputPath: "design/ekphrasis/index.html",
