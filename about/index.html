@@ -214,6 +214,7 @@
         const portrait = profile.portrait;
         const front = portrait.front || {};
         const frames = Array.isArray(portrait.frames) ? portrait.frames : [];
+        portraitElement.innerHTML = '<img src="' + (front.src || "") + '" loading="lazy" sizes="' + (front.sizes || "") + '" srcset="' + (front.srcset || "") + '" alt="" class="image-about-animation">';
 
         if (frames.length) {
           portraitElement.style.backgroundImage = 'url("' + frames[0] + '")';
@@ -225,19 +226,22 @@
             });
           };
 
+          let preloadScheduled = false;
           const scheduleFramePreload = function () {
-            if ("requestIdleCallback" in window) {
-              window.requestIdleCallback(preloadFrames, { timeout: 2000 });
+            if (preloadScheduled) {
               return;
             }
 
+            preloadScheduled = true;
             window.setTimeout(preloadFrames, 0);
           };
 
-          if (document.readyState === "complete") {
-            scheduleFramePreload();
+          const frontImage = portraitElement.querySelector("img");
+          if (frontImage && !frontImage.complete) {
+            frontImage.addEventListener("load", scheduleFramePreload, { once: true });
+            window.setTimeout(scheduleFramePreload, 500);
           } else {
-            window.addEventListener("load", scheduleFramePreload, { once: true });
+            scheduleFramePreload();
           }
 
           let currentFrame = 0;
@@ -262,8 +266,6 @@
           portraitElement.addEventListener("pointerenter", updateFrame);
           portraitElement.addEventListener("pointermove", updateFrame);
         }
-
-        portraitElement.innerHTML = '<img src="' + (front.src || "") + '" loading="lazy" sizes="' + (front.sizes || "") + '" srcset="' + (front.srcset || "") + '" alt="" class="image-about-animation">';
       }
 
       if (portraitCaptionElement && profile.portrait) {
