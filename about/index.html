@@ -218,10 +218,27 @@
         if (frames.length) {
           portraitElement.style.backgroundImage = 'url("' + frames[0] + '")';
 
-          frames.forEach(function (src) {
-            const image = new Image();
-            image.src = src;
-          });
+          const preloadFrames = function () {
+            frames.forEach(function (src) {
+              const image = new Image();
+              image.src = src;
+            });
+          };
+
+          const scheduleFramePreload = function () {
+            if ("requestIdleCallback" in window) {
+              window.requestIdleCallback(preloadFrames, { timeout: 2000 });
+              return;
+            }
+
+            window.setTimeout(preloadFrames, 0);
+          };
+
+          if (document.readyState === "complete") {
+            scheduleFramePreload();
+          } else {
+            window.addEventListener("load", scheduleFramePreload, { once: true });
+          }
 
           let currentFrame = 0;
           const updateFrame = function (event) {
