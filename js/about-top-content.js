@@ -152,5 +152,4 @@
   renderCollaborations("about-collaborations-list", collaborations);
   renderFriends("about-friends-list", friends);
   renderFriends("about-mentorship-list", mentorship);
-  window.aboutTopContentRendered = true;
 })();

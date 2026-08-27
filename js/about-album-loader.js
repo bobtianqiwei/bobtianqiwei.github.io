@@ -8,6 +8,36 @@
   }
 
   let requested = false;
+  const loadColumn = function (column) {
+    const images = Array.from(column.querySelectorAll("img"));
+    let index = 0;
+
+    const loadNext = function () {
+      const image = images[index];
+      index += 1;
+
+      if (!image) {
+        return;
+      }
+
+      image.addEventListener("load", loadNext, { once: true });
+      image.addEventListener("error", loadNext, { once: true });
+      image.loading = "eager";
+
+      if (image.dataset.albumSizes) {
+        image.setAttribute("sizes", image.dataset.albumSizes);
+      }
+
+      if (image.dataset.albumSrcset) {
+        image.setAttribute("srcset", image.dataset.albumSrcset);
+      }
+
+      image.setAttribute("src", image.dataset.albumSrc);
+    };
+
+    loadNext();
+  };
+
   const loadAlbum = function () {
     if (requested) {
       return;
@@ -15,8 +45,19 @@
 
     requested = true;
     Promise.resolve(window.aboutPortraitFramesReady).then(function () {
-      container.appendChild(template.content.cloneNode(true));
+      const album = template.content.cloneNode(true);
+      Array.from(album.querySelectorAll("img")).forEach(function (image) {
+        image.dataset.albumSrc = image.getAttribute("src") || "";
+        image.dataset.albumSrcset = image.getAttribute("srcset") || "";
+        image.dataset.albumSizes = image.getAttribute("sizes") || "";
+        image.removeAttribute("src");
+        image.removeAttribute("srcset");
+        image.removeAttribute("sizes");
+      });
+
+      container.appendChild(album);
       template.remove();
+      Array.from(container.querySelectorAll(".columns-4 > .w-col")).forEach(loadColumn);
     });
   };
 
