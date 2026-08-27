@@ -31,9 +31,21 @@ window.aboutProfile = {
       sizes: "(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 23vw, 25vw",
       srcset: "/images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-500.jpg 500w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-800.jpg 800w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1080.jpg 1080w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1600.jpg 1600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2000.jpg 2000w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2600.jpg 2600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-3200.jpg 3200w, /images/bobgrand-canyon.jpg 3228w"
     },
-    back: {
-      src: "/images/bobgrand-canyon-square-smile.jpg"
-    },
+    frames: [
+      "/images/bob_3d_1.jpg",
+      "/images/bob_3d_2.jpg",
+      "/images/bob_3d_3.jpg",
+      "/images/bob_3d_4.jpg",
+      "/images/bob_3d_5.jpg",
+      "/images/bob_3d_6.jpg",
+      "/images/bob_3d_7.jpg",
+      "/images/bob_3d_8.jpg",
+      "/images/bob_3d_9.jpg",
+      "/images/bob_3d_10.jpg",
+      "/images/bob_3d_11.jpg",
+      "/images/bob_3d_12.jpg",
+      "/images/bob_3d_13.jpg"
+    ],
     caption: "Photo by Yingjia Luo from 10/18/2025"
   }
 };
