@@ -1,35 +1,37 @@
 /* teapot.css developed by Bob Tianqi Wei */
 :root {
-  --teapot-stage: #ffffff;
-  --teapot-text: #151515;
-  --teapot-muted: #686868;
-  --teapot-line: rgba(20, 20, 20, 0.16);
-  --teapot-glass: rgba(255, 255, 255, 0.68);
-  --teapot-button: #171717;
-  --teapot-button-text: #ffffff;
+  --teapot-stage: #f2f1e9;
+  --teapot-panel: #e6e5dd;
+  --teapot-control: #f2f1e9;
+  --teapot-text: #111111;
+  --teapot-muted: #555555;
+  --teapot-line: #111111;
+  --teapot-button: #111111;
+  --teapot-button-text: #f2f1e9;
 }
 
 html[data-theme="dark"] {
-  --teapot-stage: #141414;
-  --teapot-text: #f0f0ed;
-  --teapot-muted: #aaa9a4;
-  --teapot-line: rgba(255, 255, 255, 0.16);
-  --teapot-glass: rgba(18, 18, 18, 0.66);
-  --teapot-button: #eeeeea;
-  --teapot-button-text: #151515;
+  --teapot-stage: #121212;
+  --teapot-panel: #1b1b1b;
+  --teapot-control: #232323;
+  --teapot-text: #efeee7;
+  --teapot-muted: #aaa9a3;
+  --teapot-line: #8a8983;
+  --teapot-button: #efeee7;
+  --teapot-button-text: #111111;
 }
 
 body.teapot-page {
   margin: 0;
   color: var(--teapot-text);
   background: var(--teapot-stage);
-  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Courier New", Courier, monospace;
 }
 
 .teapot-shell,
 .teapot-lab {
   width: 100%;
-  height: calc(100dvh - 102px);
+  height: 100dvh;
   min-height: 560px;
 }
 
@@ -44,37 +46,27 @@ body.teapot-page {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   width: 290px;
   height: 100%;
-  padding: 24px;
+  padding: 18px;
   overflow-y: auto;
   border-right: 1px solid var(--teapot-line);
-  background: var(--teapot-glass);
-  backdrop-filter: blur(24px) saturate(125%);
-  -webkit-backdrop-filter: blur(24px) saturate(125%);
+  background: var(--teapot-panel);
 }
 
 .teapot-intro {
   display: grid;
-  gap: 8px;
-}
-
-.teapot-kicker {
-  margin: 0;
-  color: var(--teapot-muted);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  gap: 7px;
 }
 
 .teapot-intro h1 {
   margin: 0;
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 22px;
+  font-family: inherit;
+  font-weight: 400;
   line-height: 1.1;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
 }
 
 .teapot-intro > p:last-child,
@@ -83,7 +75,7 @@ body.teapot-page {
   margin: 0;
   color: var(--teapot-muted);
   font-size: 11px;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .teapot-intro em {
@@ -93,21 +85,22 @@ body.teapot-page {
 .teapot-mode-tabs {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  padding: 1px;
-  background: var(--teapot-line);
+  border-top: 1px solid var(--teapot-line);
+  border-left: 1px solid var(--teapot-line);
 }
 
 .teapot-mode-tabs button,
 .teapot-sampling button {
-  min-height: 30px;
-  padding: 5px 7px;
+  min-height: 29px;
+  padding: 5px 6px;
   border: 0;
-  color: var(--teapot-muted);
-  background: color-mix(in srgb, var(--teapot-stage) 92%, transparent);
+  border-right: 1px solid var(--teapot-line);
+  border-bottom: 1px solid var(--teapot-line);
+  color: var(--teapot-text);
+  background: var(--teapot-control);
   font: inherit;
   font-size: 9px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
 }
 
@@ -117,9 +110,18 @@ body.teapot-page {
   background: var(--teapot-button);
 }
 
+.teapot-mode-tabs button:focus-visible,
+.teapot-sampling button:focus-visible,
+.teapot-upload:focus-visible,
+.teapot-actions button:focus-visible,
+.teapot-download:focus-visible {
+  outline: 1px dashed currentColor;
+  outline-offset: -4px;
+}
+
 .teapot-mode-panel {
   display: grid;
-  gap: 16px;
+  gap: 14px;
 }
 
 .teapot-mode-panel[hidden] {
@@ -127,7 +129,7 @@ body.teapot-page {
 }
 
 .teapot-mode-description {
-  padding-bottom: 12px;
+  padding-bottom: 11px;
   border-bottom: 1px solid var(--teapot-line);
 }
 
@@ -143,25 +145,25 @@ body.teapot-page {
 
 .teapot-control-group {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .teapot-label,
 .teapot-range-heading label {
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
 }
 
 .teapot-texture-row {
   display: grid;
-  grid-template-columns: 58px 1fr;
-  gap: 10px;
+  grid-template-columns: 52px 1fr;
+  gap: 9px;
   align-items: center;
 }
 
 .teapot-texture-preview {
-  width: 58px;
-  height: 58px;
+  width: 52px;
+  height: 52px;
   border: 1px solid var(--teapot-line);
   object-fit: cover;
 }
@@ -175,27 +177,28 @@ body.teapot-page {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 32px;
-  padding: 6px 10px;
+  min-height: 29px;
+  padding: 4px 7px;
   border: 1px solid var(--teapot-line);
   color: var(--teapot-text);
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 11px;
-  font-weight: 600;
+  background: var(--teapot-control);
+  font-size: 10px;
+  font-weight: 700;
   cursor: pointer;
-  transition: border-color 140ms ease, background 140ms ease;
 }
 
 .teapot-upload:hover,
-.teapot-upload:focus-within {
-  border-color: var(--teapot-text);
+.teapot-actions button:hover,
+.teapot-download:hover {
+  color: var(--teapot-button-text);
+  background: var(--teapot-button);
 }
 
 .teapot-texture-input small,
 .teapot-status,
 .teapot-privacy {
   color: var(--teapot-muted);
-  font-size: 10px;
+  font-size: 9px;
   line-height: 1.4;
 }
 
@@ -226,27 +229,60 @@ body.teapot-page {
 
 .teapot-range-heading output {
   color: var(--teapot-muted);
-  font-size: 11px;
+  font-size: 10px;
   font-variant-numeric: tabular-nums;
 }
 
 .teapot-range {
   width: 100%;
-  height: 18px;
+  height: 15px;
   margin: 0;
-  accent-color: var(--teapot-text);
+  appearance: none;
+  background: transparent;
   cursor: ew-resize;
+}
+
+.teapot-range::-webkit-slider-runnable-track {
+  height: 1px;
+  background: var(--teapot-line);
+}
+
+.teapot-range::-webkit-slider-thumb {
+  width: 9px;
+  height: 15px;
+  margin-top: -7px;
+  appearance: none;
+  border: 1px solid var(--teapot-line);
+  background: var(--teapot-control);
+}
+
+.teapot-range::-moz-range-track {
+  height: 1px;
+  background: var(--teapot-line);
+}
+
+.teapot-range::-moz-range-thumb {
+  width: 8px;
+  height: 13px;
+  border: 1px solid var(--teapot-line);
+  background: var(--teapot-control);
+}
+
+.teapot-range:focus-visible {
+  outline: 1px dashed var(--teapot-line);
+  outline-offset: 2px;
 }
 
 .teapot-range-ends {
   color: var(--teapot-muted);
-  font-size: 9px;
+  font-size: 8px;
+  letter-spacing: 0.04em;
 }
 
 .teapot-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 6px;
+  gap: 5px;
 }
 
 .teapot-actions[hidden] {
@@ -256,46 +292,27 @@ body.teapot-page {
 .teapot-sampling {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  padding: 1px;
-  background: var(--teapot-line);
+  border-top: 1px solid var(--teapot-line);
+  border-left: 1px solid var(--teapot-line);
 }
 
-.teapot-actions button {
-  min-height: 32px;
-  padding: 6px 8px;
+.teapot-actions button,
+.teapot-download {
+  min-height: 29px;
+  padding: 4px 6px;
   border: 1px solid var(--teapot-line);
   color: var(--teapot-text);
-  background: transparent;
+  background: var(--teapot-control);
   font: inherit;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
+  font-weight: 700;
   cursor: pointer;
-  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
 }
 
-.teapot-actions button:last-child {
-  border-color: var(--teapot-button);
-  color: var(--teapot-button-text);
-  background: var(--teapot-button);
-}
-
+.teapot-actions button:last-child,
 .teapot-download {
-  min-height: 32px;
-  padding: 6px 8px;
-  border: 1px solid var(--teapot-button);
   color: var(--teapot-button-text);
   background: var(--teapot-button);
-  font: inherit;
-  font-size: 10px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.teapot-actions button:hover,
-.teapot-actions button:focus-visible {
-  border-color: var(--teapot-text);
-  outline: none;
 }
 
 .teapot-stage {
@@ -350,7 +367,7 @@ body.teapot-page {
 
 .teapot-anamorphic-view figure {
   display: grid;
-  gap: 10px;
+  gap: 9px;
   min-width: 0;
   margin: 0;
 }
@@ -360,19 +377,13 @@ body.teapot-page {
   height: auto;
   aspect-ratio: 1;
   border: 1px solid var(--teapot-line);
-  background-image:
-    linear-gradient(45deg, rgba(128, 128, 128, 0.08) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(128, 128, 128, 0.08) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(128, 128, 128, 0.08) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(128, 128, 128, 0.08) 75%);
-  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
-  background-size: 16px 16px;
+  background: var(--teapot-panel);
   cursor: default;
 }
 
 .teapot-anamorphic-view figcaption {
   color: var(--teapot-muted);
-  font-size: 10px;
+  font-size: 9px;
   text-align: center;
 }
 
@@ -382,7 +393,7 @@ body.teapot-page {
   place-items: center;
   color: var(--teapot-muted);
   background: var(--teapot-stage);
-  font-size: 11px;
+  font-size: 10px;
   transition: opacity 180ms ease;
 }
 
@@ -392,26 +403,27 @@ body.teapot-page {
 }
 
 .teapot-hint {
-  right: 14px;
+  right: 12px;
   bottom: 12px;
-  padding: 6px 8px;
+  padding: 5px 7px;
+  border: 1px solid var(--teapot-line);
   color: var(--teapot-muted);
-  background: color-mix(in srgb, var(--teapot-stage) 80%, transparent);
-  font-size: 9px;
+  background: var(--teapot-stage);
+  font-size: 8px;
   transition: opacity 180ms ease;
 }
 
 @media (max-width: 767px) {
   .teapot-shell,
   .teapot-lab {
-    height: calc(100dvh - 82px);
+    height: 100dvh;
     min-height: 520px;
   }
 
   .teapot-controls {
-    gap: 14px;
+    gap: 13px;
     width: min(260px, 68vw);
-    padding: 18px;
+    padding: 15px;
   }
 
   .teapot-anamorphic-view {
@@ -422,7 +434,7 @@ body.teapot-page {
   }
 
   .teapot-intro h1 {
-    font-size: 21px;
+    font-size: 20px;
   }
 }
 
@@ -430,7 +442,7 @@ body.teapot-page {
   .teapot-controls {
     width: 100%;
     height: 345px;
-    padding: 16px 18px;
+    padding: 14px 16px;
     border-right: 0;
     border-bottom: 1px solid var(--teapot-line);
   }
@@ -457,9 +469,9 @@ body.teapot-page {
 
 @media (max-height: 700px) {
   .teapot-controls {
-    gap: 14px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    gap: 12px;
+    padding-top: 14px;
+    padding-bottom: 14px;
   }
 
   .teapot-intro > p:last-child {
@@ -469,9 +481,7 @@ body.teapot-page {
 
 @media (prefers-reduced-motion: reduce) {
   .teapot-loading,
-  .teapot-hint,
-  .teapot-upload,
-  .teapot-actions button {
+  .teapot-hint {
     transition: none;
   }
 }

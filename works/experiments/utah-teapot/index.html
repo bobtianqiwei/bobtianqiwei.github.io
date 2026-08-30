@@ -3,16 +3,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Utah Teapot — Texture Mapping Experiment</title>
-  <meta name="description" content="Map a local image across the original cubic Bézier patches of the Utah Teapot.">
-  <meta property="og:title" content="Utah Teapot — Texture Mapping Experiment">
-  <meta property="og:description" content="A client-side texture-mapping experiment built from the classic Utah Teapot Bézier patches.">
+  <title>Utah Teapot — 1976 Graphics Experiments</title>
+  <meta name="description" content="Explore texture mapping, reflection, filtering, and anamorphosis with the original Utah Teapot Bézier patches.">
+  <meta property="og:title" content="Utah Teapot — 1976 Graphics Experiments">
+  <meta property="og:description" content="Client-side graphics experiments built from the classic Utah Teapot Bézier patches.">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>(function(){try{var root=document.documentElement;root.dataset.siteChromeContext='page';root.dataset.themeEnabled='true';root.dataset.pageFade='prepare';var stored=window.localStorage.getItem('site-theme-preference');var theme=(stored==='light'||stored==='dark')?stored:(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');root.dataset.theme=theme;var style=document.createElement('style');style.textContent='html,body{background-color:'+(theme==='dark'?'#141414':'#ffffff')+';}';document.head.appendChild(style);}catch(e){}})();</script>
   <link href="/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="/css/theme-toggle.css" rel="stylesheet" type="text/css">
   <link href="/css/webflow.css" rel="stylesheet" type="text/css">
   <link href="/css/bobtianqiwei.webflow.css" rel="stylesheet" type="text/css">
   <link href="/works/experiments/utah-teapot/teapot.css" rel="stylesheet" type="text/css">
@@ -28,35 +27,19 @@
   </script>
 </head>
 <body class="teapot-page">
-  <div data-collapse="small" data-animation="over-right" data-duration="400" id="navigation" data-easing="ease" data-easing2="ease" role="banner" class="navigation w-nav">
-    <div class="navigation-items">
-      <a href="/" class="logo-link w-nav-brand"><img src="/images/1b.png" width="42" height="Auto" alt="" sizes="(max-width: 479px) 100vw, 42px" srcset="/images/1b-p-500.png 500w, /images/1b.png 785w" class="logo-image"></a>
-      <div class="navigation-wrap">
-        <nav role="navigation" class="navigation-items w-nav-menu">
-          <a href="/" class="navigation-item w-nav-link">Home</a>
-          <a href="/vision/" class="navigation-item w-nav-link">VISION</a>
-          <a href="/works/" aria-current="page" class="navigation-item w-nav-link w--current">WORKs</a>
-          <a href="/about/" class="navigation-item w-nav-link">About</a>
-        </nav>
-        <div class="menu-button w-nav-button"><img src="/images/menu-icon_1menu-icon.png" width="22" alt="" class="menu-icon"></div>
-      </div>
-    </div>
-  </div>
-
   <main class="teapot-shell">
     <section class="teapot-lab" aria-label="Utah Teapot texture lab">
       <aside class="teapot-controls">
         <div class="teapot-intro">
-          <p class="teapot-kicker">Blinn &amp; Newell · 1976</p>
           <h1>Utah Teapot</h1>
           <p>Inspired by <em>Texture and Reflection in Computer Generated Images</em>. The Utah Teapot became a graphics icon as the paper explored texture mapping, filtering, environment reflections, and anamorphic transformations.</p>
         </div>
 
         <div class="teapot-mode-tabs" role="tablist" aria-label="Experiment mode">
-          <button type="button" role="tab" aria-selected="true" data-mode="texture">Texture</button>
-          <button type="button" role="tab" aria-selected="false" data-mode="environment">Reflection</button>
-          <button type="button" role="tab" aria-selected="false" data-mode="filtering">Filtering</button>
-          <button type="button" role="tab" aria-selected="false" data-mode="anamorphic">Anamorphic</button>
+          <button type="button" role="tab" aria-selected="true" data-mode="texture">01 Texture</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="environment">02 Reflection</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="filtering">03 Filtering</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="anamorphic">04 Anamorphic</button>
         </div>
 
         <div class="teapot-mode-panel" data-panel="texture">
@@ -66,7 +49,7 @@
             <div class="teapot-texture-row">
               <img id="texture-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current texture preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="texture-file">Choose image</label>
+                <label class="teapot-upload" for="texture-file">[ Load Image ]</label>
                 <small>JPG, PNG, or WebP</small>
               </div>
             </div>
@@ -91,7 +74,7 @@
             <div class="teapot-texture-row">
               <img id="environment-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current environment preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="environment-file">Choose image</label>
+                <label class="teapot-upload" for="environment-file">[ Load Env ]</label>
                 <small>Equirectangular works best</small>
               </div>
             </div>
@@ -139,19 +122,19 @@
             <div class="teapot-texture-row">
               <img id="anamorphic-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Anamorphic source preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="anamorphic-file">Choose image</label>
+                <label class="teapot-upload" for="anamorphic-file">[ Load Image ]</label>
                 <small>Square images work best</small>
               </div>
             </div>
             <input id="anamorphic-file" class="teapot-file-input" type="file" accept="image/jpeg,image/png,image/webp">
             <p id="anamorphic-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
           </div>
-          <button id="download-anamorphic" class="teapot-download" type="button">Download Distorted PNG</button>
+          <button id="download-anamorphic" class="teapot-download" type="button">[ Save Distortion ]</button>
         </div>
 
         <div id="teapot-3d-actions" class="teapot-actions">
-          <button id="reset-view" type="button">Reset View</button>
-          <button id="save-png" type="button">Save PNG</button>
+          <button id="reset-view" type="button">[ Reset ]</button>
+          <button id="save-png" type="button">[ Save Frame ]</button>
         </div>
 
         <p class="teapot-privacy">Your image stays on this device.</p>
@@ -159,8 +142,8 @@
       </aside>
 
       <div id="teapot-stage" class="teapot-stage">
-        <div id="teapot-loading" class="teapot-loading">Preparing 32 Bézier patches…</div>
-        <div id="teapot-hint" class="teapot-hint">Drag to rotate · Scroll or pinch to zoom</div>
+        <div id="teapot-loading" class="teapot-loading">Building 32 Bézier patches…</div>
+        <div id="teapot-hint" class="teapot-hint">Drag: rotate / Scroll: zoom</div>
         <div id="anamorphic-view" class="teapot-anamorphic-view" hidden>
           <figure>
             <canvas id="distorted-canvas" width="900" height="900"></canvas>
@@ -175,9 +158,6 @@
     </section>
   </main>
 
-  <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=63004a13914e30681af6d7b7" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-  <script src="/js/site-chrome.js" type="text/javascript"></script>
-  <script src="/js/webflow.js" type="text/javascript"></script>
   <script src="/works/experiments/utah-teapot/teapot.js" type="module"></script>
 </body>
 </html>
