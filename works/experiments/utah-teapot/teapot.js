@@ -4,7 +4,7 @@ import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { TeapotGeometry } from "three/addons/geometries/TeapotGeometry.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
-const DEFAULT_IMAGE = "/website_files/pictures/goldengate/bob@goldengate_square.jpg";
+const DEFAULT_IMAGE = "/website_files/pictures/honolulu/bob_square.jpg";
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MODEL_PATH = "/works/experiments/utah-teapot/models/";
 const TEST_OBJECTS = {
@@ -690,8 +690,8 @@ applyMode("texture");
 new THREE.TextureLoader().load(
   DEFAULT_IMAGE,
   (texture) => {
-    useTexture(texture, "bob@goldengate_square.jpg", DEFAULT_IMAGE);
-    useEnvironment(texture.clone(), "bob@goldengate_square.jpg", DEFAULT_IMAGE);
+    useTexture(texture, "bob_square.jpg", DEFAULT_IMAGE);
+    useEnvironment(texture.clone(), "bob_square.jpg", DEFAULT_IMAGE);
     loading.classList.add("is-hidden");
     loading.addEventListener("transitionend", () => loading.remove(), { once: true });
   },
