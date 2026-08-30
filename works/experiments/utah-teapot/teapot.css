@@ -597,6 +597,29 @@ body.teapot-page {
     font-size: 7px;
   }
 
+  .teapot-range {
+    height: 26px;
+  }
+
+  .teapot-range::-webkit-slider-runnable-track {
+    height: 2px;
+  }
+
+  .teapot-range::-webkit-slider-thumb {
+    width: 14px;
+    height: 22px;
+    margin-top: -10px;
+  }
+
+  .teapot-range::-moz-range-track {
+    height: 2px;
+  }
+
+  .teapot-range::-moz-range-thumb {
+    width: 13px;
+    height: 21px;
+  }
+
   .teapot-anamorphic-view {
     inset: 0;
     grid-template-columns: 1fr 1fr;
