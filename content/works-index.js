@@ -1928,6 +1928,17 @@ module.exports = {
     },
     {
       "section": "EXPERIMENTS",
+      "href": "/works/experiments/utah-teapot/",
+      "className": "project-link-block w-inline-block",
+      "image": {
+        "placeholderText": "Utah Teapot"
+      },
+      "contentHtml": "Utah Teapot",
+      "lightbox": null,
+      "order": 7
+    },
+    {
+      "section": "EXPERIMENTS",
       "href": "/works/experiments/buddha-machine/",
       "className": "project-link-block w-inline-block",
       "image": "/images/buddha-machine-cover.png",

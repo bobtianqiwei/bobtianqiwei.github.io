@@ -1,0 +1,321 @@
+/* teapot.css developed by Bob Tianqi Wei */
+:root {
+  --teapot-stage: #ffffff;
+  --teapot-text: #151515;
+  --teapot-muted: #686868;
+  --teapot-line: rgba(20, 20, 20, 0.16);
+  --teapot-glass: rgba(255, 255, 255, 0.68);
+  --teapot-button: #171717;
+  --teapot-button-text: #ffffff;
+}
+
+html[data-theme="dark"] {
+  --teapot-stage: #141414;
+  --teapot-text: #f0f0ed;
+  --teapot-muted: #aaa9a4;
+  --teapot-line: rgba(255, 255, 255, 0.16);
+  --teapot-glass: rgba(18, 18, 18, 0.66);
+  --teapot-button: #eeeeea;
+  --teapot-button-text: #151515;
+}
+
+body.teapot-page {
+  margin: 0;
+  color: var(--teapot-text);
+  background: var(--teapot-stage);
+  font-family: "Open Sans", "Helvetica Neue", Arial, sans-serif;
+}
+
+.teapot-shell,
+.teapot-lab {
+  width: 100%;
+  height: calc(100dvh - 102px);
+  min-height: 560px;
+}
+
+.teapot-lab {
+  position: relative;
+  overflow: hidden;
+  background: var(--teapot-stage);
+}
+
+.teapot-controls {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 290px;
+  height: 100%;
+  padding: 24px;
+  overflow-y: auto;
+  border-right: 1px solid var(--teapot-line);
+  background: var(--teapot-glass);
+  backdrop-filter: blur(24px) saturate(125%);
+  -webkit-backdrop-filter: blur(24px) saturate(125%);
+}
+
+.teapot-intro {
+  display: grid;
+  gap: 8px;
+}
+
+.teapot-kicker {
+  margin: 0;
+  color: var(--teapot-muted);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.teapot-intro h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+}
+
+.teapot-intro > p:last-child,
+.teapot-source {
+  margin: 0;
+  color: var(--teapot-muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.teapot-source {
+  margin-top: auto;
+}
+
+.teapot-source a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.teapot-control-group {
+  display: grid;
+  gap: 8px;
+}
+
+.teapot-label,
+.teapot-range-heading label {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.teapot-texture-row {
+  display: grid;
+  grid-template-columns: 58px 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.teapot-texture-preview {
+  width: 58px;
+  height: 58px;
+  border: 1px solid var(--teapot-line);
+  object-fit: cover;
+}
+
+.teapot-texture-input {
+  display: grid;
+  gap: 4px;
+}
+
+.teapot-upload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--teapot-line);
+  color: var(--teapot-text);
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 140ms ease, background 140ms ease;
+}
+
+.teapot-upload:hover,
+.teapot-upload:focus-within {
+  border-color: var(--teapot-text);
+}
+
+.teapot-texture-input small,
+.teapot-status,
+.teapot-privacy {
+  color: var(--teapot-muted);
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+#texture-file {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.teapot-status,
+.teapot-privacy {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.teapot-range-heading,
+.teapot-range-ends {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.teapot-range-heading output {
+  color: var(--teapot-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.teapot-range {
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--teapot-text);
+  cursor: ew-resize;
+}
+
+.teapot-range-ends {
+  color: var(--teapot-muted);
+  font-size: 9px;
+}
+
+.teapot-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.teapot-actions button {
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 1px solid var(--teapot-line);
+  color: var(--teapot-text);
+  background: transparent;
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.teapot-actions button:last-child {
+  border-color: var(--teapot-button);
+  color: var(--teapot-button-text);
+  background: var(--teapot-button);
+}
+
+.teapot-actions button:hover,
+.teapot-actions button:focus-visible {
+  border-color: var(--teapot-text);
+  outline: none;
+}
+
+.teapot-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: var(--teapot-stage);
+  touch-action: none;
+}
+
+.teapot-stage canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  cursor: grab;
+}
+
+.teapot-stage canvas:active {
+  cursor: grabbing;
+}
+
+.teapot-loading,
+.teapot-hint {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.teapot-loading {
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--teapot-muted);
+  background: var(--teapot-stage);
+  font-size: 11px;
+  transition: opacity 180ms ease;
+}
+
+.teapot-loading.is-hidden,
+.teapot-hint.is-hidden {
+  opacity: 0;
+}
+
+.teapot-hint {
+  right: 14px;
+  bottom: 12px;
+  padding: 6px 8px;
+  color: var(--teapot-muted);
+  background: color-mix(in srgb, var(--teapot-stage) 80%, transparent);
+  font-size: 9px;
+  transition: opacity 180ms ease;
+}
+
+@media (max-width: 767px) {
+  .teapot-shell,
+  .teapot-lab {
+    height: calc(100dvh - 82px);
+    min-height: 520px;
+  }
+
+  .teapot-controls {
+    gap: 16px;
+    width: min(260px, 68vw);
+    padding: 18px;
+  }
+
+  .teapot-intro h1 {
+    font-size: 21px;
+  }
+}
+
+@media (max-height: 700px) {
+  .teapot-controls {
+    gap: 14px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .teapot-intro > p:last-child {
+    line-height: 1.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teapot-loading,
+  .teapot-hint,
+  .teapot-upload,
+  .teapot-actions button {
+    transition: none;
+  }
+}
