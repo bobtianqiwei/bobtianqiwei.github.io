@@ -35,6 +35,19 @@
           <p>Inspired by <em>Texture and Reflection in Computer Generated Images</em>. The Utah Teapot became a graphics icon as the paper explored texture mapping, filtering, environment reflections, and anamorphic transformations.</p>
         </div>
 
+        <div class="teapot-control-group">
+          <label class="teapot-label" for="test-object">Test Object</label>
+          <select id="test-object" class="teapot-select">
+            <option value="teapot">Utah Teapot</option>
+            <option value="bunny">Bunny</option>
+            <option value="monkey">Monkey</option>
+            <option value="chair">Chair</option>
+            <option value="toilet">Toilet</option>
+            <option value="plant">Potted Plant</option>
+          </select>
+          <p id="test-object-status" class="teapot-status" aria-live="polite">Original 32-patch Bézier geometry</p>
+        </div>
+
         <div class="teapot-mode-tabs" role="tablist" aria-label="Experiment mode">
           <button type="button" role="tab" aria-selected="true" data-mode="texture">01 Texture</button>
           <button type="button" role="tab" aria-selected="false" data-mode="environment">02 Reflection</button>
@@ -49,7 +62,7 @@
             <div class="teapot-texture-row">
               <img id="texture-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current texture preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="texture-file">[ Load Image ]</label>
+                <label class="teapot-upload" for="texture-file">Load Image</label>
                 <small>JPG, PNG, or WebP</small>
               </div>
             </div>
@@ -74,7 +87,7 @@
             <div class="teapot-texture-row">
               <img id="environment-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current environment preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="environment-file">[ Load Env ]</label>
+                <label class="teapot-upload" for="environment-file">Load Image</label>
                 <small>Equirectangular works best</small>
               </div>
             </div>
@@ -122,23 +135,23 @@
             <div class="teapot-texture-row">
               <img id="anamorphic-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Anamorphic source preview">
               <div class="teapot-texture-input">
-                <label class="teapot-upload" for="anamorphic-file">[ Load Image ]</label>
+                <label class="teapot-upload" for="anamorphic-file">Load Image</label>
                 <small>Square images work best</small>
               </div>
             </div>
             <input id="anamorphic-file" class="teapot-file-input" type="file" accept="image/jpeg,image/png,image/webp">
             <p id="anamorphic-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
           </div>
-          <button id="download-anamorphic" class="teapot-download" type="button">[ Save Distortion ]</button>
+          <button id="download-anamorphic" class="teapot-download" type="button">Save Distortion</button>
         </div>
 
         <div id="teapot-3d-actions" class="teapot-actions">
-          <button id="reset-view" type="button">[ Reset ]</button>
-          <button id="save-png" type="button">[ Save Frame ]</button>
+          <button id="reset-view" type="button">Reset</button>
+          <button id="save-png" type="button">Save Frame</button>
         </div>
 
         <p class="teapot-privacy">Your image stays on this device.</p>
-        <p class="teapot-source">Geometry is generated in the browser from the classic patch and control-point dataset. <a href="https://threejs.org/docs/pages/TeapotGeometry.html" target="_blank" rel="noopener">Source</a></p>
+        <p class="teapot-source">The teapot uses the classic patch and control-point dataset. Additional models are Kenney CC0 assets. <a href="/works/experiments/utah-teapot/models/README.md" target="_blank" rel="noopener">Asset notes</a></p>
       </aside>
 
       <div id="teapot-stage" class="teapot-stage">

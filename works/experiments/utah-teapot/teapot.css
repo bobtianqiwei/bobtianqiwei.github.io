@@ -152,6 +152,7 @@ body.teapot-page {
 .teapot-range-heading label {
   font-size: 10px;
   font-weight: 700;
+  text-transform: none;
 }
 
 .teapot-texture-row {
@@ -184,7 +185,26 @@ body.teapot-page {
   background: var(--teapot-control);
   font-size: 10px;
   font-weight: 700;
+  text-transform: none;
   cursor: pointer;
+}
+
+.teapot-select {
+  width: 100%;
+  min-height: 29px;
+  padding: 4px 7px;
+  border: 1px solid var(--teapot-line);
+  border-radius: 0;
+  color: var(--teapot-text);
+  background: var(--teapot-control);
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.teapot-select:focus-visible {
+  outline: 1px dashed var(--teapot-line);
+  outline-offset: -4px;
 }
 
 .teapot-upload:hover,

@@ -2,9 +2,47 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { TeapotGeometry } from "three/addons/geometries/TeapotGeometry.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 
 const DEFAULT_IMAGE = "/website_files/pictures/goldengate/bob@goldengate_square.jpg";
 const IMAGE_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const MODEL_PATH = "/works/experiments/utah-teapot/models/";
+const TEST_OBJECTS = {
+  teapot: {
+    label: "Utah Teapot",
+    status: "Original 32-patch Bézier geometry"
+  },
+  bunny: {
+    label: "Bunny",
+    file: "animal-bunny.glb",
+    status: "Kenney Cube Pets · CC0",
+    rotation: Math.PI
+  },
+  monkey: {
+    label: "Monkey",
+    file: "animal-monkey.glb",
+    status: "Kenney Cube Pets · CC0",
+    rotation: Math.PI
+  },
+  chair: {
+    label: "Chair",
+    file: "chair.glb",
+    status: "Kenney Furniture Kit · CC0",
+    rotation: -0.55
+  },
+  toilet: {
+    label: "Toilet",
+    file: "toilet.glb",
+    status: "Kenney Furniture Kit · CC0",
+    rotation: -0.55
+  },
+  plant: {
+    label: "Potted Plant",
+    file: "pottedPlant.glb",
+    status: "Kenney Furniture Kit · CC0",
+    rotation: -0.35
+  }
+};
 const stage = document.querySelector("#teapot-stage");
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
 const modePanels = [...document.querySelectorAll("[data-panel]")];
@@ -12,6 +50,8 @@ const controlSidebar = document.querySelector(".teapot-controls");
 const actions = document.querySelector("#teapot-3d-actions");
 const hint = document.querySelector("#teapot-hint");
 const loading = document.querySelector("#teapot-loading");
+const testObjectInput = document.querySelector("#test-object");
+const testObjectStatus = document.querySelector("#test-object-status");
 
 const textureInput = document.querySelector("#texture-file");
 const texturePreview = document.querySelector("#texture-preview");
@@ -69,7 +109,15 @@ const material = new THREE.MeshStandardMaterial({
 const geometry = new TeapotGeometry(2, 18, true, true, true, false, true);
 const teapot = new THREE.Mesh(geometry, material);
 teapot.rotation.y = -0.12;
-scene.add(teapot);
+const objectContainer = new THREE.Group();
+objectContainer.add(teapot);
+scene.add(objectContainer);
+
+const modelLoader = new GLTFLoader();
+const objectCache = new Map([["teapot", teapot]]);
+const objectLoads = new Map();
+let activeObjectKey = "teapot";
+let objectRequest = 0;
 
 scene.add(new THREE.HemisphereLight(0xffffff, 0x8b8276, 2.2));
 const keyLight = new THREE.DirectionalLight(0xffffff, 3.2);
@@ -85,6 +133,137 @@ let currentEnvironment = null;
 let samplingMode = "point";
 let anamorphicImage = null;
 const filterTexture = createCheckerTexture();
+
+function generateObjectUvs(root) {
+  const meshes = [];
+  const bounds = new THREE.Box3();
+  const point = new THREE.Vector3();
+  root.updateMatrixWorld(true);
+
+  root.traverse((child) => {
+    if (!child.isMesh) {
+      return;
+    }
+
+    child.geometry = child.geometry.index ? child.geometry.toNonIndexed() : child.geometry.clone();
+    child.geometry.computeVertexNormals();
+    child.skeleton?.update();
+    child.updateMatrixWorld(true);
+    const position = child.geometry.getAttribute("position");
+
+    for (let index = 0; index < position.count; index += 1) {
+      point.fromBufferAttribute(position, index);
+      if (child.isSkinnedMesh) {
+        child.applyBoneTransform(index, point);
+      }
+      bounds.expandByPoint(point.applyMatrix4(child.matrixWorld));
+    }
+    meshes.push(child);
+  });
+
+  const size = bounds.getSize(new THREE.Vector3());
+  const width = size.x || 1;
+  const height = size.y || 1;
+  const depth = size.z || 1;
+
+  meshes.forEach((mesh) => {
+    const position = mesh.geometry.getAttribute("position");
+    const normal = mesh.geometry.getAttribute("normal");
+    const normalMatrix = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
+    const projectedPoint = new THREE.Vector3();
+    const projectedNormal = new THREE.Vector3();
+    const uv = new Float32Array(position.count * 2);
+
+    for (let index = 0; index < position.count; index += 1) {
+      projectedPoint.fromBufferAttribute(position, index);
+      if (mesh.isSkinnedMesh) {
+        mesh.applyBoneTransform(index, projectedPoint);
+      }
+      projectedPoint.applyMatrix4(mesh.matrixWorld);
+      projectedNormal.fromBufferAttribute(normal, index).applyMatrix3(normalMatrix).normalize();
+      const nx = Math.abs(projectedNormal.x);
+      const ny = Math.abs(projectedNormal.y);
+      const nz = Math.abs(projectedNormal.z);
+
+      if (nx >= ny && nx >= nz) {
+        uv[index * 2] = (projectedPoint.z - bounds.min.z) / depth;
+        uv[index * 2 + 1] = (projectedPoint.y - bounds.min.y) / height;
+      } else if (ny >= nz) {
+        uv[index * 2] = (projectedPoint.x - bounds.min.x) / width;
+        uv[index * 2 + 1] = (projectedPoint.z - bounds.min.z) / depth;
+      } else {
+        uv[index * 2] = (projectedPoint.x - bounds.min.x) / width;
+        uv[index * 2 + 1] = (projectedPoint.y - bounds.min.y) / height;
+      }
+    }
+
+    mesh.geometry.setAttribute("uv", new THREE.BufferAttribute(uv, 2));
+    mesh.material = material;
+  });
+}
+
+function prepareObject(root, rotation) {
+  root.rotation.y = rotation || 0;
+  generateObjectUvs(root);
+
+  root.updateMatrixWorld(true);
+  const bounds = new THREE.Box3().setFromObject(root);
+  const size = bounds.getSize(new THREE.Vector3());
+  const scale = 4.8 / Math.max(size.x, size.y, size.z, 0.001);
+  root.scale.multiplyScalar(scale);
+  root.updateMatrixWorld(true);
+  bounds.setFromObject(root);
+  const center = bounds.getCenter(new THREE.Vector3());
+  root.position.sub(center);
+  return root;
+}
+
+function loadTestObject(key) {
+  if (objectCache.has(key)) {
+    return Promise.resolve(objectCache.get(key));
+  }
+  if (objectLoads.has(key)) {
+    return objectLoads.get(key);
+  }
+
+  const definition = TEST_OBJECTS[key];
+  const request = modelLoader.loadAsync(`${MODEL_PATH}${definition.file}`).then((gltf) => {
+    const object = prepareObject(gltf.scene, definition.rotation);
+    objectCache.set(key, object);
+    return object;
+  }).finally(() => objectLoads.delete(key));
+  objectLoads.set(key, request);
+  return request;
+}
+
+async function selectTestObject(key) {
+  const definition = TEST_OBJECTS[key];
+  if (!definition) {
+    return;
+  }
+
+  const request = ++objectRequest;
+  testObjectStatus.textContent = objectCache.has(key) ? definition.status : `Loading ${definition.label}…`;
+
+  try {
+    const object = await loadTestObject(key);
+    if (request !== objectRequest) {
+      return;
+    }
+    objectContainer.clear();
+    objectContainer.add(object);
+    activeObjectKey = key;
+    testObjectStatus.textContent = definition.status;
+    applyMode(activeMode);
+    setView();
+  } catch (error) {
+    if (request !== objectRequest) {
+      return;
+    }
+    testObjectInput.value = activeObjectKey;
+    testObjectStatus.textContent = `${definition.label} could not be loaded`;
+  }
+}
 
 function createCheckerTexture() {
   const canvas = document.createElement("canvas");
@@ -209,25 +388,45 @@ function useEnvironment(texture, label, previewSource) {
   }
 }
 
-function loadUploadedTexture(file, onLoad, statusElement, previewElement) {
+function loadSharedImage(file) {
+  const statuses = [textureStatus, environmentStatus, anamorphicStatus];
   if (!file || !IMAGE_TYPES.includes(file.type)) {
-    statusElement.textContent = "Choose a JPG, PNG, or WebP image";
+    statuses.forEach((status) => {
+      status.textContent = "Choose a JPG, PNG, or WebP image";
+    });
     return;
   }
 
-  const objectUrl = URL.createObjectURL(file);
-  new THREE.TextureLoader().load(
-    objectUrl,
-    (texture) => {
-      previewElement.addEventListener("load", () => URL.revokeObjectURL(objectUrl), { once: true });
-      onLoad(texture, file.name, objectUrl);
-    },
-    undefined,
-    () => {
-      URL.revokeObjectURL(objectUrl);
-      statusElement.textContent = "This image could not be opened";
-    }
-  );
+  [textureInput, environmentInput, anamorphicInput].forEach((input) => {
+    input.value = "";
+  });
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const image = new Image();
+    image.onload = () => {
+      const texture = new THREE.Texture(image);
+      texture.needsUpdate = true;
+      useTexture(texture, file.name, reader.result);
+      useEnvironment(texture.clone(), file.name, reader.result);
+      anamorphicImage = image;
+      anamorphicPreview.src = reader.result;
+      anamorphicStatus.textContent = file.name;
+      generateAnamorphic(image);
+    };
+    image.onerror = () => {
+      statuses.forEach((status) => {
+        status.textContent = "This image could not be opened";
+      });
+    };
+    image.src = reader.result;
+  };
+  reader.onerror = () => {
+    statuses.forEach((status) => {
+      status.textContent = "This image could not be opened";
+    });
+  };
+  reader.readAsDataURL(file);
 }
 
 function applyMode(mode) {
@@ -242,7 +441,7 @@ function applyMode(mode) {
   actions.hidden = anamorphic;
   anamorphicView.hidden = !anamorphic;
   stage.classList.toggle("is-anamorphic", anamorphic);
-  teapot.visible = !anamorphic;
+  objectContainer.visible = !anamorphic;
   controls.enabled = !anamorphic;
 
   if (anamorphic) {
@@ -286,29 +485,6 @@ function updateFrequency() {
   const frequency = Number(frequencyInput.value);
   filterTexture.repeat.set(frequency, frequency);
   frequencyOutput.value = `${frequency}×`;
-}
-
-function loadAnamorphicImage(file) {
-  if (!file || !IMAGE_TYPES.includes(file.type)) {
-    anamorphicStatus.textContent = "Choose a JPG, PNG, or WebP image";
-    return;
-  }
-
-  const reader = new FileReader();
-  reader.onload = () => {
-    const image = new Image();
-    image.onload = () => {
-      anamorphicImage = image;
-      anamorphicPreview.src = reader.result;
-      anamorphicStatus.textContent = file.name;
-      generateAnamorphic(image);
-    };
-    image.onerror = () => {
-      anamorphicStatus.textContent = "This image could not be opened";
-    };
-    image.src = reader.result;
-  };
-  reader.readAsDataURL(file);
 }
 
 function generateAnamorphic(image) {
@@ -393,10 +569,26 @@ function drawCylindricalReflection(distortedPixels, innerRadius, outerRadius, ra
 
   temporaryContext.putImageData(reflectedImage, 0, 0);
   const context = reflectionCanvas.getContext("2d");
+  const radiusX = cylinder.width / 2;
+  const radiusY = size * 0.065;
+  const topY = cylinder.y + radiusY;
+  const bottomY = cylinder.y + cylinder.height - radiusY;
+  const curve = 0.5522848;
+
+  function traceCylinder() {
+    context.beginPath();
+    context.moveTo(center - radiusX, topY);
+    context.bezierCurveTo(center - radiusX, topY - radiusY * curve, center - radiusX * curve, topY - radiusY, center, topY - radiusY);
+    context.bezierCurveTo(center + radiusX * curve, topY - radiusY, center + radiusX, topY - radiusY * curve, center + radiusX, topY);
+    context.lineTo(center + radiusX, bottomY);
+    context.bezierCurveTo(center + radiusX, bottomY + radiusY * curve, center + radiusX * curve, bottomY + radiusY, center, bottomY + radiusY);
+    context.bezierCurveTo(center - radiusX * curve, bottomY + radiusY, center - radiusX, bottomY + radiusY * curve, center - radiusX, bottomY);
+    context.closePath();
+  }
+
   context.clearRect(0, 0, size, size);
   context.save();
-  context.beginPath();
-  context.roundRect(cylinder.x, cylinder.y, cylinder.width, cylinder.height, size * 0.08);
+  traceCylinder();
   context.clip();
   context.drawImage(temporaryCanvas, 0, 0);
   const shade = context.createLinearGradient(cylinder.x, 0, cylinder.x + cylinder.width, 0);
@@ -408,13 +600,23 @@ function drawCylindricalReflection(distortedPixels, innerRadius, outerRadius, ra
   context.fillStyle = shade;
   context.fillRect(cylinder.x, cylinder.y, cylinder.width, cylinder.height);
   context.restore();
-  context.strokeStyle = "rgba(130, 130, 130, 0.8)";
+
+  context.fillStyle = "rgba(20, 20, 20, 0.2)";
+  context.beginPath();
+  context.ellipse(center, topY, radiusX, radiusY, 0, 0, Math.PI * 2);
+  context.fill();
+
+  context.strokeStyle = "rgba(150, 150, 150, 0.92)";
   context.lineWidth = 4;
-  context.beginPath();
-  context.ellipse(center, cylinder.y + size * 0.06, cylinder.width / 2, size * 0.06, 0, 0, Math.PI * 2);
+  traceCylinder();
   context.stroke();
+
   context.beginPath();
-  context.ellipse(center, cylinder.y + cylinder.height - size * 0.06, cylinder.width / 2, size * 0.06, 0, 0, Math.PI * 2);
+  context.ellipse(center, topY, radiusX, radiusY, 0, 0, Math.PI * 2);
+  context.stroke();
+
+  context.beginPath();
+  context.ellipse(center, bottomY, radiusX, radiusY, 0, 0, Math.PI);
   context.stroke();
 }
 
@@ -436,13 +638,14 @@ function downloadCanvas(canvas, name) {
 
 function savePng() {
   renderer.render(scene, camera);
-  downloadCanvas(renderer.domElement, `utah-teapot-${activeMode}.png`);
+  downloadCanvas(renderer.domElement, `${activeObjectKey}-${activeMode}.png`);
 }
 
 modeButtons.forEach((button) => button.addEventListener("click", () => applyMode(button.dataset.mode)));
-textureInput.addEventListener("change", () => loadUploadedTexture(textureInput.files[0], useTexture, textureStatus, texturePreview));
-environmentInput.addEventListener("change", () => loadUploadedTexture(environmentInput.files[0], useEnvironment, environmentStatus, environmentPreview));
-anamorphicInput.addEventListener("change", () => loadAnamorphicImage(anamorphicInput.files[0]));
+testObjectInput.addEventListener("change", () => selectTestObject(testObjectInput.value));
+[textureInput, environmentInput, anamorphicInput].forEach((input) => {
+  input.addEventListener("change", () => loadSharedImage(input.files[0]));
+});
 
 scaleInput.addEventListener("input", () => {
   const scale = Number(scaleInput.value);
