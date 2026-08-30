@@ -47,34 +47,109 @@
     <section class="teapot-lab" aria-label="Utah Teapot texture lab">
       <aside class="teapot-controls">
         <div class="teapot-intro">
-          <p class="teapot-kicker">Texture mapping · 1976</p>
+          <p class="teapot-kicker">Blinn &amp; Newell · 1976</p>
           <h1>Utah Teapot</h1>
-          <p>Jim Blinn’s historic teapot, generated from the original 32 cubic Bézier patches. Each patch keeps its local UV space and characteristic texture distortion.</p>
+          <p>Inspired by <em>Texture and Reflection in Computer Generated Images</em>. The Utah Teapot became a graphics icon as the paper explored texture mapping, filtering, environment reflections, and anamorphic transformations.</p>
         </div>
 
-        <div class="teapot-control-group">
-          <span class="teapot-label">Texture</span>
-          <div class="teapot-texture-row">
-            <img id="texture-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current texture preview">
-            <div class="teapot-texture-input">
-              <label class="teapot-upload" for="texture-file">Choose image</label>
-              <small>JPG, PNG, or WebP</small>
+        <div class="teapot-mode-tabs" role="tablist" aria-label="Experiment mode">
+          <button type="button" role="tab" aria-selected="true" data-mode="texture">Texture</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="environment">Reflection</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="filtering">Filtering</button>
+          <button type="button" role="tab" aria-selected="false" data-mode="anamorphic">Anamorphic</button>
+        </div>
+
+        <div class="teapot-mode-panel" data-panel="texture">
+          <p class="teapot-mode-description">Map a local image onto every original Bézier patch. Scale reveals the patch-local UV distortion and repeated pattern.</p>
+          <div class="teapot-control-group">
+            <span class="teapot-label">Texture</span>
+            <div class="teapot-texture-row">
+              <img id="texture-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current texture preview">
+              <div class="teapot-texture-input">
+                <label class="teapot-upload" for="texture-file">Choose image</label>
+                <small>JPG, PNG, or WebP</small>
+              </div>
+            </div>
+            <input id="texture-file" class="teapot-file-input" type="file" accept="image/jpeg,image/png,image/webp">
+            <p id="texture-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
+          </div>
+
+          <div class="teapot-control-group">
+            <div class="teapot-range-heading">
+              <label for="texture-scale">Texture Scale</label>
+              <output id="texture-scale-output" for="texture-scale">1×</output>
+            </div>
+            <input id="texture-scale" class="teapot-range" type="range" min="1" max="12" step="0.1" value="1">
+            <div class="teapot-range-ends" aria-hidden="true"><span>Large</span><span>Repeated</span></div>
+          </div>
+        </div>
+
+        <div class="teapot-mode-panel" data-panel="environment" hidden>
+          <p class="teapot-mode-description">Use an equirectangular image as a distant world reflected by the teapot. Drag the view or rotate the environment to move the reflection.</p>
+          <div class="teapot-control-group">
+            <span class="teapot-label">Environment</span>
+            <div class="teapot-texture-row">
+              <img id="environment-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Current environment preview">
+              <div class="teapot-texture-input">
+                <label class="teapot-upload" for="environment-file">Choose image</label>
+                <small>Equirectangular works best</small>
+              </div>
+            </div>
+            <input id="environment-file" class="teapot-file-input" type="file" accept="image/jpeg,image/png,image/webp">
+            <p id="environment-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
+          </div>
+          <div class="teapot-control-group">
+            <div class="teapot-range-heading">
+              <label for="environment-rotation">Environment Rotation</label>
+              <output id="environment-rotation-output" for="environment-rotation">0°</output>
+            </div>
+            <input id="environment-rotation" class="teapot-range" type="range" min="-180" max="180" step="1" value="0">
+          </div>
+        </div>
+
+        <div class="teapot-mode-panel" data-panel="filtering" hidden>
+          <p class="teapot-mode-description">A dense checker exposes aliasing and moiré. Compare point sampling with mipmapped filtering, then change frequency and distance.</p>
+          <div class="teapot-control-group">
+            <span class="teapot-label">Sampling</span>
+            <div class="teapot-sampling" role="group" aria-label="Texture sampling">
+              <button type="button" aria-pressed="true" data-sampling="point">Point</button>
+              <button type="button" aria-pressed="false" data-sampling="filtered">Filtered</button>
             </div>
           </div>
-          <input id="texture-file" type="file" accept="image/jpeg,image/png,image/webp">
-          <p id="texture-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
-        </div>
-
-        <div class="teapot-control-group">
-          <div class="teapot-range-heading">
-            <label for="texture-scale">Texture Scale</label>
-            <output id="texture-scale-output" for="texture-scale">1×</output>
+          <div class="teapot-control-group">
+            <div class="teapot-range-heading">
+              <label for="filter-frequency">Texture Frequency</label>
+              <output id="filter-frequency-output" for="filter-frequency">18×</output>
+            </div>
+            <input id="filter-frequency" class="teapot-range" type="range" min="2" max="48" step="1" value="18">
           </div>
-          <input id="texture-scale" class="teapot-range" type="range" min="1" max="12" step="0.1" value="1">
-          <div class="teapot-range-ends" aria-hidden="true"><span>Large</span><span>Repeated</span></div>
+          <div class="teapot-control-group">
+            <div class="teapot-range-heading">
+              <label for="camera-distance">Camera Distance</label>
+              <output id="camera-distance-output" for="camera-distance">11.4</output>
+            </div>
+            <input id="camera-distance" class="teapot-range" type="range" min="6" max="18" step="0.1" value="11.4">
+          </div>
         </div>
 
-        <div class="teapot-actions">
+        <div class="teapot-mode-panel" data-panel="anamorphic" hidden>
+          <p class="teapot-mode-description">Wrap an image into an annular distortion designed for a cylindrical mirror. The simulation reconstructs the image from that distorted field.</p>
+          <div class="teapot-control-group">
+            <span class="teapot-label">Source Image</span>
+            <div class="teapot-texture-row">
+              <img id="anamorphic-preview" class="teapot-texture-preview" src="/website_files/pictures/goldengate/bob@goldengate_square.jpg" alt="Anamorphic source preview">
+              <div class="teapot-texture-input">
+                <label class="teapot-upload" for="anamorphic-file">Choose image</label>
+                <small>Square images work best</small>
+              </div>
+            </div>
+            <input id="anamorphic-file" class="teapot-file-input" type="file" accept="image/jpeg,image/png,image/webp">
+            <p id="anamorphic-status" class="teapot-status" aria-live="polite">bob@goldengate_square.jpg</p>
+          </div>
+          <button id="download-anamorphic" class="teapot-download" type="button">Download Distorted PNG</button>
+        </div>
+
+        <div id="teapot-3d-actions" class="teapot-actions">
           <button id="reset-view" type="button">Reset View</button>
           <button id="save-png" type="button">Save PNG</button>
         </div>
@@ -86,6 +161,16 @@
       <div id="teapot-stage" class="teapot-stage">
         <div id="teapot-loading" class="teapot-loading">Preparing 32 Bézier patches…</div>
         <div id="teapot-hint" class="teapot-hint">Drag to rotate · Scroll or pinch to zoom</div>
+        <div id="anamorphic-view" class="teapot-anamorphic-view" hidden>
+          <figure>
+            <canvas id="distorted-canvas" width="900" height="900"></canvas>
+            <figcaption>Distorted flat image</figcaption>
+          </figure>
+          <figure>
+            <canvas id="reflection-canvas" width="900" height="900"></canvas>
+            <figcaption>Simulated cylindrical reflection</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
   </main>

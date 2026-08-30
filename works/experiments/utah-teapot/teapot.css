@@ -44,7 +44,7 @@ body.teapot-page {
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   width: 290px;
   height: 100%;
   padding: 24px;
@@ -78,11 +78,57 @@ body.teapot-page {
 }
 
 .teapot-intro > p:last-child,
-.teapot-source {
+.teapot-source,
+.teapot-mode-description {
   margin: 0;
   color: var(--teapot-muted);
   font-size: 11px;
   line-height: 1.55;
+}
+
+.teapot-intro em {
+  font-style: italic;
+}
+
+.teapot-mode-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  padding: 1px;
+  background: var(--teapot-line);
+}
+
+.teapot-mode-tabs button,
+.teapot-sampling button {
+  min-height: 30px;
+  padding: 5px 7px;
+  border: 0;
+  color: var(--teapot-muted);
+  background: color-mix(in srgb, var(--teapot-stage) 92%, transparent);
+  font: inherit;
+  font-size: 9px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.teapot-mode-tabs button[aria-selected="true"],
+.teapot-sampling button[aria-pressed="true"] {
+  color: var(--teapot-button-text);
+  background: var(--teapot-button);
+}
+
+.teapot-mode-panel {
+  display: grid;
+  gap: 16px;
+}
+
+.teapot-mode-panel[hidden] {
+  display: none;
+}
+
+.teapot-mode-description {
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--teapot-line);
 }
 
 .teapot-source {
@@ -153,7 +199,7 @@ body.teapot-page {
   line-height: 1.4;
 }
 
-#texture-file {
+.teapot-file-input {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -203,6 +249,18 @@ body.teapot-page {
   gap: 6px;
 }
 
+.teapot-actions[hidden] {
+  display: none;
+}
+
+.teapot-sampling {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  padding: 1px;
+  background: var(--teapot-line);
+}
+
 .teapot-actions button {
   min-height: 32px;
   padding: 6px 8px;
@@ -220,6 +278,18 @@ body.teapot-page {
   border-color: var(--teapot-button);
   color: var(--teapot-button-text);
   background: var(--teapot-button);
+}
+
+.teapot-download {
+  min-height: 32px;
+  padding: 6px 8px;
+  border: 1px solid var(--teapot-button);
+  color: var(--teapot-button-text);
+  background: var(--teapot-button);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 .teapot-actions button:hover,
@@ -245,6 +315,12 @@ body.teapot-page {
   cursor: grab;
 }
 
+.teapot-stage.is-anamorphic > canvas,
+.teapot-stage.is-anamorphic .teapot-hint {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .teapot-stage canvas:active {
   cursor: grabbing;
 }
@@ -254,6 +330,50 @@ body.teapot-page {
   position: absolute;
   z-index: 1;
   pointer-events: none;
+}
+
+.teapot-anamorphic-view {
+  position: absolute;
+  inset: 0 0 0 290px;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+  align-items: center;
+  padding: 36px;
+  overflow: auto;
+}
+
+.teapot-anamorphic-view[hidden] {
+  display: none;
+}
+
+.teapot-anamorphic-view figure {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+}
+
+.teapot-anamorphic-view canvas {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  border: 1px solid var(--teapot-line);
+  background-image:
+    linear-gradient(45deg, rgba(128, 128, 128, 0.08) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(128, 128, 128, 0.08) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(128, 128, 128, 0.08) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(128, 128, 128, 0.08) 75%);
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0;
+  background-size: 16px 16px;
+  cursor: default;
+}
+
+.teapot-anamorphic-view figcaption {
+  color: var(--teapot-muted);
+  font-size: 10px;
+  text-align: center;
 }
 
 .teapot-loading {
@@ -289,13 +409,49 @@ body.teapot-page {
   }
 
   .teapot-controls {
-    gap: 16px;
+    gap: 14px;
     width: min(260px, 68vw);
     padding: 18px;
   }
 
+  .teapot-anamorphic-view {
+    left: min(260px, 68vw);
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 20px;
+  }
+
   .teapot-intro h1 {
     font-size: 21px;
+  }
+}
+
+@media (max-width: 600px) {
+  .teapot-controls {
+    width: 100%;
+    height: 345px;
+    padding: 16px 18px;
+    border-right: 0;
+    border-bottom: 1px solid var(--teapot-line);
+  }
+
+  .teapot-source {
+    margin-top: 0;
+  }
+
+  .teapot-stage {
+    top: 345px;
+  }
+
+  .teapot-anamorphic-view {
+    inset: 0;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+    padding: 14px;
+  }
+
+  .teapot-anamorphic-view figure {
+    gap: 6px;
   }
 }
 

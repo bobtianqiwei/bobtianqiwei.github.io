@@ -1930,9 +1930,7 @@ module.exports = {
       "section": "EXPERIMENTS",
       "href": "/works/experiments/utah-teapot/",
       "className": "project-link-block w-inline-block",
-      "image": {
-        "placeholderText": "Utah Teapot"
-      },
+      "image": "/images/utah-teapot.png",
       "contentHtml": "Utah Teapot",
       "lightbox": null,
       "order": 7
