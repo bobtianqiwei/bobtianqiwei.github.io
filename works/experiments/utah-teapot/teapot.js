@@ -83,7 +83,7 @@ const saveButton = document.querySelector("#save-png");
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(34, 1, 0.1, 100);
-const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -637,8 +637,22 @@ function downloadCanvas(canvas, name) {
 }
 
 function savePng() {
+  const background = scene.background;
+  const clearAlpha = renderer.getClearAlpha();
+  scene.background = null;
+  renderer.setClearAlpha(0);
   renderer.render(scene, camera);
-  downloadCanvas(renderer.domElement, `${activeObjectKey}-${activeMode}.png`);
+  const image = renderer.domElement.toDataURL("image/png");
+  scene.background = background;
+  renderer.setClearAlpha(clearAlpha);
+  renderer.render(scene, camera);
+
+  const link = document.createElement("a");
+  link.download = `${activeObjectKey}-${activeMode}.png`;
+  link.href = image;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 }
 
 modeButtons.forEach((button) => button.addEventListener("click", () => applyMode(button.dataset.mode)));
