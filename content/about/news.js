@@ -1,10 +1,6 @@
 // news.js developed by Bob Tianqi Wei
 window.aboutNewsItems = [
   {
-    date: "Fall 2026",
-    textHtml: "I am joining the MIT Media Lab, <a href=\"https://www.media.mit.edu/groups/tangible-media/overview/\" target=\"_blank\" class=\"link-in-paragraph\">Tangible Media Group</a>!"
-  },
-  {
     date: "UIST 2025",
     textHtml: "Our paper <a href=\"https://doi.org/10.1145/3746059.3747685\" target=\"_blank\" class=\"link-in-paragraph\"><em>MorphingSkin</em></a> received the Best Paper Award!"
   },
