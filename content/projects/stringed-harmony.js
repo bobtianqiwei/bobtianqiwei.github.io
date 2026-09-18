@@ -39,7 +39,7 @@ module.exports = {
               src: "https://www.youtube.com/embed/T34LZY9zvQQ?si=FkoaF9xz1uA7mKtp",
               title: "1. Body as Choreography"
             },
-            bodyHtml: `<p><em>Performance with Yanru Qian</em></p><p>In collaboration with dancer Yanru Qian, movement becomes both choreography and musical composition. Instead of dancing to a predetermined soundtrack, the dancer generates and transforms the music through her own movement. Music → dance becomes dance → music.</p>`
+            bodyHtml: `<p><em>Performance with Yanru Qian</em></p><p>In collaboration with dancer Yanru Qian, movement becomes both choreography and musical composition. Instead of dancing to a predetermined soundtrack, her gestures generate and transform the music: music → dance becomes dance → music.</p>`
           },
           {
             title: "2. Tension Between Bodies",
@@ -57,7 +57,7 @@ module.exports = {
               src: "https://www.youtube.com/embed/meEh3Ejt1-Y?si=CHS8vnm9F-y2uhdN",
               title: "3. Beyond the Human Body"
             },
-            bodyHtml: `<p><em>Wind and Tree Experiment</em></p><p>In this experiment, the instrument is attached to a tree rather than a human performer. Wind moves the branches, stretching the sensors and generating sound. The system shifts from a wearable instrument into an interface between natural forces and music.</p><p>Here, musical agency is distributed across the tree, wind, sensor, and computational system.</p>`
+            bodyHtml: `<p><em>Wind and Tree Experiment</em></p><p>In this experiment, the instrument is attached to a tree rather than a human performer. Wind moves the branches, stretching the sensors and generating sound. Musical agency becomes distributed across the tree, wind, sensor, and computational system.</p>`
           }
         ]
       },
@@ -79,9 +79,7 @@ module.exports = {
           <div class="stringed-system-node"><strong>Max/MSP</strong><span>mapping and synthesis</span></div>
           <span class="stringed-system-arrow" aria-hidden="true">→</span>
           <div class="stringed-system-node"><strong>Musical Mapping &amp; Sound</strong><span>pitch, harmony, dynamics, envelope</span></div>
-        </div>
-        <h3 class="stringed-subheading">How It Works</h3>
-        <p>Four wearable conductive rubber sensors respond to stretching and deformation during movement. An Arduino MKR1000 reads the analog signals and smooths the measurements before streaming them to Max/MSP. In Max, the continuous sensor values are calibrated and mapped to musical parameters including pitch, harmony, volume, attack, and decay.</p>`
+        </div>`
       },
       {
         title: "Technical Details",
@@ -90,8 +88,7 @@ module.exports = {
           <strong>Signal Processing:</strong> Moving-average smoothing of analog sensor readings<br>
           <strong>Communication:</strong> Serial communication at 9600 baud<br>
           <strong>Software:</strong> Max/MSP<br>
-          <strong>Audio Output:</strong> Eight-channel spatial audio for the CNMAT performance<br>
-          <strong>Mapping:</strong> Sensor values are calibrated and translated into pitch sets, harmony, dynamics, attack, and decay</p>
+          <strong>Audio Output:</strong> Eight-channel spatial audio for the CNMAT performance</p>
         <p><strong>Implementation note:</strong> The Arduino firmware supports up to five analog channels and applies a 50-sample moving average, with updated values streamed approximately every 20 ms.</p>`,
         figure: {
           src: "/images/stringed-harmony-max-patch.png",
