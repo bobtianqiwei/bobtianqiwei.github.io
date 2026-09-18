@@ -16,15 +16,12 @@ module.exports = {
     },
     sections: [
       {
-        title: "Overview",
-        bodyHtml: "<p>Stringed Harmony is a wearable electronic instrument that transforms bodily movement into live musical expression. Conductive rubber sensors worn on the body capture stretching and deformation, while an Arduino and Max/MSP translate these signals into changing pitch, harmony, dynamics, and timbre.</p><p>The project was explored through several performance settings, including solo musical performance, dance, a reinterpretation inspired by Marina Abramović and Ulay&#x27;s <em>Rest Energy</em>, and interaction between electronic sound and natural environments.</p>"
+        bodyHtml: "<p>Stringed Harmony is a wearable electronic instrument that transforms bodily movement into live musical expression. Conductive rubber sensors worn on the body capture stretching and deformation, while an Arduino and Max/MSP translate these signals into changing pitch, harmony, dynamics, and timbre.</p>"
       },
       {
         title: "Performances",
-        bodyHtml: `<h3 class="stringed-subheading">Four Performances</h3>
-        <p>These performances explore how musical agency changes when the same instrument is activated by the self, another body, tension between bodies, and the surrounding environment.</p>
-        <p><em>Where does musical expression begin: in the instrument, the body, the relationship between bodies, or the environment?</em></p>
-        <p>The progression moves from self → another body → relation between bodies → more-than-human environment.</p>`,
+        bodyHtml: `<p>Across four performances, musical agency shifts from the self, to another body, to the tension between bodies, and finally to the surrounding environment.</p>
+        <p><em>Where does musical expression begin: in the instrument, the body, the relationship between bodies, or the environment?</em></p>`,
         blocks: [
           {
             title: "0. Body as Instrument",
@@ -33,7 +30,7 @@ module.exports = {
               src: "https://www.youtube.com/embed/uWRTUTg2k2o?si=GeUme4ZCI9g9pcHc",
               title: "0. Body as Instrument"
             },
-            bodyHtml: `<p><em>Improvisation at CNMAT, UC Berkeley</em></p><p>In this improvisation at CNMAT, I use my own body as the instrument. Stretching and bodily movement continuously reshape the sound, creating a direct feedback loop between gesture, perception, and musical response. The performance used an eight-channel spatial audio setup at CNMAT, extending bodily movement into the surrounding acoustic space.</p>`
+            bodyHtml: `<p><em>Improvisation at CNMAT, UC Berkeley</em></p><p>I use my own body as the instrument, with stretching and movement continuously reshaping the sound. An eight-channel spatial audio setup extends these gestures into the surrounding acoustic space.</p>`
           },
           {
             title: "1. Body as Choreography",
@@ -51,7 +48,7 @@ module.exports = {
               src: "https://www.youtube.com/embed/v0HVmx4NcQw?si=sP9sHc2T0istgXc4",
               title: "2. Tension Between Bodies"
             },
-            bodyHtml: `<p><em>Inspired by Marina Abramović and Ulay&#x27;s Rest Energy (1980)</em></p><p>Inspired by Marina Abramović and Ulay&#x27;s <em>Rest Energy</em> (1980), this performance replaces the bow and arrow with the conductive rubber instrument. Physical tension between two bodies is translated directly into sonic tension, making an otherwise invisible force audible.</p>`
+            bodyHtml: `<p><em>Inspired by Marina Abramović and Ulay&#x27;s Rest Energy (1980)</em></p><p>This performance replaces the bow and arrow with the conductive rubber instrument. Physical tension between two bodies becomes sonic tension, making an otherwise invisible force audible.</p>`
           },
           {
             title: "3. Beyond the Human Body",
@@ -61,15 +58,12 @@ module.exports = {
               title: "3. Beyond the Human Body"
             },
             bodyHtml: `<p><em>Wind and Tree Experiment</em></p><p>In this experiment, the instrument is attached to a tree rather than a human performer. Wind moves the branches, stretching the sensors and generating sound. The system shifts from a wearable instrument into an interface between natural forces and music.</p><p>Here, musical agency is distributed across the tree, wind, sensor, and computational system.</p>`
-          },
-          {
-            bodyHtml: `<p><strong>Who is performing?</strong> The performer gradually shifts from an individual body, to another body, to the relation between bodies, and finally to a distributed system involving the environment itself.</p>`
           }
         ]
       },
       {
         title: "Embodied Interaction",
-        bodyHtml: "<p>Stringed Harmony explores the body itself as a musical interface. Conductive rubber sensors are worn directly on the performer, allowing stretching, posture, tension, and movement to shape sound in real time.</p><p>Because the performer can both feel the movement and immediately hear its musical consequence, playing creates a continuous loop between bodily perception, action, and sound. The instrument becomes an extension of movement, allowing musical expression to emerge through the performer&#x27;s lived bodily experience.</p><p>This reflects my broader interest in embodied interaction: how technology can connect perception, movement, and the physical world in ways that are felt through the body.</p>"
+        bodyHtml: "<p>Stringed Harmony treats the body itself as a musical interface, allowing posture, tension, and movement to shape sound in real time.</p><p>Because the performer can feel each movement and immediately hear its musical consequence, playing creates a continuous loop between bodily perception, action, and sound. The instrument becomes an extension of movement.</p>"
       },
       {
         title: "System",
@@ -87,7 +81,7 @@ module.exports = {
           <div class="stringed-system-node"><strong>Musical Mapping &amp; Sound</strong><span>pitch, harmony, dynamics, envelope</span></div>
         </div>
         <h3 class="stringed-subheading">How It Works</h3>
-        <p>Four wearable conductive rubber sensors respond to stretching and deformation during movement. An Arduino MKR1000 reads the analog signals and smooths the measurements before streaming them to Max/MSP. In Max, the continuous sensor values are calibrated and mapped to musical parameters including pitch, harmony, volume, attack, and decay.</p><p>These mappings allow the same sensing system to support different forms of performance, from deliberate instrumental gestures to dance and environmental interaction.</p>`
+        <p>Four wearable conductive rubber sensors respond to stretching and deformation during movement. An Arduino MKR1000 reads the analog signals and smooths the measurements before streaming them to Max/MSP. In Max, the continuous sensor values are calibrated and mapped to musical parameters including pitch, harmony, volume, attack, and decay.</p>`
       },
       {
         title: "Technical Details",
@@ -98,10 +92,7 @@ module.exports = {
           <strong>Software:</strong> Max/MSP<br>
           <strong>Audio Output:</strong> Eight-channel spatial audio for the CNMAT performance<br>
           <strong>Mapping:</strong> Sensor values are calibrated and translated into pitch sets, harmony, dynamics, attack, and decay</p>
-        <p><strong>Implementation note:</strong> The Arduino firmware reads up to five analog channels and applies a 50-sample moving average, with updated values streamed approximately every 20 ms. The physical Stringed Harmony setup shown here uses four conductive rubber sensors.</p>`
-      },
-      {
-        title: "Original Max/MSP Patch",
+        <p><strong>Implementation note:</strong> The Arduino firmware supports up to five analog channels and applies a 50-sample moving average, with updated values streamed approximately every 20 ms.</p>`,
         figure: {
           src: "/images/stringed-harmony-max-patch.png",
           caption: "Original Max/MSP patch used for sensor calibration, musical mapping, and real-time sound generation.",
