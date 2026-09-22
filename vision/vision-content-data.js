@@ -56,6 +56,17 @@ var VISION_CONTENT_DATA = {
   ],
   reflections: [
     {
+      title: "The Small Troubles of Good Taste",
+      author: "Bob Tianqi Wei",
+      date: "September 4, 2026",
+      sortDate: "2026-09-04T00:18:00",
+      href: "/vision/small-troubles-good-taste/",
+      image: {
+        src: "/images/small-troubles-piano.jpg",
+        alt: "A Yamaha grand piano in sunlight in San Francisco"
+      }
+    },
+    {
       title: "How to Make Home Lighting Both Functional and Aesthetic",
       author: "Bob Tianqi Wei",
       date: "Jul 14, 2026",

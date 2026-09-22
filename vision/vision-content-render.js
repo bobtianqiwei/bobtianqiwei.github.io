@@ -100,8 +100,8 @@
 
     if (containerId === "vision-reflection-list") {
       listItems.sort(function (a, b) {
-        var timeA = Date.parse(a.date || "") || 0;
-        var timeB = Date.parse(b.date || "") || 0;
+        var timeA = Date.parse(a.sortDate || a.date || "") || 0;
+        var timeB = Date.parse(b.sortDate || b.date || "") || 0;
         return timeB - timeA;
       });
     }

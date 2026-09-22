@@ -187,6 +187,17 @@ html[data-theme="light"] .vision-reflection-section-heading {
   height: auto;
 }
 
+.vision-reflection-contained-image-block {
+  width: min(460px, 100%);
+  margin: 40px auto 44px;
+}
+
+.vision-reflection-contained-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .vision-reflection-placeholder-caption,
 .vision-reflection-media-caption {
   margin: 5px 0 0;

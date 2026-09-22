@@ -113,6 +113,17 @@
         "</figure>";
     }
 
+    if (block.type === "containedImage") {
+      if (!block.src) {
+        return "";
+      }
+
+      return '<figure class="vision-reflection-contained-image-block">' +
+        '<img class="vision-reflection-contained-image" src="' + block.src + '" alt="' + (block.alt || "") + '" loading="lazy" decoding="async">' +
+        (block.caption ? '<figcaption class="vision-reflection-placeholder-caption">' + block.caption + "</figcaption>" : "") +
+        "</figure>";
+    }
+
     return "";
   }
 
