@@ -198,6 +198,91 @@ html[data-theme="light"] .vision-reflection-section-heading {
   height: auto;
 }
 
+.vision-reflection-two-column-template .vision-reflection-two-column-section {
+  display: grid;
+  grid-template-columns: minmax(240px, 30%) minmax(0, 860px);
+  gap: 40px;
+  align-items: start;
+}
+
+.vision-reflection-two-column-template .vision-reflection-two-column-media,
+.vision-reflection-two-column-template .vision-reflection-two-column-copy {
+  min-width: 0;
+}
+
+.vision-reflection-two-column-template .vision-reflection-two-column-section .vision-reflection-contained-image-block {
+  width: 100%;
+  margin: 0;
+}
+
+.vision-reflection-two-column-template .vision-reflection-two-column-copy > p {
+  margin: 0 0 18px;
+  color: var(--theme-text, #333);
+  font-family: Open Sans, sans-serif;
+  font-size: 17px;
+  font-weight: 300;
+  line-height: 1.72;
+}
+
+html[data-theme="light"] .vision-reflection-two-column-template .vision-reflection-two-column-copy > p {
+  color: #272727;
+}
+
+@media screen and (min-width: 900px) {
+  .vision-reflection-page.vision-reflection-two-column-template .vision-reflection-shell {
+    width: min(1100px, calc(100% - 96px));
+  }
+
+  .vision-reflection-page.vision-reflection-two-column-template .vision-reflection-two-column-section {
+    position: relative;
+  }
+
+  .vision-reflection-page.vision-reflection-two-column-template .vision-reflection-two-column-media {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+  }
+
+  .vision-reflection-page.vision-reflection-two-column-template .vision-reflection-two-column-copy {
+    grid-column: 2;
+  }
+
+  .vision-reflection-page.vision-reflection-two-column-template [data-reflection-sections] > .vision-reflection-section + .vision-reflection-section {
+    margin-top: 0;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .vision-reflection-two-column-template .vision-reflection-two-column-section {
+    display: block;
+  }
+
+  .vision-reflection-two-column-template .vision-reflection-two-column-media {
+    margin-bottom: 28px;
+  }
+
+  .vision-reflection-two-column-template .vision-reflection-two-column-section .vision-reflection-contained-image-block {
+    width: min(420px, 100%);
+    margin: 0 auto;
+  }
+
+  .vision-reflection-two-column-template .vision-reflection-two-column-section .vision-reflection-contained-image {
+    width: auto;
+    max-width: 100%;
+    max-height: min(480px, 60vh);
+    margin: 0 auto;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .vision-reflection-two-column-template .vision-reflection-two-column-copy > p {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+}
+
 .vision-reflection-placeholder-caption,
 .vision-reflection-media-caption {
   margin: 5px 0 0;

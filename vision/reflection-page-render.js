@@ -141,6 +141,18 @@
       ? ' data-reflection-language="' + section.language + '" lang="' + section.language + '"'
       : "";
 
+    if (section.layout === "twoColumn") {
+      return '<section class="vision-reflection-section vision-reflection-two-column-section"' + language + ">" +
+        '<div class="vision-reflection-two-column-media">' + blocks + "</div>" +
+        '<div class="vision-reflection-two-column-copy">' +
+        heading +
+        paragraphs +
+        video +
+        audio +
+        "</div>" +
+        "</section>";
+    }
+
     return '<section class="vision-reflection-section"' + language + ">" +
       heading +
       paragraphs +
