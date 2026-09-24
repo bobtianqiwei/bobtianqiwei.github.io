@@ -2,7 +2,7 @@
 window.aboutProfile = {
   nameHtml: "Bob Tianqi Wei<br>魏 天祺",
   pronounsHtml: "\"Tien-Chi\", he/they <a href=\"http://www.mypronouns.org/he-him\" target=\"_blank\" class=\"link-in-paragraph-grey pronouns-help-link\">(What is this?)</a>",
-  bioHtml: "I am an HCI researcher at the <a href=\"https://www.media.mit.edu/\" target=\"_blank\" class=\"link-in-paragraph\">MIT Media Lab</a>, where I study tangible and embodied interaction, creativity, memory, and human-AI interaction.",
+  bioHtml: "I am an HCI researcher in the <a href=\"https://tangible.media.mit.edu\" target=\"_blank\" class=\"link-in-paragraph\">Tangible Media Group</a> at the <a href=\"https://www.media.mit.edu/\" target=\"_blank\" class=\"link-in-paragraph\">MIT Media Lab</a>. My research explores tangible and embodied interaction, creativity, memory, and human-AI interaction.<br>‍<br>Before joining MIT, I was a researcher at UC Berkeley’s <a href=\"https://bid.berkeley.edu/\" target=\"_blank\" class=\"link-in-paragraph\">Berkeley Institute of Design Lab (BiD)</a>, where I worked on AI-mediated creativity support. I hold an MDes in Human-Computer Interaction from UC Berkeley and a BA in Industrial Design from Tsinghua University.<br>‍<br>Outside of research, I am a classical musician, designer and frontend engineer, and I often bring these practices into my teaching and interactive prototypes.<br>",
   links: [
     {
       href: "/website_files/bobtianqiwei_cv.pdf",
