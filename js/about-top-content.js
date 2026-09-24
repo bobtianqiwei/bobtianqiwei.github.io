@@ -35,7 +35,7 @@
       const portrait = profile.portrait;
       const front = portrait.front || {};
       const frames = Array.isArray(portrait.frames) ? portrait.frames : [];
-      portraitElement.innerHTML = '<img src="' + (front.src || "") + '" width="' + front.width + '" height="' + front.height + '" loading="eager" fetchpriority="high" sizes="' + (front.sizes || "") + '" srcset="' + (front.srcset || "") + '" alt="" class="image-about-animation">';
+      portraitElement.innerHTML = '<img src="' + (front.src || "") + '" loading="eager" fetchpriority="high" sizes="' + (front.sizes || "") + '" srcset="' + (front.srcset || "") + '" alt="" class="image-about-animation">';
 
       if (frames.length) {
         portraitElement.style.backgroundImage = 'url("' + frames[0] + '")';

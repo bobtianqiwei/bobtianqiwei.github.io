@@ -28,8 +28,6 @@ window.aboutProfile = {
   portrait: {
     front: {
       src: "/images/bobgrand-canyon.jpg",
-      width: 3228,
-      height: 4306,
       sizes: "(max-width: 479px) 96vw, (max-width: 767px) 97vw, (max-width: 991px) 23vw, 25vw",
       srcset: "/images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-500.jpg 500w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-800.jpg 800w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1080.jpg 1080w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-1600.jpg 1600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2000.jpg 2000w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-2600.jpg 2600w, /images/7efd805030b977885f19932a64fcac7b_bobgrand-canyon-p-3200.jpg 3200w, /images/bobgrand-canyon.jpg 3228w"
     },
