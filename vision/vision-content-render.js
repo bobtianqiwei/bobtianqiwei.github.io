@@ -47,6 +47,7 @@
   function buildCard(item) {
     var article = document.createElement("article");
     article.className = "vision-resource-card";
+    article.classList.add(item.image ? "vision-resource-card-featured" : "vision-resource-card-compact");
 
     var link = document.createElement("a");
     link.className = "vision-resource-link";
@@ -90,6 +91,60 @@
     return article;
   }
 
+  function updateDenseGrid(container) {
+    var styles = window.getComputedStyle(container);
+    var rowHeight = parseFloat(styles.gridAutoRows);
+    var rowGap = parseFloat(styles.rowGap) || 0;
+    var visualGap = parseFloat(styles.getPropertyValue("--vision-dense-gap")) || rowGap;
+    var cards = Array.prototype.slice.call(container.children);
+    var columnCount = styles.gridTemplateColumns.split(/\s+/).filter(Boolean).length;
+
+    cards.forEach(function (card, index) {
+      card.style.gridColumnStart = columnCount > 1
+        ? String(index % columnCount + 1)
+        : "";
+    });
+
+    if (!Number.isFinite(rowHeight)) {
+      cards.forEach(function (card) {
+        card.style.gridRowEnd = "";
+      });
+      return;
+    }
+
+    cards.forEach(function (card) {
+      card.style.gridRowEnd = "auto";
+    });
+
+    cards.forEach(function (card) {
+      var cardHeight = card.getBoundingClientRect().height;
+      var rowSpan = Math.ceil((cardHeight + visualGap) / (rowHeight + rowGap));
+      card.style.gridRowEnd = "span " + rowSpan;
+    });
+  }
+
+  function initializeDenseGrid(container) {
+    var update = function () {
+      window.requestAnimationFrame(function () {
+        updateDenseGrid(container);
+      });
+    };
+
+    container.querySelectorAll("img").forEach(function (image) {
+      if (!image.complete) {
+        image.addEventListener("load", update, { once: true });
+      }
+    });
+
+    window.addEventListener("resize", update);
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(update);
+    }
+
+    update();
+  }
+
   function renderList(containerId, items) {
     var container = document.getElementById(containerId);
     if (!container || !Array.isArray(items)) {
@@ -110,6 +165,8 @@
     listItems.forEach(function (item) {
       container.appendChild(buildCard(item));
     });
+
+    initializeDenseGrid(container);
   }
 
   var data = window.VISION_CONTENT_DATA || {};

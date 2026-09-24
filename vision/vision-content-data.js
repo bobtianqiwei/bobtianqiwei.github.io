@@ -44,14 +44,14 @@ var VISION_CONTENT_DATA = {
       href: "https://mp.weixin.qq.com/s/C6D3C7z-k-TYfQ25YO8xEg"
     },
     {
-      title: "Design for Affordance: Teaching Reform Practice in the “Social Science and Product Innovation” Course",
-      author: "Lintao Tang",
-      href: "https://mp.weixin.qq.com/s/ZIeWlML8cfQKgjjwYsNg-A"
-    },
-    {
       title: "TeleAbsence: A Vision of Past and Afterlife Telepresence",
       author: "Hiroshi Ishii et al.",
       href: "https://www.media.mit.edu/articles/teleabsence/"
+    },
+    {
+      title: "Design for Affordance: Teaching Reform Practice in the “Social Science and Product Innovation” Course",
+      author: "Lintao Tang",
+      href: "https://mp.weixin.qq.com/s/ZIeWlML8cfQKgjjwYsNg-A"
     }
   ],
   reflections: [
@@ -60,11 +60,7 @@ var VISION_CONTENT_DATA = {
       author: "Bob Tianqi Wei",
       date: "September 4, 2026",
       sortDate: "2026-09-04T00:18:00",
-      href: "/vision/small-troubles-good-taste/",
-      image: {
-        src: "/images/small-troubles-piano.jpg",
-        alt: "A Yamaha grand piano in sunlight in San Francisco"
-      }
+      href: "/vision/small-troubles-good-taste/"
     },
     {
       title: "How to Make Home Lighting Both Functional and Aesthetic",
@@ -80,11 +76,7 @@ var VISION_CONTENT_DATA = {
       title: "The External Brain We've All Adored",
       author: "Bob Tianqi Wei",
       date: "Nov 28, 2023",
-      href: "/vision/external-brain/",
-      image: {
-        src: "/images/external-brain-cover.png",
-        alt: "A sculptural external brain"
-      }
+      href: "/vision/external-brain/"
     },
     {
       title: "Virtues of the Silent Orchid",
