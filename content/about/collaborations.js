@@ -1,4 +1,5 @@
 // collaborations.js developed by Bob Tianqi Wei
+// Keep people sorted alphabetically by first name.
 window.aboutCollaborations = [
   {
     href: "https://people.eecs.berkeley.edu/~bjoern/",
@@ -9,6 +10,11 @@ window.aboutCollaborations = [
     href: "https://bse.berkeley.edu/dor-abrahamson",
     nameHtml: "Dor Abrahamson",
     descriptionHtml: "Professor of Education<br>UC Berkeley"
+  },
+  {
+    href: "https://www.media.mit.edu/people/ishii/overview/",
+    nameHtml: "Hiroshi Ishii",
+    descriptionHtml: "Professor of Media Arts and Sciences<br>MIT Media Lab"
   },
   /* {
     href: "https://www.ischool.berkeley.edu/people/kimiko-ryokai",
