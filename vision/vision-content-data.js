@@ -56,6 +56,12 @@ var VISION_CONTENT_DATA = {
   ],
   reflections: [
     {
+      title: "Bob’s Dongbei Recipes for Friends",
+      author: "Bob Tianqi Wei",
+      date: "Oct 21, 2026",
+      href: "/vision/dongbei-recipes/"
+    },
+    {
       title: "The Small Troubles of Good Taste",
       author: "Bob Tianqi Wei",
       date: "September 4, 2026",

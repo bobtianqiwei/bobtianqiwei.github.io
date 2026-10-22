@@ -51,6 +51,10 @@
       return "<p>" + (block.text || "") + "</p>";
     }
 
+    if (block.type === "table") {
+      return '<div class="vision-reflection-table">' + (block.html || "") + "</div>";
+    }
+
     if (block.type === "quote") {
       return '<blockquote class="vision-reflection-quote"><p>' + (block.text || "") + "</p></blockquote>";
     }

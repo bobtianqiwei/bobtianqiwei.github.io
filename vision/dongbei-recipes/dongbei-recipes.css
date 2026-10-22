@@ -1,0 +1,101 @@
+/* vision/dongbei-recipes/dongbei-recipes.css developed by Bob Tianqi Wei */
+.vision-reflection-table {
+  container-type: inline-size;
+  margin: 16px 0 8px;
+}
+
+.recipe-chart {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  border: 1px solid var(--theme-text, #333);
+  color: var(--theme-text, #333);
+  font-family: "Open Sans", "PingFang SC", "Noto Sans SC", sans-serif;
+  font-size: min(12px, 1.4cqw);
+  line-height: 1.4;
+}
+
+.recipe-chart td {
+  border: 1px solid var(--theme-muted, #777);
+  vertical-align: middle;
+  overflow-wrap: anywhere;
+}
+
+.recipe-chart .ingredient {
+  padding: min(11px, 1.28cqw) min(12px, 1.4cqw);
+  line-height: 1.55;
+}
+
+.recipe-chart .stage {
+  padding: min(8px, .93cqw) min(6px, .7cqw);
+  text-align: center;
+}
+
+.recipe-chart strong,
+.recipe-chart small {
+  display: block;
+}
+
+.recipe-chart strong {
+  font-size: 1em;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.recipe-chart small {
+  margin-top: min(5px, .58cqw);
+  color: var(--theme-muted, #666);
+  font-size: .875em;
+  line-height: 1.5;
+}
+
+.recipe-chart .blank {
+  border-left: hidden;
+  border-right: 0;
+  padding: 0;
+}
+
+.vision-reflection-section > p > small {
+  display: block;
+  color: var(--theme-muted, #666);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+@media screen and (max-width: 767px) {
+  .recipe-chart {
+    font-size: clamp(11px, 2.8cqw, 12px);
+    line-height: 1.6;
+  }
+
+  .recipe-chart col {
+    width: auto !important;
+  }
+
+  .recipe-chart col:first-child {
+    width: 38% !important;
+  }
+
+  .recipe-chart td {
+    white-space: normal;
+    hyphens: auto;
+  }
+
+  .recipe-chart .ingredient {
+    padding: clamp(5px, 1.5cqw, 8px) clamp(4px, 1.2cqw, 6px);
+  }
+
+  .recipe-chart .stage {
+    padding: clamp(5px, 1.5cqw, 8px) 3px;
+  }
+
+  .recipe-chart strong {
+    font-size: 1em;
+    line-height: 1.6;
+  }
+
+  .recipe-chart small {
+    margin-top: 4px;
+    font-size: .95em;
+  }
+}
