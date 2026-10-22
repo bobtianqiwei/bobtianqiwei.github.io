@@ -71,7 +71,7 @@ window.VISION_REFLECTION_CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "<small>Look for dried hazel mushrooms on Weee! or at 99 Ranch. Mixed dried mushrooms for hot pot work too.</small>"
+          "text": "<small>You can usually find dried hazel mushrooms on Weee! or at 99 Ranch. If you cannot find them, use a mix of dried mushrooms sold for hot pot.</small>"
         },
         {
           "type": "heading",
@@ -135,7 +135,7 @@ window.VISION_REFLECTION_CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "Green pepper and tofu sheets is a classic Dongbeiese home-style dish. It is easy to make and tastes good. Many people from outside Dongbei have never seen it."
+          "text": "A classic Dongbeiese home-style dish that is easy to make and tastes good. Most people from southern China have never seen it."
         },
         {
           "type": "table",
@@ -156,7 +156,7 @@ window.VISION_REFLECTION_CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "东北大米饭应该是黏糊糊的。米最好买东北大米，买不到的话高级一点的日本米也一样。千万别用南方大米或茉莉香米等其他米，那个味不对。我还喜欢在饭里偷偷放一滴油（hidden calories，哈哈）。"
+          "text": "东北大米饭应该是黏糊糊的。米最好买东北大米，买不到的话高级一点的日本米也一样。千万别用南方大米或茉莉香米等其他米，味不对。我还喜欢在饭里偷偷放一滴油（hidden calories，哈哈）。"
         },
         {
           "type": "table",
@@ -196,7 +196,7 @@ window.VISION_REFLECTION_CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "<small>榛蘑通常在 Weee! 或 99 Ranch（大华）能买到。火锅用的混合干菌菇也可以。</small>"
+          "text": "<small>榛蘑通常在 Weee! 或 99 Ranch（大华）能买到。实在不行就用火锅用的混合干菌菇。</small>"
         },
         {
           "type": "heading",
@@ -260,7 +260,7 @@ window.VISION_REFLECTION_CONTENT = {
         },
         {
           "type": "paragraph",
-          "text": "尖椒干豆腐是很经典的东北家常菜。好做好吃，不是东北人一半都没见过。"
+          "text": "经典东北家常菜，好做好吃，南方人基本都没见过这个。"
         },
         {
           "type": "table",
