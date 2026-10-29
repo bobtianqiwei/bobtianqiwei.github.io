@@ -809,6 +809,15 @@ module.exports = {
     },
     {
       "section": "DIGITAL INTERFACES",
+      "href": "/works/availability-sync/",
+      "className": "project-link-block w-inline-block",
+      "image": "/images/availability-sync-cover.png",
+      "contentHtml": "Availability Sync",
+      "lightbox": null,
+      "order": 0.75
+    },
+    {
+      "section": "DIGITAL INTERFACES",
       "href": "/works/sympathetic-orchestra/",
       "className": "project-link-block w-inline-block",
       "image": "/images/Sympathetic-Orchestra-new.jpg",

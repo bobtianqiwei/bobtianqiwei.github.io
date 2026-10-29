@@ -118,6 +118,10 @@ module.exports = {
             href: "/design/kindred/"
           },
           {
+            ...fromIndex({ href: "/works/availability-sync/", section: "DIGITAL INTERFACES" }),
+            href: "/design/availability-sync/"
+          },
+          {
             ...fromIndex({ href: "https://github.com/s-almeda/ArtiFactor", section: "DIGITAL INTERFACES" }),
             href: "/design/artifactor/"
           },

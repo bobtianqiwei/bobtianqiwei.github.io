@@ -62,6 +62,14 @@ module.exports = {
       description: "A native SwiftUI journal that connects personal writing with people, time, place, feelings, and private reflection."
     },
     {
+      href: "/swe/classic/availability-sync/",
+      image: "/images/availability-sync-cover.png",
+      alt: "Availability Sync",
+      title: "Availability Sync",
+      meta: "Calendar utility / native macOS app",
+      description: "Copies personal calendar events into a work calendar with privacy controls, automatic syncing, and configurable rules."
+    },
+    {
       href: "/swe/classic/artifactor/",
       image: "/images/artifactor-cover.png",
       alt: "ArtiFactor",
