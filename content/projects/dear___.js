@@ -20,7 +20,7 @@ module.exports = {
         title: "The Idea",
         bodyHtml: "<p>Personal photo archives make memories immediately visible. But after loss or separation, seeing a photograph can bring past closeness back all at once, intensified by the pain of present absence.</p><p>dear___ explores another way of encountering personal memories. Instead of permanently displaying or deleting a photograph, users can cover people or regions with editable white masks, reveal them through touch, and watch the mask gradually return.</p>",
         video: {
-          src: "https://www.youtube.com/embed/14eB58wFWzY?si=3uPKDsn8Xr0FRgvo",
+          src: "https://www.youtube.com/embed/14eB58wFWzY?si=X3-3JlwSsG753eYK",
           title: "dear___ demo video",
           allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         }
