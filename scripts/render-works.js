@@ -134,6 +134,25 @@ ${themeBootstrapScript()}
     overflow-wrap: anywhere;
   }
 
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    @media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+      .works-swe-highlight {
+        background-image: linear-gradient(110deg, currentColor 33%, #397cce 39%, #397cce 46%, #78a943 54%, #78a943 60%, currentColor 66%);
+        background-size: 300% 100%;
+        background-position: 100% 0;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: works-swe-sweep 10s cubic-bezier(.4, 0, .2, 1) .4s infinite;
+      }
+    }
+  }
+
+  @keyframes works-swe-sweep {
+    0% { background-position: 100% 0; }
+    20%, 100% { background-position: 0% 0; }
+  }
+
   .body-4 .image-100,
   .body-4 .image-38,
   .body-4 .music-image {
@@ -330,7 +349,7 @@ function renderAllWorks() {
         <h1 class="works-page-heading">PORTFOLIOS</h1>
         <h1 class="works-page-catalog">
           <a href="/design/" class="works-catalog-link">DESIGN PORTFOLIO <strong class="beta">beta</strong></a><br>
-          <a href="/swe/" class="works-catalog-link">SOFTWARE ENGINEERING PORTFOLIO <strong class="beta">beta</strong></a>
+          <a href="/swe/" class="works-catalog-link"><span class="works-swe-highlight">SOFTWARE ENGINEERING PORTFOLIO</span> <strong class="beta">beta</strong></a>
         </h1>
       </div>
     </div>
