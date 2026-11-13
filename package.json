@@ -9,6 +9,7 @@
     "build:portfolio-indexes": "node scripts/render-design-index.js && node scripts/render-swe-classic-index.js",
     "build:works": "node scripts/render-works.js && node scripts/render-project-pages.js && node scripts/apply-social-preview-images.js",
     "build:social-previews": "node scripts/apply-social-preview-images.js",
+    "sync:analytics": "node scripts/sync-posthog.js",
     "sync:chrome": "node scripts/sync-site-chrome.js",
     "preview": "python3 -m http.server 8000"
   }

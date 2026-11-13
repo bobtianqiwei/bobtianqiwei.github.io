@@ -1,6 +1,7 @@
 // scripts/render-design-index.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { withPostHog } = require("./sync-posthog");
 const designIndex = require("../content/design-index");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -109,7 +110,7 @@ function main() {
   }
 
   const output = `${shell.slice(0, startIndex)}${renderSections()}\n${shell.slice(endIndex)}`;
-  fs.writeFileSync(outputPath, output);
+  fs.writeFileSync(outputPath, withPostHog(output));
 }
 
 main();

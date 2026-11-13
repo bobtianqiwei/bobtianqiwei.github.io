@@ -1,6 +1,7 @@
 // scripts/render-works.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { withPostHog } = require("./sync-posthog");
 const { indexSections, fineArtColumns, musicColumns } = require("./works-data");
 const { renderFooter, renderNav, worksIndexPath } = require("./site-chrome");
 
@@ -13,7 +14,7 @@ function ensureDir(filePath) {
 function writeFile(relativePath, content) {
   const outputPath = path.join(repoRoot, relativePath);
   ensureDir(outputPath);
-  fs.writeFileSync(outputPath, content);
+  fs.writeFileSync(outputPath, withPostHog(content));
 }
 
 function isExternal(href) {

@@ -1,6 +1,7 @@
 // scripts/render-swe-classic-index.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { withPostHog } = require("./sync-posthog");
 const sweIndex = require("../content/swe-index");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -78,7 +79,7 @@ function main() {
 
   const dynamicHtml = `${renderTrustedBy()}\n\n${renderEssentials()}\n\n${renderSelectedProjects()}\n\n${renderRecommendations()}`;
   const output = `${shell.slice(0, startIndex)}${dynamicHtml}${shell.slice(endIndex)}`;
-  fs.writeFileSync(outputPath, output);
+  fs.writeFileSync(outputPath, withPostHog(output));
 }
 
 main();

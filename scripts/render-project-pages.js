@@ -1,6 +1,7 @@
 // scripts/render-project-pages.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { withPostHog } = require("./sync-posthog");
 const { renderFooter, renderNav } = require("./site-chrome");
 
 const repoRoot = path.resolve(__dirname, "..");
@@ -21,7 +22,7 @@ function ensureDir(filePath) {
 function writeFile(relativePath, content) {
   const outputPath = path.join(repoRoot, relativePath);
   ensureDir(outputPath);
-  fs.writeFileSync(outputPath, content);
+  fs.writeFileSync(outputPath, withPostHog(content));
 }
 
 function createRenderableProject(project, childPage) {

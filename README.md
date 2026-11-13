@@ -129,6 +129,13 @@ In general:
   - `npm run build:swe-index`
 - After rendering new pages, verify both the detail page path and every homepage entry that should point to it.
 
+## PostHog Analytics
+
+- All pages load `/js/posthog.js` asynchronously from the HTML head. This shared file uses the PostHog HTML snippet and skips duplicate initialization.
+- Pageviews and clicks are captured automatically. Session Replay uses a 20% session sample. Inputs and replay text are masked; editable areas, iframes, and canvases are blocked. Console logs, network headers and bodies, canvas recording, and performance capture are disabled. Replay network URLs have query strings and fragments removed. Do Not Track is respected. Existing Google Analytics code is preserved.
+- Enable recording in the [PostHog Session Replay settings](https://us.posthog.com/settings/project-replay). The website configuration cannot enable recording when it is disabled in the project settings. The local 20% sample rate takes precedence over the dashboard sample rate.
+- All four page renderers include PostHog automatically. After adding standalone HTML pages, run `npm run sync:analytics` to add the same script. Running it again does not add duplicates.
+
 ## Notes
 
 - The old `content/works/*.js` content system has been retired.
