@@ -1,6 +1,7 @@
 // scripts/render-design-index.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { imageAlt } = require("./image-alt");
 const { withPostHog } = require("./sync-posthog");
 const designIndex = require("../content/design-index");
 
@@ -27,8 +28,8 @@ function normalizeLightbox(lightbox) {
   return clone;
 }
 
-function renderImage(src, extraClass) {
-  return `<img src="${src}" loading="lazy" alt="" class="${extraClass}">`;
+function renderImage(src, extraClass, alt = "") {
+  return `<img src="${src}" loading="lazy" alt="${imageAlt(null, alt)}" class="${extraClass}">`;
 }
 
 function renderLinkStart(item, className, hrefOverride) {
@@ -53,7 +54,7 @@ function renderFeatureCard(item) {
   const imageClass = item.imageClass || "image-100";
   return `        <div class="work-column w-col w-col-6">
           ${renderLinkStart(item, "work-image-link w-inline-block")}
-            <div class="w-layout-blockcontainer w-container">${renderImage(item.image, imageClass)}
+            <div class="w-layout-blockcontainer w-container">${renderImage(item.image, imageClass, item.alt ?? item.contentHtml)}
               <div class="project-name-link">${item.contentHtml}</div>
             </div>${renderLightboxScript(item)}
           </a>
@@ -64,7 +65,7 @@ function renderProjectCard(item) {
   const imageClass = item.imageClass || "image-38";
   return `        <div class="w-container">
           ${renderLinkStart(item, "project-link-block w-inline-block")}
-            ${renderImage(item.image, imageClass)}
+            ${renderImage(item.image, imageClass, item.alt ?? item.contentHtml)}
             <div class="work-page-project-name">${item.contentHtml}</div>${renderLightboxScript(item)}
           </a>
         </div>`;

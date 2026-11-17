@@ -1,6 +1,7 @@
 // scripts/render-works.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { imageAlt } = require("./image-alt");
 const { withPostHog } = require("./sync-posthog");
 const { indexSections, fineArtColumns, musicColumns } = require("./works-data");
 const { renderFooter, renderNav, worksIndexPath } = require("./site-chrome");
@@ -169,7 +170,7 @@ ${scripts()}
 `;
 }
 
-function renderImage(imgSrc, extraClass = "image-100") {
+function renderImage(imgSrc, extraClass = "image-100", alt = "") {
   if (imgSrc && typeof imgSrc === "object" && imgSrc.placeholderText) {
     return `<div class="${extraClass} cropkit-placeholder-card">${imgSrc.placeholderText}</div>`;
   }
@@ -177,7 +178,7 @@ function renderImage(imgSrc, extraClass = "image-100") {
   const dimensions = getImageDimensions(imgSrc);
   const dimensionAttrs = dimensions ? ` width="${dimensions.width}" height="${dimensions.height}"` : "";
 
-  return `<img src="${imgSrc}" loading="lazy" decoding="async"${dimensionAttrs} alt="" class="${extraClass}">`;
+  return `<img src="${imgSrc}" loading="lazy" decoding="async"${dimensionAttrs} alt="${imageAlt(null, alt)}" class="${extraClass}">`;
 }
 
 function renderAnchorCard(item, titleClass = "work-page-project-name", imageClass = "image-38") {
@@ -188,7 +189,7 @@ function renderAnchorCard(item, titleClass = "work-page-project-name", imageClas
   const href = item.lightbox ? "#" : item.href;
   const className = item.lightbox ? "lightbox-link w-inline-block w-lightbox" : item.className;
   return `        <div class="w-container">
-          <a href="${href}"${target} class="${className}">${renderImage(item.image, imageClass)}
+          <a href="${href}"${target} class="${className}">${renderImage(item.image, imageClass, item.alt ?? item.contentHtml)}
             <div class="${titleClass}">${item.contentHtml}</div>${script}
           </a>
         </div>`;
@@ -235,7 +236,7 @@ function renderEssentials(items) {
     rows.push(`      <div class="work-essentials-columns w-row">
 ${rowItems.map((item) => `        <div class="work-column w-col w-col-6">
           <a href="${item.href}" class="work-image-link w-inline-block">
-            <div class="w-layout-blockcontainer w-container">${renderImage(item.image)}
+            <div class="w-layout-blockcontainer w-container">${renderImage(item.image, "image-100", item.alt ?? item.contentHtml)}
               <div class="project-name-link">${item.contentHtml}</div>
             </div>
           </a>

@@ -20,6 +20,17 @@
   margin: 16px 0 0;
 }
 
+.project-inline-figure {
+  margin: 0;
+  padding: 0;
+}
+
+:where(.project-inline-figure) > figcaption {
+  margin-bottom: 10px;
+  opacity: 1;
+  font-size: inherit;
+}
+
 .project-figure-link {
   display: block;
 }

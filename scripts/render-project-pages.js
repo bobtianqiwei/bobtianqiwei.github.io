@@ -1,6 +1,7 @@
 // scripts/render-project-pages.js developed by Bob Tianqi Wei
 const fs = require("fs");
 const path = require("path");
+const { imageAlt } = require("./image-alt");
 const { withPostHog } = require("./sync-posthog");
 const { renderFooter, renderNav } = require("./site-chrome");
 
@@ -166,8 +167,9 @@ function renderClassicStatusTopbar() {
     </div>`;
 }
 
-function renderImage(imageSrc, extraClass = "image-38") {
-  return `<img src="${imageSrc}" loading="lazy" alt="" class="${extraClass}">`;
+function renderImage(image, extraClass = "image-38", fallback = "") {
+  const src = typeof image === "string" ? image : image.src;
+  return `<img src="${src}" loading="lazy" alt="${imageAlt(image, fallback)}" class="${extraClass}">`;
 }
 
 function getImageDimensions(imageSrc) {
@@ -295,7 +297,7 @@ ${columns[2].map((card) => renderCard(card)).join("\n")}
 
 function renderCard(card) {
   return `        <a href="${card.href}" target="_blank" class="project-link-block w-inline-block">
-          <div class="w-container">${renderImage(card.image)}
+          <div class="w-container">${renderImage(card.image, "image-38", card.title || card.contentHtml)}
             <div class="work-page-project-name">${card.title}</div>
           </div>
         </a>`;
@@ -525,14 +527,14 @@ ${images.map((image) => {
     const caption = item.captionHtml || item.caption || "";
     const captionClass = item.captionAlign === "left" ? " project-image-caption-left" : "";
     const tagName = caption ? "figure" : "div";
-    return `      <${tagName} class="project-image-card">${renderImage(item.src, "project-image")}${caption ? `
+    return `      <${tagName} class="project-image-card">${renderImage(item, "project-image")}${caption ? `
         <figcaption class="image-description project-image-caption${captionClass}">${caption}</figcaption>` : ""}</${tagName}>`;
   }).join("\n")}
     </div>`;
 }
 
 function renderWorksFigure(figure) {
-  const image = renderImage(figure.src, "project-figure-image");
+  const image = renderImage(figure, "project-figure-image");
   const media = figure.href
     ? `<a href="${figure.href}" target="_blank" rel="noopener" class="project-figure-link">${image}</a>`
     : image;
@@ -555,7 +557,7 @@ function renderWorksMediaGrid(items) {
 
   return `    <div class="project-media-grid"${gridStyle}>
 ${items.map((item) => `      <figure class="project-media-card">
-${item.video ? renderYouTube(item.video) : `        ${renderImage(item.src, "project-media-image")}`}
+${item.video ? renderYouTube(item.video) : `        ${renderImage(item, "project-media-image")}`}
 ${item.caption ? `        <figcaption class="image-description project-image-caption${item.captionAlign === "left" ? " project-image-caption-left" : ""}">${item.caption}</figcaption>` : ""}      </figure>`).join("\n")}
     </div>`;
 }
@@ -563,7 +565,7 @@ ${item.caption ? `        <figcaption class="image-description project-image-cap
 function renderWorksSlides(slides) {
   return `    <div data-delay="4000" data-animation="slide" class="slider-auto w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
       <div class="mask w-slider-mask">
-${slides.map((slide) => `        <div class="w-slide">${renderImage(typeof slide === "string" ? slide : slide.src, "image-100")}</div>`).join("\n")}
+${slides.map((slide) => `        <div class="w-slide">${renderImage(slide, "image-100")}</div>`).join("\n")}
       </div>
       <div class="left-arrow w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
       <div class="right-arrow w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
@@ -608,14 +610,14 @@ ${images.map((image) => {
     const caption = item.captionHtml || item.caption || "";
     const captionClass = item.captionAlign === "left" ? " project-image-caption-left" : "";
     const tagName = caption ? "figure" : "div";
-    return `            <${tagName} class="design-project-image-card">${renderImage(item.src, "design-project-gallery-image")}${caption ? `
+    return `            <${tagName} class="design-project-image-card">${renderImage(item, "design-project-gallery-image")}${caption ? `
               <figcaption class="image-description project-image-caption${captionClass}">${caption}</figcaption>` : ""}</${tagName}>`;
   }).join("\n")}
           </div>`;
 }
 
 function renderDesignFigure(figure) {
-  const image = renderImage(figure.src, "design-project-gallery-image");
+  const image = renderImage(figure, "design-project-gallery-image");
   const media = figure.href
     ? `<a href="${figure.href}" target="_blank" rel="noopener" class="project-figure-link">${image}</a>`
     : image;
@@ -628,7 +630,7 @@ ${figure.caption ? `            <figcaption class="image-description">${figure.c
 function renderDesignSlides(slides) {
   return `          <div data-delay="4000" data-animation="slide" class="slider-auto w-slider" data-autoplay="true" data-easing="ease" data-hide-arrows="false" data-disable-swipe="false" data-autoplay-limit="0" data-nav-spacing="3" data-duration="500" data-infinite="true">
             <div class="mask w-slider-mask">
-${slides.map((slide) => `              <div class="w-slide">${renderImage(typeof slide === "string" ? slide : slide.src, "design-project-gallery-image")}</div>`).join("\n")}
+${slides.map((slide) => `              <div class="w-slide">${renderImage(slide, "design-project-gallery-image")}</div>`).join("\n")}
             </div>
             <div class="left-arrow w-slider-arrow-left"><div class="w-icon-slider-left"></div></div>
             <div class="right-arrow w-slider-arrow-right"><div class="w-icon-slider-right"></div></div>
@@ -673,14 +675,14 @@ ${images.map((image) => {
     const caption = item.captionHtml || item.caption || "";
     const captionClass = item.captionAlign === "left" ? " project-image-caption-left" : "";
     const tagName = caption ? "figure" : "div";
-    return `        <${tagName} class="project-card-thumb">${renderImage(item.src, "project-gallery-image")}${caption ? `
+    return `        <${tagName} class="project-card-thumb">${renderImage(item, "project-gallery-image")}${caption ? `
           <figcaption class="image-description project-image-caption${captionClass}">${caption}</figcaption>` : ""}</${tagName}>`;
   }).join("\n")}
       </div>`;
 }
 
 function renderClassicFigure(figure) {
-  const image = renderImage(figure.src, "project-gallery-image");
+  const image = renderImage(figure, "project-gallery-image");
   const media = figure.href
     ? `<a href="${figure.href}" target="_blank" rel="noopener" class="project-figure-link">${image}</a>`
     : image;
@@ -693,7 +695,7 @@ ${figure.caption ? `        <figcaption class="image-description">${figure.capti
 function renderClassicSlides(slides) {
   return `      <div class="classic-slider" data-classic-slider>
         <div class="classic-slider-frame">
-${slides.map((slide, index) => `          <div class="classic-slide${index === 0 ? " is-active" : ""}">${renderImage(typeof slide === "string" ? slide : slide.src, "project-gallery-image")}</div>`).join("\n")}
+${slides.map((slide, index) => `          <div class="classic-slide${index === 0 ? " is-active" : ""}">${renderImage(slide, "project-gallery-image")}</div>`).join("\n")}
         </div>
         <button type="button" class="classic-slider-arrow classic-slider-prev" data-classic-slider-prev aria-label="Previous slide">&#8249;</button>
         <button type="button" class="classic-slider-arrow classic-slider-next" data-classic-slider-next aria-label="Next slide">&#8250;</button>
@@ -911,7 +913,7 @@ function renderDesignCardGrid(cards, columns = 2) {
 
   return `      <div class="${gridClass}">
 ${cards.map((card) => `        <a href="${card.href}" target="_blank" class="design-project-card w-inline-block">
-          <div class="design-project-card-media">${renderImage(card.image, "design-project-card-image")}</div>
+          <div class="design-project-card-media">${renderImage(card.image, "design-project-card-image", card.title || card.contentHtml)}</div>
           <div class="design-project-card-title">${card.title}</div>
         </a>`).join("\n")}
       </div>`;
