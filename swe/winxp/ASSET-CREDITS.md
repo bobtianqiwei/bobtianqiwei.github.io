@@ -1,5 +1,7 @@
 # XP desktop asset credits
 
+The scene now uses `static/media/soundsticks-transparent.png`. Built-in image editing prompt: remove all black/gray background and ground to transparent alpha; preserve the existing speaker composition, scale, perspective, drivers, bases and acrylic highlights. The image is positioned 20 pixels farther back without changing its horizontal alignment or size. The original generated asset is retained.
+
 The existing desktop is based on [ShizukuIchi/winXP](https://github.com/ShizukuIchi/winXP).
 
 `static/media/rover.gif` is the Rover animation distributed as `site/public/rover-hero.gif` in [youngjae99/rover-app](https://github.com/youngjae99/rover-app), downloaded November 19, 2026. Rover character artwork and animations are copyright Microsoft Corporation, originally shipped with Windows XP. The upstream project identifies these assets separately from its application code. No ownership of Microsoft artwork is claimed.

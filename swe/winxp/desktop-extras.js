@@ -460,21 +460,21 @@
       boot(layer);
     },'xp-vaio-power');on.setAttribute('aria-label','Power on');on.title='Power on';
     computer.append(photo,screen,on);
-    const speakers=el('img','xp-desk-soundsticks');speakers.src=base+'static/media/soundsticks-set.png';speakers.alt='SoundSticks speakers with a subwoofer at the left rear';scene.append(speakers);
+    const hardware=el('div','xp-desk-hardware');
+    const speakers=el('img','xp-desk-soundsticks');speakers.src=base+'static/media/soundsticks-transparent.png';speakers.alt='SoundSticks speakers with a subwoofer at the left rear';hardware.append(speakers,computer);
     const shade=button('',()=>putDown(),'xp-photo-shade');shade.setAttribute('aria-label','Put photo down');shade.hidden=true;
     let lifted=null;const prints=[],labels=['Bob as a child','Bob and Mom at Jilin City No. 1 High School campus',"Bob’s mom"];
     const gallery=el('div','xp-photo-gallery'),caption=el('p');gallery.hidden=true;
     function putDown(){if(!lifted)return;lifted.classList.remove('is-lifted');lifted.setAttribute('aria-pressed','false');lifted=null;shade.hidden=true;gallery.hidden=true;}
     function pickUp(print){putDown();lifted=print;print.classList.add('is-lifted');print.setAttribute('aria-pressed','true');shade.hidden=false;gallery.hidden=false;caption.textContent=labels[prints.indexOf(print)];}
-    function next(step){if(lifted)pickUp(prints[(prints.indexOf(lifted)+step+prints.length)%prints.length]);}
-    const previous=button('‹',()=>next(-1)),following=button('›',()=>next(1));previous.setAttribute('aria-label','Previous photo');following.setAttribute('aria-label','Next photo');gallery.append(previous,caption,following);
+    gallery.append(caption);
     [['childhood.jpg','Childhood'],['childhood-with-mom.jpg','With Mom'],['mom.jpg','Mom']].forEach(([src,label],i)=>{
       const print=button('',()=>{if(lifted===print)putDown();else pickUp(print);},'xp-desk-photo xp-desk-photo-'+i);
       print.setAttribute('aria-label',label+' photo');print.setAttribute('aria-pressed','false');
       const img=el('img');img.src=base+'static/media/'+src;img.alt=label;print.append(img);scene.append(print);prints.push(print);
     });
-    scene.onkeydown=e=>{if(e.key==='Escape')putDown();if(e.key==='ArrowLeft')next(-1);if(e.key==='ArrowRight')next(1);};
-    scene.append(computer,shade,gallery);
+    scene.onkeydown=e=>{if(e.key==='Escape')putDown();};
+    scene.append(hardware,shade,gallery);
     await Promise.all(Array.from(scene.querySelectorAll('img'),img=>img.decode().catch(()=>{})));
     layer.className='xp-power-layer xp-off';layer.replaceChildren(scene);
     const closing=el('div','xp-screen-startup');sessionScreen(closing,'Windows is shutting down...');closing.classList.add('xp-screen-startup');screen.append(closing);
