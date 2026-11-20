@@ -5,15 +5,15 @@
   var HOME_URL = "/swe/classic/";
   var FAVORITES_KEY = "swe-winxp-ie-favorites";
 
-  function bindInternetExplorerControls() {
-    var iframe = document.querySelector('.ie__content iframe[src="/swe/classic/"]');
-    var toolbar = document.querySelector(".ie__function_bar");
-    var addressText = document.querySelector(".ie__address_bar__content__text");
-    var addressDropdown = document.querySelector(".ie__address_bar__content__img:last-child");
-    var goButton = document.querySelector(".ie__address_bar__go");
-    var linksButton = document.querySelector(".ie__address_bar__links");
-    var content = document.querySelector(".ie__content");
-    var statusText = document.querySelector(".ie__footer__status__text");
+  function bindInternetExplorerControls(root) {
+    var iframe = root.querySelector('.ie__content iframe');
+    var toolbar = root.querySelector(".ie__function_bar");
+    var addressText = root.querySelector(".ie__address_bar__content__text");
+    var addressDropdown = root.querySelector(".ie__address_bar__content__img:last-child");
+    var goButton = root.querySelector(".ie__address_bar__go");
+    var linksButton = root.querySelector(".ie__address_bar__links");
+    var content = root.querySelector(".ie__content");
+    var statusText = root.querySelector(".ie__footer__status__text");
     var historyEntries = [];
     var historyIndex = -1;
     var historyNavigation = false;
@@ -474,14 +474,14 @@
     });
 
     function renameMsnMenuItems() {
-      Array.prototype.forEach.call(document.querySelectorAll(".ie__options .drop-down__text"), function (item) {
+      Array.prototype.forEach.call(root.querySelectorAll(".ie__options .drop-down__text"), function (item) {
         if (item.textContent.trim() === "MSN.com") {
           item.textContent = "Bob's Cat";
         }
       });
     }
 
-    new MutationObserver(renameMsnMenuItems).observe(document.querySelector(".ie__options"), {
+    new MutationObserver(renameMsnMenuItems).observe(root.querySelector(".ie__options"), {
       childList: true,
       subtree: true
     });
@@ -544,20 +544,15 @@
     buttons[10].classList.remove("ie__function_bar__button--disable");
     syncAddress();
     updateNavigationButtons();
-    document.querySelector(".ie__options").addEventListener("click", handleMenuCommand, true);
+    root.querySelector(".ie__options").addEventListener("click", handleMenuCommand, true);
     return true;
   }
 
-  if (!bindInternetExplorerControls()) {
-    var observer = new MutationObserver(function () {
-      if (bindInternetExplorerControls()) {
-        observer.disconnect();
-      }
-    });
-
-    observer.observe(document.getElementById("root"), {
-      childList: true,
-      subtree: true
+  function bindAll() {
+    document.querySelectorAll('.ie__function_bar').forEach(function (toolbar) {
+      if (toolbar.dataset.controlsBound !== 'true') bindInternetExplorerControls(toolbar.parentElement);
     });
   }
+  bindAll();
+  new MutationObserver(bindAll).observe(document.getElementById('root'), { childList: true, subtree: true });
 }());

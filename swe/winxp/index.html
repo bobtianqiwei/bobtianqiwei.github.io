@@ -324,7 +324,7 @@
     }
   </style>
   <script src="/content/audio/playlist.js"></script>
-  <script defer src="/swe/winxp/static/js/main.df788235.js"></script>
+  <script defer src="/swe/winxp/static/js/main.df788235.js?v=desktop-4"></script>
   <script async src="/js/posthog.js"></script>
 </head>
 <body>
@@ -394,6 +394,17 @@
         return desktopElement;
       }
 
+      function addCustomWallpaper(url) {
+        var existing = wallpaperOptions.find(function (item) { return item.id === "custom"; });
+        if (existing) existing.url = url;
+        else wallpaperOptions.push({ id: "custom", label: "Custom wallpaper", url: url });
+        try { localStorage.setItem("xp-custom-wallpaper", url); } catch (error) {}
+      }
+      try {
+        var custom = localStorage.getItem("xp-custom-wallpaper");
+        if (custom) addCustomWallpaper(custom);
+      } catch (error) {}
+
       function getWallpaperById(id, skipFallback) {
         var found = wallpaperOptions.find(function (item) {
           return item.id === id;
@@ -419,9 +430,16 @@
         image.onload = function () {
           currentWallpaper = wallpaper.id;
           desktop.style.backgroundImage = 'url("' + wallpaper.url + '")';
-          desktop.style.backgroundRepeat = "no-repeat";
+          var position = "Stretch";
+          var color = "#004e98";
+          try {
+            position = JSON.parse(localStorage.getItem("xp-wallpaper-position")) || position;
+            color = JSON.parse(localStorage.getItem("xp-wallpaper-color")) || color;
+          } catch (error) {}
+          desktop.style.backgroundColor = color;
+          desktop.style.backgroundRepeat = position === "Tile" ? "repeat" : "no-repeat";
           desktop.style.backgroundPosition = "center center";
-          desktop.style.backgroundSize = "cover";
+          desktop.style.backgroundSize = position === "Stretch" ? "100% 100%" : "auto";
           desktop.style.backgroundAttachment = "fixed";
 
           try {
@@ -588,7 +606,9 @@
         });
       }
 
-      document.addEventListener("click", interceptControlPanelClicks, true);
+      // Desktop extensions handle Control Panel and reuse this wallpaper picker.
+      window.openXPWallpaperPanel = openWallpaperPanel;
+      window.xpWallpaper = { options: wallpaperOptions, apply: applyWallpaper, current: loadSavedWallpaper, addCustom: addCustomWallpaper };
       document.addEventListener("keydown", function (event) {
         if (event.key === "Escape") {
           closeWallpaperPanel();
@@ -598,6 +618,8 @@
       bootWallpaperManager();
     }());
   </script>
-  <script src="/swe/winxp/ie-controls.js"></script>
+  <script src="/swe/winxp/ie-controls.js?v=desktop-3"></script>
+  <link rel="stylesheet" href="/swe/winxp/desktop-extras.css?v=desktop-4">
+  <script src="/swe/winxp/desktop-extras.js?v=desktop-4"></script>
 </body>
 </html>
