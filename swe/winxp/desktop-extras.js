@@ -461,7 +461,12 @@
     },'xp-vaio-power');on.setAttribute('aria-label','Power on');on.title='Power on';
     computer.append(photo,screen,on);
     const hardware=el('div','xp-desk-hardware');
-    const speakers=el('img','xp-desk-soundsticks');speakers.src=base+'static/media/soundsticks-transparent.png';speakers.alt='SoundSticks speakers with a subwoofer at the left rear';hardware.append(speakers,computer);
+    for(const side of ['left','right']){
+      const crop=el('div','xp-speaker-crop xp-speaker-crop-'+side),speaker=el('img');
+      speaker.src=base+'static/media/soundsticks-transparent.png';speaker.alt=side==='left'?'Left SoundSticks speaker and subwoofer':'Right SoundSticks speaker';
+      crop.append(speaker);hardware.append(crop);
+    }
+    hardware.append(computer);
     const shade=button('',()=>putDown(),'xp-photo-shade');shade.setAttribute('aria-label','Put photo down');shade.hidden=true;
     let lifted=null;const prints=[],labels=['Bob as a child','Bob and Mom at Jilin City No. 1 High School campus',"Bob’s mom"];
     const gallery=el('div','xp-photo-gallery'),caption=el('p');gallery.hidden=true;

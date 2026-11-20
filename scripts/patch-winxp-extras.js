@@ -5,6 +5,9 @@ const path = require('path');
 const file = path.join(__dirname, '../swe/winxp/static/js/main.df788235.js');
 let source = fs.readFileSync(file, 'utf8');
 const patches = [
+  ['src:ii,alt:"",style:{marginLeft:"5px",height:"18px"}', 'src:"/swe/winxp/static/media/all-programs.png",alt:"",style:{marginLeft:"5px",width:"18px",height:"18px",flexShrink:0}'],
+  ['static/media/all-programs.bcaf5973986a068c6a92.ico', 'static/media/all-programs.png'],
+  ['icon:_n,children:"All Programs"', 'icon:"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVR42mNgAAIAAAUAAen63NgAAAAASUVORK5CYII=",children:"All Programs"'],
   ['img:Xr,text:"Restart"', 'img:"/swe/winxp/static/media/xp/Restart.png",text:"Restart"'],
   ['(0,Wt.jsx)($r,{img:Hr,text:"Stand By"})', '(0,Wt.jsx)(Zr,{img:"/swe/winxp/static/media/xp/standby.png",text:"Stand By",onClick:r})'],
   ['switch(t.type){case Bt:', 'switch(t.type){case "XP_UPDATE_APP":return {...e,apps:e.apps.map(app=>app.id===t.payload.id?{...app,header:{...app.header,title:t.payload.title}}:app)};case "XP_RESET":return {...e,apps:Gr.map((app,index)=>({...app,id:e.nextAppID+index,zIndex:e.nextZIndex+index})),nextAppID:e.nextAppID+Gr.length,nextZIndex:e.nextZIndex+Gr.length,focusing:zt};case Bt:'],

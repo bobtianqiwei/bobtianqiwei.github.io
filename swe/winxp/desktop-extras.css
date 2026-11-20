@@ -55,7 +55,9 @@ body>div>.modal{width:314px!important;height:200px!important;margin-top:calc(50v
 .xp-desk-scene{background:linear-gradient(#000 0%,#090a0b 35%,#222427 75%,#3b3d40 100%)}
 .xp-desk-hardware{position:absolute;left:50%;top:47%;width:min(1100px,98vw,130vh);aspect-ratio:1000/760;transform:translate(-50%,-50%);pointer-events:none}
 .xp-desk-hardware .xp-vaio{width:79%;left:50%;top:50%;pointer-events:auto}
-.xp-desk-hardware .xp-desk-soundsticks{width:108%;left:50%;top:2%;margin:0;filter:brightness(.92) drop-shadow(8px 18px 12px #0006)}
+.xp-speaker-crop{position:absolute;top:2%;width:54%;aspect-ratio:1;overflow:hidden;transform:scale(.75);filter:brightness(.92) drop-shadow(8px 18px 12px #0006);pointer-events:none}
+.xp-speaker-crop-left{left:-4%;transform-origin:30% 50%}.xp-speaker-crop-right{left:47%;transform-origin:84% 50%}
+.xp-speaker-crop img{display:block;width:200%;max-width:none;height:auto}.xp-speaker-crop-right img{transform:translateX(-50%)}
 .xp-desk-photo:not(.is-lifted){width:clamp(52px,8vw,108px)}
 .xp-desk-photo-1:not(.is-lifted){width:clamp(76px,11.2vw,148px)}
 @keyframes xp-float{0%{left:3%;top:5%}50%{left:65%;top:72%}100%{left:12%;top:40%}}@keyframes xp-load{from{transform:translateX(-36px)}to{transform:translateX(126px)}}
