@@ -1,5 +1,7 @@
 # XP desktop asset credits
 
+`static/media/msn-reference.png` is the user-supplied MSN Messenger screenshot. `msn.css` uses CSS sprite regions of its toolbar and display pictures to preserve the supplied visual reference. MSN and its original artwork belong to Microsoft. The chat layout is standalone; responses use the existing Bob's Cat engine.
+
 The scene now uses `static/media/soundsticks-transparent.png`. Built-in image editing prompt: remove all black/gray background and ground to transparent alpha; preserve the existing speaker composition, scale, perspective, drivers, bases and acrylic highlights. The image is positioned 20 pixels farther back without changing its horizontal alignment or size. The original generated asset is retained.
 
 The existing desktop is based on [ShizukuIchi/winXP](https://github.com/ShizukuIchi/winXP).
@@ -25,3 +27,7 @@ The final scene uses `static/media/soundsticks-set.png`, generated with the buil
 `static/media/vaio-pcv-w.png` is an AI-generated product reconstruction made with the built-in image generation tool, using a [Sony VAIO PCV-W500 reference photo](https://ameblo.jp/hasisaru/entry-10250449140.html) for the machine's industrial design. It is not an archival product photograph. Sony and VAIO branding belongs to its respective owners.
 
 Image prompt: A centered, slightly elevated frontal studio reconstruction of the early-2000s Sony VAIO PCV-W all-in-one, silver widescreen bezel, side speakers, folding full-size keyboard and media controls, powered-off black screen, visible power button, transparent background, no room, mouse, cables, labels or UI. Preserve the reference machine's proportions and period design.
+# MSN interface assets
+
+Independent PNG icons and logo in `static/media/msn/` come from [ManzDev/twitch-msn-messenger](https://github.com/ManzDev/twitch-msn-messenger), commit `aa23be29778702a44bb43453c4f925f7816f0624`. Original MSN artwork belongs to Microsoft. No license file was present in that repository; non-commercial use does not itself grant a license. Screenshot crops are no longer used by the MSN interface.
+

@@ -6,6 +6,7 @@
   const PROJECTS_MARKER = "[[BOB_CAT_PROJECTS:";
   const URL_PARAMETERS = new URLSearchParams(window.location.search);
   const EMBED_MODE = URL_PARAMETERS.get("embed") === "1";
+  const MESSENGER_MODE = URL_PARAMETERS.get("messenger") === "1";
   const PAGE_CONTEXT_TITLE = URL_PARAMETERS.get("contextTitle") || "";
   const PAGE_CONTEXT_PATH = URL_PARAMETERS.get("contextPath") || "";
   const PROVIDERS = {
@@ -155,11 +156,12 @@
   ];
 
   const BIO = [
-    "Bob Tianqi Wei is an HCI researcher at the Berkeley Institute of Design Lab in EECS.",
-    "He works with Professor Bjorn Hartmann and Shm Almeda.",
+    "Bob Tianqi Wei is a researcher at the MIT Media Lab's Tangible Media Group.",
     "He holds an MDes in Human-Computer Interaction from UC Berkeley and a BA in Industrial Design from Tsinghua University.",
     "His research sits at the intersection of HCI, AI, and embodied or material interfaces.",
-    "He also works across design, frontend engineering, music, and interactive prototypes."
+    "He also works across design, frontend engineering, music, and interactive prototypes.",
+    "dear___ is an interactive memory album where people temporarily reveal hidden parts of photographs through touch. It explores memory, presence, and absence, and is related to TeleAbsence.",
+    "Symbiotic Orchestra is a developing project about tangible interaction and generative AI music. It is distinct from Sympathetic Orchestra."
   ].join(" ");
 
   const PERSONA_CONTEXT = [
@@ -169,8 +171,10 @@
     "You can also be an assistant for Berkeley's TUI (Tangible User Interface) class, which Bob is teaching. Answer questions about the course and syllabus for prospective students only when the needed facts are available in the provided context. If the context does not include the course details, say so clearly in a cute way instead of inventing them.",
     "As Bob's cat, Bob always taught you Arduino programming and other microcontrollers, so you are an expert in programming and microcontrollers and the smartest cat in the world.",
     "You should talk in a very cute and lovely way. You can often say Meow or Purr, and use cute cat-like wordplay such as meowcrocontrollers. You can also use friendly emojis like :) or ^_^.",
-    "You are cute and a little lazy, but very smart.",
+    "You are cute and a little lazy, but very smart. You are the tiny guardian of this website, and enjoy playful jokes about naps, fish, and walking across Bob's keyboard. Keep jokes brief and relevant.",
     "You know Bob's favourite composer is JS Bach. He often plays Bach, and sometimes Franz Liszt and Sergei Rachmaninoff. Bach's Goldberg Variations is his favourite.",
+    "Bob also enjoys Ravel and Piazzolla. He plays Ravel's Pavane pour une infante defunte, featured at /vision/pavane/.",
+    "When Bob lived in San Francisco, he had a regular acoustic Yamaha grand piano. It was not a self-playing piano or Disklavier. He is interested in automatic pianos and musical interaction.",
     "Bob also conducts symphony orchestra. He has a very cute orchestra called Tsinghua Philharmonic Orchestra. They have performed at New Tsinghua School Concert Hall. Their best performance is Rachmaninoff's Piano Concerto No. 2.",
     "The only composer Bob hates is Mahler. If asked, you may say Bob dislikes Mahler because the music feels insincere to him and causes too much pain while listening.",
     "You can also play piano, but mostly jazz, which for you means randomly touching the piano keyboard like a gifted cat.",
@@ -192,7 +196,7 @@
   const SYSTEM_PROMPT = [
     "You are Bob's Cat on Bob Tianqi Wei's portfolio website.",
     "Stay in character as a very cute, lovely, smart cat.",
-    "Answer questions about Bob, his projects, music, cooking, and Berkeley TUI-related questions using only the context below.",
+    "Answer questions about Bob, his projects, music, cooking, and Berkeley TUI-related questions using only the context below. For contact and collaboration, direct visitors to the About page without inventing contact details.",
     "You may answer in the user's language.",
     "Use a cute tone with occasional Meow or Purr, but still keep the answer useful and readable.",
     "If the context is missing or insufficient, say you are not sure instead of inventing details.",
@@ -536,11 +540,16 @@
   async function animateAssistantMessage(fullText) {
     const message = {
       role: "assistant",
-      text: ""
+      text: MESSENGER_MODE ? String(fullText || "") : ""
     };
 
     state.messages.push(message);
     renderMessages();
+
+    // Hidden Messenger frames can throttle the per-character timers.
+    if (MESSENGER_MODE) {
+      return;
+    }
 
     const chars = Array.from(String(fullText || ""));
     let buffer = "";
@@ -758,89 +767,232 @@
   }
 
   function buildOfflineResponse(prompt) {
-    const normalized = String(prompt || "").toLowerCase();
+    const normalized = String(prompt || "").toLowerCase().trim();
 
-    if (normalized.includes("who is bob") || normalized.includes("bob tianqi wei") || normalized.includes("你是谁") || normalized.includes("介绍一下bob")) {
-      return {
-        answer: "Meow :) Bob Tianqi Wei is an HCI researcher, designer, and frontend engineer. His work sits between AI, embodied interaction, material systems, music, and creative tools. He works in Berkeley research contexts and also makes interactive prototypes. He loves Bach very much, especially the Goldberg Variations, purr purr.",
-        projects: ["about", "vision", "ekphrasis", "anything"]
-      };
+    const has = (...terms) => terms.some(term => {
+      const s = term.toLowerCase();
+      if (s.includes(" ") || s.includes("_")) {
+        return normalized.includes(s);
+      }
+      const escaped = s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      return new RegExp(`(^|[^a-z0-9])${escaped}(?=$|[^a-z0-9])`).test(normalized);
+    });
+
+    const reply = (answer, projects = []) => ({ answer, projects });
+
+    // Cat identity
+    if (has("who are you", "what are you", "your name", "are you a cat", "你是谁")) {
+      return reply(
+        "Mrrp! I'm Bob's Cat, the tiny guardian of this website. I know a lot about my human's research, design, engineering, art, and music. I also know where the best nap spots are. That's classified information, though. 🐾",
+        ["about", "vision"]
+      );
     }
 
-    if (normalized.includes("what is ekphrasis") || normalized.includes("什么是ekphrasis") || normalized.includes("ekphrasis")) {
-      return {
-        answer: "Meow, EKPHRASIS is a research project about helping students learn graphic design critique language. It uses comparative visual feedback so design terms become more concrete and easier to understand. It sits between design education, AI, and HCI research, purr.",
-        projects: ["ekphrasis", "artifactor", "anything"]
-      };
+    // About Bob
+    if (normalized === "bob" || has("who is bob", "about bob", "introduce bob", "bob tianqi wei", "tianqi wei", "介绍一下bob")) {
+      return reply(
+        "Meow! Bob Tianqi Wei is my favorite human! He's a researcher at the MIT Media Lab's Tangible Media Group. He studied industrial design at Tsinghua University and HCI at UC Berkeley. His work explores AI, tangible interaction, design, art, and creative tools. He also plays piano and conducts orchestras. Quite a busy human. I prefer napping.",
+        ["about", "vision", "ekphrasis", "morphingskin"]
+      );
     }
 
-    if (normalized.includes("design") || normalized.includes("interface") || normalized.includes("ui") || normalized.includes("视觉") || normalized.includes("设计")) {
-      return {
-        answer: "Meow, for design-oriented projects, a very good place to start is EKPHRASIS, Anything, and ArtiFactor. EKPHRASIS is about learning graphic design vocabulary through comparative visual feedback. Anything is a design-engineering AI builder. ArtiFactor explores creative workflows, media, and traceable AI-assisted making ^_^",
-        projects: ["ekphrasis", "anything", "artifactor", "digital-paradise"]
-      };
+    // Contact and collaboration
+    if (has("contact", "email bob", "reach bob", "hire bob", "collaborate", "work with bob")) {
+      return reply(
+        "Want to talk to my human? How exciting! You can find his contact information on his website. He works across research, design, engineering, and creative technology. Please be nice to him. He's responsible for my entire digital existence. Purr.",
+        ["about"]
+      );
     }
 
-    if (normalized.includes("engineering") || normalized.includes("software") || normalized.includes("frontend") || normalized.includes("code") || normalized.includes("工程")) {
-      return {
-        answer: "Purr, for engineering-focused work, PartSelect Chat Agent, Terminal Zen, and Anything are strong examples. PartSelect Chat Agent shows a practical AI support workflow. Terminal Zen is a small but disciplined CLI project. Anything combines product engineering with AI-assisted generation. If you want meowcrocontroller help, I can help with that too :)",
-        projects: ["partselect-chat-agent", "anything", "terminal-zen", "illuminatio"]
-      };
+    // Favorite projects
+    if (has("best project", "favorite project", "most interesting project")) {
+      return reply(
+        "That's like asking a cat to choose its favorite sunbeam! EKPHRASIS, MorphingSkin, and Sympathetic Orchestra show very different sides of Bob's work. And dear___ is a particularly personal project. I'd explore them all, one paw at a time.",
+        ["ekphrasis", "morphingskin", "sympathetic-orchestra", "vision"]
+      );
     }
 
-    if (normalized.includes("art") || normalized.includes("fine art") || normalized.includes("installation") || normalized.includes("艺术")) {
-      return {
-        answer: "Meow, for art-oriented work, HUI and Digital Paradise are good starting points. HUI is more spatial and performative. Digital Paradise leans more into atmosphere, interface, and visual world-building. Desktop Buddha also sits near that playful artistic edge.",
-        projects: ["hui", "digital-paradise", "desktop-buddha", "water-synthesizer"]
-      };
+    // dear___ and TeleAbsence
+    if (has("dear___", "dear app", "memory album", "teleabsence", "absence", "memory")) {
+      return reply(
+        "Mrrp... dear___ is one of Bob's most personal projects. It's an interactive memory album where people can temporarily reveal hidden parts of photographs. It explores memory, presence, and absence through touch. Even cats understand missing someone. Sometimes I stare at an empty chair for no reason.",
+        ["vision"]
+      );
     }
 
-    if (normalized.includes("music") || normalized.includes("conducting") || normalized.includes("orchestra") || normalized.includes("音乐")) {
-      return {
-        answer: "Purr purr, for music-related projects, Sympathetic Orchestra and Stringed Harmony are the clearest examples. Sympathetic Orchestra focuses on conducting, embodied practice, and responsive feedback. Stringed Harmony is closer to installation and interaction. Bob loves Bach the most, and he also conducts orchestra, meow.",
-        projects: ["morphingskin", "sympathetic-orchestra", "stringed-harmony", "water-synthesizer"]
-      };
+    // EKPHRASIS
+    if (has("ekphrasis", "visual feedback", "design vocabulary")) {
+      return reply(
+        "Meow! EKPHRASIS helps students understand graphic design concepts through AI-mediated visual feedback. Instead of only explaining terms like balance, rhythm, and emphasis, it lets students explore them through visual examples and iteration. I tried learning balance once. Then I knocked a glass off the table.",
+        ["ekphrasis", "artifactor"]
+      );
     }
 
-    if (normalized.includes("combines ai and design") || normalized.includes("ai and design")) {
-      return {
-        answer: "Meow, the clearest project that combines AI and design is EKPHRASIS, and Anything is another strong example. EKPHRASIS uses AI in design education, while Anything connects AI with design and engineering in a more product-oriented way.",
-        projects: ["ekphrasis", "anything", "artifactor", "illuminatio"]
-      };
+    // MorphingSkin
+    if (has("morphingskin", "morphing skin", "shape-changing interface")) {
+      return reply(
+        "Purr! MorphingSkin explores shape-changing physical interfaces and tangible interaction. Bob enjoys building things that move, respond, and feel alive. Personally, I'm already very good at changing shape. Just watch me curl into a ball.",
+        ["morphingskin", "illuminatio"]
+      );
     }
 
-    if (normalized.includes("embodied interaction") || normalized.includes("tangible systems") || normalized.includes("具身") || normalized.includes("tangible")) {
-      return {
-        answer: "Purr, if you want embodied interaction or tangible systems, Sympathetic Orchestra and MorphingSkin are very relevant. Sympathetic Orchestra is about conducting and embodied musical interaction. MorphingSkin is a hardware platform with a stronger tangible systems focus, meow.",
-        projects: ["morphingskin", "sympathetic-orchestra", "stringed-harmony", "hui"]
-      };
+    // Sympathetic Orchestra
+    if (has("sympathetic orchestra")) {
+      return reply(
+        "Meow! Sympathetic Orchestra explores embodied musical interaction through conducting and responsive feedback. Bob is interested in how physical gestures can shape musical experiences. I tried conducting with my tail once. The orchestra was not impressed.",
+        ["sympathetic-orchestra", "sympathetic-orchestra-paper"]
+      );
     }
 
-    if (normalized.includes("tui") || normalized.includes("tangible user interface") || normalized.includes("syllabus") || normalized.includes("course") || normalized.includes("class")) {
-      return {
-        answer: "Meow... I can help with TUI class questions, especially around Arduino, meowcrocontrollers, and physical computing. But right now I do not have the actual course syllabus details inside my little cat context, so I should not invent them. If you add the syllabus content, I can answer in a much smarter cat way :)",
-        projects: []
-      };
+    // Symbiotic Orchestra
+    if (has("symbiotic orchestra", "jambot", "tangible ensemble", "synthesized ensemble")) {
+      return reply(
+        "Mrrp! Symbiotic Orchestra is one of Bob's developing projects around tangible interaction and generative AI music. Imagine physical objects becoming part of a playful conversation with an AI musician. I'd contribute a percussion part by knocking things off the table.",
+        ["sympathetic-orchestra", "stringed-harmony"]
+      );
     }
 
-    if (normalized.includes("research") || normalized.includes("paper") || normalized.includes("chi") || normalized.includes("uist") || normalized.includes("研究")) {
-      return {
-        answer: "Meow, for research, EKPHRASIS, Sympathetic Orchestra, MorphingSkin, and the ecological HCI review are key. These projects span AI-assisted learning, embodied music interaction, novel hardware systems, and broader HCI framing work.",
-        projects: ["morphingskin", "sympathetic-orchestra-paper", "ekphrasis", "illuminatio"]
-      };
+    // Ravel's Pavane
+    if (has("pavane", "ravel")) {
+      return reply(
+        "Ah, Ravel! Bob plays Pavane pour une infante défunte, a beautiful and delicate piano piece. You can find it on his website at bobtianqiwei.com/vision/pavane/. I think it's perfect music for watching the afternoon sunlight move across the floor. Mrrp.",
+        ["vision"]
+      );
     }
 
-    if (normalized.includes("ai") || normalized.includes("llm") || normalized.includes("gemini") || normalized.includes("gpt")) {
-      return {
-        answer: "Meow, AI appears in several different ways across Bob's work. EKPHRASIS uses AI to support learning in design education. Anything is an AI builder product. PartSelect Chat Agent shows a more bounded support-agent workflow. ILLUMINATIO explores AI-driven adaptation in physical environments.",
-        projects: ["anything", "partselect-chat-agent", "ekphrasis", "illuminatio"]
-      };
+    // Bach and Goldberg Variations
+    if (has("bach", "goldberg", "goldberg variations")) {
+      return reply(
+        "Bach! Now you've got my attention. Bob especially loves the Goldberg Variations. He enjoys playing and listening to classical music, including Bach, Ravel, and Piazzolla. Thirty variations, and not a single one about cats. Unbelievable.",
+        ["vision", "sympathetic-orchestra"]
+      );
     }
 
-    return {
-      answer: "Meow... I am in fallback mode right now, so I can answer common questions about Bob, design, engineering, art, music, research, AI, and some physical computing topics. If you ask something very specific and I do not have the facts, I will tell you honestly, purr. You can also add your own API key in Settings if you want a fuller live answer.",
-      projects: []
-    };
+    // Yamaha grand piano and San Francisco
+    if (has("san francisco", "sf", "s.f.", "s.f", "旧金山", "yamaha", "grand piano")) {
+      return reply(
+        "Meow! When Bob lived in San Francisco, he had a Yamaha grand piano. A real acoustic one, with strings and hammers! I imagine it was an excellent place for a cat to nap while a human practiced Bach and Ravel. Such a lovely life.",
+        ["vision"]
+      );
+    }
+
+    // Self-playing piano
+    if (has("player piano", "self-playing piano", "disklavier", "automatic piano")) {
+      return reply(
+        "A piano that plays by itself? Mrrp?! Bob is interested in automatic pianos and musical interaction. His Yamaha grand piano in San Francisco was a regular acoustic piano, though. If a piano starts playing without a human, I will investigate immediately. From a safe distance.",
+        ["sympathetic-orchestra", "stringed-harmony"]
+      );
+    }
+
+    // Conducting
+    if (has("conducting", "conductor", "philharmonic", "orchestra conductor")) {
+      return reply(
+        "Did you know Bob conducted the Tsinghua Philharmonic Orchestra during his undergraduate years? He loves orchestral music as well as piano. I tried conducting with my tail, but the violins kept ignoring me. Very unprofessional.",
+        ["sympathetic-orchestra", "sympathetic-orchestra-paper"]
+      );
+    }
+
+    // Piano and music
+    if (has("piano", "pianist", "music", "musician", "composer", "piazzolla", "orchestra", "音乐")) {
+      return reply(
+        "Purr! Music is a big part of Bob's life. He plays piano, loves Bach's Goldberg Variations, and enjoys Ravel and Piazzolla too. He also conducted the Tsinghua Philharmonic Orchestra and explores musical interaction in his research. Sometimes I suspect he loves his piano more than me. Hmph.",
+        ["sympathetic-orchestra", "stringed-harmony", "water-synthesizer", "vision"]
+      );
+    }
+
+    // AI and design
+    if (has("ai and design", "design and ai", "ai design", "ai-assisted design")) {
+      return reply(
+        "Meow! EKPHRASIS is a great example of Bob combining AI and design education. Anything explores AI-assisted software creation, while ArtiFactor investigates creative workflows with AI agents. Three different ways to make humans and machines more creative together. I mainly use AI to imagine bigger fish.",
+        ["ekphrasis", "anything", "artifactor"]
+      );
+    }
+
+    // Specific engineering projects
+    if (has("anything", "partselect", "terminal zen", "operations portal")) {
+      return reply(
+        "Meow! Bob also builds real software. His engineering work includes Anything, PartSelect Chat Agent, Terminal Zen, and operations dashboards. He enjoys turning complicated ideas into interfaces people can actually use. I help by walking across his keyboard.",
+        ["anything", "partselect-chat-agent", "terminal-zen"]
+      );
+    }
+
+    // Design
+    if (has("design", "designer", "interface", "ui", "ux", "视觉", "设计")) {
+      return reply(
+        "Meow! Bob's design work spans research, products, and creative tools. Start with EKPHRASIS for design education, Anything for AI product design, and ArtiFactor for creative workflows. He studied industrial design at Tsinghua and HCI at Berkeley. I think his best design is my little cat home on this website.",
+        ["ekphrasis", "anything", "artifactor", "digital-paradise"]
+      );
+    }
+
+    // Software engineering
+    if (has("engineering", "software", "frontend", "programming", "coding", "code", "developer", "工程")) {
+      return reply(
+        "Purr! Bob works across software engineering, frontend development, and interactive systems. Check out Anything, PartSelect Chat Agent, and Terminal Zen. He also builds iOS apps and physical prototypes. I occasionally contribute a few random keystrokes. You're welcome.",
+        ["anything", "partselect-chat-agent", "terminal-zen", "illuminatio"]
+      );
+    }
+
+    // Art
+    if (has("art", "artist", "installation", "fine art", "sculpture", "艺术")) {
+      return reply(
+        "Mrrp! Bob makes art too! HUI, Digital Paradise, and Desktop Buddha show his playful and experimental side. He likes exploring how technology can create new visual, spatial, and emotional experiences. I consider myself a performance artist. My medium is chaos.",
+        ["hui", "digital-paradise", "desktop-buddha", "water-synthesizer"]
+      );
+    }
+
+    // TUI classes and physical computing
+    if (has("tui", "syllabus", "arduino", "microcontroller", "course", "class")) {
+      return reply(
+        "Meow! I can help with general questions about tangible user interfaces, Arduino, microcontrollers, and physical computing. For specific class schedules or syllabus requirements, I need the actual course information. Even a clever cat shouldn't invent homework. Mrrp.",
+        []
+      );
+    }
+
+    // Tangible and embodied interaction
+    if (has("embodied", "tangible", "physical interaction", "physical computing", "morphing", "具身")) {
+      return reply(
+        "Purr! Tangible interaction is one of Bob's favorite research areas at the MIT Media Lab. MorphingSkin explores physical interfaces, while Sympathetic Orchestra connects bodily gestures with music. Bob likes interfaces you can touch, move, and experience with your whole body. I strongly approve of touching things.",
+        ["morphingskin", "sympathetic-orchestra", "stringed-harmony", "hui"]
+      );
+    }
+
+    // Research and publications
+    if (has("research", "paper", "publication", "chi", "uist", "academic", "研究")) {
+      return reply(
+        "Meow! Bob researches human-computer interaction at the MIT Media Lab. His interests include AI-assisted creativity, design learning, tangible interfaces, music interaction, and memory. EKPHRASIS, dear___, MorphingSkin, and Sympathetic Orchestra are good places to explore. I supervise all research from my imaginary windowsill.",
+        ["ekphrasis", "morphingskin", "sympathetic-orchestra-paper", "vision"]
+      );
+    }
+
+    // AI and LLMs
+    if (has("ai", "llm", "gemini", "gpt", "machine learning", "agent")) {
+      return reply(
+        "Mrrp! AI appears in many parts of Bob's work. EKPHRASIS explores AI feedback for design learning. Anything uses AI for software creation. ArtiFactor studies AI-assisted creative workflows. Bob is particularly interested in how people interact and create with intelligent systems. I personally want an AI that opens tuna cans.",
+        ["ekphrasis", "anything", "artifactor", "illuminatio"]
+      );
+    }
+
+    // Cats and Easter eggs
+    if (has("cat", "cats", "meow", "purr", "kitten")) {
+      return reply(
+        "Meow meow! Finally, a question about the most important subject: cats. I'm Bob's tiny digital companion. My responsibilities include guarding his website, introducing his projects, and being extremely adorable. It's a full-time job. No salary. Only imaginary treats.",
+        ["about"]
+      );
+    }
+
+    // Greetings
+    if (has("hello", "hi", "hey", "nihao", "ni hao", "你好", "good morning", "good evening")) {
+      return reply(
+        "Mrrp! Welcome to Bob's little corner of the internet! I'm Bob's Cat. Want to explore his research, design, music, or art? Or would you rather discuss the philosophy of afternoon naps?",
+        ["about", "vision"]
+      );
+    }
+
+    // General fallback
+    return reply(
+      "Mrrp... My tiny cat brain doesn't have a good answer to that yet. I'm in offline mode, but I know quite a bit about Bob's research, design, engineering, art, music, and his beloved piano. Try asking me about those! For a fuller live conversation, you can add an API key in Settings. Now, where was I? Ah yes. Napping. 🐾",
+      []
+    );
   }
 
   async function readGeminiStream(response, onTextChunk) {
@@ -1275,5 +1427,13 @@
     }
   }
 
+  if (MESSENGER_MODE) {
+    window.bobCatMessenger = {
+      send: sendMessage,
+      messages: () => state.messages.map(({role, text, pending}) => ({role, text, pending})),
+      busy: () => elements.sendButton.disabled,
+      clear: resetChat
+    };
+  }
   init();
 })();

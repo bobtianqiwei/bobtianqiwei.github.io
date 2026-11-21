@@ -1,0 +1,16 @@
+/* messenger-chat.css developed by Bob Tianqi Wei */
+html,body{margin:0!important;height:100%!important;overflow:hidden!important;background:white!important;color:#000!important;font:11px Tahoma!important}
+#navigation,.footer-wrap,.bob-cat-title-row,.bob-cat-empty-state,.bob-cat-splitter,.bob-cat-preview-panel,.bob-cat-composer-label{display:none!important}
+#bob-cat-page,.bob-cat-layout,.bob-cat-chat-panel{box-sizing:border-box!important;padding:0!important;margin:0!important;width:100%!important;max-width:none!important;height:100vh!important;min-height:0!important;border:0!important;border-radius:0!important;background:white!important;box-shadow:none!important}
+.bob-cat-chat-panel{display:flex!important;flex-direction:column!important;gap:0!important}
+.bob-cat-chat-header{padding:0!important;border:0!important;background:#ece9d8!important}.bob-cat-settings:not([open]){display:none!important}
+.messenger-warning{flex:none;padding:4px 5px;font:10px/13px Tahoma;background:#ffffe1;border-bottom:1px solid #dedbc9}
+#bob-cat-status{font:10px Tahoma!important;padding:2px 5px!important;background:#fff!important;color:#777!important;min-height:0!important}
+#bob-cat-messages{flex:1!important;min-height:0!important;margin:0!important;padding:5px!important;border:0!important;background:white!important;overflow:auto!important}
+#bob-cat-messages *{font-family:Arial!important;font-size:12px!important;border-radius:0!important;box-shadow:none!important;line-height:16px!important}
+.bob-cat-message{background:none!important;color:#000!important;padding:0!important;margin:0 0 8px!important;max-width:none!important}.bob-cat-message-label{color:#777!important;font-weight:normal!important}.bob-cat-message-label:after{content:' says:'}.bob-cat-message-body{padding-left:12px!important}.bob-cat-message-body p{margin:0!important}
+.messenger-format{display:flex;align-items:center;height:25px;flex:none;background:#d8e0f5;border-top:1px solid #eef2fc;border-bottom:1px solid #7191cf;padding:0 4px;gap:4px}.messenger-format button{border:0;background:none;color:#172b50;font:11px Tahoma;padding:3px 5px;cursor:pointer}.messenger-format button:hover{background:#b8caec}
+#bob-cat-form{margin:0!important;padding:2px!important;background:#d8e0f5!important;border:0!important;flex:none!important}
+.bob-cat-composer-row{display:flex!important;gap:2px!important;align-items:stretch!important}
+#bob-cat-input{box-sizing:border-box!important;flex:1!important;min-width:0!important;height:48px!important;padding:4px!important;border:1px solid #7f9db9!important;border-radius:0!important;background:white!important;color:black!important;font-size:12px!important}
+#send-message{box-sizing:border-box!important;min-width:38px!important;width:38px!important;padding:0!important;border:1px solid #aca899!important;border-radius:3px!important;background:#f5f4ea!important;color:#000!important;font:10px Tahoma!important;box-shadow:inset 1px 1px white!important}#send-message:disabled{color:#aaa!important}

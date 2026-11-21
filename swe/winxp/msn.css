@@ -1,0 +1,64 @@
+/* msn.css developed by Bob Tianqi Wei */
+.xp-extra-body.msn-conversation,.xp-extra-body.msn-contacts{background:linear-gradient(125deg,#e5effb,#d4e1f6 48%,#f5f8ff 49%,#ccdaf1);font:11px Tahoma,Arial,sans-serif;color:#17283d}
+.msn-conversation .xp-messenger-menu,.msn-contacts .xp-messenger-menu{background:#ece9d8;flex:none;height:20px;padding:0;border-bottom:1px solid #b0b9ca}
+.msn-contacts .xp-chat-menu-button{border:0;background:none;color:#000;min-width:0;height:19px;font:11px Tahoma;padding:1px 5px;box-shadow:none}
+.msn-toolbar{height:62px;flex:none;display:flex;position:relative;padding:3px 7px 4px;background:linear-gradient(#f8fcff,#c9d9f0 35%,#edf3fc 85%);border-bottom:1px solid #92a5bc;border-radius:0 0 45px 0;margin-right:4px}
+.msn-toolbar-item{border:0;background:none;box-shadow:none;min-width:0;width:50px;padding:0;font:10px Tahoma;color:#3d5164;display:flex;flex-direction:column;align-items:center;gap:2px}.msn-toolbar-item:hover{background:#ffffff70;border-radius:4px}
+.msn-toolbar-icon{display:block;width:35px;height:35px;background-image:none;background-repeat:no-repeat}
+.msn-toolbar-logo{position:absolute;right:34px;top:2px;width:48px;height:20px;background:none}
+.msn-conversation .xp-conversation-layout{background:none;padding:8px 10px 12px;gap:9px;min-height:0}
+.msn-conversation .xp-conversation-main{border:0;border-radius:8px;overflow:hidden;background:none}
+.msn-conversation .xp-messenger-recipient{height:26px;background:#edf3fb;color:#526373;border:1px solid #869cab;border-bottom:0;border-radius:7px 7px 0 0;padding:5px 6px;font:11px Tahoma;flex:none}
+.msn-conversation .xp-chat-warning{border:1px solid #869cab;border-bottom:0;background:#f9fcff;color:#59636e;padding:6px;font:10px/14px Tahoma}
+.msn-conversation .xp-chat-messages{border:1px solid #869cab;border-top:0;background:#fbfdff;padding:6px;color:#000;font:12px/16px Arial;margin-bottom:9px}
+.msn-conversation .xp-chat-format{height:24px;border:1px solid #869cab;border-radius:7px 7px 0 0;background:linear-gradient(#fcfdff,#c6d6ee);padding:0 4px;gap:1px}
+.msn-conversation .xp-chat-tool{font:11px Tahoma;color:#263d67;padding:1px 4px;height:21px}.msn-conversation .msn-font{font:bold 20px Georgia;color:#263b72}
+.msn-conversation .xp-chat-composer{height:97px;background:linear-gradient(#fbfdff 80%,#d4e3f9);border:1px solid #869cab;border-top:0;border-radius:0 0 7px 7px;padding:3px 4px 20px;gap:5px}
+.msn-conversation .xp-chat-input{border:0;background:transparent;color:#000;font:12px/16px Arial;padding:2px}
+.msn-conversation .xp-chat-send{width:54px;min-width:54px;height:36px;border:1px solid #8ca2b4;background:linear-gradient(#fff,#e3edf7);border-radius:3px;color:#445b71;box-shadow:inset 0 0 0 2px #f5f9ff;font:bold 11px Tahoma}
+.msn-conversation .xp-conversation-side{width:118px;border:0;background:none;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.msn-avatar-card{padding:4px 5px 16px;border:1px solid #8fa1af;border-radius:9px;background:linear-gradient(135deg,#fff,#e7f0fc);box-shadow:inset 0 0 0 2px #f8fbff;position:relative;align-self:stretch}
+.msn-avatar{width:96px;height:96px;margin:auto;border:1px solid #9caeb8;border-radius:5px;background-image:none;background-repeat:no-repeat}.msn-avatar-contact{background-position:-352px -118px}.msn-avatar-self{background-position:-352px -292px}.msn-avatar-arrow{position:absolute;bottom:0;right:9px;color:#4e677e}
+.msn-conversation .xp-conversation-status{height:22px;background:#f5f9fe;border:1px solid #9dabb9;border-radius:0 0 6px 6px;color:#4d5d69;padding:4px 7px;font:10px Tahoma}
+.msn-profile{padding:6px 9px 12px;border:1px solid #9fb5d2;border-radius:7px;background:linear-gradient(#f9fcff,#ccdcf2);min-height:104px}.msn-wordmark{font:italic bold 18px Arial;color:#174484;margin-bottom:8px}.msn-profile img{float:left;width:48px;height:48px;object-fit:cover;margin-right:10px;border:1px solid #8599ac;border-radius:5px;padding:2px;background:white}.msn-profile strong{font:bold 12px Tahoma;color:#111}.msn-profile select{font:10px Tahoma;border:0;background:transparent;width:80px;margin-top:4px}.msn-profile p{font:10px Tahoma;color:#8896a5;margin:5px 0}.msn-contact-list{flex:1;overflow:auto;background:#fff;margin:5px 7px 5px 28px;border:1px solid #a4b5cd;padding:4px}.msn-contact-notice{background:#ffffe1;border:1px solid #8296ae;padding:4px;font:10px/13px Tahoma}.msn-contact-list h3{font:bold 11px Tahoma;color:#566775;margin:12px 0 6px}.msn-contact{background:#e9f0fa;border:1px solid #afc2dc;color:#17283d;font:11px Tahoma;min-width:0;width:100%;padding:5px;text-align:left}.msn-brand-footer{margin:0 7px 8px 28px;padding:18px 5px;background:#fff;border:1px solid #9db1ce;border-bottom:3px solid #f7cf39;font:italic bold 23px Arial;color:#174484}
+.msn-conversation .msn-avatar-contact{background-image:url('/images/projects/bobscat.jpg');background-position:center;background-size:cover}
+.msn-conversation .msn-avatar-self{background-image:url('/swe/winxp/static/media/bob-hillside-square.jpg');background-position:center;background-size:cover}
+.msn-toolbar-icon{mix-blend-mode:multiply}
+.msn-toolbar-item{font-size:11px}
+.msn-conversation .xp-conversation-layout{padding:8px 13px 12px}
+.msn-conversation .xp-conversation-side{width:114px}
+.msn-conversation .msn-format-tool{flex:none;min-width:0;height:21px;padding:0;background-image:none;background-repeat:no-repeat;mix-blend-mode:multiply}
+.msn-conversation .msn-format-tool:hover{background-image:none!important;background-color:#e6efff!important}
+.msn-conversation .xp-chat-format{gap:0;padding:0 3px}
+.msn-wordmark{display:flex;align-items:center;gap:3px;font:bold 13px Arial;margin-bottom:9px}
+.msn-wordmark:before,.msn-brand-footer:before{content:'';display:inline-block;width:48px;height:20px;background:none;mix-blend-mode:multiply}
+.msn-profile{min-height:103px}
+.msn-profile strong{font-size:13px}
+.msn-profile p{font-size:11px}
+.msn-brand-footer{display:flex;align-items:center;justify-content:center;gap:3px;font:22px Arial;color:#111;height:66px;padding:8px}
+.msn-brand-footer:before{zoom:1.6}
+.msn-contact{display:flex;align-items:center;gap:6px;background:none;border:0;padding:3px 5px;font:12px Tahoma}
+.msn-contact:hover,.msn-contact:focus{background:#e9f0fa;outline:1px solid #afc2dc}
+.msn-contact img{width:20px;height:20px;object-fit:cover;border-radius:2px}
+.msn-add-contact{display:block;border:0;background:none;box-shadow:none;color:#33485e;font:11px Tahoma;padding:6px 4px;text-align:left;min-width:0}
+.msn-contact-notice{font-size:11px;line-height:14px;padding-left:18px;position:relative}
+.msn-contact-notice:before{content:'i';position:absolute;left:4px;top:4px;width:11px;height:11px;border-radius:50%;background:#2366c9;color:#fff;text-align:center;font:bold 10px Georgia}
+.msn-toolbar{height:58px;margin:0;padding:3px 7px 4px;border:0;border-radius:0;background:#e0eafb none no-repeat}
+.msn-toolbar-logo{background:none}
+.msn-toolbar-item>span:last-child{color:#3d5164}
+.msn-toolbar-item:hover{background:#ffffff30;outline:1px solid #9eafc5}
+.msn-conversation .xp-chat-format{background:#d8e5f5 none no-repeat}
+.msn-conversation .msn-format-tool{background-image:none;mix-blend-mode:normal}
+.msn-conversation .msn-format-tool:hover{background-image:none!important;background-color:#ffffff30!important;outline:1px solid #9eafc5}
+.msn-toolbar{background:linear-gradient(#fbfdff,#cfdef2 35%,#edf4fc);border-bottom:1px solid #96a9bf;border-radius:0 0 40px 0}
+.msn-toolbar-icon{width:45px;background-position:center;background-size:auto 29px;mix-blend-mode:normal}
+.msn-toolbar-logo,.msn-wordmark:before,.msn-brand-footer:before{background:url('/swe/winxp/static/media/msn/ui/msn-logo.png') center/contain no-repeat;mix-blend-mode:normal}
+.msn-conversation .xp-chat-format{background:linear-gradient(#fcfdff,#c6d6ee)}
+.msn-conversation .msn-format-tool{display:flex;align-items:center;justify-content:center;gap:2px;background:none;font:10px Tahoma;padding:0}
+.msn-format-tool img{display:block;max-width:20px;max-height:20px;object-fit:contain}
+.msn-conversation .xp-chat-input-area{position:relative;flex:1;min-width:0;display:flex}
+.msn-conversation .xp-chat-input-area .xp-chat-input{width:100%}
+.msn-conversation .xp-chat-suggestions{position:absolute;bottom:3px;left:3px;right:3px;display:flex;flex-wrap:wrap;gap:4px}
+.msn-conversation .xp-chat-suggestions[hidden]{display:none}
+.msn-conversation .xp-chat-suggestion{min-width:0;padding:2px 4px;border:1px solid #b7c6d9;background:#f4f8fc;color:#526373;font:10px Tahoma}
+.msn-conversation .xp-chat-suggestion:hover{background:#e3edf9}

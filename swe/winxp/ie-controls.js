@@ -353,6 +353,7 @@
     }
 
     function openBobCat() {
+      if(window.xpExtras){window.xpExtras.menu('Windows Messenger');return;}
       var params = new URLSearchParams();
       params.set("embed", "1");
       params.set("contextPath", getCurrentUrl());

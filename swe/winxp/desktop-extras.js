@@ -94,7 +94,7 @@
     api.dispatch({type:api.add,payload:{
       ...original,component,header:{icon:original.header.icon,title,
         ...(height<320||options.dialog?{buttons:['close']}: {})},
-      defaultSize:{width,height},defaultOffset:offset,
+      defaultSize:{width,height},defaultOffset:options.offset||offset,
       resizable:height>=320&&!options.dialog,minimized:false,maximized:false,multiInstance:true
     }});
   }
@@ -277,6 +277,62 @@
   }
   function applySettings(){document.documentElement.classList.toggle('xp-classic',settings.classic);save('xp-settings',settings);}
   function controlPanel(){explorer('Control Panel');}
+  let messengerBody,messengerContacts;
+  function messenger(){
+    if(!messengerContacts?.isConnected){
+      const contacts=windowXP('MSN Messenger',344,650,{offset:{x:Math.max(4,innerWidth-364),y:32}});messengerContacts=contacts;contacts.classList.add('xp-messenger','msn-contacts');
+      const menu=el('div','xp-messenger-menu');['File','Contacts','Actions','Tools','Help'].forEach(label=>menu.append(button(label,()=>messenger(),'xp-chat-menu-button')));
+      const profile=el('div','msn-profile'),portrait=el('img');portrait.src=base+'static/media/bob-hillside-square.jpg';portrait.alt='Bob Tianqi Wei';
+      const status=el('select');status.setAttribute('aria-label','My status');['Online','Away','Busy','Appear Offline'].forEach(text=>status.append(el('option','',text)));
+      profile.append(el('div','msn-wordmark','Messenger'),portrait,el('strong','','Bob Tianqi Wei'),status,el('p','','<Type a personal message>'));
+      const list=el('div','msn-contact-list'),contact=button("Bob’s Cat (Online)",()=>messenger(),'msn-contact');contact.ondblclick=()=>messenger();
+      const contactAvatar=el('img');contactAvatar.src='/images/projects/bobscat.jpg';contactAvatar.alt='';contact.prepend(contactAvatar);
+      list.append(el('div','msn-contact-notice',"Your contact is Bob’s Cat, Bob’s portfolio assistant."),button('Add a Contact',()=>messenger(),'msn-add-contact'),el('h3','','Online (1)'),contact,el('h3','','Offline (0)'));
+      contacts.append(menu,profile,list,el('div','msn-brand-footer','Messenger'));
+    }
+    if(messengerBody?.isConnected){messengerBody.closest('.app__content').parentElement.dispatchEvent(new MouseEvent('mousedown',{bubbles:true}));return;}
+    const chat=windowXP("Bob's Cat - Conversation",520,490,{offset:{x:Math.min(24,Math.max(4,innerWidth-528)),y:64}});messengerBody=chat;chat.classList.add('xp-messenger','xp-messenger-conversation','msn-conversation');
+    const bar=el('div','xp-messenger-menu'),layout=el('div','xp-conversation-layout'),main=el('div','xp-conversation-main'),side=el('aside','xp-conversation-side');
+    const notice=el('div','xp-conversation-status',"Connecting to Bob's Cat..."),messages=el('div','xp-chat-messages'),input=el('textarea','xp-chat-input'),form=el('form','xp-chat-composer'),format=el('div','xp-chat-format');
+    messages.setAttribute('role','log');messages.setAttribute('aria-live','polite');input.setAttribute('aria-label','Message');
+    // Use the live Cat page so its provider, prompt, and fallback rules remain the single source.
+    const engine=el('iframe');engine.hidden=true;engine.title="Bob's Cat reply engine";engine.src='/works/bobscat/?embed=1&messenger=1&contextPath=/swe/classic/';
+    let api,blocked=false,last='',animateIndex=-1,revealCount=0,nextCharacterAt=0,typing=false;
+    const send=button('Send',submit,'xp-chat-send');send.disabled=true;
+    const inputArea=el('div','xp-chat-input-area'),suggestions=el('div','xp-chat-suggestions');
+    ['Who is Bob?','Music','AI and design'].forEach(prompt=>{const suggestion=button(prompt,()=>{input.value=prompt;submit();},'xp-chat-suggestion');suggestion.disabled=true;suggestions.append(suggestion);});
+    function submit(){if(!api||api.busy()||typing||blocked||!input.value.trim())return;const text=input.value;input.value='';animateIndex=api.messages().length+1;revealCount=0;nextCharacterAt=0;api.send(text);refresh();}
+    async function clearConversation(){if(!api||api.busy())return;animateIndex=-1;typing=false;await api.clear();refresh();input.focus();}
+    function refresh(){
+      suggestions.hidden=input.value.length>0;
+      if(!api)return;const records=api.messages();typing=false;
+      const reply=records[animateIndex];
+      if(reply&&reply.role==='assistant'&&!reply.pending){
+        const chars=Array.from(reply.text),now=performance.now();
+        if(!nextCharacterAt)nextCharacterAt=now;
+        while(revealCount<chars.length&&now>=nextCharacterAt){const char=chars[revealCount++];nextCharacterAt+=/[，。！？.!?,:\n]/.test(char)?22:12;}
+        typing=revealCount<chars.length;
+        reply.text=chars.slice(0,revealCount).join('');
+        if(!typing)nextCharacterAt=0;
+      }
+      const serialized=JSON.stringify(records);
+      if(serialized!==last){last=serialized;messages.replaceChildren();records.forEach(record=>{const item=el('div','xp-chat-message');item.append(el('div','xp-chat-sender',record.role==='assistant'?"Bob's Cat says:":'You say:'),el('div','xp-chat-text',record.pending?"Bob's Cat is typing a message...":record.text));messages.append(item);});messages.scrollTop=messages.scrollHeight;}
+      send.disabled=blocked||api.busy()||typing||!input.value.trim();input.disabled=blocked;
+      suggestions.querySelectorAll('button').forEach(button=>button.disabled=blocked||api.busy()||typing);
+      notice.textContent=blocked?"Bob's Cat is blocked.":api.busy()||typing?"Bob's Cat is typing a message...":"All replies are from Bob's Cat.";
+    }
+    function options(){const panel=windowXP("Bob's Cat Settings",480,450);const frame=el('iframe','xp-messenger-frame');frame.src='/works/bobscat/?embed=1';frame.title="Bob's Cat settings";frame.onload=()=>frame.contentWindow.postMessage({type:'bob-cat-open-settings'},location.origin);panel.append(frame);}
+    function menu(label,items){const wrap=el('div','xp-chat-menu-wrap'),popup=el('div','xp-chat-menu-popup');popup.hidden=true;const trigger=button(label,()=>{const open=popup.hidden;bar.querySelectorAll('.xp-chat-menu-popup').forEach(p=>p.hidden=true);popup.hidden=!open;},'xp-chat-menu-button');items.forEach(([text,action])=>popup.append(button(text,()=>{popup.hidden=true;action();},'xp-chat-menu-button')));wrap.append(trigger,popup);return wrap;}
+    bar.append(menu('File',[['Close',()=>chat.close()]]),menu('Edit',[['Select All',()=>{input.focus();input.select();}],['Clear Conversation',clearConversation]]),menu('View',[['Sidebar',()=>side.hidden=!side.hidden]]),menu('Actions',[['Options...',options]]),menu('Help',[['About MSN Messenger',()=>notice.textContent="MSN Messenger-style interface. Replies by Bob's Cat."]]));
+    const unavailable=()=>notice.textContent='This AI contact supports text conversations only.';
+    const toolbar=el('div','msn-toolbar');['Invite','Send Files','Video','Voice','Activities','Games'].forEach((label,i)=>{const tool=button('',unavailable,'msn-toolbar-item'),icon=el('span','msn-toolbar-icon');icon.style.backgroundImage='url('+base+'static/media/msn/toolbar/'+['invite','send','video','voice','activities','games'][i]+'.png)';tool.append(icon,el('span','',label));toolbar.append(tool);});toolbar.append(el('span','msn-toolbar-logo'));
+    ['contact','self'].forEach(kind=>{const card=el('div','msn-avatar-card'),avatar=el('div','msn-avatar msn-avatar-'+kind);avatar.setAttribute('role','img');avatar.setAttribute('aria-label',kind==='contact'?"Bob's Cat":'Bob Tianqi Wei');card.append(avatar,el('span','msn-avatar-arrow','▾'));side.append(card);});
+    [['Font',25,24,()=>input.classList.toggle('xp-chat-serif')],['Emoticons',51,38,()=>{input.value+=' :-)';input.focus();refresh();}],['Voice Clip',96,70,unavailable],['Winks',169,34,unavailable],['Send a Picture',208,34,unavailable],['Send a Gift',249,34,unavailable],['Clear chat history',292,30,clearConversation]].forEach(([label,x,width,action])=>{const tool=button('',action,'xp-chat-tool msn-format-tool');tool.title=label;tool.setAttribute('aria-label',label);tool.style.width=width+'px';const img=el('img');img.src=base+'static/media/msn/simple/'+({25:'letter',51:'happy',96:'voice-clip',169:'wink',208:'mountain',249:'gift',292:'nudge'}[x])+'.png';img.alt='';tool.append(img);if(label==='Voice Clip')tool.append(document.createTextNode('Voice Clip'));format.append(tool);});
+    input.oninput=refresh;input.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();submit();}};form.onsubmit=e=>{e.preventDefault();submit();};inputArea.append(input,suggestions);form.append(inputArea,send);
+    main.append(el('div','xp-messenger-recipient',"To:  Bob's Cat <bobscat>"),el('div','xp-chat-warning','Never give out your password or credit card number in an instant message conversation.'),messages,format,form);layout.append(main,side);chat.append(bar,toolbar,layout,notice,engine);
+    engine.onload=()=>{api=engine.contentWindow.bobCatMessenger;if(!api){notice.textContent='Unable to load the reply engine. Please reopen Messenger.';return;}refresh();};
+    const timer=setInterval(()=>{if(!chat.isConnected){clearInterval(timer);return;}refresh();},16);
+  }
   function renderControlPanel(main,side,status){
     const asset=name=>base+'static/media/xp/'+name+'.png';
     const display=tab=>()=>displayProperties(tab);
@@ -432,6 +488,7 @@
     content.append(logo,el('p','',message));layer.replaceChildren(content);
   }
   async function power(mode){
+    if(document.querySelector('.xp-power-layer'))return;
     document.querySelectorAll('audio,video').forEach(a=>a.pause());window.xpWebamp?.pause();
     const layer=el('div','xp-power-layer');layer.dataset.reset=String(mode!=='login'&&mode!=='standby');document.body.append(layer);
     sessionScreen(layer,mode==='off'||mode==='restart'?'Windows is shutting down...':'Saving your settings...');
@@ -479,7 +536,7 @@
       const img=el('img');img.src=base+'static/media/'+src;img.alt=label;print.append(img);scene.append(print);prints.push(print);
     });
     scene.onkeydown=e=>{if(e.key==='Escape')putDown();};
-    scene.append(hardware,shade,gallery);
+    scene.append(hardware,el('p','xp-power-hint','Press the power button to turn on the computer.'),shade,gallery);
     await Promise.all(Array.from(scene.querySelectorAll('img'),img=>img.decode().catch(()=>{})));
     layer.className='xp-power-layer xp-off';layer.replaceChildren(scene);
     const closing=el('div','xp-screen-startup');sessionScreen(closing,'Windows is shutting down...');closing.classList.add('xp-screen-startup');screen.append(closing);
@@ -501,18 +558,30 @@
     target.replaceChildren(logo,loader,el('p','','Copyright © Microsoft Corporation'),ms);
   }
   async function boot(layer,login=false){
-    layer.className='xp-power-layer xp-boot';
-    bootContents(layer);
-    const playing=sound(login?'logon':'startup',login?0:2.4);
-    if(!login)await new Promise(resolve=>setTimeout(resolve,2400));
-    sessionScreen(layer,'welcome');layer.classList.add('xp-welcome');
-    await new Promise(resolve=>setTimeout(resolve,650));
-    if(layer.dataset.reset==='true')window.xpDesktop.dispatch({type:'XP_RESET'});
-    layer.remove();lastActivity=Date.now();
+    if(layer.dataset.booting==='true')return;
+    layer.dataset.booting='true';
+    try{
+      layer.className='xp-power-layer xp-boot';
+      bootContents(layer);
+      void sound(login?'logon':'startup',login?0:2.4);
+      if(!login)await new Promise(resolve=>setTimeout(resolve,2400));
+      sessionScreen(layer,'welcome');layer.classList.add('xp-welcome');
+      const desktop=window.xpDesktop;
+      if(desktop){
+        desktop.dispatch({type:desktop.cancelPower});
+        if(layer.dataset.reset==='true')desktop.dispatch({type:'XP_RESET'});
+      }
+      await new Promise(resolve=>setTimeout(resolve,650));
+    }finally{
+      // Remove session overlays even if desktop restoration throws.
+      document.querySelectorAll('body > .xp-power-layer').forEach(overlay=>overlay.remove());
+      layer.remove();lastActivity=Date.now();
+    }
   }
   window.xpExtras={
     menu(name){
       document.querySelectorAll('.menu__item img').forEach(img=>{icons[img.alt]=img.src;});
+      if(name==='Windows Messenger'){messenger();return true;}
       const actions={'My Computer':()=>explorer(),'My Documents':()=>explorer('My Documents'),'My Pictures':()=>explorer('My Pictures'),'My Music':()=>explorer('My Music'),'My Recent Documents':()=>explorer('My Recent Documents'),'Search':search,'Run...':()=>run(),'Control Panel':controlPanel,'Command Prompt':()=>execute('cmd'),'Windows Media Player':()=>explorer('My Music')};
       const recent=read('xp-recent',[]).find(f=>f.name===name);
       if(actions[name]){actions[name]();return true;}
