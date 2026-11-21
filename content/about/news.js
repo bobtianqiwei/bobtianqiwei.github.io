@@ -1,6 +1,14 @@
 // news.js developed by Bob Tianqi Wei
 window.aboutNewsItems = [
   {
+    date: "Nov 14, 2026",
+    textHtml: "Invited talk at Lanzhou University."
+  },
+  {
+    date: "Nov 3, 2026",
+    textHtml: "Presented <em>EKPHRASIS Chess</em> and <em>dear___</em> at ACM UIST 2026."
+  },
+  {
     date: "UIST 2025",
     textHtml: "Our paper <a href=\"https://doi.org/10.1145/3746059.3747685\" target=\"_blank\" class=\"link-in-paragraph\"><em>MorphingSkin</em></a> received the Best Paper Award!"
   },

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>WinXP | Bob Tianqi Wei</title>
+  <title>Bob’s Childhood Computer | Bob Tianqi Wei</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Windows XP experience embedded inside the SWE page.">
   <link href="/images/favicon.png" rel="shortcut icon" type="image/x-icon">
@@ -52,11 +52,15 @@
   <main class="swe-winxp-shell" aria-label="Embedded WinXP experience">
     <iframe
       class="swe-winxp-frame"
-      src="/swe/winxp/index.html"
       title="WinXP"
       loading="eager"
       allow="fullscreen"
     ></iframe>
+    <script>
+      const xpEntry = new URL('/swe/winxp/index.html', location.origin);
+      if (new URLSearchParams(location.search).get('power') === 'off') xpEntry.searchParams.set('power', 'off');
+      document.querySelector('.swe-winxp-frame').src = xpEntry.href;
+    </script>
   </main>
 </body>
 </html>

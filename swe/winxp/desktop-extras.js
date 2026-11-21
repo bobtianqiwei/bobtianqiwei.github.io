@@ -52,7 +52,7 @@
   }
   function remember(file) { const recent=read('xp-recent',[]).filter(f=>f.url!==file.url);recent.unshift(file);save('xp-recent',recent.slice(0,15)); }
   const trackedFrames=new WeakSet();
-  function trackBrowser(){document.querySelectorAll('.ie__content iframe').forEach(frame=>{if(trackedFrames.has(frame))return;trackedFrames.add(frame);const record=()=>{try{const url=frame.contentWindow.location;if(url.origin===location.origin)remember({name:frame.contentDocument.title||url.pathname,url:url.pathname,kind:'project'});}catch{}};frame.addEventListener('load',record);record();});}
+  function trackBrowser(){document.querySelectorAll('.ie__content iframe').forEach(frame=>{if(trackedFrames.has(frame))return;trackedFrames.add(frame);const record=()=>{if(frame.hasAttribute("srcdoc"))return;try{const url=frame.contentWindow.location;if(url.origin===location.origin)remember({name:frame.contentDocument.title||url.pathname,url:url.pathname,kind:'project'});}catch{}};frame.addEventListener('load',record);record();});}
   function windowXP(title, width=720, height=500,options={}) {
     const body=el('div','xp-extra-body');
     nativeWindow(title,width,height,body,null,null,options);
@@ -489,7 +489,16 @@
   }
   async function power(mode){
     if(document.querySelector('.xp-power-layer'))return;
-    document.querySelectorAll('audio,video').forEach(a=>a.pause());window.xpWebamp?.pause();
+    document.querySelectorAll('audio,video').forEach(a=>a.pause());
+    const player=window.xpWebamp;
+    if(mode==='off'||mode==='restart'||mode==='logoff'){
+      pendingTrack=null;
+      player?.stop();
+      // Unload embedded pages, including cross-origin media the desktop cannot pause.
+      document.querySelectorAll('#root iframe').forEach(frame=>{frame.srcdoc='';});
+    }else if(player?.getMediaStatus()==='PLAYING'){
+      player.pause();
+    }
     const layer=el('div','xp-power-layer');layer.dataset.reset=String(mode!=='login'&&mode!=='standby');document.body.append(layer);
     sessionScreen(layer,mode==='off'||mode==='restart'?'Windows is shutting down...':'Saving your settings...');
     if(mode==='standby'){layer.append(button('Resume Windows',()=>layer.remove()));return;}
@@ -504,11 +513,21 @@
       user.append(avatar,el('span','','Bob Tianqi Wei'));layer.replaceChildren(prompt,user);
     }
   }
-  async function deskScene(layer,shutdown){
+  function clearPoweredOffEntry(target){
+    const url=new URL(target.location.href);
+    if(url.searchParams.get('power')!=='off')return;
+    url.searchParams.delete('power');
+    target.history.replaceState(target.history.state,'',url);
+  }
+  async function deskScene(layer,shutdown,initiallyOff=false){
     const scene=el('div','xp-desk-scene'),computer=el('div','xp-vaio'),photo=el('img','xp-vaio-photo'),screen=el('div','xp-vaio-screen');
     scene.style.visibility='hidden';
     photo.src=base+'static/media/vaio-pcv-w.png';photo.alt='Sony VAIO PCV-W';
     const on=button('',async()=>{
+      if(initiallyOff){
+        clearPoweredOffEntry(window);
+        try{if(window.parent!==window)clearPoweredOffEntry(window.parent);}catch{}
+      }
       on.disabled=true;scene.classList.add('xp-desk-busy');
       const startup=el('div','xp-power-layer xp-boot xp-screen-startup');bootContents(startup);screen.append(startup);
       startup.style.width=innerWidth+'px';startup.style.height=innerHeight+'px';
@@ -537,8 +556,9 @@
     });
     scene.onkeydown=e=>{if(e.key==='Escape')putDown();};
     scene.append(hardware,el('p','xp-power-hint','Press the power button to turn on the computer.'),shade,gallery);
-    await Promise.all(Array.from(scene.querySelectorAll('img'),img=>img.decode().catch(()=>{})));
+    if(!initiallyOff)await Promise.all(Array.from(scene.querySelectorAll('img'),img=>img.decode().catch(()=>{})));
     layer.className='xp-power-layer xp-off';layer.replaceChildren(scene);
+    if(initiallyOff){scene.style.visibility='visible';return;}
     const closing=el('div','xp-screen-startup');sessionScreen(closing,'Windows is shutting down...');closing.classList.add('xp-screen-startup');screen.append(closing);
     closing.style.width=innerWidth+'px';closing.style.height=innerHeight+'px';closing.style.transform=`scale(${screen.clientWidth/innerWidth},${screen.clientHeight/innerHeight})`;
     async function camera(inward,delay=0){
@@ -560,22 +580,40 @@
   async function boot(layer,login=false){
     if(layer.dataset.booting==='true')return;
     layer.dataset.booting='true';
+    let reloading=false;
+    let recoveryTimeout;
     try{
       layer.className='xp-power-layer xp-boot';
       bootContents(layer);
-      void sound(login?'logon':'startup',login?0:2.4);
+      const startupSound=sound(login?'logon':'startup',login?0:2.4);
       if(!login)await new Promise(resolve=>setTimeout(resolve,2400));
       sessionScreen(layer,'welcome');layer.classList.add('xp-welcome');
-      const desktop=window.xpDesktop;
-      if(desktop){
-        desktop.dispatch({type:desktop.cancelPower});
-        if(layer.dataset.reset==='true')desktop.dispatch({type:'XP_RESET'});
-      }
       await new Promise(resolve=>setTimeout(resolve,650));
+      const desktop=window.xpDesktop;
+      if(layer.dataset.reset==='true'){
+        // Reset in place so the startup sound can finish after Welcome.
+        try{
+          const nextAppID=desktop?.state.nextAppID;
+          desktop?.dispatch({type:'XP_RESET'});
+          // Allow a deferred desktop render to commit before deciding to reload.
+          for(let elapsed=0;elapsed<=500;elapsed+=50){
+            if(window.xpDesktop?.state.nextAppID>nextAppID && document.querySelector('#root .footer__time') && document.querySelector('#root .ie__content__inner iframe:not([srcdoc])'))return;
+            if(elapsed<500)await new Promise(resolve=>setTimeout(resolve,50));
+          }
+        }catch(error){console.warn('XP desktop reset failed:',error);}
+        console.warn('XP desktop did not recover; reloading after the startup sound.');
+        await Promise.race([startupSound,new Promise(resolve=>{recoveryTimeout=setTimeout(resolve,6000);})]);
+        window.location.reload();
+        reloading=true;
+      }else if(desktop)desktop.dispatch({type:desktop.cancelPower});
     }finally{
-      // Remove session overlays even if desktop restoration throws.
-      document.querySelectorAll('body > .xp-power-layer').forEach(overlay=>overlay.remove());
-      layer.remove();lastActivity=Date.now();
+      clearTimeout(recoveryTimeout);
+      // Keep Welcome visible until navigation replaces the document.
+      if(!reloading){
+        document.querySelectorAll('body > .xp-power-layer').forEach(overlay=>overlay.remove());
+        layer.remove();
+      }
+      lastActivity=Date.now();
     }
   }
   window.xpExtras={
@@ -596,4 +634,9 @@
   ['pointerdown','keydown','pointermove'].forEach(event=>document.addEventListener(event,()=>lastActivity=Date.now()));
   setInterval(()=>{const idle=Date.now()-lastActivity;if(settings.monitorDelay&&idle>settings.monitorDelay*1000&&!document.querySelector('.xp-power-layer')){power('standby');lastActivity=Date.now();}else if(idle>settings.delay*1000)screensaver();},1000);
   applySettings();
+  if(new URLSearchParams(location.search).get('power')==='off'){
+    const layer=el('div','xp-power-layer xp-off');
+    document.body.append(layer);
+    void deskScene(layer,null,true);
+  }
 }());
